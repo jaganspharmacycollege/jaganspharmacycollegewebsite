@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.section {
+    padding: 4.5rem 1.5rem;
+    background-color: #faf8f5;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Force all headings and child elements to use Plus Jakarta Sans */
+.section h1,
+.section h2,
+.section h3,
+.section h4,
+.section p,
+.section span,
+.section div {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.container {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.headerBlock {
+    margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #b86e00;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #053b2a;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+}
+
+.accentLine {
+    width: 4rem;
+    height: 3px;
+    background: linear-gradient(90deg, #b86e00, #fbbf24);
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+}
+
+.descText {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #4b5563;
+    max-width: 42rem;
+}
+
+/* 3-Column Card Grid */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+    }
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid rgba(5, 59, 42, 0.1);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #34d399;
+    box-shadow: 0 12px 24px -6px rgba(5, 59, 42, 0.12);
+}
+
+.cardTitle {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #053b2a;
+    line-height: 1.35;
+}
+
+.metaGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding: 0.85rem 0;
+    border-top: 1px solid #f3f4f6;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.metaIcon {
+    color: #b86e00;
+    flex-shrink: 0;
+}
+
+.cardDesc {
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: #6b7280;
+}

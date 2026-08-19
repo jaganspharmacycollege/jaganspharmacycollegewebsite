@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './AlumniShared.module.css';
+import styles from './AlumniAchievements.module.css';
 
 export default function AlumniAchievements() {
     return (
@@ -14,6 +14,7 @@ export default function AlumniAchievements() {
                             alt="Distinguished Alumni Achievements"
                         />
                     </div>
+
                     <div>
                         <span className={styles.eyebrow}>Pride & Milestones</span>
                         <h2 className={styles.title}>Alumni Achievements</h2>

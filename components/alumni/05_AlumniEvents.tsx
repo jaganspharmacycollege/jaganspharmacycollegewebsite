@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Calendar, Clock, MapPin } from 'lucide-react';
-import styles from './AlumniShared.module.css';
+import styles from './AlumniEvents.module.css';
 
 const events = [
     {
@@ -24,7 +24,7 @@ const events = [
         date: 'February 20, 2027',
         time: '02:00 PM IST',
         location: 'Seminar Hall 2',
-        desc: 'Senior alumni guiding final-year B.Pharm, Pharm.D, and M.Pharm students with resume reviews and technical interview prep.',
+        desc: 'Senior alumni guiding final-year B. Pharm, Pharm.D, and M. Pharm students with resume reviews and technical interview prep.',
     },
 ];
 
@@ -32,7 +32,7 @@ export default function AlumniEvents() {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                <div>
+                <div className={styles.headerBlock}>
                     <span className={styles.eyebrow}>Conferences & Gatherings</span>
                     <h2 className={styles.title}>Alumni Events</h2>
                     <div className={styles.accentLine} />
@@ -45,20 +45,22 @@ export default function AlumniEvents() {
                     {events.map((ev, idx) => (
                         <div key={idx} className={styles.card}>
                             <h3 className={styles.cardTitle}>{ev.title}</h3>
-                            <div className="flex flex-col gap-1.5 my-3 text-xs text-gray-600 font-medium">
-                                <div className="flex items-center gap-2">
-                                    <Calendar size={13} className="text-[#b86e00]" />
+
+                            <div className={styles.metaGroup}>
+                                <div className={styles.metaItem}>
+                                    <Calendar size={14} className={styles.metaIcon} />
                                     <span>{ev.date}</span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <Clock size={13} className="text-[#b86e00]" />
+                                <div className={styles.metaItem}>
+                                    <Clock size={14} className={styles.metaIcon} />
                                     <span>{ev.time}</span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <MapPin size={13} className="text-[#b86e00]" />
+                                <div className={styles.metaItem}>
+                                    <MapPin size={14} className={styles.metaIcon} />
                                     <span>{ev.location}</span>
                                 </div>
                             </div>
+
                             <p className={styles.cardDesc}>{ev.desc}</p>
                         </div>
                     ))}

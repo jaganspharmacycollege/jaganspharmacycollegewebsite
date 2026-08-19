@@ -1,6 +1,7 @@
 import React from 'react';
 import PlacementsHero from '@/components/placements/PlacementsHero';
 import PlacementStats from '@/components/placements/PlacementStats';
+import PlacedStudentsSection from '@/components/placements/PlacedStudentsSection';
 import TrainingCellSection from '@/components/placements/TrainingCellSection';
 import TopRecruitersSection from '@/components/placements/TopRecruitersSection';
 
@@ -13,10 +14,13 @@ export default function PlacementsPage() {
             {/* 2. Key Placement Milestones & Statistics */}
             <PlacementStats />
 
-            {/* 3. Training & Development Cell */}
+            {/* 3. Featured Placed Students (Zigzag Layout) */}
+            <PlacedStudentsSection />
+
+            {/* 4. Training & Development Cell */}
             <TrainingCellSection />
 
-            {/* 4. Top Corporate Recruiters */}
+            {/* 5. Top Corporate Recruiters */}
             <TopRecruitersSection />
         </main>
     );

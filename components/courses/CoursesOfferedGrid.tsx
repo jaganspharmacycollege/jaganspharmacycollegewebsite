@@ -30,30 +30,6 @@ const courses = [
         description: 'Postgraduate program with specialization and advanced research opportunities.',
         href: '/courses/m-pharm',
     },
-    {
-        icon: FileCode,
-        iconBg: 'bg-[#EBF3FF] text-blue-600',
-        title: 'Ph.D. (Pharmacy)',
-        duration: 'Duration: 3-5 Years',
-        description: 'Research-based doctoral program focusing on innovation in pharmaceutical sciences.',
-        href: '/courses/phd',
-    },
-    {
-        icon: Sprout,
-        iconBg: 'bg-[#FEF9C3] text-amber-700',
-        title: 'Diploma in Pharmacy (D.Pharm)',
-        duration: 'Duration: 2 Years',
-        description: 'Diploma program to build essential skills for a career in pharmacy practice.',
-        href: '/courses/d-pharm',
-    },
-    {
-        icon: Award,
-        iconBg: 'bg-[#ECFDF5] text-emerald-700',
-        title: 'Certificate Programs',
-        duration: 'Duration: Varies',
-        description: 'Short-term certification courses to enhance skills and advance your career.',
-        href: '/courses/certificate',
-    },
 ];
 
 export default function CoursesOfferedGrid() {

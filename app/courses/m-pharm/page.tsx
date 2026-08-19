@@ -138,33 +138,7 @@ export default function MPharmPage() {
                 </div>
             </section>
 
-            {/* 4. Syllabus */}
-            <section className={styles.section}>
-                <div className={styles.container}>
-                    <span className={styles.eyebrow}>Curriculum Structure</span>
-                    <h2 className={styles.title}>Syllabus</h2>
-                    <div className={styles.accentLine} />
-                    <p className={styles.descText}>
-                        Structured strictly in accordance with PCI Uniform Regulations for Postgraduate Pharmacy Education:
-                    </p>
 
-                    <div className={styles.semesterGrid}>
-                        {semesters.map((s, idx) => (
-                            <div key={idx} className={styles.semesterCard}>
-                                <h4 className={styles.semHeader}>{s.sem}</h4>
-                                <div className={styles.list}>
-                                    {s.topics.map((topic, i) => (
-                                        <div key={i} className={styles.listItem}>
-                                            <span className={styles.dot} />
-                                            <span>{topic}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
         </div>
     );
 }

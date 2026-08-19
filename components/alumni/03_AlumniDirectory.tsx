@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { Briefcase, MapPin } from 'lucide-react';
-import styles from './AlumniShared.module.css';
+import styles from './AlumniDirectory.module.css';
 
 const directory = [
     {
         name: 'Dr. Rajesh Varma',
-        batch: 'B.Pharm (Batch 2012)',
+        batch: 'B. Pharm (Batch 2012)',
         role: 'Principal Research Scientist',
         company: 'Novartis Global R&D, Hyderabad',
     },
@@ -19,9 +19,9 @@ const directory = [
     },
     {
         name: 'K. Sai Krishna',
-        batch: 'M.Pharm (Batch 2018)',
-        role: 'Manager - Analytical Quality Assurance',
-        company: 'Dr. Reddy’s Laboratories, Vizag',
+        batch: 'M. Pharm (Batch 2018)',
+        role: 'Manager — Analytical Quality Assurance',
+        company: "Dr. Reddy's Laboratories, Vizag",
     },
 ];
 
@@ -29,12 +29,13 @@ export default function AlumniDirectory() {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                <div>
+                <div className={styles.headerBlock}>
                     <span className={styles.eyebrow}>Member Profiles</span>
                     <h2 className={styles.title}>Alumni Directory</h2>
                     <div className={styles.accentLine} />
                     <p className={styles.descText}>
-                        Explore our alumni network representing leading pharmaceutical corporations, research centers, and tertiary hospitals worldwide.
+                        Explore our alumni network representing leading pharmaceutical corporations,
+                        research centers, and tertiary hospitals worldwide.
                     </p>
                 </div>
 
@@ -42,16 +43,16 @@ export default function AlumniDirectory() {
                     {directory.map((item, idx) => (
                         <div key={idx} className={styles.card}>
                             <h3 className={styles.cardTitle}>{item.name}</h3>
-                            <p className="text-xs font-bold text-[#b86e00] uppercase tracking-wider mb-3">
-                                {item.batch}
-                            </p>
-                            <div className="flex items-center gap-2 text-xs text-gray-700 mb-1.5 font-medium">
-                                <Briefcase size={14} className="text-[#053b2a] flex-shrink-0" />
-                                <span>{item.role}</span>
+                            <p className={styles.cardBatch}>{item.batch}</p>
+
+                            <div className={styles.infoRow}>
+                                <Briefcase size={15} className={styles.icon} />
+                                <span className={styles.roleText}>{item.role}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs text-gray-500">
-                                <MapPin size={14} className="text-[#053b2a] flex-shrink-0" />
-                                <span>{item.company}</span>
+
+                            <div className={styles.infoRow}>
+                                <MapPin size={15} className={styles.icon} />
+                                <span className={styles.companyText}>{item.company}</span>
                             </div>
                         </div>
                     ))}
