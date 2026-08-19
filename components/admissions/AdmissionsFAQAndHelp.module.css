@@ -1,0 +1,224 @@
+.section {
+    padding: 2rem 0;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 80rem;
+    margin: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.faqTitle {
+    font-size: 1.5rem;
+    font-family: serif;
+    font-weight: 700;
+    color: #053b2a;
+}
+
+.accentLine {
+    width: 2rem;
+    height: 2.5px;
+    background-color: #b86e00;
+    border-radius: 9999px;
+    margin-top: 0.375rem;
+}
+
+.accordionList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding-top: 0.5rem;
+}
+
+.accordionItem {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.accordionBtn {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    text-align: left;
+    font-family: serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.accordionBtn:hover {
+    background-color: rgba(249, 250, 251, 0.6);
+}
+
+.accordionBody {
+    padding: 0 1.25rem 1rem 1.25rem;
+    font-size: 0.75rem;
+    color: #4b5563;
+    font-weight: 500;
+    line-height: 1.6;
+    border-top: 1px solid rgba(243, 244, 246, 0.8);
+    padding-top: 0.5rem;
+}
+
+.helpCard {
+    background-color: #faf8f5;
+    border-radius: 1rem;
+    border: 1px solid rgba(243, 244, 246, 0.8);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 340px;
+}
+
+.helpGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.helpContent {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.helpTitle {
+    font-size: 1.25rem;
+    font-family: serif;
+    font-weight: 700;
+    color: #053b2a;
+}
+
+.helpDesc {
+    font-size: 0.75rem;
+    color: #4b5563;
+    font-weight: 500;
+    line-height: 1.6;
+    padding-top: 0.25rem;
+}
+
+.contactList {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.contactIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.375rem;
+    background-color: #042f24;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contactBtn {
+    background-color: #042f24;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.contactBtn:hover {
+    background-color: #021f18;
+}
+
+.helpImageWrapper {
+    position: relative;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.helpImageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Tablet (640px - 1024px) */
+@media (min-width: 640px) {
+    .accordionBtn {
+        font-size: 0.875rem;
+    }
+
+    .helpGrid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .helpLeft {
+        grid-column: span 7 / span 7;
+    }
+
+    .helpRight {
+        grid-column: span 5 / span 5;
+        min-height: 100%;
+    }
+
+    .gradientOverlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, #faf8f5, rgba(250, 248, 245, 0.4), transparent);
+        z-index: 10;
+    }
+}
+
+/* Desktop / Laptop (1024px+) */
+@media (min-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 2rem;
+    }
+
+    .faqCol {
+        grid-column: span 7 / span 7;
+    }
+
+    .helpCol {
+        grid-column: span 5 / span 5;
+    }
+}

@@ -1,0 +1,150 @@
+.section {
+    background-color: #faf8f5;
+    padding: 4.5rem 0;
+    font-family: var(--font-sora), 'Sora', sans-serif;
+}
+
+.container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 1.25rem;
+    padding: 2rem 1.5rem;
+    border: 1px solid #e5e7eb;
+}
+
+.cardTitle {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin-bottom: 1.25rem;
+}
+
+/* Approvals Card */
+.approvalItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.approvalBadge {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    background-color: #ebf7f2;
+    color: #053b2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.approvalName {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: #053b2a;
+}
+
+.approvalSub {
+    font-size: 0.6875rem;
+    color: #6b7280;
+}
+
+.approvalNote {
+    font-size: 0.75rem;
+    color: #4b5563;
+    line-height: 1.5;
+    margin-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 0.75rem;
+}
+
+/* Placement Card */
+.statRow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 1rem;
+}
+
+.statNum {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #053b2a;
+}
+
+.statLbl {
+    font-size: 0.6875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+.recruiterLogos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.recruiterName {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: #053b2a;
+}
+
+/* Testimonials Card */
+.quoteIcon {
+    font-size: 2.5rem;
+    color: #053b2a;
+    line-height: 1;
+    font-family: serif;
+}
+
+.quoteText {
+    font-size: 0.8125rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.studentMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.studentName {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: #053b2a;
+}
+
+.studentRole {
+    font-size: 0.6875rem;
+    color: #6b7280;
+}
+
+@media (min-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr 1.4fr 1.2fr;
+    }
+}

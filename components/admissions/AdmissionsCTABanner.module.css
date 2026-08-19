@@ -1,0 +1,142 @@
+.section {
+    padding: 1.5rem 0;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.card {
+    position: relative;
+    background-color: #faf6f0;
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(120, 53, 15, 0.05);
+    margin: 0 1rem;
+}
+
+.leftSection {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+}
+
+.iconBadge {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    background-color: #042f24;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.heading {
+    font-size: 1rem;
+    font-family: serif;
+    font-weight: 700;
+    color: #053b2a;
+    max-width: 32rem;
+    line-height: 1.375;
+}
+
+.rightSection {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.divider {
+    display: none;
+    width: 1px;
+    height: 3rem;
+    background-color: rgba(209, 213, 219, 0.8);
+}
+
+.applyBtn {
+    background-color: #042f24;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.applyBtn:hover {
+    background-color: #021f18;
+}
+
+.leftWatermark,
+.rightWatermark {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    opacity: 0.1;
+    pointer-events: none;
+    color: #053b2a;
+    display: flex;
+    align-items: center;
+}
+
+.leftWatermark {
+    left: 0.5rem;
+}
+
+.rightWatermark {
+    right: 0.5rem;
+}
+
+/* Tablet & Desktop (640px+) */
+@media (min-width: 640px) {
+    .card {
+        padding: 1.25rem 2.5rem;
+        flex-direction: row;
+    }
+
+    .leftSection {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .heading {
+        font-size: 1.125rem;
+    }
+
+    .rightSection {
+        width: auto;
+        justify-content: flex-end;
+    }
+
+    .applyBtn {
+        font-size: 0.875rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .divider {
+        display: block;
+    }
+}

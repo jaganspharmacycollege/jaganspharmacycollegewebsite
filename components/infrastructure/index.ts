@@ -1,0 +1,14 @@
+export { default as CampusOverview } from './01_CampusOverview';
+export { default as Classrooms } from './02_Classrooms';
+export { default as PharmaceuticsLabs } from './03_PharmaceuticsLabs';
+export { default as PharmaceuticalChemistryLabs } from './04_PharmaceuticalChemistryLabs';
+export { default as PharmacologyLabs } from './05_PharmacologyLabs';
+export { default as PharmacognosyLabs } from './06_PharmacognosyLabs';
+export { default as ClinicalPharmacyLab } from './07_ClinicalPharmacyLab';
+export { default as ComputerLab } from './08_ComputerLab';
+export { default as CentralInstrumentationFacility } from './09_CentralInstrumentationFacility';
+export { default as Library } from './10_Library';
+export { default as SeminarHallAuditorium } from './11_SeminarHallAuditorium';
+export { default as HerbalGarden } from './12_HerbalGarden';
+export { default as Hostel } from './13_Hostel';
+export { default as SportsFacility } from './14_SportsFacility';

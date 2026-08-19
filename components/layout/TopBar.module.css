@@ -1,0 +1,75 @@
+.topBar {
+    background-color: #042f24;
+    color: #ffffff;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(6, 78, 59, 0.5);
+}
+
+.container {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.affiliations {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #d1fae5;
+    font-weight: 500;
+    font-size: 0.7rem;
+}
+
+.divider {
+    color: #047857;
+}
+
+.contactInfo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #d1fae5;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: #d1fae5;
+    text-decoration: none;
+    font-size: 0.7rem;
+    transition: color 0.2s ease;
+}
+
+.contactItem:hover {
+    color: #ffffff;
+}
+
+.icon {
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+/* Tablet and Desktop adjustments */
+@media (min-width: 640px) {
+    .container {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
+    .affiliations,
+    .contactItem {
+        font-size: 0.75rem;
+    }
+
+    .contactInfo {
+        gap: 1.5rem;
+    }
+}

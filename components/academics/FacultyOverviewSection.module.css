@@ -1,0 +1,99 @@
+.section {
+    font-family: var(--font-sora), 'Sora', sans-serif;
+    background-color: #faf8f5;
+    padding: 4rem 0 5rem 0;
+}
+
+.container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header {
+    margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #b86e00;
+    display: block;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #053b2a;
+    line-height: 1.2;
+    margin-top: 0.375rem;
+}
+
+.accentLine {
+    width: 3rem;
+    height: 3px;
+    background-color: #b86e00;
+    border-radius: 9999px;
+    margin: 0.625rem 0 1.25rem 0;
+}
+
+.descText {
+    font-size: 0.875rem;
+    color: #374151;
+    line-height: 1.7;
+    max-width: 48rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+
+.facultyName {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #053b2a;
+}
+
+.facultyRole {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #b86e00;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+}
+
+.facultyExp {
+    font-size: 0.8125rem;
+    color: #4b5563;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .title {
+        font-size: 2.375rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
