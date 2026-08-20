@@ -2,7 +2,15 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Send, FlaskConical, Stethoscope, Microscope } from 'lucide-react';
+import {
+    ArrowRight,
+    Send,
+    FlaskConical,
+    Stethoscope,
+    Microscope,
+    CheckCircle2,
+    Sparkles,
+} from 'lucide-react';
 import styles from './HomeCoursesEnquirySection.module.css';
 
 export default function HomeCoursesEnquirySection() {
@@ -16,7 +24,7 @@ export default function HomeCoursesEnquirySection() {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                {/* Only OUR PROGRAMS header */}
+                {/* Top Header */}
                 <div className={styles.topHeading}>
                     <span className={styles.eyebrow}>Our Programs</span>
                 </div>
@@ -24,59 +32,99 @@ export default function HomeCoursesEnquirySection() {
                 <div className={styles.mainLayout}>
                     {/* Courses 3-Card Grid */}
                     <div className={styles.coursesGrid}>
-                        {/* B. Pharmacy */}
-                        <div className={styles.courseCard}>
-                            <div className={`${styles.iconCircle} ${styles.bpharmIcon}`}>
-                                <FlaskConical size={28} />
+                        {/* 1. B. Pharmacy */}
+                        <div className={`${styles.courseCard} ${styles.cardBpharm}`}>
+                            <div className={styles.cardTop}>
+                                <div className={`${styles.iconCircle} ${styles.bpharmIcon}`}>
+                                    <FlaskConical size={28} />
+                                </div>
+                                <h3 className={styles.courseName}>B. Pharmacy</h3>
+                                <span className={styles.durationBadge}>Duration: 4 Years</span>
+
+                                <p className={styles.courseText}>
+                                    Undergraduate program that builds a strong foundation in pharmaceutical sciences,
+                                    medicinal chemistry, drug development, dosage formulation, and laboratory instrumentation.
+                                </p>
+                                <p className={styles.courseSubText}>
+                                    Prepares graduates for diverse careers in pharmaceutical manufacturing, quality assurance,
+                                    drug regulatory affairs, marketing, and competitive examinations like GPAT.
+                                </p>
                             </div>
-                            <h3 className={styles.courseName}>B. Pharmacy</h3>
-                            <p className={styles.durationTag}>Duration: 4 Years</p>
-                            <p className={styles.courseText}>
-                                Undergraduate program that builds a strong foundation in pharmaceutical sciences.
-                            </p>
+
                             <Link href="/courses/b-pharm" className={styles.learnMoreLink}>
-                                Learn More <ArrowRight size={14} />
+                                <span>Learn More</span>
+                                <ArrowRight size={14} />
                             </Link>
                         </div>
 
-                        {/* Pharm.D */}
-                        <div className={styles.courseCard}>
-                            <div className={`${styles.iconCircle} ${styles.pharmdIcon}`}>
-                                <Stethoscope size={28} />
+                        {/* 2. Pharm.D */}
+                        <div className={`${styles.courseCard} ${styles.cardPharmd}`}>
+                            <div className={styles.cardTop}>
+                                <div className={`${styles.iconCircle} ${styles.pharmdIcon}`}>
+                                    <Stethoscope size={28} />
+                                </div>
+                                <h3 className={styles.courseName}>Pharm.D</h3>
+                                <span className={styles.durationBadge}>Duration: 6 Years</span>
+
+                                <p className={styles.courseText}>
+                                    Doctor of Pharmacy professional doctorate curriculum focused on patient-centered
+                                    healthcare, therapeutic drug monitoring, hospital ward rounds, and clinical pharmacokinetics.
+                                </p>
+                                <p className={styles.courseSubText}>
+                                    Includes an extensive 1-year residency internship in multi-specialty hospitals, equipping
+                                    students for clinical pharmacy practice and global healthcare research careers.
+                                </p>
                             </div>
-                            <h3 className={styles.courseName}>Pharm.D</h3>
-                            <p className={styles.durationTag}>Duration: 6 Years</p>
-                            <p className={styles.courseText}>
-                                Doctor of Pharmacy program with clinical exposure and hands-on training.
-                            </p>
+
                             <Link href="/courses/pharm-d" className={styles.learnMoreLink}>
-                                Learn More <ArrowRight size={14} />
+                                <span>Learn More</span>
+                                <ArrowRight size={14} />
                             </Link>
                         </div>
 
-                        {/* M. Pharmacy */}
-                        <div className={styles.courseCard}>
-                            <div className={`${styles.iconCircle} ${styles.mpharmIcon}`}>
-                                <Microscope size={28} />
+                        {/* 3. M. Pharmacy */}
+                        <div className={`${styles.courseCard} ${styles.cardMpharm}`}>
+                            <div className={styles.cardTop}>
+                                <div className={`${styles.iconCircle} ${styles.mpharmIcon}`}>
+                                    <Microscope size={28} />
+                                </div>
+                                <h3 className={styles.courseName}>M. Pharmacy</h3>
+                                <span className={styles.durationBadge}>Duration: 2 Years</span>
+
+                                <p className={styles.courseText}>
+                                    Postgraduate program offering advanced specialization and research exposure in
+                                    Pharmaceutics, Pharmacology, and Pharmaceutical Analysis with dedicated dissertation projects.
+                                </p>
+                                <p className={styles.courseSubText}>
+                                    Focuses on modern analytical techniques (HPLC, UV-Vis, FTIR), novel drug delivery systems,
+                                    pharmacological screening, and high-impact biomedical publications.
+                                </p>
                             </div>
-                            <h3 className={styles.courseName}>M. Pharmacy</h3>
-                            <p className={styles.durationTag}>Duration: 2 Years</p>
-                            <p className={styles.courseText}>
-                                Postgraduate program with specialisation and research opportunities.
-                            </p>
+
                             <Link href="/courses/m-pharm" className={styles.learnMoreLink}>
-                                Learn More <ArrowRight size={14} />
+                                <span>Learn More</span>
+                                <ArrowRight size={14} />
                             </Link>
                         </div>
                     </div>
 
                     {/* Enquire Today Sidebar Box */}
                     <div className={styles.enquiryBox}>
-                        <h3 className={styles.enquiryTitle}>Enquire Today</h3>
+                        <div className="flex items-center gap-2 mb-1">
+                            <Sparkles size={16} className="text-amber-400" />
+                            <h3 className={styles.enquiryTitle}>Enquire Today</h3>
+                        </div>
+                        <p className={styles.enquirySubtitle}>
+                            Get immediate admission guidance and fee breakdown.
+                        </p>
+
                         {submitted ? (
-                            <p className="text-sm text-emerald-200 py-6 text-center leading-relaxed">
-                                Thank you! We will get in touch with you shortly.
-                            </p>
+                            <div className="py-8 text-center flex flex-col items-center justify-center gap-3">
+                                <CheckCircle2 size={38} className="text-emerald-400" />
+                                <p className="text-sm text-emerald-100 font-semibold leading-relaxed">
+                                    Thank you! We will get in touch with you shortly.
+                                </p>
+                            </div>
                         ) : (
                             <form onSubmit={handleSubmit} className={styles.enquiryForm}>
                                 <input
@@ -97,8 +145,10 @@ export default function HomeCoursesEnquirySection() {
                                     placeholder="Email Address"
                                     className={styles.input}
                                 />
-                                <select required className={styles.select}>
-                                    <option value="">Select Course</option>
+                                <select required className={styles.select} defaultValue="">
+                                    <option value="" disabled>
+                                        Select Course
+                                    </option>
                                     <option value="bpharm">B. Pharmacy</option>
                                     <option value="pharmd">Pharm.D</option>
                                     <option value="mpharm">M. Pharmacy</option>
@@ -109,7 +159,8 @@ export default function HomeCoursesEnquirySection() {
                                     className={styles.textarea}
                                 />
                                 <button type="submit" className={styles.btnSubmit}>
-                                    Submit Enquiry <Send size={13} />
+                                    <span>Submit Enquiry</span>
+                                    <Send size={13} className="rotate-45" />
                                 </button>
                             </form>
                         )}

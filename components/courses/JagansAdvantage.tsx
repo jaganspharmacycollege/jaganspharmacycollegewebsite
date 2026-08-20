@@ -9,61 +9,61 @@ const advantages = [
         icon: FlaskConical,
         title: 'Modern Labs &\nInfrastructure',
         description: 'State-of-the-art facilities for practical learning',
-        iconBg: 'bg-[#EBF7F2] text-[#053B2A]',
+        iconTheme: styles.iconMint,
     },
     {
         icon: Users,
         title: 'Experienced &\nExpert Faculty',
         description: 'Learn from highly qualified and dedicated faculty',
-        iconBg: 'bg-[#F3E8FF] text-purple-800',
+        iconTheme: styles.iconPurple,
     },
     {
         icon: Briefcase,
         title: 'Industry\nCollaborations',
         description: 'Strong tie-ups for internships and placements',
-        iconBg: 'bg-[#FFF3E6] text-[#B86E00]',
+        iconTheme: styles.iconPeach,
     },
     {
         icon: Award,
         title: 'Holistic Student\nDevelopment',
         description: 'Focus on academics, ethics and leadership',
-        iconBg: 'bg-[#EBF7F2] text-[#053B2A]',
+        iconTheme: styles.iconMint,
     },
 ];
 
 export default function JagansAdvantage() {
     return (
         <section className={styles.section}>
+            <div className={styles.bgOrbLeft} />
+            <div className={styles.bgOrbRight} />
+
             <div className={styles.container}>
-                {/* Left Column: Heading */}
-                <div className={styles.leftCol}>
-                    <p className={styles.eyebrow}>Why Choose Us</p>
-                    <h2 className={styles.title}>
-                        The Jagan's<br />Advantage
-                    </h2>
+                {/* Section Header */}
+                <div className={styles.header}>
+                    <span className={styles.eyebrow}>Why Choose Us</span>
+                    <h2 className={styles.title}>The Jagan&apos;s Advantage</h2>
+                    <div className={styles.accentLine} />
+                    <p className={styles.subText}>
+                        Providing a world-class academic environment designed to foster innovation, clinical excellence, and high career growth.
+                    </p>
                 </div>
 
-                {/* Right Column: 4 Features with Vertical Dividers */}
-                <div className={styles.rightCol}>
-                    <div className={styles.grid}>
-                        {advantages.map((item, idx) => {
-                            const Icon = item.icon;
-                            return (
-                                <div key={idx} className={styles.advantageItem}>
-                                    {/* Top Row: Icon + Title */}
-                                    <div className={styles.topRow}>
-                                        <div className={`${styles.iconCircle} ${item.iconBg}`}>
-                                            <Icon size={20} strokeWidth={1.5} />
-                                        </div>
-                                        <h3 className={styles.itemTitle}>{item.title}</h3>
+                {/* 4 Separate Cards Grid */}
+                <div className={styles.grid}>
+                    {advantages.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                            <div key={idx} className={styles.card}>
+                                <div className={styles.cardHeaderRow}>
+                                    <div className={`${styles.iconSquircle} ${item.iconTheme}`}>
+                                        <Icon size={24} strokeWidth={1.8} />
                                     </div>
-
-                                    {/* Subtitle / Description */}
-                                    <p className={styles.description}>{item.description}</p>
+                                    <h3 className={styles.itemTitle}>{item.title}</h3>
                                 </div>
-                            );
-                        })}
-                    </div>
+                                <p className={styles.description}>{item.description}</p>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

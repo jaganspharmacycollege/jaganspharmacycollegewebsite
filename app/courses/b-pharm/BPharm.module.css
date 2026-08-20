@@ -1,111 +1,418 @@
 .pageWrapper {
-    font-family: var(--font-sora), 'Sora', sans-serif;
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #faf8f5;
-    padding-bottom: 4rem;
+    background: radial-gradient(circle at 50% 5%, #ffffff 0%, #f7f4ed 100%);
+    padding: 4.5rem 1rem 6rem 1rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.section {
-    padding: 3.5rem 0;
-    border-bottom: 1px solid #f0ece1;
+/* Ambient Layered Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 8%;
+    left: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
 }
 
-.section:last-child {
-    border-bottom: none;
+.bgOrbRight {
+    position: absolute;
+    top: 45%;
+    right: -8%;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
 }
 
 .container {
-    max-width: 80rem;
+    max-width: 86rem;
     margin: 0 auto;
-    padding: 0 1rem;
+    position: relative;
+    z-index: 5;
+}
+
+/* Header Section */
+.pageHeader {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 3.5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .eyebrow {
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.8125rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     color: #b86e00;
-    display: block;
+    margin-bottom: 0.35rem;
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 2.25rem;
     font-weight: 800;
     color: #053b2a;
+    letter-spacing: -0.02em;
     line-height: 1.2;
-    margin-top: 0.375rem;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.85rem;
+    }
 }
 
 .accentLine {
-    width: 3rem;
-    height: 3px;
-    background-color: #b86e00;
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
     border-radius: 9999px;
-    margin: 0.625rem 0 1.25rem 0;
+    margin: 0.85rem auto 1rem auto;
+}
+
+.headerSub {
+    font-size: 0.925rem;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+/* 1. Main Course Overview Card (2-Column Grid) */
+.overviewCard {
+    background: #ffffff;
+    border-radius: 1.75rem;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    box-shadow: 0 12px 32px -4px rgba(5, 59, 42, 0.06);
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (min-width: 1024px) {
+    .overviewCard {
+        grid-template-columns: 1.15fr 1fr;
+    }
+}
+
+.overviewCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -6px rgba(5, 59, 42, 0.14);
+}
+
+.overviewContent {
+    padding: 2.25rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .overviewContent {
+        padding: 3rem 2.5rem;
+    }
+}
+
+.cardSectionTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.725rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #059669;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.cardHeading {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #053b2a;
+    line-height: 1.25;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.01em;
 }
 
 .descText {
-    font-size: 0.875rem;
-    color: #374151;
-    line-height: 1.7;
-    max-width: 52rem;
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
 }
 
-.card {
-    background-color: #ffffff;
-    border-radius: 1.25rem;
-    padding: 1.75rem;
-    border: 1px solid rgba(229, 231, 235, 0.8);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+.highlightsList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
 }
 
-.highlightValue {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #053b2a;
-    line-height: 1;
+@media (min-width: 640px) {
+    .highlightsList {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.highlightSub {
+.highlightItem {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
     font-size: 0.8125rem;
-    color: #b86e00;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 0.5rem;
+    color: #053b2a;
 }
 
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.875rem;
-    margin-top: 0.75rem;
+.checkIcon {
+    color: #059669;
+    flex-shrink: 0;
 }
 
-.listItem {
-    font-size: 0.875rem;
-    color: #374151;
+/* Image Column in Overview with Auto-sliding System */
+.overviewImageWrapper {
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+    background-color: #053b2a;
+}
+
+.overviewImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 0.8s ease-in-out, transform 1.5s ease-out;
+}
+
+.activeImg {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+.inactiveImg {
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(5, 59, 42, 0.8) 100%);
+    pointer-events: none;
+}
+
+.imageBadge {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    background: rgba(5, 59, 42, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fbbf24;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    padding: 0.5rem 0.95rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    max-width: fit-content;
+    z-index: 3;
+}
+
+.dotsWrapper {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
     display: flex;
-    align-items: flex-start;
-    gap: 0.625rem;
-    line-height: 1.6;
+    gap: 0.45rem;
+    background: rgba(5, 59, 42, 0.75);
+    backdrop-filter: blur(8px);
+    padding: 0.35rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 4;
 }
 
 .dot {
     width: 6px;
     height: 6px;
     border-radius: 9999px;
-    background-color: #053b2a;
-    margin-top: 0.55rem;
-    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.45);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .title {
-        font-size: 2.375rem;
-    }
+.activeDot {
+    width: 18px;
+    background: #fbbf24;
+}
 
-    .highlightValue {
-        font-size: 2.25rem;
+/* 3-Card Key Specifications Grid */
+.specsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .specsGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
+
+@media (min-width: 1024px) {
+    .specsGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+/* Detailed Spec Card */
+.specCard {
+    background: #ffffff;
+    border-radius: 1.5rem;
+    padding: 2rem 1.65rem;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    box-shadow: 0 10px 28px -4px rgba(5, 59, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+}
+
+.specCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px -6px rgba(5, 59, 42, 0.12);
+    border-color: rgba(5, 59, 42, 0.2);
+}
+
+.specHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+.iconSquircle {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.specCard:hover .iconSquircle {
+    transform: scale(1.08);
+}
+
+.iconMint {
+    background-color: #ecfdf5;
+    color: #059669;
+    border: 1.5px solid #a7f3d0;
+}
+
+.iconAmber {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1.5px solid #fde68a;
+}
+
+.iconPurple {
+    background-color: #faf5ff;
+    color: #9333ea;
+    border: 1.5px solid #e9d5ff;
+}
+
+.specHeaderTitles {
+    display: flex;
+    flex-direction: column;
+}
+
+.specEyebrow {
+    font-size: 0.725rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b86e00;
+}
+
+.specTitle {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0.1rem 0 0 0;
+    letter-spacing: -0.01em;
+}
+
+/* Metric Display */
+.metricWrapper {
+    margin-bottom: 1rem;
+}
+
+.metricValue {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #053b2a;
+    line-height: 1.1;
+}
+
+.metricSub {
+    font-size: 0.775rem;
+    font-weight: 700;
+    color: #b86e00;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.35rem;
+}
+
+.specDesc {
+    font-size: 0.845rem;
+    color: #4b5563;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* Eligibility List */
+.eligibilityList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.eligibilityItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.825rem;
+    color: #374151;
+    line-height: 1.55;
+}
+
+.listBulletDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: #059669;
+    margin-top: 0.45rem;
+    flex-shrink: 0;
 }

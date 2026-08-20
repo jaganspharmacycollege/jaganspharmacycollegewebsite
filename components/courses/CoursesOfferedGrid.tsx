@@ -2,60 +2,99 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Apple, FlaskConical, Stethoscope, FileCode, Sprout, Award } from 'lucide-react';
+import {
+    ArrowRight,
+    FlaskConical,
+    Stethoscope,
+    Sparkles,
+    GraduationCap,
+} from 'lucide-react';
 import styles from './CoursesOfferedGrid.module.css';
 
 const courses = [
     {
-        icon: Apple,
-        iconBg: 'bg-[#EBF7F2] text-[#053B2A]',
-        title: 'B. Pharmacy',
-        duration: 'Duration: 4 Years',
-        description: 'An undergraduate program that builds a strong foundation in pharmaceutical sciences and patient care.',
-        href: '/courses/b-pharm',
-    },
-    {
         icon: FlaskConical,
-        iconBg: 'bg-[#F3E8FF] text-purple-800',
-        title: 'Pharm.D',
-        duration: 'Duration: 6 Years',
-        description: 'Doctor of Pharmacy program with clinical exposure and hands-on training.',
-        href: '/courses/pharm-d',
+        title: 'B. Pharmacy',
+        level: 'Undergraduate Program',
+        duration: '4 Years (8 Semesters)',
+        eligibility: '10+2 with PCB/PCM or D.Pharm',
+        description:
+            'A foundational undergraduate degree covering medicinal chemistry, pharmacology, pharmaceutical engineering, and formulation design.',
+        image:
+            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80',
+        href: '/courses/b-pharm',
+        cardTheme: styles.cardThemeEmerald,
+        iconTheme: styles.iconThemeEmerald,
     },
     {
         icon: Stethoscope,
-        iconBg: 'bg-[#FFF3E6] text-[#B86E00]',
+        title: 'Pharm. D',
+        level: 'Doctoral Clinical Degree',
+        duration: '6 Years (5 Yrs + 1 Yr Internship)',
+        eligibility: '10+2 with PCB/PCM or B.Pharm (Post Baccalaureate)',
+        description:
+            'A patient-centric professional doctorate combining intensive clinical pharmacology, bedside ward rounds, and hospital rotations.',
+        image:
+            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+        href: '/courses/pharm-d',
+        cardTheme: styles.cardThemePurple,
+        iconTheme: styles.iconThemePurple,
+    },
+    {
+        icon: Sparkles,
         title: 'M. Pharmacy',
-        duration: 'Duration: 2 Years',
-        description: 'Postgraduate program with specialization and advanced research opportunities.',
+        level: 'Postgraduate Master Degree',
+        duration: '2 Years (4 Semesters)',
+        eligibility: 'B.Pharm with valid GPAT / AP-PGECET score',
+        description:
+            'Advanced specialized research in Pharmaceutics, Pharmacology, and Novel Drug Delivery Systems with dissertations.',
+        image:
+            'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
         href: '/courses/m-pharm',
+        cardTheme: styles.cardThemeAmber,
+        iconTheme: styles.iconThemeAmber,
     },
 ];
 
 export default function CoursesOfferedGrid() {
     return (
         <section className={styles.section}>
+            <div className={styles.bgOrbLeft} />
+            <div className={styles.bgOrbRight} />
+
             <div className={styles.container}>
                 {/* Section Header */}
                 <div className={styles.header}>
-                    <p className={styles.eyebrow}>Our Programs</p>
-                    <h2 className={styles.title}>Courses Offered</h2>
+                    <span className={styles.eyebrow}>Our Academic Spectrum</span>
+                    <h2 className={styles.title}>Programs Offered</h2>
+                    <div className={styles.accentLine} />
                     <p className={styles.subText}>
-                        We offer a range of pharmacy programs at undergraduate, postgraduate and doctoral levels.
+                        Industry-aligned pharmaceutical curricula approved by statutory authorities and affiliated to JNTUA.
                     </p>
                 </div>
 
-                {/* 6-Card Grid Layout */}
+                {/* 3 Main Course Cards Grid */}
                 <div className={styles.grid}>
                     {courses.map((course, idx) => {
                         const Icon = course.icon;
                         return (
-                            <div key={idx} className={styles.card}>
-                                <div>
-                                    {/* Top Row: Circular Icon & Titles */}
-                                    <div className={styles.topRow}>
-                                        <div className={`${styles.iconCircle} ${course.iconBg}`}>
-                                            <Icon size={26} strokeWidth={1.4} />
+                            <div key={idx} className={`${styles.card} ${course.cardTheme}`}>
+                                {/* Image Showcase */}
+                                <div className={styles.cardImageWrapper}>
+                                    <img
+                                        src={course.image}
+                                        alt={course.title}
+                                        className={styles.cardImage}
+                                    />
+                                    <div className={styles.cardImageOverlay} />
+                                    <span className={styles.levelTag}>{course.level}</span>
+                                </div>
+
+                                {/* Card Body */}
+                                <div className={styles.cardBody}>
+                                    <div className={styles.topHeaderRow}>
+                                        <div className={`${styles.iconBadge} ${course.iconTheme}`}>
+                                            <Icon size={24} strokeWidth={2.2} />
                                         </div>
                                         <div>
                                             <h3 className={styles.courseTitle}>{course.title}</h3>
@@ -63,15 +102,22 @@ export default function CoursesOfferedGrid() {
                                         </div>
                                     </div>
 
-                                    {/* Course Description */}
                                     <p className={styles.description}>{course.description}</p>
-                                </div>
 
-                                {/* Learn More Link */}
-                                <div className={styles.linkWrapper}>
-                                    <Link href={course.href} className={styles.learnMoreLink}>
-                                        Learn More <ArrowRight size={14} />
-                                    </Link>
+                                    <div className={styles.eligibilityBox}>
+                                        <GraduationCap size={15} className={styles.eligibilityIcon} />
+                                        <span>
+                                            <strong>Eligibility:</strong> {course.eligibility}
+                                        </span>
+                                    </div>
+
+                                    {/* Call-to-action button */}
+                                    <div className={styles.cardFooter}>
+                                        <Link href={course.href} className={styles.learnMoreBtn}>
+                                            <span>Explore Program &amp; Syllabus</span>
+                                            <ArrowRight size={14} />
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         );

@@ -9,7 +9,7 @@ export default function CoursesPage() {
             <CoursesHero />
             <CoursesOfferedGrid />
             <JagansAdvantage />
-            <CoursesCTA />
+            {/*<CoursesCTA />*/}
         </main>
     );
 }
