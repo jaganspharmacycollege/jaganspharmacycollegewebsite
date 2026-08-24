@@ -1,224 +1,410 @@
 .section {
-    padding: 2rem 0;
-    max-width: 80rem;
-    margin: 0 auto;
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 5rem 1rem 6rem 1rem;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    border-bottom: 1px solid #f0ece1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ambient Layered Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 10%;
+    left: -8%;
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(65px);
+    pointer-events: none;
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 5%;
+    right: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
 }
 
 .container {
-    max-width: 80rem;
-    margin: 0 1rem;
+    max-width: 86rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: start;
+    gap: 2.5rem;
 }
 
-.faqTitle {
-    font-size: 1.5rem;
-    font-family: serif;
-    font-weight: 700;
-    color: #053b2a;
-}
-
-.accentLine {
-    width: 2rem;
-    height: 2.5px;
-    background-color: #b86e00;
-    border-radius: 9999px;
-    margin-top: 0.375rem;
-}
-
-.accordionList {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-    padding-top: 0.5rem;
-}
-
-.accordionItem {
-    background-color: #ffffff;
-    border-radius: 0.75rem;
-    border: 1px solid #f3f4f6;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: all 0.2s ease;
-}
-
-.accordionBtn {
-    width: 100%;
-    padding: 0.875rem 1.25rem;
-    text-align: left;
-    font-family: serif;
-    font-weight: 600;
-    font-size: 0.75rem;
-    color: #1f2937;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
-.accordionBtn:hover {
-    background-color: rgba(249, 250, 251, 0.6);
-}
-
-.accordionBody {
-    padding: 0 1.25rem 1rem 1.25rem;
-    font-size: 0.75rem;
-    color: #4b5563;
-    font-weight: 500;
-    line-height: 1.6;
-    border-top: 1px solid rgba(243, 244, 246, 0.8);
-    padding-top: 0.5rem;
-}
-
-.helpCard {
-    background-color: #faf8f5;
-    border-radius: 1rem;
-    border: 1px solid rgba(243, 244, 246, 0.8);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 340px;
-}
-
-.helpGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    height: 100%;
-    position: relative;
-    z-index: 10;
-}
-
-.helpContent {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-}
-
-.helpTitle {
-    font-size: 1.25rem;
-    font-family: serif;
-    font-weight: 700;
-    color: #053b2a;
-}
-
-.helpDesc {
-    font-size: 0.75rem;
-    color: #4b5563;
-    font-weight: 500;
-    line-height: 1.6;
-    padding-top: 0.25rem;
-}
-
-.contactList {
-    list-style: none;
-    padding: 0;
-    margin: 0.5rem 0 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    font-size: 0.75rem;
-    color: #1f2937;
-    font-weight: 600;
-}
-
-.contactItem {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.contactIcon {
-    width: 1.5rem;
-    height: 1.5rem;
-    border-radius: 0.375rem;
-    background-color: #042f24;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.contactBtn {
-    background-color: #042f24;
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background-color 0.2s ease;
-}
-
-.contactBtn:hover {
-    background-color: #021f18;
-}
-
-.helpImageWrapper {
-    position: relative;
-    min-height: 200px;
-    overflow: hidden;
-}
-
-.helpImageWrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* Tablet (640px - 1024px) */
-@media (min-width: 640px) {
-    .accordionBtn {
-        font-size: 0.875rem;
-    }
-
-    .helpGrid {
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-    }
-
-    .helpLeft {
-        grid-column: span 7 / span 7;
-    }
-
-    .helpRight {
-        grid-column: span 5 / span 5;
-        min-height: 100%;
-    }
-
-    .gradientOverlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to right, #faf8f5, rgba(250, 248, 245, 0.4), transparent);
-        z-index: 10;
-    }
-}
-
-/* Desktop / Laptop (1024px+) */
 @media (min-width: 1024px) {
     .container {
         grid-template-columns: repeat(12, minmax(0, 1fr));
         gap: 2rem;
+        align-items: start;
     }
+}
 
+/* Left FAQ Column */
+.faqCol {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1024px) {
     .faqCol {
         grid-column: span 7 / span 7;
     }
+}
 
+.colHeader {
+    margin-bottom: 1.75rem;
+}
+
+.badgeWrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.725rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    margin-bottom: 0.65rem;
+}
+
+.badgeIcon {
+    color: #b86e00;
+}
+
+.faqTitle {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 0 0 0.5rem 0;
+}
+
+@media (min-width: 768px) {
+    .faqTitle {
+        font-size: 2.35rem;
+    }
+}
+
+.accentLine {
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.75rem 0 1rem 0;
+}
+
+.faqSub {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Accordion List */
+.accordionList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.accordionItem {
+    background-color: #ffffff;
+    border-radius: 1.15rem;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    box-shadow: 0 4px 16px -2px rgba(5, 59, 42, 0.04);
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.itemOpen {
+    border-color: rgba(5, 59, 42, 0.25);
+    box-shadow: 0 10px 24px -4px rgba(5, 59, 42, 0.08);
+}
+
+.accordionBtn {
+    width: 100%;
+    padding: 1.15rem 1.35rem;
+    text-align: left;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.accordionBtn:hover {
+    background-color: #faf8f5;
+}
+
+.questionText {
+    font-size: 0.925rem;
+    font-weight: 800;
+    color: #053b2a;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
+
+.chevronCircle {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background-color: #faf8f5;
+    border: 1px solid #e5e7eb;
+    color: #053b2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.chevronActive {
+    transform: rotate(180deg);
+    background-color: #053b2a;
+    color: #ffffff;
+    border-color: #053b2a;
+}
+
+.accordionBody {
+    padding: 0 1.35rem 1.25rem 1.35rem;
+    font-size: 0.845rem;
+    color: #4b5563;
+    line-height: 1.65;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 0.85rem;
+}
+
+.accordionBody p {
+    margin: 0;
+}
+
+/* Right Help Desk Card */
+.helpCol {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1024px) {
     .helpCol {
         grid-column: span 5 / span 5;
     }
+}
+
+.helpCard {
+    background: #ffffff;
+    border-radius: 1.75rem;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    box-shadow: 0 12px 32px -4px rgba(5, 59, 42, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.helpCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -6px rgba(5, 59, 42, 0.14);
+}
+
+.helpContent {
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.helpHeaderTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.725rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #059669;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+}
+
+.helpTitle {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.45rem 0;
+}
+
+.accentLineSmall {
+    width: 2.75rem;
+    height: 3px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.5rem 0 0.85rem 0;
+}
+
+.helpDesc {
+    font-size: 0.825rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0 0 1.35rem 0;
+}
+
+/* Contact List */
+.contactList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+}
+
+.contactIcon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+.iconMint {
+    background-color: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+}
+
+.iconPurple {
+    background-color: #faf5ff;
+    color: #9333ea;
+    border: 1px solid #e9d5ff;
+}
+
+.iconPeach {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fde68a;
+}
+
+.contactLabel {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #b86e00;
+    display: block;
+}
+
+.contactValue {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #053b2a;
+    line-height: 1.4;
+    margin: 0.15rem 0 0 0;
+}
+
+.helpFooter {
+    margin-top: 0.5rem;
+}
+
+.contactBtn {
+    background-color: #053b2a;
+    color: #ffffff;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.65rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(5, 59, 42, 0.18);
+}
+
+.contactBtn:hover {
+    background-color: #b86e00;
+    box-shadow: 0 6px 16px rgba(184, 110, 0, 0.28);
+    transform: translateY(-2px);
+}
+
+/* Image Showcase Area */
+.helpImageWrapper {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    background-color: #053b2a;
+}
+
+.helpImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.helpCard:hover .helpImage {
+    transform: scale(1.05);
+}
+
+.gradientOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 20%, rgba(5, 59, 42, 0.85) 100%);
+}
+
+.counselorBadge {
+    position: absolute;
+    bottom: 0.85rem;
+    left: 1rem;
+    right: 1rem;
+    background: rgba(5, 59, 42, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fbbf24;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    z-index: 2;
+}
+
+.counselorBadgeIcon {
+    color: #fbbf24;
+    flex-shrink: 0;
 }

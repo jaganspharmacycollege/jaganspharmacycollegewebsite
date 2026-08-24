@@ -1,0 +1,235 @@
+.pageWrapper {
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 4.5rem 1rem 6rem 1rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Layered Ambient Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 6%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.04) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 72rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* Left-Aligned Header */
+.header {
+    text-align: left;
+    margin-bottom: 2.75rem;
+}
+
+.eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #b86e00;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.title {
+    font-size: 2.35rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.85rem;
+    }
+}
+
+.accentLine {
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.85rem 0 1.25rem 0;
+}
+
+.descText {
+    font-size: 0.925rem;
+    color: #4b5563;
+    line-height: 1.65;
+    max-width: 44rem;
+    margin: 0;
+}
+
+/* Form Card */
+.card {
+    background-color: #ffffff;
+    border-radius: 1.75rem;
+    padding: 2.25rem 1.75rem;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    box-shadow: 0 12px 36px -4px rgba(5, 59, 42, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (min-width: 768px) {
+    .card {
+        padding: 3rem 2.75rem;
+    }
+}
+
+.card:hover {
+    box-shadow: 0 18px 42px -6px rgba(5, 59, 42, 0.1);
+}
+
+/* 2-Column Responsive Form Grid */
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+}
+
+@media (min-width: 768px) {
+    .formGrid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1.75rem;
+        row-gap: 1.45rem;
+    }
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.fullSpan {
+    grid-column: 1 / -1;
+}
+
+.label {
+    font-size: 0.845rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.01em;
+}
+
+.input,
+.select,
+.textarea {
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: #1f2937;
+    background-color: #faf8f5;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 0.85rem 1.15rem;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: #9ca3af;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: #053b2a;
+    box-shadow: 0 0 0 4px rgba(5, 59, 42, 0.08);
+}
+
+.select {
+    cursor: pointer;
+    appearance: auto;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 105px;
+}
+
+/* Submit CTA */
+.submitBtn {
+    background-color: #053b2a;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+    padding: 0.85rem 1.75rem;
+    border-radius: 0.65rem;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(5, 59, 42, 0.18);
+    margin-top: 0.5rem;
+}
+
+.submitBtn:hover {
+    background-color: #b86e00;
+    box-shadow: 0 6px 18px rgba(184, 110, 0, 0.28);
+    transform: translateY(-2px);
+}
+
+.sendIcon {
+    transform: rotate(45deg);
+}
+
+/* Success Confirmation State */
+.successState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.successIcon {
+    color: #059669;
+    margin-bottom: 1.25rem;
+}
+
+.successTitle {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0 0 0.5rem 0;
+}
+
+.successDesc {
+    font-size: 0.9rem;
+    color: #4b5563;
+    max-width: 30rem;
+    line-height: 1.65;
+    margin: 0;
+}

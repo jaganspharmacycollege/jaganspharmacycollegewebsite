@@ -1,0 +1,349 @@
+.pageWrapper {
+    font-family: var(--font-sora), 'Sora', sans-serif;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 5%, #ffffff 0%, #f7f4ed 100%);
+    min-height: 85vh;
+    padding: 5rem 1rem 6rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.bgOrbLeft {
+    position: absolute;
+    top: 8%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.06) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 86rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* Header */
+.headerBlock {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 3.5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eyebrowTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 0.65rem;
+}
+
+.eyebrowIcon {
+    color: #b86e00;
+}
+
+.title {
+    font-size: 2.35rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.85rem;
+    }
+}
+
+.accentLine {
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.85rem auto 1.25rem auto;
+}
+
+.descText {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* 2-Column Main Layout */
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+    .mainGrid {
+        grid-template-columns: 360px 1fr;
+        gap: 2.5rem;
+    }
+}
+
+/* Left Dept List */
+.deptNavList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.deptNavBtn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.15rem 1.25rem;
+    background: #ffffff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 1.25rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.deptNavBtn:hover {
+    border-color: #053b2a;
+    transform: translateX(4px);
+}
+
+.activeDeptNavBtn {
+    background: #053b2a;
+    border-color: #053b2a;
+    box-shadow: 0 10px 24px rgba(5, 59, 42, 0.2);
+}
+
+.deptNavIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ecfdf5;
+    color: #059669;
+    flex-shrink: 0;
+}
+
+.activeDeptNavBtn .deptNavIcon {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fbbf24;
+}
+
+.deptNavText h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0 0 0.2rem 0;
+}
+
+.activeDeptNavBtn .deptNavText h4 {
+    color: #ffffff;
+}
+
+.deptNavText p {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.35;
+}
+
+.activeDeptNavBtn .deptNavText p {
+    color: #d1fae5;
+}
+
+/* Right Detail Card */
+.detailCard {
+    background: #ffffff;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    border-radius: 1.75rem;
+    padding: 2.25rem 2rem;
+    box-shadow: 0 10px 30px -4px rgba(5, 59, 42, 0.06);
+}
+
+@media (min-width: 768px) {
+    .detailCard {
+        padding: 2.75rem 2.5rem;
+    }
+}
+
+.detailHeader {
+    margin-bottom: 2rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.deptBadge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+}
+
+.detailTitle {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.75rem 0;
+}
+
+.detailDesc {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* Labs Section */
+.labsSection {
+    margin-bottom: 2.25rem;
+}
+
+.sectionHeading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0 0 1rem 0;
+}
+
+.sectionIcon {
+    color: #059669;
+}
+
+.labsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.labPill {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #053b2a;
+    background: #f0fdf4;
+    border: 1.5px solid #bbf7d0;
+    padding: 0.4rem 0.95rem;
+    border-radius: 9999px;
+}
+
+/* Faculty Grid */
+.facultySection {
+    margin-top: 2rem;
+}
+
+.facultyGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .facultyGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.facultyCard {
+    background: #faf8f5;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.facultyCard:hover {
+    transform: translateY(-3px);
+    border-color: #34d399;
+}
+
+.facultyAvatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    object-fit: cover;
+    border: 2px solid #fbbf24;
+    flex-shrink: 0;
+}
+
+.facultyInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.facultyName {
+    font-size: 0.975rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0 0 0.15rem 0;
+}
+
+.facultyRole {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #059669;
+    margin: 0;
+}
+
+.facultyQual {
+    font-size: 0.725rem;
+    color: #6b7280;
+    margin: 0.15rem 0 0.45rem 0;
+}
+
+.experienceBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    width: fit-content;
+}

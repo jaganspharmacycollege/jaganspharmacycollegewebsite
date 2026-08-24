@@ -1,0 +1,384 @@
+.pageWrapper {
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 5%, #ffffff 0%, #f7f4ed 100%);
+    padding: 4.5rem 1rem 6rem 1rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Ambient Layered Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 6%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 86rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* Page Header */
+.pageHeader {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 3.5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eyebrowTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 0.65rem;
+}
+
+.eyebrowIcon {
+    color: #b86e00;
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.85rem;
+    }
+}
+
+.accentLine {
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.85rem auto 1.25rem auto;
+}
+
+.descText {
+    font-size: 0.925rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* List Stack */
+.facilitiesList {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+/* Base Zigzag Section Card */
+.facilitySectionCard {
+    background-color: #ffffff;
+    border-radius: 2rem;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    box-shadow: 0 12px 36px -4px rgba(5, 59, 42, 0.06);
+    padding: 2rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (min-width: 1024px) {
+    .facilitySectionCard {
+        grid-template-columns: 1.15fr 1fr;
+        padding: 2.75rem 2.5rem;
+        gap: 3.5rem;
+    }
+
+    /* Zigzag Alternation on Desktop */
+    .rowReversed {
+        grid-template-columns: 1fr 1.15fr;
+    }
+
+    .rowReversed .carouselContainer {
+        order: 2;
+    }
+
+    .rowReversed .infoContent {
+        order: 1;
+    }
+}
+
+.facilitySectionCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px -6px rgba(5, 59, 42, 0.12);
+}
+
+/* Carousel Box */
+.carouselContainer {
+    width: 100%;
+}
+
+.carouselFrame {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    border: 2px solid #053b2a;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    background-color: #031c14;
+}
+
+@media (min-width: 640px) {
+    .carouselFrame {
+        height: 360px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carouselFrame {
+        height: 380px;
+    }
+}
+
+.carouselImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 0.8s ease-in-out, transform 1.5s ease-out;
+}
+
+.activeImg {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.inactiveImg {
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(3, 26, 19, 0.4) 0%,
+            transparent 40%,
+            rgba(3, 26, 19, 0.9) 100%);
+    pointer-events: none;
+}
+
+/* Top Badges */
+.badgesHeader {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 3;
+}
+
+.codeBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: #d97706;
+    color: #ffffff;
+    font-size: 0.725rem;
+    font-weight: 800;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.04em;
+}
+
+.codeIcon {
+    color: #ffffff;
+}
+
+.specBadge {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(5, 59, 42, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #34d399;
+    font-size: 0.725rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Bottom Caption & Sync Dots */
+.captionOverlay {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 3;
+}
+
+.captionText {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.3;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    letter-spacing: -0.01em;
+}
+
+.dotsWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.45);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.activeDot {
+    width: 24px;
+    background: #fbbf24;
+}
+
+/* Content Column */
+.infoContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.facilityCategory {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #b86e00;
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.facilityTitle {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .facilityTitle {
+        font-size: 2.5rem;
+    }
+}
+
+.subAccentLine {
+    width: 3.25rem;
+    height: 3.5px;
+    background-color: #b86e00;
+    border-radius: 9999px;
+    margin: 0.85rem 0 1.25rem 0;
+}
+
+.facilityDesc {
+    font-size: 0.925rem;
+    color: #4b5563;
+    line-height: 1.75;
+    margin: 0 0 1.75rem 0;
+}
+
+/* 2 Sub-Cards Grid */
+.subCardsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .subCardsGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.subCard {
+    background-color: #faf8f5;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    border-radius: 1.25rem;
+    padding: 1.35rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.subCard:hover {
+    transform: translateY(-2px);
+    border-color: rgba(5, 59, 42, 0.2);
+}
+
+.subCardTitle {
+    font-size: 0.975rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.subCardDesc {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    line-height: 1.55;
+    margin: 0;
+}

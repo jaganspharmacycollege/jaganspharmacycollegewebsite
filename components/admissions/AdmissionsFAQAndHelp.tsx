@@ -2,66 +2,95 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
+import {
+    ChevronDown,
+    Phone,
+    Mail,
+    MapPin,
+    ArrowRight,
+    HelpCircle,
+    Headphones,
+    Sparkles,
+} from 'lucide-react';
 import styles from './AdmissionsFAQAndHelp.module.css';
 
 const faqs = [
     {
-        q: "What courses are offered at Jagan's College of Pharmacy?",
-        a: 'We offer B. Pharmacy (4 Years), Pharm.D (6 Years), M. Pharmacy (2 Years), Ph.D. in Pharmacy, Diploma in Pharmacy (D.Pharm), and specialized Certificate Programs.',
+        q: "What academic courses are offered at Jagan's College of Pharmacy?",
+        a: 'We offer B. Pharmacy (4 Years Undergraduate), Pharm.D (6 Years Doctoral), and M. Pharmacy (2 Years Postgraduate with multiple research specializations), all permanently affiliated to JNTUA and approved by AICTE.',
     },
     {
         q: 'How can I apply for admission?',
-        a: 'You can apply online by clicking on the "Apply Now" button on our website and filling out the application form with required details and documents.',
+        a: 'You can apply online by clicking "Apply Online" on our portal and filling out the application form with your qualifying academic details and entrance exam ranks (AP EAPCET / GPAT / PGECET).',
     },
     {
-        q: 'Is hostel available for students?',
-        a: 'Yes, separate well-equipped hostels are available for boys and girls with 24/7 security, Wi-Fi, and nutritious food.',
+        q: 'Are hostel facilities available for outstation students?',
+        a: 'Yes, secure on-campus separate hostels are available for boys and girls featuring 24/7 biometric security, Wi-Fi connectivity, hygienic dining halls, and continuous medical assistance.',
     },
     {
-        q: 'What is the selection process?',
-        a: 'Selection is strictly based on academic merit, qualifying exam scores (such as AP EAPCET / PGECET), and fulfillment of eligibility criteria.',
+        q: 'What is the selection & seat allotment process?',
+        a: 'Admissions are conducted transparently via state counseling (AP State Convenor Quota) and institutional category admissions (Management Quota) based on aggregate marks and entrance test ranks.',
     },
     {
-        q: 'Are scholarships available?',
-        a: 'Yes, government tuition fee reimbursement schemes as well as merit-based institutional scholarships are available for eligible students.',
+        q: 'Are government scholarships and fee reimbursement supported?',
+        a: 'Yes, eligible students can avail of Andhra Pradesh state government tuition fee reimbursement (JVD schemes) as well as institutional merit-based scholarships.',
     },
 ];
 
 export default function AdmissionsFAQAndHelp() {
-    const [openIdx, setOpenIdx] = useState<number | null>(null);
+    const [openIdx, setOpenIdx] = useState<number | null>(0);
+
+    const toggleFAQ = (idx: number) => {
+        setOpenIdx((prev) => (prev === idx ? null : idx));
+    };
 
     return (
         <section className={styles.section}>
+            <div className={styles.bgOrbLeft} />
+            <div className={styles.bgOrbRight} />
+
             <div className={styles.container}>
                 {/* Left Column: FAQ Accordion */}
                 <div className={styles.faqCol}>
-                    <div>
+                    <div className={styles.colHeader}>
+                        <div className={styles.badgeWrapper}>
+                            <HelpCircle size={14} className={styles.badgeIcon} />
+                            <span className={styles.badgeText}>Got Questions?</span>
+                        </div>
                         <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
                         <div className={styles.accentLine} />
+                        <p className={styles.faqSub}>
+                            Everything you need to know about the admission timeline, eligibility benchmarks, and campus life.
+                        </p>
                     </div>
 
                     <div className={styles.accordionList}>
                         {faqs.map((faq, idx) => {
                             const isOpen = openIdx === idx;
                             return (
-                                <div key={idx} className={styles.accordionItem}>
+                                <div
+                                    key={idx}
+                                    className={`${styles.accordionItem} ${isOpen ? styles.itemOpen : ''
+                                        }`}
+                                >
                                     <button
-                                        onClick={() => setOpenIdx(isOpen ? null : idx)}
+                                        onClick={() => toggleFAQ(idx)}
                                         className={styles.accordionBtn}
+                                        aria-expanded={isOpen}
                                     >
-                                        <span>{faq.q}</span>
-                                        <ChevronDown
-                                            size={16}
-                                            style={{
-                                                transform: isOpen ? 'rotate(180deg)' : 'none',
-                                                transition: 'transform 0.2s',
-                                            }}
-                                        />
+                                        <span className={styles.questionText}>{faq.q}</span>
+                                        <div
+                                            className={`${styles.chevronCircle} ${isOpen ? styles.chevronActive : ''
+                                                }`}
+                                        >
+                                            <ChevronDown size={16} />
+                                        </div>
                                     </button>
 
                                     {isOpen && (
-                                        <div className={styles.accordionBody}>{faq.a}</div>
+                                        <div className={styles.accordionBody}>
+                                            <p>{faq.a}</p>
+                                        </div>
                                     )}
                                 </div>
                             );
@@ -69,62 +98,76 @@ export default function AdmissionsFAQAndHelp() {
                     </div>
                 </div>
 
-                {/* Right Column: Need Help? Card */}
-                <div className={`${styles.helpCard} ${styles.helpCol}`}>
-                    <div className={styles.helpGrid}>
-                        {/* Left Content Area */}
-                        <div className={`${styles.helpContent} ${styles.helpLeft}`}>
+                {/* Right Column: Dedicated Help Desk Card */}
+                <div className={styles.helpCol}>
+                    <div className={styles.helpCard}>
+                        <div className={styles.helpContent}>
                             <div>
-                                <div>
-                                    <h3 className={styles.helpTitle}>Need Help?</h3>
-                                    <div className={styles.accentLine} />
+                                <div className={styles.helpHeaderTag}>
+                                    <Headphones size={14} />
+                                    <span>Admissions Support Desk</span>
                                 </div>
-
+                                <h3 className={styles.helpTitle}>Need Direct Assistance?</h3>
+                                <div className={styles.accentLineSmall} />
                                 <p className={styles.helpDesc}>
-                                    Our admission team is here to assist you with any queries.
+                                    Our dedicated admission counselors are ready to assist you with course selection, document verification, and fee details.
                                 </p>
 
                                 <ul className={styles.contactList}>
                                     <li className={styles.contactItem}>
-                                        <div className={styles.contactIcon}>
-                                            <Phone size={12} fill="currentColor" />
+                                        <div className={`${styles.contactIcon} ${styles.iconMint}`}>
+                                            <Phone size={14} />
                                         </div>
-                                        <span>+91 91000 12345</span>
+                                        <div>
+                                            <span className={styles.contactLabel}>Phone Inquiry</span>
+                                            <p className={styles.contactValue}>+91 91000 12345 / 08562 222333</p>
+                                        </div>
                                     </li>
 
                                     <li className={styles.contactItem}>
-                                        <div className={styles.contactIcon}>
-                                            <Mail size={12} fill="currentColor" />
+                                        <div className={`${styles.contactIcon} ${styles.iconPurple}`}>
+                                            <Mail size={14} />
                                         </div>
-                                        <span className="truncate">admissions@jaganspharmacy.ac.in</span>
+                                        <div>
+                                            <span className={styles.contactLabel}>Email Admissions</span>
+                                            <p className={styles.contactValue}>admissions@jaganspharmacy.ac.in</p>
+                                        </div>
                                     </li>
 
                                     <li className={styles.contactItem}>
-                                        <div className={styles.contactIcon}>
-                                            <MapPin size={12} fill="currentColor" />
+                                        <div className={`${styles.contactIcon} ${styles.iconPeach}`}>
+                                            <MapPin size={14} />
                                         </div>
-                                        <span>
-                                            Jagan's College of Pharmacy, <br />
-                                            Kadapa, AP - 516003
-                                        </span>
+                                        <div>
+                                            <span className={styles.contactLabel}>Campus Location</span>
+                                            <p className={styles.contactValue}>
+                                                Jagan&apos;s College of Pharmacy, Jangalakandriga, SPSR Nellore, AP 524401
+                                            </p>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div>
+                            <div className={styles.helpFooter}>
                                 <Link href="/contact" className={styles.contactBtn}>
-                                    Contact Us <ArrowRight size={14} />
+                                    <span>Schedule a Campus Visit</span>
+                                    <ArrowRight size={15} />
                                 </Link>
                             </div>
                         </div>
 
-                        {/* Right Image Area */}
-                        <div className={`${styles.helpImageWrapper} ${styles.helpRight}`}>
-                            <div className={styles.gradientOverlay} />
+                        {/* Support Representative Image Preview */}
+                        <div className={styles.helpImageWrapper}>
                             <img
                                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
                                 alt="Jagan's College Admissions Representative"
+                                className={styles.helpImage}
                             />
+                            <div className={styles.gradientOverlay} />
+                            <div className={styles.counselorBadge}>
+                                <Sparkles size={13} className={styles.counselorBadgeIcon} />
+                                <span>Dedicated Counselor Available</span>
+                            </div>
                         </div>
                     </div>
                 </div>

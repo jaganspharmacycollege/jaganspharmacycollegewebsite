@@ -1,55 +1,155 @@
+'use client';
+
 import React from 'react';
-import styles from '../AdmissionsLayout.module.css';
+import {
+    CreditCard,
+    FlaskConical,
+    Stethoscope,
+    Sparkles,
+    Info,
+    ShieldCheck,
+} from 'lucide-react';
+import styles from './FeeStructurePage.module.css';
+
+const feeCards = [
+    {
+        course: 'B.Pharm',
+        subtitle: 'Undergraduate Program',
+        duration: '4 Years',
+        tuitionFee: '₹ 45,000',
+        cautionDeposit: '₹ 5,000 (Refundable)',
+        icon: FlaskConical,
+        theme: styles.themeEmerald,
+        badgeTheme: styles.badgeEmerald,
+    },
+    {
+        course: 'Pharm.D',
+        subtitle: 'Doctoral Clinical Degree',
+        duration: '6 Years',
+        tuitionFee: '₹ 68,000',
+        cautionDeposit: '₹ 5,000 (Refundable)',
+        icon: Stethoscope,
+        theme: styles.themePurple,
+        badgeTheme: styles.badgePurple,
+    },
+    {
+        course: 'M.Pharm',
+        subtitle: 'Postgraduate (All Branches)',
+        duration: '2 Years',
+        tuitionFee: '₹ 55,000',
+        cautionDeposit: '₹ 5,000 (Refundable)',
+        icon: Sparkles,
+        theme: styles.themeAmber,
+        badgeTheme: styles.badgeAmber,
+    },
+];
 
 export default function FeeStructurePage() {
     return (
         <div className={styles.pageWrapper}>
+            {/* Ambient Parallax Lighting Glows */}
+            <div className={styles.bgOrbLeft} />
+            <div className={styles.bgOrbRight} />
+
             <div className={styles.container}>
+                {/* Section Header */}
                 <div className={styles.header}>
-                    <span className={styles.eyebrow}>Tuition & Charges</span>
+                    <div className={styles.eyebrowTag}>
+                        <CreditCard size={15} className={styles.eyebrowIcon} />
+                        <span>Tuition &amp; Charges</span>
+                    </div>
                     <h1 className={styles.title}>Fee Structure</h1>
                     <div className={styles.accentLine} />
                     <p className={styles.descText}>
-                        Tuition fees are structured in adherence to the Andhra Pradesh Higher Education Regulatory and Monitoring Commission (APHERMC) guidelines.
+                        Tuition fees are structured in strict adherence to the Andhra Pradesh Higher Education Regulatory
+                        and Monitoring Commission (APHERMC) guidelines.
                     </p>
                 </div>
 
-                <div className={styles.tableWrapper}>
-                    <table className={styles.table}>
-                        <thead>
-                            <tr>
-                                <th className={styles.th}>Course</th>
-                                <th className={styles.th}>Duration</th>
-                                <th className={styles.th}>Tuition Fee (Per Annum)</th>
-                                <th className={styles.th}>Admission / Caution Deposit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className={styles.tr}>
-                                <td className={`${styles.td} font-bold text-[#053B2A]`}>B.Pharm</td>
-                                <td className={styles.td}>4 Years</td>
-                                <td className={styles.td}>₹ 45,000 /-</td>
-                                <td className={styles.td}>₹ 5,000 (Refundable)</td>
-                            </tr>
-                            <tr className={styles.tr}>
-                                <td className={`${styles.td} font-bold text-[#053B2A]`}>Pharm.D</td>
-                                <td className={styles.td}>6 Years</td>
-                                <td className={styles.td}>₹ 68,000 /-</td>
-                                <td className={styles.td}>₹ 5,000 (Refundable)</td>
-                            </tr>
-                            <tr className={styles.tr}>
-                                <td className={`${styles.td} font-bold text-[#053B2A]`}>M.Pharm (All Branches)</td>
-                                <td className={styles.td}>2 Years</td>
-                                <td className={styles.td}>₹ 55,000 /-</td>
-                                <td className={styles.td}>₹ 5,000 (Refundable)</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                {/* 1. Distinct Responsive Course Fee Cards */}
+                <div className={styles.cardsGrid}>
+                    {feeCards.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                            <div key={idx} className={styles.feeCard}>
+                                <div className={styles.cardHeader}>
+                                    <div className={`${styles.iconSquircle} ${item.theme}`}>
+                                        <Icon size={24} strokeWidth={2.2} />
+                                    </div>
+                                    <div>
+                                        <span className={styles.cardSubtitle}>{item.subtitle}</span>
+                                        <h3 className={styles.cardCourseTitle}>{item.course}</h3>
+                                    </div>
+                                </div>
+
+                                <div className={styles.durationPill}>
+                                    <span>Duration: {item.duration}</span>
+                                </div>
+
+                                <div className={styles.feeHighlightBox}>
+                                    <span className={styles.feeLabel}>Annual Tuition Fee</span>
+                                    <div className={styles.feeAmount}>{item.tuitionFee} <span className={styles.feePerYear}>/ Year</span></div>
+                                </div>
+
+                                <div className={styles.depositRow}>
+                                    <ShieldCheck size={16} className={styles.depositIcon} />
+                                    <span><strong>Admission / Caution:</strong> {item.cautionDeposit}</span>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
 
-                <p className="text-xs text-gray-500 mt-4 italic">
-                    * Note: Hostel accommodation, bus transportation, and university examination fees are charged separately as applicable. Eligible SC/ST/BC/EBC students can avail state fee reimbursement schemes.
-                </p>
+                {/* 2. Structured Regulatory Breakdown Table */}
+                <div className={styles.tableCard}>
+                    <div className={styles.tableHeader}>
+                        <h3 className={styles.tableTitle}>APHERMC Standardized Fee Schedule</h3>
+                        <span className={styles.tableBadge}>Academic Year 2026–27</span>
+                    </div>
+
+                    <div className={styles.tableWrapper}>
+                        <table className={styles.table}>
+                            <thead>
+                                <tr>
+                                    <th className={styles.th}>Course Program</th>
+                                    <th className={styles.th}>Duration</th>
+                                    <th className={styles.th}>Tuition Fee (Per Annum)</th>
+                                    <th className={styles.th}>Admission / Caution Deposit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className={styles.tr}>
+                                    <td className={`${styles.td} ${styles.tdBold}`}>B.Pharm</td>
+                                    <td className={styles.td}>4 Years</td>
+                                    <td className={`${styles.td} ${styles.tdFee}`}>₹ 45,000 /-</td>
+                                    <td className={styles.td}>₹ 5,000 (Refundable)</td>
+                                </tr>
+                                <tr className={styles.tr}>
+                                    <td className={`${styles.td} ${styles.tdBold}`}>Pharm.D</td>
+                                    <td className={styles.td}>6 Years</td>
+                                    <td className={`${styles.td} ${styles.tdFee}`}>₹ 68,000 /-</td>
+                                    <td className={styles.td}>₹ 5,000 (Refundable)</td>
+                                </tr>
+                                <tr className={styles.tr}>
+                                    <td className={`${styles.td} ${styles.tdBold}`}>M.Pharm (All Specializations)</td>
+                                    <td className={styles.td}>2 Years</td>
+                                    <td className={`${styles.td} ${styles.tdFee}`}>₹ 55,000 /-</td>
+                                    <td className={styles.td}>₹ 5,000 (Refundable)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {/* Informational Callout Note */}
+                <div className={styles.noteBox}>
+                    <Info size={18} className={styles.noteIcon} />
+                    <p className={styles.noteText}>
+                        <strong>Note:</strong> Hostel accommodation, bus transportation, and university examination fees
+                        are charged separately as applicable. Eligible SC / ST / BC / EBC students can avail of Andhra Pradesh
+                        state fee reimbursement schemes (JVD).
+                    </p>
+                </div>
             </div>
         </div>
     );

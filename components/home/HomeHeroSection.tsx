@@ -2,7 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Award, GraduationCap, Bell, Calendar, ChevronRight, Sparkles } from 'lucide-react';
+import {
+    Award,
+    GraduationCap,
+    Sparkles,
+    ArrowRight,
+    Volume2,
+} from 'lucide-react';
 import styles from './HomeHeroSection.module.css';
 
 export default function HomeHeroSection() {
@@ -15,6 +21,10 @@ export default function HomeHeroSection() {
                 className={styles.bgImage}
             />
             <div className={styles.overlay} />
+
+            {/* Layered Ambient Parallax Glows */}
+            <div className={styles.bgOrbLeft} />
+            <div className={styles.bgOrbRight} />
 
             <div className={styles.container}>
                 {/* Main Content Area */}
@@ -70,54 +80,29 @@ export default function HomeHeroSection() {
                     </div>
                 </div>
 
-                {/* Notifications & Events Glass Strip */}
-                <div className={styles.newsStrip}>
-                    {/* Latest Notifications */}
-                    <div className={styles.stripCol}>
-                        <div className={styles.stripHeader}>
-                            <span className={styles.stripTitle}>
-                                <Bell size={14} className="text-emerald-400" />
-                                Latest Notifications
-                            </span>
-                            <div className={styles.liveDot} title="Live Updates" />
-                        </div>
+                {/* Continuous Right-to-Left Ticker Glass Strip */}
+                <Link href="/notifications-and-events" className={styles.tickerCardLink}>
+                    <div className={styles.tickerBadge}>
+                        <Volume2 size={15} className={styles.pulseIcon} />
+                        <span>Live Updates</span>
+                    </div>
 
-                        <div className={styles.stripItems}>
-                            <Link href="/admissions" className={styles.stripLink}>
-                                <span className={styles.dateBadge}>AUG 2026</span>
-                                <span className="truncate">B.Pharm & Pharm.D 2026-27 Admissions Counseling Schedule Released.</span>
-                            </Link>
-                            <Link href="/academics/calendar" className={styles.stripLink}>
-                                <span className={styles.dateBadge}>AUG 2026</span>
-                                <span className="truncate">End Semester Practical Examination Timetable Updated.</span>
-                            </Link>
+                    <div className={styles.marqueeTrackWrapper}>
+                        <div className={styles.marqueeContent}>
+                            <span className={styles.tickerItem}>
+                                <strong className={styles.goldHighlight}>Latest Notifications &amp; Upcoming Events</strong>: B.Pharm &amp; Pharm.D 2026-27 Admissions Counseling Schedule Released • National Seminar on Modern Drug Regulatory Filings &amp; AI • Annual Global Alumni Homecoming Meet 2026 • End Semester Practical Examination Timetable Updated
+                            </span>
+                            <span className={styles.tickerItem}>
+                                <strong className={styles.goldHighlight}>Latest Notifications &amp; Upcoming Events</strong>: B.Pharm &amp; Pharm.D 2026-27 Admissions Counseling Schedule Released • National Seminar on Modern Drug Regulatory Filings &amp; AI • Annual Global Alumni Homecoming Meet 2026 • End Semester Practical Examination Timetable Updated
+                            </span>
                         </div>
                     </div>
 
-                    {/* Upcoming Events */}
-                    <div className={styles.stripCol}>
-                        <div className={styles.stripHeader}>
-                            <span className={styles.stripTitle}>
-                                <Calendar size={14} className="text-amber-400" />
-                                Upcoming Events
-                            </span>
-                            <Link href="/campus-life/seminar-workshops" className="text-xs font-bold text-[#fbbf24] flex items-center">
-                                View All <ChevronRight size={12} />
-                            </Link>
-                        </div>
-
-                        <div className={styles.stripItems}>
-                            <Link href="/campus-life/seminar-workshops" className={styles.stripLink}>
-                                <span className={styles.dateBadge}>SEP 12</span>
-                                <span className="truncate">National Seminar on Modern Drug Regulatory Filings & AI.</span>
-                            </Link>
-                            <Link href="/alumni" className={styles.stripLink}>
-                                <span className={styles.dateBadge}>DEC 19</span>
-                                <span className="truncate">Annual Global Alumni Homecoming & Mentorship Meet 2026.</span>
-                            </Link>
-                        </div>
+                    <div className={styles.actionPill}>
+                        <span>View All</span>
+                        <ArrowRight size={13} />
                     </div>
-                </div>
+                </Link>
             </div>
         </section>
     );

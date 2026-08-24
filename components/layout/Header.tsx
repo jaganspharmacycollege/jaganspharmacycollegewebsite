@@ -19,12 +19,10 @@ import styles from './Header.module.css';
 
 export default function Header() {
     const pathname = usePathname();
-
     const [coursesOpen, setCoursesOpen] = useState(false);
     const [admissionsOpen, setAdmissionsOpen] = useState(false);
     const [campusLifeOpen, setCampusLifeOpen] = useState(false);
     const [academicsOpen, setAcademicsOpen] = useState(false);
-
     const [offcanvasOpen, setOffcanvasOpen] = useState(false);
     const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
 
@@ -57,7 +55,7 @@ export default function Header() {
 
     const courseOptions = [
         { name: 'B.Pharm', href: '/courses/b-pharm' },
-        { name: 'Pharm.D', href: '/courses/pharm-d' },
+        { name: 'Pharm. D', href: '/courses/pharm-d' },
         { name: 'M.Pharm', href: '/courses/m-pharm' },
     ];
 
@@ -138,7 +136,6 @@ export default function Header() {
                             <Award size={14} /> Affiliated to JNTUA
                         </span>
                     </div>
-
                     <div className={styles.topBarRight}>
                         <a href="tel:+919100012345" className={styles.topContactLink}>
                             <Phone size={12} /> +91 91000 12345
@@ -165,7 +162,6 @@ export default function Header() {
                         >
                             <Menu size={22} />
                         </button>
-
                         <Link href="/" className={styles.logoLink}>
                             <div className={styles.logoOuter}>
                                 <Leaf size={18} className="text-emerald-300 fill-emerald-400/40" />
@@ -189,8 +185,8 @@ export default function Header() {
                                     <div
                                         key={item.name}
                                         className={styles.dropdownContainer}
-                                        onMouseEnter={() => handleMouseEnter(item.name, item.setter)}
-                                        onMouseLeave={() => handleMouseLeave(item.name, item.setter)}
+                                        onMouseEnter={() => handleMouseEnter(item.name, item.setter!)}
+                                        onMouseLeave={() => handleMouseLeave(item.name, item.setter!)}
                                     >
                                         <Link
                                             href={item.href}
@@ -213,15 +209,15 @@ export default function Header() {
                                             <div
                                                 className={styles.dropdownMenu}
                                                 style={{ maxHeight: '72vh', overflowY: 'auto' }}
-                                                onMouseEnter={() => handleMouseEnter(item.name, item.setter)}
-                                                onMouseLeave={() => handleMouseLeave(item.name, item.setter)}
+                                                onMouseEnter={() => handleMouseEnter(item.name, item.setter!)}
+                                                onMouseLeave={() => handleMouseLeave(item.name, item.setter!)}
                                             >
                                                 {item.options.map((opt) => (
                                                     <Link
                                                         key={opt.name}
                                                         href={opt.href}
                                                         className={styles.dropdownItem}
-                                                        onClick={() => item.setter(false)}
+                                                        onClick={() => item.setter!(false)}
                                                     >
                                                         <span>{opt.name}</span>
                                                         <ChevronRight size={13} className="text-emerald-400" />
@@ -247,7 +243,7 @@ export default function Header() {
                         })}
                     </nav>
 
-                    {/* Right Controls: Visible on Tablet & Desktop, hidden on Mobile */}
+                    {/* Right Controls */}
                     <div className={styles.rightControls}>
                         <Link href="/admissions/application-form" className={styles.applyButton}>
                             <span>Apply Now</span>
@@ -259,13 +255,16 @@ export default function Header() {
 
             {/* Offcanvas Drawer */}
             {offcanvasOpen && (
-                <div className={styles.offcanvasOverlay} onClick={() => setOffcanvasOpen(false)}>
+                <div
+                    className={styles.offcanvasOverlay}
+                    onClick={() => setOffcanvasOpen(false)}
+                >
                     <div
                         className={styles.offcanvasDrawer}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className={styles.drawerHeader}>
-                            <div className={styles.logoLink}>
+                            <Link href="/" className={styles.logoLink} onClick={() => setOffcanvasOpen(false)}>
                                 <div className={styles.logoOuter}>
                                     <Leaf size={18} className="text-emerald-300 fill-emerald-400/40" />
                                 </div>
@@ -273,8 +272,7 @@ export default function Header() {
                                     <h4 className={styles.title}>JAGAN&apos;S</h4>
                                     <p className={styles.subtitle}>COLLEGE OF PHARMACY</p>
                                 </div>
-                            </div>
-
+                            </Link>
                             <button
                                 className={styles.drawerCloseBtn}
                                 onClick={() => setOffcanvasOpen(false)}
@@ -295,7 +293,6 @@ export default function Header() {
                                         >
                                             {item.name}
                                         </Link>
-
                                         {item.options && (
                                             <button
                                                 className={styles.drawerToggleBtn}
@@ -313,7 +310,6 @@ export default function Header() {
                                             </button>
                                         )}
                                     </div>
-
                                     {item.options && mobileSubmenu === item.name && (
                                         <div className={styles.drawerSubMenu}>
                                             {item.options.map((opt) => (

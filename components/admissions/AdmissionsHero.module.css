@@ -1,196 +1,257 @@
 .section {
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     position: relative;
-    width: 100%;
-    background-color: #ffffff;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 620px;
+    padding: 5rem 0 5.5rem 0;
     overflow: hidden;
-    min-height: 440px;
     display: flex;
     align-items: center;
-    padding: 2.5rem 0;
+    background-color: #0b1a15;
+    border: none;
+}
+
+/* Full Hero Background Slider - 100% Clear & High Definition */
+.bgSlider {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.bgSlide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: opacity 0.8s ease-in-out, transform 2.5s ease-out;
+}
+
+.activeSlide {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.inactiveSlide {
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+}
+
+/* Left-to-Right Clear Dark Contrast Gradient */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            rgba(3, 26, 19, 0.94) 0%,
+            rgba(3, 26, 19, 0.84) 48%,
+            rgba(3, 26, 19, 0.35) 80%,
+            rgba(0, 0, 0, 0.18) 100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
 .container {
-    max-width: 80rem;
+    max-width: 86rem;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
     position: relative;
-    z-index: 10;
+    z-index: 5;
+}
+
+.contentWrapper {
+    max-width: 52rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .eyebrow {
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.8125rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #b86e00;
+    letter-spacing: 0.14em;
+    color: #fbbf24;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .title {
-    font-family: serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #053b2a;
-    line-height: 1.15;
-    margin-top: 0.5rem;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.85rem;
+    }
 }
 
 .accentLine {
-    width: 3rem;
-    height: 3px;
-    background-color: #b86e00;
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #fbbf24 0%, #34d399 100%);
     border-radius: 9999px;
-    margin: 0.75rem 0;
+    margin: 1rem 0 1.35rem 0;
 }
 
 .description {
-    font-size: 0.8rem;
-    color: #374151;
-    font-weight: 500;
-    line-height: 1.6;
-    max-width: 28rem;
-    padding-top: 0.25rem;
+    font-size: 0.925rem;
+    color: #f1f5f9;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
+/* Feature Badges */
+.featureList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+}
+
+.featureItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: rgba(5, 59, 42, 0.75);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    backdrop-filter: blur(8px);
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.checkIcon {
+    color: #34d399;
+    flex-shrink: 0;
+}
+
+/* 3 Separate Glassmorphic Pillar Cards */
 .badgesRow {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding-top: 1rem;
 }
 
-.badgeItem {
+@media (min-width: 640px) {
+    .badgesRow {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.badgeCard {
+    background: rgba(3, 26, 19, 0.82);
+    backdrop-filter: blur(12px);
+    padding: 1.15rem 1.25rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     display: flex;
-    align-items: flex-start;
-    gap: 0.625rem;
+    align-items: center;
+    gap: 0.85rem;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.badgeCard:hover {
+    transform: translateY(-3px);
+    border-color: #34d399;
 }
 
 .iconCircle {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 0.85rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 
+.themeEmerald {
+    background-color: rgba(5, 150, 105, 0.25);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.4);
+}
+
+.themePurple {
+    background-color: rgba(147, 51, 234, 0.25);
+    color: #c084fc;
+    border: 1px solid rgba(192, 132, 252, 0.4);
+}
+
+.themeAmber {
+    background-color: rgba(217, 119, 6, 0.25);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.badgeText {
+    display: flex;
+    flex-direction: column;
+}
+
 .badgeTitle {
-    font-family: serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #111827;
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
     line-height: 1.25;
 }
 
 .badgeSub {
-    font-size: 0.625rem;
-    color: #6b7280;
-    font-weight: 500;
-    line-height: 1.25;
-    padding-top: 0.25rem;
+    font-size: 0.725rem;
+    color: #cbd5e1;
+    margin: 0.2rem 0 0 0;
+    line-height: 1.35;
 }
 
-.mobileImageWrapper {
-    width: 100%;
-    height: 240px;
-    border-radius: 1rem;
-    overflow: hidden;
-    border: 4px solid #042f24;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    margin-top: 1rem;
+/* Indicators */
+.dotsWrapper {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 0.45rem;
+    background: rgba(3, 26, 19, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 5;
 }
 
-.mobileImageWrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.desktopImageWrapper {
-    display: none;
-}
-
-/* Tablet (640px - 1024px) */
-@media (min-width: 640px) {
-    .eyebrow {
-        font-size: 0.875rem;
-    }
-
-    .title {
-        font-size: 2.5rem;
-    }
-
-    .description {
-        font-size: 0.875rem;
-    }
-
-    .badgesRow {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.75rem;
-    }
-
-    .mobileImageWrapper {
-        height: 320px;
-    }
-}
-
-/* Desktop (1024px+) */
-@media (min-width: 1024px) {
-    .section {
-        min-height: 540px;
-        padding: 0;
-    }
-
-    .container {
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-    }
-
-    .leftCol {
-        grid-column: span 5 / span 5;
-    }
-
-    .title {
-        font-size: 3rem;
-    }
-
-    .mobileImageWrapper {
-        display: none;
-    }
-
-    .desktopImageWrapper {
-        display: flex;
-        justify-content: flex-end;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 58%;
-        height: 100%;
-    }
-
-    .desktopImageInner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-top-left-radius: 320px;
-        border-bottom-left-radius: 320px;
-        overflow: hidden;
-        border-left: 8px solid #042f24;
-        border-top: 8px solid #042f24;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        background-color: #f3f4f6;
-    }
-
-    .desktopImageInner img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
+.activeDot {
+    width: 20px;
+    background: #fbbf24;
 }

@@ -9,7 +9,7 @@
     background-color: #032319;
 }
 
-/* 1. Full-Bleed Pharmacy Campus Background Image */
+/* Campus Background Image */
 .bgImage {
     position: absolute;
     inset: 0;
@@ -18,11 +18,11 @@
     object-fit: cover;
     object-position: center;
     z-index: 0;
-    filter: brightness(0.85);
+    filter: brightness(0.8);
     transform: scale(1.02);
 }
 
-/* 2. Layered Gradient Scrim for Readability */
+/* Layered Gradient Scrim */
 .overlay {
     position: absolute;
     inset: 0;
@@ -34,12 +34,37 @@
     z-index: 1;
 }
 
+/* Ambient Radial Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 15%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 10%;
+    right: -5%;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.12) 0%, transparent 70%);
+    filter: blur(85px);
+    z-index: 2;
+    pointer-events: none;
+}
+
 .container {
     max-width: 86rem;
     margin: 0 auto;
     padding: 0 1.5rem;
     position: relative;
-    z-index: 2;
+    z-index: 5;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -76,7 +101,7 @@
     font-weight: 800;
     color: #ffffff;
     line-height: 1.12;
-    margin-bottom: 1.25rem;
+    margin: 0 0 1.25rem 0;
     letter-spacing: -0.02em;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
@@ -89,7 +114,7 @@
     font-size: 1.05rem;
     color: #d1fae5;
     line-height: 1.7;
-    margin-bottom: 2rem;
+    margin: 0 0 2rem 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -128,12 +153,13 @@
     font-weight: 800;
     color: #ffffff;
     line-height: 1.25;
+    margin: 0;
 }
 
 .badgeSubtitle {
     font-size: 0.6875rem;
     color: #9ca3af;
-    margin-top: 0.125rem;
+    margin: 0.125rem 0 0 0;
 }
 
 /* Button Group */
@@ -195,89 +221,124 @@
     box-shadow: 0 6px 18px rgba(184, 110, 0, 0.5);
 }
 
-/* Glass News & Events Strip */
-.newsStrip {
-    background: rgba(3, 31, 22, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(52, 211, 153, 0.25);
+/* Continuous Right-to-Left Scrolling Ticker Card */
+.tickerCardLink {
+    background: rgba(3, 31, 22, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(52, 211, 153, 0.3);
     border-radius: 1.25rem;
-    padding: 1.25rem 1.75rem;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-.stripCol {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.stripHeader {
+    padding: 0.95rem 1.25rem;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-bottom: 0.35rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.stripTitle {
-    font-size: 0.8125rem;
-    font-weight: 800;
-    color: #ffffff;
-    display: flex;
+.tickerCardLink:hover {
+    transform: translateY(-3px);
+    border-color: #fbbf24;
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55);
+}
+
+.tickerBadge {
+    display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.liveDot {
-    width: 8px;
-    height: 8px;
-    border-radius: 9999px;
-    background-color: #ef4444;
-    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.25);
-}
-
-.stripItems {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.stripLink {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-    text-decoration: none;
-    font-size: 0.8125rem;
-    color: #d1fae5;
-    transition: color 0.15s ease;
-}
-
-.stripLink:hover {
-    color: #fbbf24;
-}
-
-.dateBadge {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    color: #042a1e;
     background: #fbbf24;
-    padding: 0.15rem 0.5rem;
-    border-radius: 0.25rem;
-    white-space: nowrap;
+    color: #032319;
+    font-size: 0.725rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-@media (min-width: 768px) {
-    .newsStrip {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
+.pulseIcon {
+    color: #032319;
+}
+
+/* Infinite Marquee Track */
+.marqueeTrackWrapper {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    position: relative;
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            black 3%,
+            black 97%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            black 3%,
+            black 97%,
+            transparent 100%);
+}
+
+.marqueeContent {
+    display: inline-flex;
+    gap: 3rem;
+    animation: marqueeContinuous 24s linear infinite;
+    will-change: transform;
+}
+
+.tickerCardLink:hover .marqueeContent {
+    animation-play-state: paused;
+}
+
+@keyframes marqueeContinuous {
+    0% {
+        transform: translateX(0%);
     }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.tickerItem {
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+
+.goldHighlight {
+    color: #fbbf24;
+    font-weight: 800;
+    margin-right: 0.35rem;
+}
+
+/* Trailing Action Pill */
+.actionPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #34d399;
+    font-size: 0.775rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    padding: 0.4rem 0.85rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+
+.tickerCardLink:hover .actionPill {
+    background: #34d399;
+    color: #032319;
 }
 
 @media (min-width: 1024px) {

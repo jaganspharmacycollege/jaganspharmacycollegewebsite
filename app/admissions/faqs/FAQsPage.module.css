@@ -1,0 +1,220 @@
+.pageWrapper {
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 5%, #ffffff 0%, #f7f4ed 100%);
+    padding: 4.5rem 1rem 6rem 1rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Ambient Layered Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 8%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(70px);
+    pointer-events: none;
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 58rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* Section Header */
+.header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eyebrowTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 0.65rem;
+}
+
+.eyebrowIcon {
+    color: #b86e00;
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.85rem;
+    }
+}
+
+.accentLine {
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.85rem auto 1.25rem auto;
+}
+
+.descText {
+    font-size: 0.925rem;
+    color: #4b5563;
+    line-height: 1.75;
+    max-width: 42rem;
+    margin: 0;
+}
+
+/* FAQ Cards List */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Separate Distinct FAQ Card */
+.faqItem {
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+    padding: 1.75rem 1.5rem;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    box-shadow: 0 8px 24px -4px rgba(5, 59, 42, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .faqItem {
+        padding: 2rem 2.25rem;
+    }
+}
+
+.faqItem:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -6px rgba(5, 59, 42, 0.12);
+    border-color: rgba(5, 59, 42, 0.2);
+}
+
+.faqCardInner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+    .faqCardInner {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.35rem;
+    }
+}
+
+/* Squircle Icon Badge */
+.iconSquircle {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.faqItem:hover .iconSquircle {
+    transform: scale(1.08);
+}
+
+/* Palettes */
+.themeEmerald {
+    background-color: #ecfdf5;
+    color: #059669;
+    border: 1.5px solid #a7f3d0;
+}
+
+.themeAmber {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1.5px solid #fde68a;
+}
+
+.themePurple {
+    background-color: #faf5ff;
+    color: #9333ea;
+    border: 1.5px solid #e9d5ff;
+}
+
+.themeTeal {
+    background-color: #f0fdfa;
+    color: #0d9488;
+    border: 1.5px solid #99f6e4;
+}
+
+.themePeach {
+    background-color: #ffedd5;
+    color: #ea580c;
+    border: 1.5px solid #fed7aa;
+}
+
+/* Content Area */
+.faqContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.faqQuestion {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: #053b2a;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.5rem 0;
+}
+
+@media (min-width: 768px) {
+    .faqQuestion {
+        font-size: 1.2rem;
+    }
+}
+
+.faqAnswer {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin: 0;
+}

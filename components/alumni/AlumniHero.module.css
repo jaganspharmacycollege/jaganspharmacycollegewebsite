@@ -1,0 +1,428 @@
+.heroSection {
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    min-height: 620px;
+    padding: 4.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #031c14;
+}
+
+/* Background Auto-Cycling Slider */
+.bgSlider {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bgSlide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: opacity 0.7s ease-in-out, transform 2s ease-out;
+}
+
+.activeSlide {
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+.inactiveSlide {
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+}
+
+/* Emerald Vignette Overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center,
+            rgba(5, 59, 42, 0.72) 0%,
+            rgba(3, 26, 19, 0.92) 75%,
+            rgba(2, 18, 13, 0.98) 100%),
+        linear-gradient(180deg, rgba(3, 26, 19, 0.6) 0%, rgba(3, 26, 19, 0.9) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Ambient Parallax Radial Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 10%;
+    left: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.14) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.14) 0%, transparent 70%);
+    filter: blur(85px);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 5;
+    max-width: 86rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Eyebrow Tag */
+.eyebrowTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #fbbf24;
+    background: rgba(3, 26, 19, 0.85);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    backdrop-filter: blur(8px);
+    padding: 0.4rem 1.15rem;
+    border-radius: 9999px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.eyebrowIcon {
+    color: #fbbf24;
+}
+
+/* Cluster Stage Grid */
+.clusterStage {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 68rem;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center;
+}
+
+@media (min-width: 640px) {
+    .clusterStage {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .clusterStage {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2.75rem 3.5rem;
+    }
+}
+
+/* Vertical Spring Pop Keyframes */
+@keyframes videoSpringPopStraight {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(80px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.18) translateY(-14px);
+    }
+
+    75% {
+        transform: scale(0.95) translateY(6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Vertical Organic Floating Keyframes */
+@keyframes organicFloatStraightA {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes organicFloatStraightB {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+/* Staggered Pop-up Timing */
+.cardPos1 {
+    animation: videoSpringPopStraight 0.85s 0.05s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cardPos1 .largeCardPill {
+    animation: organicFloatStraightA 5s ease-in-out 0.9s infinite;
+}
+
+.cardPos2 {
+    animation: videoSpringPopStraight 0.85s 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cardPos2 .largeCardPill {
+    animation: organicFloatStraightB 5.5s ease-in-out 1.1s infinite;
+}
+
+.cardPos3 {
+    animation: videoSpringPopStraight 0.85s 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cardPos3 .largeCardPill {
+    animation: organicFloatStraightA 6s ease-in-out 1.3s infinite;
+}
+
+.cardPos4 {
+    animation: videoSpringPopStraight 0.85s 0.54s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cardPos4 .largeCardPill {
+    animation: organicFloatStraightB 5.2s ease-in-out 1.5s infinite;
+}
+
+.cardPos5 {
+    animation: videoSpringPopStraight 0.85s 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cardPos5 .largeCardPill {
+    animation: organicFloatStraightA 5.8s ease-in-out 1.7s infinite;
+}
+
+.cardPos6 {
+    animation: videoSpringPopStraight 0.85s 0.86s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cardPos6 .largeCardPill {
+    animation: organicFloatStraightB 6.2s ease-in-out 1.9s infinite;
+}
+
+/* Dynamic Hover Elevation */
+.cardWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.cardWrapper:hover,
+.cardWrapper:focus-within {
+    z-index: 60;
+}
+
+/* Large Squircles / Pill Cards */
+.largeCardPill {
+    position: relative;
+    width: 140px;
+    height: 165px;
+    border-radius: 1.85rem;
+    background: #ffffff;
+    padding: 5px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    border: 3.5px solid #fbbf24;
+    cursor: pointer;
+    transform: rotate(0deg);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+@media (min-width: 640px) {
+    .largeCardPill {
+        width: 175px;
+        height: 205px;
+        border-radius: 2.15rem;
+        padding: 6px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .largeCardPill {
+        width: 215px;
+        height: 255px;
+        border-radius: 2.45rem;
+        padding: 7px;
+    }
+}
+
+.largeCardPill:hover,
+.largeCardPill:focus {
+    transform: scale(1.1) translateY(-10px) rotate(0deg) !important;
+    box-shadow: 0 24px 48px rgba(251, 191, 36, 0.5);
+    border-color: #34d399;
+}
+
+/* Image Masking Stack */
+.imageStack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+@media (min-width: 640px) {
+    .imageStack {
+        border-radius: 1.8rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .imageStack {
+        border-radius: 2.1rem;
+    }
+}
+
+.largeCardImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s ease-out;
+}
+
+.activeCardImg {
+    opacity: 1;
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.inactiveCardImg {
+    opacity: 0;
+    transform: scale(1);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hover Tooltip (Updated in real-time with cycling data) */
+.chipTooltip {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: #053b2a;
+    color: #ffffff;
+    padding: 0.75rem 1.1rem;
+    border-radius: 1rem;
+    font-size: 0.785rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+    border: 1.5px solid rgba(52, 211, 153, 0.5);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: left;
+}
+
+.chipTooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 7px;
+    border-style: solid;
+    border-color: #053b2a transparent transparent transparent;
+}
+
+.largeCardPill:hover .chipTooltip,
+.largeCardPill:focus .chipTooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.tooltipName {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #fbbf24;
+}
+
+.tooltipRole {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+.tooltipCompany {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.725rem;
+    color: #a7f3d0;
+    margin-top: 0.15rem;
+}
+
+/* Synchronized Carousel Dots */
+.dotsWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 3.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.activeDot {
+    width: 26px;
+    background: #fbbf24;
+}

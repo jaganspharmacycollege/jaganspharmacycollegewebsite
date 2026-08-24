@@ -4,3 +4,4 @@ export { default as AlumniDirectory } from './03_AlumniDirectory';
 export { default as AlumniMeet } from './04_AlumniMeet';
 export { default as AlumniEvents } from './05_AlumniEvents';
 export { default as AlumniAchievements } from './06_AlumniAchievements';
+export { default as AlumniHero } from './AlumniHero';
