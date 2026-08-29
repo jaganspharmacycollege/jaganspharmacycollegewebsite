@@ -1,11 +1,12 @@
 .pageWrapper {
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #faf8f5;
-    background: radial-gradient(circle at 50% 5%, #ffffff 0%, #f7f4ed 100%);
-    padding: 4.5rem 1rem 6rem 1rem;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 5rem 1rem 6.5rem 1rem;
     position: relative;
     overflow: hidden;
     min-height: 100vh;
+    border-bottom: 1px solid #f0ece1;
 }
 
 /* Ambient Layered Parallax Glows */
@@ -16,8 +17,10 @@
     width: 480px;
     height: 480px;
     background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
-    filter: blur(70px);
+    filter: blur(75px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .bgOrbRight {
@@ -27,8 +30,10 @@
     width: 500px;
     height: 500px;
     background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
-    filter: blur(75px);
+    filter: blur(80px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -36,6 +41,50 @@
     margin: 0 auto;
     position: relative;
     z-index: 5;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothFeeReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateHeader {
+    animation: smoothFeeReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animDelay1 {
+    animation: smoothFeeReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animDelay2 {
+    animation: smoothFeeReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animDelay3 {
+    animation: smoothFeeReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animateReveal4 {
+    animation: smoothFeeReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animateReveal5 {
+    animation: smoothFeeReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
 }
 
 /* Section Header */
@@ -55,11 +104,11 @@
     font-size: 0.8125rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     color: #b86e00;
     background: #fffbeb;
     border: 1px solid #fde68a;
-    padding: 0.35rem 0.85rem;
+    padding: 0.35rem 0.95rem;
     border-radius: 9999px;
     margin-bottom: 0.65rem;
 }
@@ -92,10 +141,11 @@
 }
 
 .descText {
-    font-size: 0.925rem;
+    font-size: 0.9375rem;
     color: #4b5563;
     line-height: 1.75;
     margin: 0;
+    text-align: center;
 }
 
 /* 1. Distinct Responsive Course Fee Cards */
@@ -127,13 +177,14 @@
     box-shadow: 0 10px 28px -4px rgba(5, 59, 42, 0.05);
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
     position: relative;
+    will-change: transform;
 }
 
 .feeCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 36px -6px rgba(5, 59, 42, 0.12);
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 18px 36px -4px rgba(5, 59, 42, 0.12);
     border-color: rgba(5, 59, 42, 0.2);
 }
 
@@ -152,7 +203,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .feeCard:hover .iconSquircle {
@@ -193,6 +244,7 @@
     line-height: 1.2;
     margin: 0.15rem 0 0 0;
     letter-spacing: -0.01em;
+    text-align: left;
 }
 
 .durationPill {
@@ -232,6 +284,7 @@
     font-weight: 800;
     color: #053b2a;
     line-height: 1.1;
+    letter-spacing: -0.02em;
 }
 
 .feePerYear {
@@ -248,6 +301,7 @@
     color: #4b5563;
     margin-top: auto;
     line-height: 1.4;
+    text-align: left;
 }
 
 .depositIcon {
@@ -263,6 +317,13 @@
     box-shadow: 0 10px 28px -4px rgba(5, 59, 42, 0.04);
     overflow: hidden;
     margin-bottom: 2rem;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
+}
+
+.tableCard:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 16px 36px -4px rgba(5, 59, 42, 0.1);
 }
 
 .tableHeader {
@@ -315,6 +376,7 @@
     letter-spacing: 0.06em;
     color: #b86e00;
     border-bottom: 2px solid #f0ece1;
+    white-space: nowrap;
 }
 
 .tr {
@@ -334,6 +396,7 @@
     padding: 1.25rem 1.5rem;
     font-size: 0.875rem;
     color: #4b5563;
+    white-space: nowrap;
 }
 
 .tdBold {
@@ -370,4 +433,10 @@
     color: #4b5563;
     line-height: 1.65;
     margin: 0;
+    text-align: left;
+    text-wrap: pretty;
+    letter-spacing: -0.011em;
+    word-spacing: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
 }

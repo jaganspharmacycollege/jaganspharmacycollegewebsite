@@ -1,11 +1,38 @@
 .section {
     background-color: #faf8f5;
-    background: radial-gradient(circle at 50% 0%, #ffffff 0%, #f7f4ed 100%);
-    padding: 4.5rem 1rem 5.5rem 1rem;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 5rem 1rem 6rem 1rem;
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     border-bottom: 1px solid #f0ece1;
     position: relative;
     overflow: hidden;
+}
+
+/* Ambient Radial Glows with Hardware Acceleration */
+.bgOrbLeft {
+    position: absolute;
+    top: -20%;
+    left: -6%;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: -20%;
+    right: -6%;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -21,7 +48,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.75rem;
 }
 
 @media (min-width: 640px) {
@@ -43,7 +70,12 @@
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: #b86e00;
-    margin-bottom: 0.35rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    width: fit-content;
+    margin-bottom: 0.65rem;
 }
 
 .title {
@@ -52,6 +84,7 @@
     color: #053b2a;
     letter-spacing: -0.02em;
     line-height: 1.2;
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -65,21 +98,22 @@
     font-weight: 700;
     color: #ffffff;
     background: #053b2a;
-    padding: 0.65rem 1.25rem;
-    border-radius: 0.6rem;
+    padding: 0.75rem 1.45rem;
+    border-radius: 0.65rem;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
     box-shadow: 0 4px 14px rgba(5, 59, 42, 0.2);
-    transition: all 0.2s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease;
     flex-shrink: 0;
+    will-change: transform;
 }
 
 .btnGallery:hover {
     background: #b86e00;
-    box-shadow: 0 6px 18px rgba(184, 110, 0, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(184, 110, 0, 0.35);
+    transform: translate3d(0, -3px, 0);
 }
 
 /* 6-Card Gallery Grid */
@@ -99,32 +133,81 @@
 @media (min-width: 1024px) {
     .galleryGrid {
         grid-template-columns: repeat(6, minmax(0, 1fr));
-        gap: 1rem;
+        gap: 1.15rem;
     }
 }
 
-/* Individual Image Card */
+/* Initial Hidden State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothGlimpseReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateHeader {
+    animation: smoothGlimpseReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animDelay1 {
+    animation: smoothGlimpseReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animDelay2 {
+    animation: smoothGlimpseReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animDelay3 {
+    animation: smoothGlimpseReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animDelay4 {
+    animation: smoothGlimpseReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animDelay5 {
+    animation: smoothGlimpseReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+}
+
+.animDelay6 {
+    animation: smoothGlimpseReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
+}
+
+/* Individual Gallery Card */
 .galleryCard {
     position: relative;
     height: 240px;
-    border-radius: 1.25rem;
+    border-radius: 1.35rem;
     overflow: hidden;
     box-shadow: 0 8px 24px -4px rgba(5, 59, 42, 0.1);
     border: 1px solid rgba(5, 59, 42, 0.08);
     background-color: #053b2a;
-    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
     cursor: pointer;
+    will-change: transform;
 }
 
 @media (min-width: 768px) {
     .galleryCard {
-        height: 270px;
+        height: 280px;
     }
 }
 
 .galleryCard:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 32px -4px rgba(5, 59, 42, 0.25);
+    transform: translate3d(0, -8px, 0);
+    box-shadow: 0 20px 40px -4px rgba(5, 59, 42, 0.28);
     border-color: rgba(52, 211, 153, 0.4);
 }
 
@@ -135,15 +218,16 @@
     height: 100%;
 }
 
-.imgFrame img {
+.galleryImgTag {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
-.galleryCard:hover .imgFrame img {
-    transform: scale(1.09);
+.galleryCard:hover .galleryImgTag {
+    transform: scale(1.08);
 }
 
 /* Dark Gradient Overlay */
@@ -155,7 +239,7 @@
             rgba(5, 59, 42, 0.55) 70%,
             rgba(1, 20, 14, 0.92) 100%);
     z-index: 1;
-    transition: background 0.3s ease;
+    transition: background 0.5s ease;
 }
 
 .galleryCard:hover .cardOverlay {
@@ -186,10 +270,10 @@
     letter-spacing: -0.01em;
     margin: 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .galleryCard:hover .labelTag {
     color: #fbbf24;
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
 }

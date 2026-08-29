@@ -9,7 +9,7 @@
     margin-top: 0;
     margin-bottom: 0;
     min-height: 620px;
-    padding: 5rem 0 5.5rem 0;
+    padding: 5.5rem 0;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -17,13 +17,16 @@
     border: none;
 }
 
-/* Full Hero Background Slider - 100% Clear & High Definition */
+/* Full Hero Background Slider */
 .bgSlider {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: -10%;
+    width: 120%;
+    height: 120%;
     z-index: 1;
+    overflow: hidden;
+    will-change: transform;
+    transform: translate3d(0, 0, 0) scale(1.05);
 }
 
 .bgSlide {
@@ -34,17 +37,15 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    transition: opacity 0.8s ease-in-out, transform 2.5s ease-out;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .activeSlide {
     opacity: 1;
-    transform: scale(1.02);
 }
 
 .inactiveSlide {
     opacity: 0;
-    transform: scale(1);
     pointer-events: none;
 }
 
@@ -76,6 +77,50 @@
     flex-direction: column;
 }
 
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow, Cinematic Stagger Keyframes */
+@keyframes smoothAdmissionsReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothAdmissionsReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animateReveal2 {
+    animation: smoothAdmissionsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animateReveal3 {
+    animation: smoothAdmissionsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animateReveal4 {
+    animation: smoothAdmissionsReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animateReveal5 {
+    animation: smoothAdmissionsReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+}
+
+.animateReveal6 {
+    animation: smoothAdmissionsReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
+}
+
 .eyebrow {
     font-size: 0.8125rem;
     font-weight: 800;
@@ -94,6 +139,7 @@
     line-height: 1.2;
     letter-spacing: -0.02em;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -114,7 +160,7 @@
     font-size: 0.925rem;
     color: #f1f5f9;
     line-height: 1.75;
-    margin-bottom: 1.25rem;
+    margin: 0 0 1.25rem 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
@@ -139,6 +185,12 @@
     padding: 0.45rem 0.85rem;
     border-radius: 9999px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
+}
+
+.featureItem:hover {
+    transform: translate3d(0, -2px, 0);
+    background: rgba(5, 59, 42, 0.95);
 }
 
 .checkIcon {
@@ -169,11 +221,12 @@
     display: flex;
     align-items: center;
     gap: 0.85rem;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+    will-change: transform;
 }
 
 .badgeCard:hover {
-    transform: translateY(-3px);
+    transform: translate3d(0, -4px, 0);
     border-color: #34d399;
 }
 
@@ -248,7 +301,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
 }
 
 .activeDot {

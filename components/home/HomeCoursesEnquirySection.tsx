@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
     ArrowRight,
@@ -15,6 +15,66 @@ import styles from './HomeCoursesEnquirySection.module.css';
 
 export default function HomeCoursesEnquirySection() {
     const [submitted, setSubmitted] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+    const orbLeftRef = useRef<HTMLDivElement>(null);
+    const orbRightRef = useRef<HTMLDivElement>(null);
+
+    // Repeating scroll-triggered entrance detection
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Ultra-slow fluid linear-interpolated (lerp 0.035) parallax animation
+    useEffect(() => {
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let animationFrameId: number;
+
+        const updateParallax = () => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                currentScroll += (targetScroll - currentScroll) * 0.035;
+                const relativeOffset = window.innerHeight - rect.top;
+
+                if (orbLeftRef.current) {
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
+                        }px, 0)`;
+                }
+                if (orbRightRef.current) {
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05
+                        }px, 0)`;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(updateParallax);
+        };
+
+        const handleScroll = () => {
+            targetScroll = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        animationFrameId = requestAnimationFrame(updateParallax);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -22,35 +82,38 @@ export default function HomeCoursesEnquirySection() {
     };
 
     return (
-        <section className={styles.section}>
+        <section ref={sectionRef} className={styles.section}>
+            <div ref={orbLeftRef} className={styles.bgOrbLeft} />
+            <div ref={orbRightRef} className={styles.bgOrbRight} />
+
             <div className={styles.container}>
-                {/* Top Header */}
-                <div className={styles.topHeading}>
-                    <span className={styles.eyebrow}>Our Programs</span>
+                <div
+                    className={`${styles.topHeading} ${isVisible ? styles.animateReveal1 : styles.hiddenState
+                        }`}
+                >
+                    <span className={styles.eyebrow}>Our Academic Programs</span>
                 </div>
 
                 <div className={styles.mainLayout}>
-                    {/* Courses 3-Card Grid */}
                     <div className={styles.coursesGrid}>
                         {/* 1. B. Pharmacy */}
-                        <div className={`${styles.courseCard} ${styles.cardBpharm}`}>
+                        <div
+                            className={`${styles.courseCard} ${styles.cardBpharm} ${isVisible ? styles.animateReveal2 : styles.hiddenState
+                                }`}
+                        >
                             <div className={styles.cardTop}>
                                 <div className={`${styles.iconCircle} ${styles.bpharmIcon}`}>
                                     <FlaskConical size={28} />
                                 </div>
                                 <h3 className={styles.courseName}>B. Pharmacy</h3>
                                 <span className={styles.durationBadge}>Duration: 4 Years</span>
-
                                 <p className={styles.courseText}>
-                                    Undergraduate program that builds a strong foundation in pharmaceutical sciences,
-                                    medicinal chemistry, drug development, dosage formulation, and laboratory instrumentation.
+                                    Undergraduate program that builds a strong foundation in pharmaceutical sciences, medicinal chemistry, drug development, dosage formulation, and laboratory instrumentation.
                                 </p>
                                 <p className={styles.courseSubText}>
-                                    Prepares graduates for diverse careers in pharmaceutical manufacturing, quality assurance,
-                                    drug regulatory affairs, marketing, and competitive examinations like GPAT.
+                                    Prepares graduates for diverse careers in pharmaceutical manufacturing, quality assurance, drug regulatory affairs, marketing, and competitive examinations like GPAT.
                                 </p>
                             </div>
-
                             <Link href="/courses/b-pharm" className={styles.learnMoreLink}>
                                 <span>Learn More</span>
                                 <ArrowRight size={14} />
@@ -58,24 +121,23 @@ export default function HomeCoursesEnquirySection() {
                         </div>
 
                         {/* 2. Pharm.D */}
-                        <div className={`${styles.courseCard} ${styles.cardPharmd}`}>
+                        <div
+                            className={`${styles.courseCard} ${styles.cardPharmd} ${isVisible ? styles.animateReveal3 : styles.hiddenState
+                                }`}
+                        >
                             <div className={styles.cardTop}>
                                 <div className={`${styles.iconCircle} ${styles.pharmdIcon}`}>
                                     <Stethoscope size={28} />
                                 </div>
                                 <h3 className={styles.courseName}>Pharm.D</h3>
                                 <span className={styles.durationBadge}>Duration: 6 Years</span>
-
                                 <p className={styles.courseText}>
-                                    Doctor of Pharmacy professional doctorate curriculum focused on patient-centered
-                                    healthcare, therapeutic drug monitoring, hospital ward rounds, and clinical pharmacokinetics.
+                                    Doctor of Pharmacy professional doctorate curriculum focused on patient-centered healthcare, therapeutic drug monitoring, hospital ward rounds, and clinical pharmacokinetics.
                                 </p>
                                 <p className={styles.courseSubText}>
-                                    Includes an extensive 1-year residency internship in multi-specialty hospitals, equipping
-                                    students for clinical pharmacy practice and global healthcare research careers.
+                                    Includes an extensive 1-year residency internship in multi-specialty hospitals, equipping students for clinical pharmacy practice and global healthcare research careers.
                                 </p>
                             </div>
-
                             <Link href="/courses/pharm-d" className={styles.learnMoreLink}>
                                 <span>Learn More</span>
                                 <ArrowRight size={14} />
@@ -83,24 +145,23 @@ export default function HomeCoursesEnquirySection() {
                         </div>
 
                         {/* 3. M. Pharmacy */}
-                        <div className={`${styles.courseCard} ${styles.cardMpharm}`}>
+                        <div
+                            className={`${styles.courseCard} ${styles.cardMpharm} ${isVisible ? styles.animateReveal4 : styles.hiddenState
+                                }`}
+                        >
                             <div className={styles.cardTop}>
                                 <div className={`${styles.iconCircle} ${styles.mpharmIcon}`}>
                                     <Microscope size={28} />
                                 </div>
                                 <h3 className={styles.courseName}>M. Pharmacy</h3>
                                 <span className={styles.durationBadge}>Duration: 2 Years</span>
-
                                 <p className={styles.courseText}>
-                                    Postgraduate program offering advanced specialization and research exposure in
-                                    Pharmaceutics, Pharmacology, and Pharmaceutical Analysis with dedicated dissertation projects.
+                                    Postgraduate program offering advanced specialization and research exposure in Pharmaceutics, Pharmacology, and Pharmaceutical Analysis with dedicated dissertation projects.
                                 </p>
                                 <p className={styles.courseSubText}>
-                                    Focuses on modern analytical techniques (HPLC, UV-Vis, FTIR), novel drug delivery systems,
-                                    pharmacological screening, and high-impact biomedical publications.
+                                    Focuses on modern analytical techniques (HPLC, UV-Vis, FTIR), novel drug delivery systems, pharmacological screening, and high-impact biomedical publications.
                                 </p>
                             </div>
-
                             <Link href="/courses/m-pharm" className={styles.learnMoreLink}>
                                 <span>Learn More</span>
                                 <ArrowRight size={14} />
@@ -108,10 +169,13 @@ export default function HomeCoursesEnquirySection() {
                         </div>
                     </div>
 
-                    {/* Enquire Today Sidebar Box */}
-                    <div className={styles.enquiryBox}>
-                        <div className="flex items-center gap-2 mb-1">
-                            <Sparkles size={16} className="text-amber-400" />
+                    {/* Enquiry Sidebar Box */}
+                    <div
+                        className={`${styles.enquiryBox} ${isVisible ? styles.animateReveal5 : styles.hiddenState
+                            }`}
+                    >
+                        <div className={styles.enquiryHeader}>
+                            <Sparkles size={16} className={styles.enquiryIcon} />
                             <h3 className={styles.enquiryTitle}>Enquire Today</h3>
                         </div>
                         <p className={styles.enquirySubtitle}>
@@ -119,9 +183,9 @@ export default function HomeCoursesEnquirySection() {
                         </p>
 
                         {submitted ? (
-                            <div className="py-8 text-center flex flex-col items-center justify-center gap-3">
-                                <CheckCircle2 size={38} className="text-emerald-400" />
-                                <p className="text-sm text-emerald-100 font-semibold leading-relaxed">
+                            <div className={styles.successBox}>
+                                <CheckCircle2 size={38} className={styles.successIcon} />
+                                <p className={styles.successText}>
                                     Thank you! We will get in touch with you shortly.
                                 </p>
                             </div>
@@ -160,7 +224,7 @@ export default function HomeCoursesEnquirySection() {
                                 />
                                 <button type="submit" className={styles.btnSubmit}>
                                     <span>Submit Enquiry</span>
-                                    <Send size={13} className="rotate-45" />
+                                    <Send size={13} className={styles.btnSendIcon} />
                                 </button>
                             </form>
                         )}

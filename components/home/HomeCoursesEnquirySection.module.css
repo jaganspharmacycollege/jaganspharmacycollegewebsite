@@ -1,23 +1,91 @@
 .section {
-    background: #faf8f5;
-    background: radial-gradient(circle at 50% 10%, #fdfbf7 0%, #f5efe6 100%);
-    padding: 4.5rem 1rem 5.5rem 1rem;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 5rem 1rem 6rem 1rem;
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid #f0ece1;
+}
+
+/* Ambient Radial Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 15%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 12%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(85px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
-    max-width: 84rem;
+    max-width: 86rem;
     margin: 0 auto;
     position: relative;
     z-index: 5;
 }
 
+/* Initial Hidden State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothCoursesReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothCoursesReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animateReveal2 {
+    animation: smoothCoursesReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animateReveal3 {
+    animation: smoothCoursesReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animateReveal4 {
+    animation: smoothCoursesReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animateReveal5 {
+    animation: smoothCoursesReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+}
+
 /* Header */
 .topHeading {
+    margin-bottom: 2.75rem;
     text-align: center;
-    margin-bottom: 2.25rem;
 }
 
 .eyebrow {
@@ -26,6 +94,10 @@
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
     display: inline-block;
 }
 
@@ -33,14 +105,14 @@
 .mainLayout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 2rem;
     align-items: stretch;
 }
 
 @media (min-width: 1024px) {
     .mainLayout {
         grid-template-columns: 2.35fr 1fr;
-        gap: 2rem;
+        gap: 2.25rem;
     }
 }
 
@@ -61,22 +133,23 @@
 .courseCard {
     background: #ffffff;
     border: 1px solid rgba(5, 59, 42, 0.08);
-    border-radius: 1.25rem;
+    border-radius: 1.5rem;
     padding: 2.25rem 1.45rem 1.85rem 1.45rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 6px 20px -4px rgba(5, 59, 42, 0.05);
     position: relative;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    will-change: transform;
 }
 
 .courseCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 28px -6px rgba(5, 59, 42, 0.1);
-    border-color: rgba(5, 59, 42, 0.18);
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 16px 32px -4px rgba(5, 59, 42, 0.12);
+    border-color: rgba(5, 59, 42, 0.2);
 }
 
 .cardTop {
@@ -94,36 +167,36 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1.25rem;
-    transition: transform 0.2s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .courseCard:hover .iconCircle {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
 .bpharmIcon {
     background-color: #fff7ed;
     color: #ea580c;
-    border: 1px solid #ffedd5;
+    border: 1.5px solid #ffedd5;
 }
 
 .pharmdIcon {
     background-color: #ecfdf5;
     color: #059669;
-    border: 1px solid #d1fae5;
+    border: 1.5px solid #d1fae5;
 }
 
 .mpharmIcon {
     background-color: #faf5ff;
     color: #9333ea;
-    border: 1px solid #f3e8ff;
+    border: 1.5px solid #f3e8ff;
 }
 
 .courseName {
     font-size: 1.35rem;
     font-weight: 800;
     color: #053b2a;
-    margin-bottom: 0.35rem;
+    margin: 0 0 0.35rem 0;
     letter-spacing: -0.01em;
 }
 
@@ -145,14 +218,14 @@
     font-size: 0.8125rem;
     color: #4b5563;
     line-height: 1.65;
-    margin-bottom: 0.85rem;
+    margin: 0 0 0.85rem 0;
 }
 
 .courseSubText {
     font-size: 0.785rem;
     color: #6b7280;
     line-height: 1.6;
-    margin-bottom: 1.75rem;
+    margin: 0 0 1.75rem 0;
 }
 
 .learnMoreLink {
@@ -164,7 +237,7 @@
     align-items: center;
     gap: 0.35rem;
     text-decoration: none;
-    transition: gap 0.2s ease, color 0.2s ease;
+    transition: gap 0.3s ease, color 0.3s ease;
 }
 
 .learnMoreLink:hover {
@@ -175,8 +248,8 @@
 /* Enquiry Sidebar Box */
 .enquiryBox {
     background: linear-gradient(160deg, #053b2a 0%, #03251a 100%);
-    border-radius: 1.25rem;
-    padding: 2rem 1.75rem;
+    border-radius: 1.5rem;
+    padding: 2.25rem 1.75rem;
     color: #ffffff;
     box-shadow: 0 12px 28px 6px rgba(5, 59, 42, 0.25);
     display: flex;
@@ -184,18 +257,29 @@
     justify-content: center;
 }
 
+.enquiryHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+}
+
+.enquiryIcon {
+    color: #fbbf24;
+}
+
 .enquiryTitle {
     font-size: 1.35rem;
     font-weight: 800;
-    margin-bottom: 0.25rem;
+    margin: 0;
     letter-spacing: -0.01em;
     color: #ffffff;
 }
 
 .enquirySubtitle {
-    font-size: 0.75rem;
+    font-size: 0.775rem;
     color: #a7f3d0;
-    margin-bottom: 1.25rem;
+    margin: 0 0 1.35rem 0;
 }
 
 .enquiryForm {
@@ -209,13 +293,13 @@
 .textarea {
     font-family: inherit;
     font-size: 0.8125rem;
-    padding: 0.7rem 0.95rem;
-    border-radius: 0.5rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 0.65rem;
     border: 1px solid rgba(255, 255, 255, 0.15);
     background-color: #ffffff;
     color: #111827;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input::placeholder,
@@ -226,8 +310,8 @@
 .input:focus,
 .select:focus,
 .textarea:focus {
-    border-color: #b86e00;
-    box-shadow: 0 0 0 2px rgba(184, 110, 0, 0.3);
+    border-color: #fbbf24;
+    box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.3);
 }
 
 .textarea {
@@ -239,8 +323,8 @@
     color: #ffffff;
     font-size: 0.8125rem;
     font-weight: 700;
-    padding: 0.8rem;
-    border-radius: 0.5rem;
+    padding: 0.85rem;
+    border-radius: 0.65rem;
     border: none;
     cursor: pointer;
     display: flex;
@@ -249,10 +333,38 @@
     gap: 0.5rem;
     margin-top: 0.35rem;
     box-shadow: 0 4px 12px rgba(184, 110, 0, 0.25);
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .btnSubmit:hover {
     background-color: #925700;
-    transform: translateY(-1px);
+    transform: translate3d(0, -2px, 0);
+    box-shadow: 0 6px 16px rgba(184, 110, 0, 0.35);
+}
+
+.btnSendIcon {
+    transform: rotate(45deg);
+}
+
+.successBox {
+    padding: 2rem 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.successIcon {
+    color: #34d399;
+}
+
+.successText {
+    font-size: 0.875rem;
+    color: #d1fae5;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 0;
 }

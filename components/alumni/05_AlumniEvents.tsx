@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Sparkles,
     Calendar,
@@ -38,6 +38,7 @@ const events = [
         desc: 'Keynote sessions on modern drug regulatory filings and AI applications in pharmaceutical analysis led by international alumni.',
         theme: styles.themeEmerald,
         typeBadge: 'Virtual Webinar',
+        animClass: styles.animDelay3,
     },
     {
         icon: Building,
@@ -48,6 +49,7 @@ const events = [
         desc: 'Annual batch reunion, campus tour, felicitation of distinguished alumni, and networking banquet dinner.',
         theme: styles.themeAmber,
         typeBadge: 'Campus Event',
+        animClass: styles.animDelay4,
     },
     {
         icon: GraduationCap,
@@ -58,29 +60,91 @@ const events = [
         desc: 'Senior alumni guiding final-year B. Pharm, Pharm.D, and M. Pharm students with resume reviews and technical interview prep.',
         theme: styles.themePurple,
         typeBadge: 'Workshop',
+        animClass: styles.animDelay5,
     },
 ];
 
 export default function AlumniEvents() {
     const [currentImgIdx, setCurrentImgIdx] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+    const orbLeftRef = useRef<HTMLDivElement>(null);
+    const orbRightRef = useRef<HTMLDivElement>(null);
 
+    // Cinematic 5.0-second auto-cycling interval
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentImgIdx((prev) => (prev + 1) % eventsSlides.length);
-        }, 3000);
-
+        }, 5000);
         return () => clearInterval(timer);
     }, []);
 
+    // Repeating scroll-triggered entrance detection
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Ultra-slow fluid linear-interpolated (lerp) parallax animation
+    useEffect(() => {
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let animationFrameId: number;
+
+        const updateParallax = () => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                currentScroll += (targetScroll - currentScroll) * 0.035;
+                const relativeOffset = window.innerHeight - rect.top;
+
+                if (orbLeftRef.current) {
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
+                }
+                if (orbRightRef.current) {
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(updateParallax);
+        };
+
+        const handleScroll = () => {
+            targetScroll = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        animationFrameId = requestAnimationFrame(updateParallax);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
     return (
-        <section className={styles.section}>
+        <section ref={sectionRef} className={styles.section}>
             {/* Ambient Parallax Lighting Glows */}
-            <div className={styles.bgOrbLeft} />
-            <div className={styles.bgOrbRight} />
+            <div ref={orbLeftRef} className={styles.bgOrbLeft} />
+            <div ref={orbRightRef} className={styles.bgOrbRight} />
 
             <div className={styles.container}>
                 {/* Header Block */}
-                <div className={styles.headerBlock}>
+                <div
+                    className={`${styles.headerBlock} ${isVisible ? styles.animateReveal1 : styles.hiddenState
+                        }`}
+                >
                     <div className={styles.eyebrowTag}>
                         <Sparkles size={14} className={styles.eyebrowIcon} />
                         <span>Conferences &amp; Gatherings</span>
@@ -93,7 +157,10 @@ export default function AlumniEvents() {
                 </div>
 
                 {/* Auto-sliding Banner Showcase */}
-                <div className={styles.carouselContainer}>
+                <div
+                    className={`${styles.carouselContainer} ${isVisible ? styles.animateReveal2 : styles.hiddenState
+                        }`}
+                >
                     <div className={styles.imageFrame}>
                         {eventsSlides.map((slide, idx) => (
                             <img
@@ -112,7 +179,9 @@ export default function AlumniEvents() {
                                 <Layers size={13} className={styles.codeIcon} />
                                 <span>UPCOMING CALENDAR 2026-27</span>
                             </span>
-                            <span className={styles.specBadge}>Hybrid &amp; In-Person Sessions</span>
+                            <span className={styles.specBadge}>
+                                Hybrid &amp; In-Person Sessions
+                            </span>
                         </div>
 
                         {/* Bottom Caption & Sync Dots */}
@@ -120,7 +189,6 @@ export default function AlumniEvents() {
                             <h4 className={styles.captionText}>
                                 {eventsSlides[currentImgIdx].caption}
                             </h4>
-
                             <div className={styles.dotsWrapper}>
                                 {eventsSlides.map((_, dotIdx) => (
                                     <button
@@ -141,7 +209,11 @@ export default function AlumniEvents() {
                     {events.map((ev, idx) => {
                         const Icon = ev.icon;
                         return (
-                            <div key={idx} className={styles.card}>
+                            <div
+                                key={idx}
+                                className={`${styles.card} ${isVisible ? ev.animClass : styles.hiddenState
+                                    }`}
+                            >
                                 <div className={styles.cardHeader}>
                                     <div className={`${styles.iconSquircle} ${ev.theme}`}>
                                         <Icon size={20} strokeWidth={2.2} />

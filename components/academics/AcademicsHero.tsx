@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles, BookOpenCheck, Microscope, GraduationCap, Award } from 'lucide-react';
 import styles from './AcademicsHero.module.css';
 
@@ -56,19 +56,73 @@ const pillars = [
 
 export default function AcademicsHero() {
     const [currentIdx, setCurrentIdx] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+    const bgSliderRef = useRef<HTMLDivElement>(null);
 
+    // Cinematic 5.0-second auto-cycling interval
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentIdx((prev) => (prev + 1) % academicHeroSlides.length);
-        }, 3500);
-
+        }, 5000);
         return () => clearInterval(timer);
     }, []);
 
+    // Repeating scroll-triggered entrance detection
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Ultra-slow fluid linear-interpolated (lerp) parallax animation
+    useEffect(() => {
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let animationFrameId: number;
+
+        const updateParallax = () => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                currentScroll += (targetScroll - currentScroll) * 0.035;
+                const relativeOffset = window.innerHeight - rect.top;
+
+                if (bgSliderRef.current) {
+                    bgSliderRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.05}px, 0) scale(1.05)`;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(updateParallax);
+        };
+
+        const handleScroll = () => {
+            targetScroll = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        animationFrameId = requestAnimationFrame(updateParallax);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
     return (
-        <section className={styles.section}>
+        <section ref={sectionRef} className={styles.section}>
             {/* 100% Full-Bleed Clear Background Slider */}
-            <div className={styles.bgSlider}>
+            <div ref={bgSliderRef} className={styles.bgSlider}>
                 {academicHeroSlides.map((slide, idx) => (
                     <div
                         key={idx}
@@ -85,21 +139,38 @@ export default function AcademicsHero() {
             {/* Hero Content */}
             <div className={styles.container}>
                 <div className={styles.contentWrapper}>
-                    <div className={styles.eyebrowTag}>
+                    <div
+                        className={`${styles.eyebrowTag} ${isVisible ? styles.animateReveal1 : styles.hiddenState
+                            }`}
+                    >
                         <Sparkles size={14} className={styles.eyebrowIcon} />
                         <span>Excellence in Pharmaceutical Pedagogy</span>
                     </div>
 
-                    <h1 className={styles.title}>Academic Framework</h1>
-                    <div className={styles.accentLine} />
+                    <h1
+                        className={`${styles.title} ${isVisible ? styles.animateReveal2 : styles.hiddenState
+                            }`}
+                    >
+                        Academic Framework
+                    </h1>
 
-                    <p className={styles.description}>
-                        Fostering rigorous scientific inquiry, evidence-based clinical training, and comprehensive curriculum
-                        delivery guided by distinguished faculty and doctoral researchers.
+                    <div
+                        className={`${styles.accentLine} ${isVisible ? styles.animateReveal3 : styles.hiddenState
+                            }`}
+                    />
+
+                    <p
+                        className={`${styles.description} ${isVisible ? styles.animateReveal4 : styles.hiddenState
+                            }`}
+                    >
+                        Fostering rigorous scientific inquiry, evidence-based clinical training, and comprehensive curriculum delivery guided by distinguished faculty and doctoral researchers.
                     </p>
 
                     {/* Active Highlight Banner */}
-                    <div className={styles.activeSlideBadge}>
+                    <div
+                        className={`${styles.activeSlideBadge} ${isVisible ? styles.animateReveal5 : styles.hiddenState
+                            }`}
+                    >
                         <span className={styles.badgePulse} />
                         <span className={styles.badgeText}>
                             {academicHeroSlides[currentIdx].caption}
@@ -107,7 +178,10 @@ export default function AcademicsHero() {
                     </div>
 
                     {/* 4 Feature Badges Row */}
-                    <div className={styles.badgesRow}>
+                    <div
+                        className={`${styles.badgesRow} ${isVisible ? styles.animateReveal6 : styles.hiddenState
+                            }`}
+                    >
                         {pillars.map((item, idx) => {
                             const Icon = item.icon;
                             return (

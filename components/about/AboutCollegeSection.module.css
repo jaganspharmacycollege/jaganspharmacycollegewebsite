@@ -9,13 +9,15 @@
     background-color: #0b1a15;
 }
 
-/* Full Hero Background Slider - 100% Clear & Visible */
+/* Background Slider with Smooth Lerp Translation */
 .bgSlider {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: -10%;
+    width: 120%;
+    height: 120%;
     z-index: 1;
+    will-change: transform;
+    transform: translate3d(0, 0, 0) scale(1.04);
 }
 
 .bgSlide {
@@ -26,28 +28,61 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
 .activeSlide {
     opacity: 1;
+    transform: scale(1.02);
 }
 
 .inactiveSlide {
     opacity: 0;
+    transform: scale(1);
     pointer-events: none;
 }
 
-/* Soft Left-To-Right Vignette: Keeps Text Crisp While Leaving 70% of the Image Bright & Clear */
+/* Gradient Overlay */
 .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(90deg,
-            rgba(3, 26, 19, 0.88) 0%,
-            rgba(3, 26, 19, 0.72) 42%,
-            rgba(3, 26, 19, 0.25) 75%,
-            rgba(0, 0, 0, 0.15) 100%);
+            rgba(3, 26, 19, 0.94) 0%,
+            rgba(3, 26, 19, 0.82) 42%,
+            rgba(3, 26, 19, 0.45) 75%,
+            rgba(0, 0, 0, 0.25) 100%);
     z-index: 2;
+    pointer-events: none;
+}
+
+/* Ambient Parallax Radial Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 10%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 3;
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.12) 0%, transparent 70%);
+    filter: blur(85px);
+    z-index: 3;
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -63,6 +98,50 @@
     max-width: 44rem;
     display: flex;
     flex-direction: column;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothParallaxEntrance {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothParallaxEntrance 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animateReveal2 {
+    animation: smoothParallaxEntrance 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animateReveal3 {
+    animation: smoothParallaxEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animateReveal4 {
+    animation: smoothParallaxEntrance 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animateReveal5 {
+    animation: smoothParallaxEntrance 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+}
+
+.animateReveal6 {
+    animation: smoothParallaxEntrance 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
 }
 
 .eyebrow {
@@ -128,6 +207,13 @@
     padding: 0.45rem 0.85rem;
     border-radius: 9999px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+    will-change: transform;
+}
+
+.featureItem:hover {
+    transform: translate3d(0, -3px, 0);
+    background: rgba(5, 59, 42, 0.95);
 }
 
 .checkIcon {
@@ -153,18 +239,20 @@
     background: rgba(3, 26, 19, 0.75);
     backdrop-filter: blur(12px);
     padding: 1.25rem 1.35rem;
-    border-radius: 1.15rem;
+    border-radius: 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     gap: 0.95rem;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .statCard:hover {
-    transform: translateY(-3px);
+    transform: translate3d(0, -6px, 0);
     border-color: #34d399;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
 }
 
 .statIconBadge {
@@ -178,6 +266,11 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.statCard:hover .statIconBadge {
+    transform: scale(1.08);
 }
 
 .statVal {
@@ -185,6 +278,7 @@
     font-weight: 800;
     color: #ffffff;
     line-height: 1.1;
+    font-variant-numeric: tabular-nums;
 }
 
 .statLabel {
@@ -214,7 +308,10 @@
     height: 7px;
     border-radius: 9999px;
     background: rgba(255, 255, 255, 0.4);
-    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
 }
 
 .activeDot {

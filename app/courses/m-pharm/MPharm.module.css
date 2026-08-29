@@ -1,10 +1,11 @@
 .pageWrapper {
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #faf8f5;
-    background: radial-gradient(circle at 50% 5%, #ffffff 0%, #f7f4ed 100%);
-    padding: 4.5rem 1rem 6rem 1rem;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 5rem 1rem 6rem 1rem;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid #f0ece1;
 }
 
 /* Ambient Layered Parallax Glows */
@@ -17,6 +18,8 @@
     background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
     filter: blur(75px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .bgOrbRight {
@@ -28,6 +31,8 @@
     background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
     filter: blur(80px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -35,6 +40,58 @@
     margin: 0 auto;
     position: relative;
     z-index: 5;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothMPharmReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothMPharmReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animateReveal2 {
+    animation: smoothMPharmReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animateReveal3 {
+    animation: smoothMPharmReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animateReveal4 {
+    animation: smoothMPharmReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animateReveal5 {
+    animation: smoothMPharmReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+}
+
+.animDelay1 {
+    animation: smoothMPharmReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+.animDelay2 {
+    animation: smoothMPharmReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+.animDelay3 {
+    animation: smoothMPharmReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.40s both;
 }
 
 /* Header Section */
@@ -53,7 +110,11 @@
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: #b86e00;
-    margin-bottom: 0.35rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 0.65rem;
 }
 
 .title {
@@ -62,6 +123,7 @@
     color: #053b2a;
     letter-spacing: -0.02em;
     line-height: 1.2;
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -82,6 +144,8 @@
     font-size: 0.925rem;
     color: #4b5563;
     line-height: 1.7;
+    margin: 0;
+    text-align: center;
 }
 
 /* 1. Main Overview Feature Card (2-Column Grid) */
@@ -94,7 +158,8 @@
     grid-template-columns: 1fr;
     overflow: hidden;
     margin-bottom: 3.5rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
 }
 
 @media (min-width: 1024px) {
@@ -104,7 +169,7 @@
 }
 
 .overviewCard:hover {
-    transform: translateY(-4px);
+    transform: translate3d(0, -6px, 0);
     box-shadow: 0 20px 40px -6px rgba(5, 59, 42, 0.14);
 }
 
@@ -142,22 +207,29 @@
     font-size: 1.65rem;
     font-weight: 800;
     color: #053b2a;
-    line-height: 1.25;
+    line-height: 1.3;
     margin: 0 0 1rem 0;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    text-align: left;
 }
 
 .descText {
-    font-size: 0.9rem;
+    font-size: 0.9375rem;
     color: #4b5563;
     line-height: 1.75;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.75rem 0;
+    text-align: left;
+    text-wrap: pretty;
+    letter-spacing: -0.011em;
+    word-spacing: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
 }
 
 .highlightsList {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.85rem;
 }
 
 @media (min-width: 640px) {
@@ -195,7 +267,8 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: opacity 0.8s ease-in-out, transform 1.5s ease-out;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
 .activeImg {
@@ -256,7 +329,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
 }
 
 .activeDot {
@@ -288,6 +361,7 @@
     font-weight: 800;
     color: #053b2a;
     letter-spacing: -0.01em;
+    margin: 0;
 }
 
 /* 2. Specializations Grid */
@@ -318,12 +392,13 @@
     box-shadow: 0 10px 28px -4px rgba(5, 59, 42, 0.05);
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    will-change: transform;
 }
 
 .specCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 36px -6px rgba(5, 59, 42, 0.12);
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 18px 36px -4px rgba(5, 59, 42, 0.12);
     border-color: rgba(5, 59, 42, 0.2);
 }
 
@@ -342,7 +417,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .specCard:hover .iconSquircle {
@@ -392,6 +467,7 @@
     color: #4b5563;
     line-height: 1.65;
     margin: 0;
+    text-align: left;
 }
 
 /* 3. Departments Grid */
@@ -422,11 +498,12 @@
     box-shadow: 0 8px 24px -4px rgba(5, 59, 42, 0.04);
     display: flex;
     flex-direction: column;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
 }
 
 .deptCard:hover {
-    transform: translateY(-4px);
+    transform: translate3d(0, -5px, 0);
     box-shadow: 0 14px 30px -4px rgba(5, 59, 42, 0.1);
 }
 
@@ -469,6 +546,7 @@
     color: #053b2a;
     line-height: 1.5;
     margin: 0;
+    text-align: left;
 }
 
 .deptEquipment {
@@ -476,6 +554,7 @@
     color: #6b7280;
     line-height: 1.55;
     margin: 0;
+    text-align: left;
 }
 
 /* 4. Eligibility Card */
@@ -519,9 +598,6 @@
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
-    font-size: 0.875rem;
-    color: #374151;
-    line-height: 1.6;
 }
 
 .listBulletDot {
@@ -531,4 +607,11 @@
     background-color: #059669;
     margin-top: 0.45rem;
     flex-shrink: 0;
+}
+
+.eligibilityText {
+    font-size: 0.875rem;
+    color: #374151;
+    line-height: 1.6;
+    text-align: left;
 }

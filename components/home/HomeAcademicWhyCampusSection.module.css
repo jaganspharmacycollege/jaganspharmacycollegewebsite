@@ -1,11 +1,38 @@
 .section {
     background-color: #faf8f5;
-    background: radial-gradient(circle at 50% 10%, #fdfbf7 0%, #f5efe6 100%);
-    padding: 5rem 1rem;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 5rem 1rem 6rem 1rem;
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     border-bottom: 1px solid #f0ece1;
     position: relative;
     overflow: hidden;
+}
+
+/* Ambient Radial Glows with Hardware Blending */
+.bgOrbLeft {
+    position: absolute;
+    top: 15%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 12%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(85px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -27,6 +54,38 @@
     }
 }
 
+/* Initial Hidden State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothAcademicReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothAcademicReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animateReveal2 {
+    animation: smoothAcademicReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animateReveal3 {
+    animation: smoothAcademicReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
 /* 1. Academic Cells Card */
 .academicCard {
     background: linear-gradient(160deg, #053b2a 0%, #03251a 100%);
@@ -35,20 +94,21 @@
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 28px -4px rgba(5, 59, 42, 0.25);
+    box-shadow: 0 10px 28px 4px rgba(5, 59, 42, 0.25);
     border: 1px solid rgba(52, 211, 153, 0.2);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
 }
 
 .academicCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 36px -4px rgba(5, 59, 42, 0.35);
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 20px 40px 4px rgba(5, 59, 42, 0.35);
 }
 
 .academicTitle {
     font-size: 1.35rem;
     font-weight: 800;
-    margin-bottom: 1.35rem;
+    margin: 0 0 1.35rem 0;
     letter-spacing: -0.01em;
     color: #ffffff;
 }
@@ -71,12 +131,14 @@
     align-items: center;
     gap: 0.65rem;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .cellButton:hover {
     background: rgba(255, 255, 255, 0.16);
     border-color: rgba(52, 211, 153, 0.4);
+    transform: translate3d(4px, 0, 0);
 }
 
 .cellIcon {
@@ -98,12 +160,14 @@
     gap: 0.45rem;
     margin-top: auto;
     box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
-    transition: all 0.2s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background 0.3s ease;
+    will-change: transform;
 }
 
 .btnViewAll:hover {
     background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
+    box-shadow: 0 6px 16px rgba(217, 119, 6, 0.45);
 }
 
 /* 2. Why Choose Us Card */
@@ -117,7 +181,8 @@
     gap: 1.5rem;
     align-items: center;
     box-shadow: 0 10px 28px -4px rgba(5, 59, 42, 0.05);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    will-change: transform;
 }
 
 @media (min-width: 640px) {
@@ -127,8 +192,8 @@
 }
 
 .whyCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 36px -6px rgba(5, 59, 42, 0.12);
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 20px 42px -4px rgba(5, 59, 42, 0.12);
     border-color: rgba(5, 59, 42, 0.2);
 }
 
@@ -136,7 +201,7 @@
     font-size: 1.35rem;
     font-weight: 800;
     color: #053b2a;
-    margin-bottom: 1.15rem;
+    margin: 0 0 1.15rem 0;
     letter-spacing: -0.01em;
 }
 
@@ -166,18 +231,20 @@
     height: 230px;
     border-radius: 1.15rem;
     overflow: hidden;
-    box-shadow: 0 8px 20px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 .whyImgTag {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .whyCard:hover .whyImgTag {
-    transform: scale(1.04);
+    transform: scale(1.06);
 }
 
 /* 3. Campus Life Card */
@@ -191,12 +258,13 @@
     justify-content: flex-end;
     border: 1px solid rgba(5, 59, 42, 0.1);
     box-shadow: 0 10px 28px -4px rgba(5, 59, 42, 0.1);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
 }
 
 .campusCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 36px -4px rgba(5, 59, 42, 0.2);
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 22px 44px -4px rgba(5, 59, 42, 0.22);
 }
 
 .campusImg {
@@ -206,17 +274,21 @@
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    transition: transform 0.5s ease;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .campusCard:hover .campusImg {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .campusOverlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(5, 59, 42, 0.25) 0%, rgba(5, 59, 42, 0.75) 50%, rgba(1, 20, 14, 0.94) 100%);
+    background: linear-gradient(180deg,
+            rgba(5, 59, 42, 0.25) 0%,
+            rgba(5, 59, 42, 0.75) 50%,
+            rgba(1, 20, 14, 0.94) 100%);
     z-index: 1;
 }
 
@@ -230,7 +302,7 @@
 .campusTitle {
     font-size: 1.35rem;
     font-weight: 800;
-    margin-bottom: 0.35rem;
+    margin: 0 0 0.35rem 0;
     letter-spacing: -0.01em;
     color: #ffffff;
 }
@@ -238,7 +310,7 @@
 .campusSub {
     font-size: 0.8125rem;
     color: #d1fae5;
-    margin-bottom: 1.25rem;
+    margin: 0 0 1.25rem 0;
     line-height: 1.5;
 }
 
@@ -255,11 +327,13 @@
     align-items: center;
     gap: 0.45rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .btnExplore:hover {
     background: #ffffff;
     color: #053b2a;
     border-color: #ffffff;
+    transform: translate3d(0, -2px, 0);
 }

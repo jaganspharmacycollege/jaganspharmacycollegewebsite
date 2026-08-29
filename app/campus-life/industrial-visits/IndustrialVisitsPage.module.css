@@ -1,11 +1,12 @@
 .pageWrapper {
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #faf8f5;
-    background: radial-gradient(circle at 50% 5%, #ffffff 0%, #f7f4ed 100%);
-    padding: 4.5rem 1rem 6rem 1rem;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 5rem 1rem 6.5rem 1rem;
     position: relative;
     overflow: hidden;
     min-height: 100vh;
+    border-bottom: 1px solid #f0ece1;
 }
 
 /* Ambient Layered Parallax Glows */
@@ -18,6 +19,8 @@
     background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
     filter: blur(75px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .bgOrbRight {
@@ -29,6 +32,8 @@
     background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
     filter: blur(80px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -36,6 +41,42 @@
     margin: 0 auto;
     position: relative;
     z-index: 5;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothVisitsReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateHeader {
+    animation: smoothVisitsReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.sectionDelay1 {
+    animation: smoothVisitsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+.sectionDelay2 {
+    animation: smoothVisitsReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+
+.sectionDelay3 {
+    animation: smoothVisitsReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
 }
 
 /* Page Header */
@@ -55,11 +96,11 @@
     font-size: 0.8125rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     color: #b86e00;
     background: #fffbeb;
     border: 1px solid #fde68a;
-    padding: 0.35rem 0.85rem;
+    padding: 0.35rem 0.95rem;
     border-radius: 9999px;
     margin-bottom: 0.65rem;
 }
@@ -92,10 +133,11 @@
 }
 
 .descText {
-    font-size: 0.925rem;
+    font-size: 0.9375rem;
     color: #4b5563;
     line-height: 1.75;
     margin: 0;
+    text-align: center;
 }
 
 /* List Stack */
@@ -116,7 +158,8 @@
     grid-template-columns: 1fr;
     gap: 2.5rem;
     align-items: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
 }
 
 @media (min-width: 1024px) {
@@ -126,7 +169,6 @@
         gap: 3.5rem;
     }
 
-    /* Zigzag Alternation on Desktop */
     .rowReversed {
         grid-template-columns: 1fr 1.15fr;
     }
@@ -141,7 +183,7 @@
 }
 
 .facilitySectionCard:hover {
-    transform: translateY(-4px);
+    transform: translate3d(0, -6px, 0);
     box-shadow: 0 20px 45px -6px rgba(5, 59, 42, 0.12);
 }
 
@@ -180,7 +222,8 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: opacity 0.8s ease-in-out, transform 1.5s ease-out;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
 .activeImg {
@@ -269,6 +312,7 @@
     line-height: 1.3;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     letter-spacing: -0.01em;
+    text-align: left;
 }
 
 .dotsWrapper {
@@ -285,7 +329,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
 }
 
 .activeDot {
@@ -307,6 +351,7 @@
     color: #b86e00;
     display: block;
     margin-bottom: 0.35rem;
+    text-align: left;
 }
 
 .facilityTitle {
@@ -316,6 +361,7 @@
     letter-spacing: -0.02em;
     line-height: 1.15;
     margin: 0;
+    text-align: left;
 }
 
 @media (min-width: 768px) {
@@ -333,10 +379,16 @@
 }
 
 .facilityDesc {
-    font-size: 0.925rem;
+    font-size: 0.9375rem;
     color: #4b5563;
     line-height: 1.75;
     margin: 0 0 1.75rem 0;
+    text-align: left;
+    text-wrap: pretty;
+    letter-spacing: -0.011em;
+    word-spacing: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
 }
 
 /* 2 Sub-Cards Grid */
@@ -360,11 +412,12 @@
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    will-change: transform;
 }
 
 .subCard:hover {
-    transform: translateY(-2px);
+    transform: translate3d(0, -3px, 0);
     border-color: rgba(5, 59, 42, 0.2);
 }
 
@@ -374,6 +427,7 @@
     color: #053b2a;
     margin: 0;
     letter-spacing: -0.01em;
+    text-align: left;
 }
 
 .subCardDesc {
@@ -381,4 +435,10 @@
     color: #6b7280;
     line-height: 1.55;
     margin: 0;
+    text-align: left;
+    text-wrap: pretty;
+    letter-spacing: -0.011em;
+    word-spacing: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
 }

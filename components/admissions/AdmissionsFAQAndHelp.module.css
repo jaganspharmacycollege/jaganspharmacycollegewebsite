@@ -18,6 +18,8 @@
     background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
     filter: blur(65px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .bgOrbRight {
@@ -29,6 +31,8 @@
     background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
     filter: blur(75px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -47,6 +51,50 @@
         gap: 2rem;
         align-items: start;
     }
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothFaqReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateHeader {
+    animation: smoothFaqReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animDelay1 {
+    animation: smoothFaqReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animDelay2 {
+    animation: smoothFaqReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animDelay3 {
+    animation: smoothFaqReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animDelay4 {
+    animation: smoothFaqReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animDelay5 {
+    animation: smoothFaqReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
 }
 
 /* Left FAQ Column */
@@ -128,7 +176,13 @@
     border: 1px solid rgba(5, 59, 42, 0.08);
     box-shadow: 0 4px 16px -2px rgba(5, 59, 42, 0.04);
     overflow: hidden;
-    transition: all 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    will-change: transform;
+}
+
+.accordionItem:hover {
+    transform: translate3d(0, -3px, 0);
+    box-shadow: 0 8px 20px -2px rgba(5, 59, 42, 0.08);
 }
 
 .itemOpen {
@@ -147,6 +201,7 @@
     justify-content: space-between;
     gap: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .accordionBtn:hover {
@@ -172,7 +227,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
 .chevronActive {
@@ -216,11 +271,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
 }
 
 .helpCard:hover {
-    transform: translateY(-4px);
+    transform: translate3d(0, -6px, 0);
     box-shadow: 0 20px 40px -6px rgba(5, 59, 42, 0.14);
 }
 
@@ -349,14 +405,15 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    transition: all 0.2s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, box-shadow 0.4s ease;
     box-shadow: 0 4px 12px rgba(5, 59, 42, 0.18);
+    will-change: transform;
 }
 
 .contactBtn:hover {
     background-color: #b86e00;
     box-shadow: 0 6px 16px rgba(184, 110, 0, 0.28);
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
 }
 
 /* Image Showcase Area */
@@ -372,11 +429,12 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.5s ease;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .helpCard:hover .helpImage {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 .gradientOverlay {

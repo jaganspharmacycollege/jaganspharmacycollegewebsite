@@ -2,6 +2,8 @@
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     padding: 4.5rem 1rem 5.5rem 1rem;
     background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    border-bottom: 1px solid #f0ece1;
     position: relative;
     overflow: hidden;
 }
@@ -16,6 +18,8 @@
     background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
     filter: blur(65px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .bgOrbRight {
@@ -27,6 +31,8 @@
     background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
     filter: blur(75px);
     pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -34,6 +40,58 @@
     margin: 0 auto;
     position: relative;
     z-index: 5;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothClubsReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateCard {
+    animation: smoothClubsReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.animateHeader {
+    animation: smoothClubsReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animDelay1 {
+    animation: smoothClubsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+.animDelay2 {
+    animation: smoothClubsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+.animDelay3 {
+    animation: smoothClubsReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.40s both;
+}
+
+.animDelay4 {
+    animation: smoothClubsReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
+}
+
+.animDelay5 {
+    animation: smoothClubsReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+}
+
+.animDelay6 {
+    animation: smoothClubsReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
 }
 
 /* Main Outer Card */
@@ -46,7 +104,8 @@
     display: grid;
     grid-template-columns: 1fr;
     align-items: stretch;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
 }
 
 @media (min-width: 1024px) {
@@ -56,7 +115,7 @@
 }
 
 .card:hover {
-    transform: translateY(-4px);
+    transform: translate3d(0, -4px, 0);
     box-shadow: 0 20px 45px -6px rgba(5, 59, 42, 0.12);
 }
 
@@ -168,11 +227,12 @@
     gap: 0.85rem;
     width: 100%;
     padding: 0.5rem 0.25rem;
-    transition: transform 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .clubItem:hover {
-    transform: translateY(-4px);
+    transform: translate3d(0, -6px, 0);
 }
 
 .iconSquircle {
@@ -183,7 +243,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
@@ -276,7 +336,8 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: opacity 0.8s ease-in-out, transform 1.5s ease-out;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
 .activeImg {
@@ -337,7 +398,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
 }
 
 .activeDot {

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     ShieldAlert,
     UserCheck,
@@ -17,6 +17,7 @@ const raggingMeasures = [
         icon: UserCheck,
         tag: '24/7 Vigilance',
         theme: styles.themeEmerald,
+        animClass: styles.animDelay1,
     },
     {
         title: 'Comprehensive CCTV Surveillance',
@@ -24,6 +25,7 @@ const raggingMeasures = [
         icon: Video,
         tag: 'Campus Security',
         theme: styles.themeAmber,
+        animClass: styles.animDelay2,
     },
     {
         title: 'Emergency Helplines & Rapid Response',
@@ -32,19 +34,84 @@ const raggingMeasures = [
         tag: 'Emergency Support',
         theme: styles.themePurple,
         isHelpline: true,
+        animClass: styles.animDelay3,
     },
 ];
 
 export default function AntiRaggingPage() {
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const orbLeftRef = useRef<HTMLDivElement>(null);
+    const orbRightRef = useRef<HTMLDivElement>(null);
+
+    // Repeating scroll-triggered entrance detection
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Ultra-slow fluid linear-interpolated (lerp 0.035) parallax animation
+    useEffect(() => {
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let animationFrameId: number;
+
+        const updateParallax = () => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                currentScroll += (targetScroll - currentScroll) * 0.035;
+                const relativeOffset = window.innerHeight - rect.top;
+
+                if (orbLeftRef.current) {
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
+                        }px, 0)`;
+                }
+                if (orbRightRef.current) {
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05
+                        }px, 0)`;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(updateParallax);
+        };
+
+        const handleScroll = () => {
+            targetScroll = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        animationFrameId = requestAnimationFrame(updateParallax);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
     return (
-        <div className={styles.pageWrapper}>
+        <div ref={sectionRef} className={styles.pageWrapper}>
             {/* Ambient Parallax Lighting Glows */}
-            <div className={styles.bgOrbLeft} />
-            <div className={styles.bgOrbRight} />
+            <div ref={orbLeftRef} className={styles.bgOrbLeft} />
+            <div ref={orbRightRef} className={styles.bgOrbRight} />
 
             <div className={styles.container}>
                 {/* Section Header */}
-                <div className={styles.header}>
+                <div
+                    className={`${styles.header} ${isVisible ? styles.animateHeader : styles.hiddenState
+                        }`}
+                >
                     <div className={styles.eyebrowTag}>
                         <ShieldAlert size={14} className={styles.eyebrowIcon} />
                         <span>Safe &amp; Secure Campus</span>
@@ -57,7 +124,10 @@ export default function AntiRaggingPage() {
                 </div>
 
                 {/* Policy Zero-Tolerance Banner */}
-                <div className={styles.policyBanner}>
+                <div
+                    className={`${styles.policyBanner} ${isVisible ? styles.animateBanner : styles.hiddenState
+                        }`}
+                >
                     <div className={styles.policyIconBox}>
                         <Lock size={22} />
                     </div>
@@ -77,7 +147,7 @@ export default function AntiRaggingPage() {
                             <div
                                 key={idx}
                                 className={`${styles.card} ${measure.isHelpline ? styles.helplineCard : ''
-                                    }`}
+                                    } ${isVisible ? measure.animClass : styles.hiddenState}`}
                             >
                                 <div className={styles.cardHeader}>
                                     <div className={`${styles.iconSquircle} ${measure.theme}`}>
@@ -85,7 +155,6 @@ export default function AntiRaggingPage() {
                                     </div>
                                     <span className={styles.cardTag}>{measure.tag}</span>
                                 </div>
-
                                 <h3 className={styles.cardTitle}>{measure.title}</h3>
                                 <p className={styles.cardDesc}>{measure.desc}</p>
                             </div>

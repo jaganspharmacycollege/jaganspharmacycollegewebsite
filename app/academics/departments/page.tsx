@@ -1,14 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Sparkles,
     Building2,
-    GraduationCap,
     Users2,
-    BookOpen,
     FlaskConical,
-    Mail,
     Award,
 } from 'lucide-react';
 import styles from './Departments.module.css';
@@ -117,18 +114,100 @@ const departmentsData = [
     },
 ];
 
+const deptNavDelays = [
+    styles.deptNavDelay1,
+    styles.deptNavDelay2,
+    styles.deptNavDelay3,
+    styles.deptNavDelay4,
+    styles.deptNavDelay5,
+];
+
+const labDelays = [
+    styles.labDelay1,
+    styles.labDelay2,
+    styles.labDelay3,
+];
+
+const facultyDelays = [
+    styles.facultyDelay1,
+    styles.facultyDelay2,
+];
+
 export default function DepartmentsPage() {
     const [activeDept, setActiveDept] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const orbLeftRef = useRef<HTMLDivElement>(null);
+    const orbRightRef = useRef<HTMLDivElement>(null);
+
+    // Repeating scroll-triggered entrance detection
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Ultra-slow fluid linear-interpolated (lerp 0.035) parallax animation
+    useEffect(() => {
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let animationFrameId: number;
+
+        const updateParallax = () => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                currentScroll += (targetScroll - currentScroll) * 0.035;
+                const relativeOffset = window.innerHeight - rect.top;
+
+                if (orbLeftRef.current) {
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
+                        }px, 0)`;
+                }
+                if (orbRightRef.current) {
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05
+                        }px, 0)`;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(updateParallax);
+        };
+
+        const handleScroll = () => {
+            targetScroll = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        animationFrameId = requestAnimationFrame(updateParallax);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
 
     return (
-        <div className={styles.pageWrapper}>
+        <div ref={sectionRef} className={styles.pageWrapper}>
             {/* Background Lighting Glows */}
-            <div className={styles.bgOrbLeft} />
-            <div className={styles.bgOrbRight} />
+            <div ref={orbLeftRef} className={styles.bgOrbLeft} />
+            <div ref={orbRightRef} className={styles.bgOrbRight} />
 
             <div className={styles.container}>
                 {/* Header Block */}
-                <div className={styles.headerBlock}>
+                <div
+                    className={`${styles.headerBlock} ${isVisible ? styles.animateReveal1 : styles.hiddenState
+                        }`}
+                >
                     <div className={styles.eyebrowTag}>
                         <Sparkles size={14} className={styles.eyebrowIcon} />
                         <span>Academic Divisions &amp; Mentors</span>
@@ -142,14 +221,14 @@ export default function DepartmentsPage() {
 
                 {/* 2-Column Split: Dept Nav on Left, Detailed View on Right */}
                 <div className={styles.mainGrid}>
-                    {/* Department Navigation List */}
+                    {/* Department Navigation List with Individual Staggered Transitions */}
                     <div className={styles.deptNavList}>
                         {departmentsData.map((dept, idx) => (
                             <button
                                 key={dept.id}
                                 onClick={() => setActiveDept(idx)}
                                 className={`${styles.deptNavBtn} ${activeDept === idx ? styles.activeDeptNavBtn : ''
-                                    }`}
+                                    } ${isVisible ? deptNavDelays[idx % deptNavDelays.length] : styles.hiddenState}`}
                             >
                                 <div className={styles.deptNavIcon}>
                                     <Building2 size={18} />
@@ -162,8 +241,12 @@ export default function DepartmentsPage() {
                         ))}
                     </div>
 
-                    {/* Department Detail Card */}
-                    <div className={styles.detailCard}>
+                    {/* Department Detail Card with key-based re-animation upon department switch */}
+                    <div
+                        key={`dept-detail-${activeDept}`}
+                        className={`${styles.detailCard} ${isVisible ? styles.animateDetailCard : styles.hiddenState
+                            }`}
+                    >
                         <div className={styles.detailHeader}>
                             <span className={styles.deptBadge}>Academic Specialization</span>
                             <h2 className={styles.detailTitle}>
@@ -182,7 +265,11 @@ export default function DepartmentsPage() {
                             </h4>
                             <div className={styles.labsList}>
                                 {departmentsData[activeDept].labs.map((lab, labIdx) => (
-                                    <span key={labIdx} className={styles.labPill}>
+                                    <span
+                                        key={`lab-${activeDept}-${labIdx}`}
+                                        className={`${styles.labPill} ${isVisible ? labDelays[labIdx % labDelays.length] : styles.hiddenState
+                                            }`}
+                                    >
                                         {lab}
                                     </span>
                                 ))}
@@ -197,7 +284,11 @@ export default function DepartmentsPage() {
                             </h4>
                             <div className={styles.facultyGrid}>
                                 {departmentsData[activeDept].faculty.map((member, fIdx) => (
-                                    <div key={fIdx} className={styles.facultyCard}>
+                                    <div
+                                        key={`faculty-${activeDept}-${fIdx}`}
+                                        className={`${styles.facultyCard} ${isVisible ? facultyDelays[fIdx % facultyDelays.length] : styles.hiddenState
+                                            }`}
+                                    >
                                         <img
                                             src={member.img}
                                             alt={member.name}
@@ -208,7 +299,8 @@ export default function DepartmentsPage() {
                                             <p className={styles.facultyRole}>{member.role}</p>
                                             <p className={styles.facultyQual}>{member.qualification}</p>
                                             <span className={styles.experienceBadge}>
-                                                <Award size={12} /> {member.experience}
+                                                <Award size={12} />
+                                                <span>{member.experience}</span>
                                             </span>
                                         </div>
                                     </div>

@@ -18,11 +18,13 @@
 /* Background Auto-Cycling Image Slider */
 .bgSlider {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: -10%;
+    width: 120%;
+    height: 120%;
     z-index: 1;
     overflow: hidden;
+    will-change: transform;
+    transform: translate3d(0, 0, 0) scale(1.05);
 }
 
 .bgSlide {
@@ -33,17 +35,15 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    transition: opacity 0.8s ease-in-out, transform 2.5s ease-out;
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .activeSlide {
     opacity: 1;
-    transform: scale(1.03);
 }
 
 .inactiveSlide {
     opacity: 0;
-    transform: scale(1);
     pointer-events: none;
 }
 
@@ -57,31 +57,6 @@
             rgba(2, 18, 13, 0.98) 100%),
         linear-gradient(180deg, rgba(3, 26, 19, 0.6) 0%, rgba(3, 26, 19, 0.88) 100%);
     z-index: 2;
-    pointer-events: none;
-}
-
-/* Layered Ambient Parallax Glows */
-.bgOrbLeft {
-    position: absolute;
-    top: 10%;
-    left: -8%;
-    width: 480px;
-    height: 480px;
-    background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, transparent 70%);
-    filter: blur(80px);
-    z-index: 3;
-    pointer-events: none;
-}
-
-.bgOrbRight {
-    position: absolute;
-    bottom: 8%;
-    right: -8%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(251, 191, 36, 0.12) 0%, transparent 70%);
-    filter: blur(85px);
-    z-index: 3;
     pointer-events: none;
 }
 
@@ -101,6 +76,50 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow, Cinematic Stagger Keyframes */
+@keyframes smoothAcademicsReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothAcademicsReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.animateReveal2 {
+    animation: smoothAcademicsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animateReveal3 {
+    animation: smoothAcademicsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.animateReveal4 {
+    animation: smoothAcademicsReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+}
+
+.animateReveal5 {
+    animation: smoothAcademicsReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+}
+
+.animateReveal6 {
+    animation: smoothAcademicsReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.72s both;
 }
 
 .eyebrowTag {
@@ -218,11 +237,12 @@
     align-items: center;
     gap: 0.85rem;
     text-align: left;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+    will-change: transform;
 }
 
 .badgeCard:hover {
-    transform: translateY(-3px);
+    transform: translate3d(0, -4px, 0);
     border-color: #34d399;
 }
 
@@ -296,7 +316,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
 }
 
 .activeDot {

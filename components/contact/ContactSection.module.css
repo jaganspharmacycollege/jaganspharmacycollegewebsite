@@ -1,26 +1,92 @@
 .section {
     font-family: var(--font-sora), 'Sora', sans-serif;
     background-color: #faf8f5;
-    padding: 3.5rem 0 5rem 0;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 5rem 0 6.5rem 0;
     min-height: 85vh;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #f0ece1;
+}
+
+/* Ambient Layered Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 8%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.06) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
     max-width: 80rem;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
+    z-index: 5;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothContactReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateHeader {
+    animation: smoothContactReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animateLeftCol {
+    animation: smoothContactReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animateRightCol {
+    animation: smoothContactReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
 }
 
 /* 1. Contact Us Header */
 .header {
     margin-bottom: 2.5rem;
+    text-align: left;
 }
 
 .eyebrow {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: #b86e00;
     display: block;
 }
@@ -46,6 +112,12 @@
     color: #374151;
     line-height: 1.7;
     max-width: 48rem;
+    text-align: left;
+    text-wrap: pretty;
+    letter-spacing: -0.011em;
+    word-spacing: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
 }
 
 /* Main Grid Layout */
@@ -55,7 +127,7 @@
     gap: 2rem;
 }
 
-/* Left Column - Details & Map */
+/* Left Column Details & Map */
 .infoColumn {
     display: flex;
     flex-direction: column;
@@ -68,12 +140,21 @@
     padding: 1.75rem;
     border: 1px solid rgba(229, 231, 235, 0.8);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    will-change: transform;
+}
+
+.card:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 12px 28px -4px rgba(5, 59, 42, 0.1);
+    border-color: rgba(5, 59, 42, 0.2);
 }
 
 .infoBlock {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
+    text-align: left;
 }
 
 .iconWrapper {
@@ -86,6 +167,11 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .iconWrapper {
+    transform: scale(1.08);
 }
 
 .infoLabel {
@@ -108,6 +194,16 @@
     font-size: 0.875rem;
     color: #4b5563;
     line-height: 1.6;
+    text-align: left;
+    text-wrap: pretty;
+    letter-spacing: -0.011em;
+    word-spacing: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
+}
+
+.mt1 {
+    margin-top: 0.35rem;
 }
 
 .link {
@@ -147,6 +243,14 @@
     padding: 2rem 1.75rem;
     border: 1px solid rgba(229, 231, 235, 0.8);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    text-align: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
+}
+
+.formCard:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 14px 30px -4px rgba(5, 59, 42, 0.1);
 }
 
 .formTitle {
@@ -191,7 +295,8 @@
     background-color: #faf8f5;
     color: #111827;
     outline: none;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    width: 100%;
 }
 
 .input:focus,
@@ -199,6 +304,7 @@
 .textarea:focus {
     border-color: #053b2a;
     background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(5, 59, 42, 0.08);
 }
 
 .submitBtn {
@@ -215,16 +321,23 @@
     justify-content: center;
     gap: 0.5rem;
     width: 100%;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .submitBtn:hover {
     background-color: #021f18;
+    transform: translate3d(0, -2px, 0);
 }
 
 .successMessage {
     text-align: center;
     padding: 3rem 1rem;
+}
+
+.successIcon {
+    color: #046c4e;
+    margin: 0 auto 0.75rem auto;
 }
 
 @media (min-width: 640px) {

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles, Building2 } from 'lucide-react';
 import styles from './AlumniHero.module.css';
 
@@ -34,14 +34,15 @@ interface AlumniProfile {
 interface AlumniCardSlot {
     slotId: string;
     cardStyle: string;
+    animClass: string;
     profiles: AlumniProfile[];
 }
 
-// 6 interactive slots: 18 completely distinct alumni profiles with strictly unique, non-repeating photos
 const alumniCardSlots: AlumniCardSlot[] = [
     {
         slotId: 'slot-1',
         cardStyle: styles.cardPos1,
+        animClass: styles.animDelay1,
         profiles: [
             {
                 id: 'p1',
@@ -72,6 +73,7 @@ const alumniCardSlots: AlumniCardSlot[] = [
     {
         slotId: 'slot-2',
         cardStyle: styles.cardPos2,
+        animClass: styles.animDelay2,
         profiles: [
             {
                 id: 'p4',
@@ -102,6 +104,7 @@ const alumniCardSlots: AlumniCardSlot[] = [
     {
         slotId: 'slot-3',
         cardStyle: styles.cardPos3,
+        animClass: styles.animDelay3,
         profiles: [
             {
                 id: 'p7',
@@ -132,6 +135,7 @@ const alumniCardSlots: AlumniCardSlot[] = [
     {
         slotId: 'slot-4',
         cardStyle: styles.cardPos4,
+        animClass: styles.animDelay4,
         profiles: [
             {
                 id: 'p10',
@@ -147,7 +151,7 @@ const alumniCardSlots: AlumniCardSlot[] = [
                 role: 'Director of QA & QC',
                 company: 'Cipla Global',
                 batch: 'Class of 2009',
-                img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=80',
+                img: 'https://images.unsplash.com/photo-1560250097-0693528c311a?auto=format&fit=crop&w=700&q=80',
             },
             {
                 id: 'p12',
@@ -162,6 +166,7 @@ const alumniCardSlots: AlumniCardSlot[] = [
     {
         slotId: 'slot-5',
         cardStyle: styles.cardPos5,
+        animClass: styles.animDelay5,
         profiles: [
             {
                 id: 'p13',
@@ -192,6 +197,7 @@ const alumniCardSlots: AlumniCardSlot[] = [
     {
         slotId: 'slot-6',
         cardStyle: styles.cardPos6,
+        animClass: styles.animDelay6,
         profiles: [
             {
                 id: 'p16',
@@ -223,18 +229,75 @@ const alumniCardSlots: AlumniCardSlot[] = [
 
 export default function AlumniHero() {
     const [activeProfileIdx, setActiveProfileIdx] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+    const orbLeftRef = useRef<HTMLDivElement>(null);
+    const orbRightRef = useRef<HTMLDivElement>(null);
 
-    // Synchronized 2-second rotation
+    // Cinematic 5000ms auto-cycle
     useEffect(() => {
         const timer = setInterval(() => {
             setActiveProfileIdx((prev) => (prev + 1) % 3);
-        }, 2000);
-
+        }, 5000);
         return () => clearInterval(timer);
     }, []);
 
+    // Repeating scroll-triggered entrance detection
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Ultra-slow fluid linear-interpolated (lerp) parallax animation
+    useEffect(() => {
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let animationFrameId: number;
+
+        const updateParallax = () => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                currentScroll += (targetScroll - currentScroll) * 0.035;
+                const relativeOffset = window.innerHeight - rect.top;
+
+                if (orbLeftRef.current) {
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
+                }
+                if (orbRightRef.current) {
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
+                }
+            }
+
+            animationFrameId = requestAnimationFrame(updateParallax);
+        };
+
+        const handleScroll = () => {
+            targetScroll = window.scrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        animationFrameId = requestAnimationFrame(updateParallax);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
     return (
-        <section className={styles.heroSection}>
+        <section ref={sectionRef} className={styles.heroSection}>
             {/* Background Auto-Cycling Slider */}
             <div className={styles.bgSlider}>
                 {heroBgSlides.map((slide, idx) => (
@@ -247,16 +310,19 @@ export default function AlumniHero() {
                 ))}
             </div>
 
-            {/* Contrast Overlay */}
+            {/* Emerald Vignette Overlay */}
             <div className={styles.overlay} />
 
-            {/* Layered Parallax Ambient Glows */}
-            <div className={styles.bgOrbLeft} />
-            <div className={styles.bgOrbRight} />
+            {/* Ambient Parallax Radial Glows */}
+            <div ref={orbLeftRef} className={styles.bgOrbLeft} />
+            <div ref={orbRightRef} className={styles.bgOrbRight} />
 
             <div className={styles.container}>
                 {/* Eyebrow Tag */}
-                <div className={styles.eyebrowTag}>
+                <div
+                    className={`${styles.eyebrowTag} ${isVisible ? styles.animateRevealEyebrow : styles.hiddenState
+                        }`}
+                >
                     <Sparkles size={14} className={styles.eyebrowIcon} />
                     <span>Global Alumni Network</span>
                 </div>
@@ -265,11 +331,11 @@ export default function AlumniHero() {
                 <div className={styles.clusterStage}>
                     {alumniCardSlots.map((slot) => {
                         const currentProfile = slot.profiles[activeProfileIdx];
-
                         return (
                             <div
                                 key={slot.slotId}
-                                className={`${styles.cardWrapper} ${slot.cardStyle}`}
+                                className={`${styles.cardWrapper} ${slot.cardStyle} ${isVisible ? slot.animClass : styles.hiddenState
+                                    }`}
                             >
                                 <div
                                     className={styles.largeCardPill}
@@ -301,8 +367,8 @@ export default function AlumniHero() {
                                             {currentProfile.role}
                                         </span>
                                         <span className={styles.tooltipCompany}>
-                                            <Building2 size={12} /> {currentProfile.company} •{' '}
-                                            {currentProfile.batch}
+                                            <Building2 size={12} /> {currentProfile.company} (
+                                            {currentProfile.batch})
                                         </span>
                                     </div>
                                 </div>
@@ -312,7 +378,10 @@ export default function AlumniHero() {
                 </div>
 
                 {/* Synchronized Carousel Dots */}
-                <div className={styles.dotsWrapper}>
+                <div
+                    className={`${styles.dotsWrapper} ${isVisible ? styles.animateRevealDots : styles.hiddenState
+                        }`}
+                >
                     {heroBgSlides.map((_, dotIdx) => (
                         <button
                             key={dotIdx}

@@ -1,14 +1,82 @@
 .section {
     font-family: var(--font-sora), 'Sora', sans-serif;
     background-color: #faf8f5;
-    padding: 3.5rem 0;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 4.5rem 0;
     border-bottom: 1px solid #f0ece1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ambient Layered Parallax Glows */
+.bgOrbLeft {
+    position: absolute;
+    top: 6%;
+    left: -8%;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(75px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.bgOrbRight {
+    position: absolute;
+    bottom: 8%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .container {
     max-width: 80rem;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
+    z-index: 5;
+}
+
+/* Hidden Initial State */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    transition: none;
+}
+
+/* Ultra-Slow Cinematic Stagger Keyframes */
+@keyframes smoothStatsReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 26px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.statDelay1 {
+    animation: smoothStatsReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.statDelay2 {
+    animation: smoothStatsReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.statDelay3 {
+    animation: smoothStatsReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.statDelay4 {
+    animation: smoothStatsReveal 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
 }
 
 .grid {
@@ -24,6 +92,14 @@
     text-align: center;
     border: 1px solid rgba(229, 231, 235, 0.8);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    will-change: transform;
+}
+
+.statCard:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 12px 28px -4px rgba(5, 59, 42, 0.1);
+    border-color: rgba(5, 59, 42, 0.2);
 }
 
 .statNumber {
@@ -46,6 +122,11 @@
     font-size: 0.75rem;
     color: #6b7280;
     margin-top: 0.25rem;
+    text-wrap: pretty;
+    letter-spacing: -0.011em;
+    word-spacing: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
 }
 
 @media (min-width: 768px) {
