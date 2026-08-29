@@ -8,6 +8,11 @@ import {
     Sparkles,
     ArrowRight,
     Volume2,
+    Phone,
+    UserCheck,
+    Headphones,
+    Mail,
+    ShieldCheck,
 } from 'lucide-react';
 import styles from './HomeHeroSection.module.css';
 
@@ -50,7 +55,7 @@ export default function HomeHeroSection() {
 
                 if (bgImageRef.current) {
                     bgImageRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.04
-                        }px, 0) scale(1.05)`;
+                        }px, 0) scale(1.08)`;
                 }
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
@@ -80,6 +85,7 @@ export default function HomeHeroSection() {
 
     return (
         <section ref={sectionRef} className={styles.heroSection}>
+            {/* Full-Cover Background Image */}
             <img
                 ref={bgImageRef}
                 src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=85"
@@ -97,7 +103,7 @@ export default function HomeHeroSection() {
                             }`}
                     >
                         <Sparkles size={13} />
-                        <span>Building Healthier Tomorrows</span>
+                        <span>Script your future</span>
                     </div>
 
                     <h1
@@ -112,7 +118,7 @@ export default function HomeHeroSection() {
                         className={`${styles.subtext} ${isVisible ? styles.animateIn3 : styles.hiddenState
                             }`}
                     >
-                        Empowering future pharmacists with clinical competencies, pharmaceutical research innovation, and compassion to lead global healthcare.
+                        To be a premier institution in pharmaceutical education, research and innovation, fostering skilled professionals committed to ethical practice and advancing global healthcare through knowledge, compassion and excellence
                     </p>
 
                     <div
@@ -133,12 +139,12 @@ export default function HomeHeroSection() {
 
                         <div className={styles.badgeItem}>
                             <div className={styles.badgeIcon}>
-                                <GraduationCap size={20} />
+                                <ShieldCheck size={20} />
                             </div>
                             <div>
-                                <p className={styles.badgeTitle}>Academic Excellence</p>
+                                <p className={styles.badgeTitle}>Approved by PCI</p>
                                 <p className={styles.badgeSubtitle}>
-                                    B.Pharm &bull; Pharm.D &bull; M.Pharm
+                                    Pharmacy Council of India, New Delhi
                                 </p>
                             </div>
                         </div>
@@ -163,6 +169,7 @@ export default function HomeHeroSection() {
                     </div>
                 </div>
 
+                {/* Live Updates Section */}
                 <Link
                     href="/notifications-and-events"
                     className={`${styles.tickerCardLink} ${isVisible ? styles.animateIn6 : styles.hiddenState
@@ -172,7 +179,6 @@ export default function HomeHeroSection() {
                         <Volume2 size={15} className={styles.pulseIcon} />
                         <span>Live Updates</span>
                     </div>
-
                     <div className={styles.marqueeTrackWrapper}>
                         <div className={styles.marqueeContent}>
                             <span className={styles.tickerItem}>
@@ -189,12 +195,76 @@ export default function HomeHeroSection() {
                             </span>
                         </div>
                     </div>
-
                     <div className={styles.actionPill}>
                         <span>View All</span>
                         <ArrowRight size={13} />
                     </div>
                 </Link>
+
+                {/* Contact for Admissions & Inquiries Bar with Email */}
+                <div
+                    className={`${styles.admissionContactContainer} ${isVisible ? styles.animateIn7 : styles.hiddenState
+                        }`}
+                >
+                    <div className={styles.admissionContactHeader}>
+                        <Phone size={14} className={styles.phoneHeaderIcon} />
+                        <span>Contact For Admissions &amp; Inquiries</span>
+                    </div>
+
+                    <div className={styles.admissionNumbersGrid}>
+                        <a
+                            href="tel:+917680077726"
+                            className={styles.admissionNumberCard}
+                        >
+                            <div className={styles.numberIconBox}>
+                                <UserCheck size={16} />
+                            </div>
+                            <div className={styles.numberInfo}>
+                                <span className={styles.numberLabel}>Principal Office</span>
+                                <span className={styles.numberValue}>+91 7680077726</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="tel:+917680077733"
+                            className={styles.admissionNumberCard}
+                        >
+                            <div className={styles.numberIconBox}>
+                                <Headphones size={16} />
+                            </div>
+                            <div className={styles.numberInfo}>
+                                <span className={styles.numberLabel}>Admissions Desk</span>
+                                <span className={styles.numberValue}>+91 7680077733</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="tel:+919989000447"
+                            className={styles.admissionNumberCard}
+                        >
+                            <div className={styles.numberIconBox}>
+                                <Phone size={16} />
+                            </div>
+                            <div className={styles.numberInfo}>
+                                <span className={styles.numberLabel}>Campus Helpline</span>
+                                <span className={styles.numberValue}>+91 9989000447</span>
+                            </div>
+                        </a>
+
+                        <a
+                            href="mailto:admissions.jcp@gmail.com"
+                            className={styles.admissionNumberCard}
+                        >
+                            <div className={styles.numberIconBox}>
+                                <Mail size={16} />
+                            </div>
+                            <div className={styles.numberInfo}>
+                                <span className={styles.numberLabel}>Admissions Email</span>
+                                <span className={styles.numberValue}>admissions.jcp@gmail.com</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     );

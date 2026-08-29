@@ -6,11 +6,10 @@ import { ArrowRight, Check, Info } from 'lucide-react';
 import styles from './HomeAcademicWhyCampusSection.module.css';
 
 const cells = [
-    '1. Examination Cell',
-    '2. Training and Placement Cell',
-    '3. Extra-curricular Activities Cell',
-    '4. R&D Cell',
-    '5. Internal Quality Assurance Cell',
+    '1. Training and Placement Cell',
+    '2. Extra-curricular Activities Cell',
+    '3. R&D Cell',
+    '4. Internal Quality Assesment Cell',
 ];
 
 const whyReasons = [

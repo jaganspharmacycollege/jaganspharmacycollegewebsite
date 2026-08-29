@@ -14,7 +14,11 @@ import {
 import styles from './HomeAboutStatsSection.module.css';
 
 // Reusable smooth counter hook with cubic-bezier easing
-function useAnimatedCounter(target: number, isVisible: boolean, duration: number = 1450) {
+function useAnimatedCounter(
+    target: number,
+    isVisible: boolean,
+    duration = 1450
+) {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -34,7 +38,6 @@ function useAnimatedCounter(target: number, isVisible: boolean, duration: number
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             const easedProgress = easeOutCubic(progress);
-
             setCount(Math.floor(easedProgress * target));
 
             if (progress < 1) {
@@ -60,7 +63,7 @@ export default function HomeAboutStatsSection() {
 
     // Animated number counters from 0 to targets
     const yearsCount = useAnimatedCounter(20, isVisible, 1400);
-    const studentsCount = useAnimatedCounter(1500, isVisible, 1600);
+    const studentsCount = useAnimatedCounter(2000, isVisible, 1600);
     const facultyCount = useAnimatedCounter(50, isVisible, 1450);
     const bpharmPlacementCount = useAnimatedCounter(88, isVisible, 1500);
     const pharmdPlacementCount = useAnimatedCounter(98, isVisible, 1550);
@@ -154,7 +157,8 @@ export default function HomeAboutStatsSection() {
                                 <h4 className={styles.vmTitle}>Our Vision</h4>
                             </div>
                             <p className={styles.vmText}>
-                                To emerge as a center of excellence in pharmaceutical education and clinical research, fostering skilled healthcare leaders for global service.
+                                To be a premier institution in pharmaceutical education, research and innovation, fostering skilled professionals committed to ethical practice and advancing global healthcare through knowledge, compassion and excellence
+
                             </p>
                         </div>
 
@@ -167,7 +171,7 @@ export default function HomeAboutStatsSection() {
                                 <h4 className={styles.vmTitle}>Our Mission</h4>
                             </div>
                             <p className={styles.vmText}>
-                                Providing outcome-based pharmacy education, advancing clinical discoveries, and developing ethical healthcare professionals through state-of-the-art training.
+                                To educate and empower future pharmacists with cutting edge knowledge, ethical values, practical skills, fostering innovation, research, and community service to advance healthcare and improve lives.
                             </p>
                         </div>
                     </div>
@@ -224,12 +228,16 @@ export default function HomeAboutStatsSection() {
                         >
                             <div className={styles.placementNumbers}>
                                 <div className={styles.placementItem}>
-                                    <span className={styles.placementPercent}>{bpharmPlacementCount}%</span>
+                                    <span className={styles.placementPercent}>
+                                        {bpharmPlacementCount}%
+                                    </span>
                                     <span className={styles.placementTag}>B. Pharm</span>
                                 </div>
                                 <div className={styles.placementDivider} />
                                 <div className={styles.placementItem}>
-                                    <span className={styles.placementPercent}>{pharmdPlacementCount}%</span>
+                                    <span className={styles.placementPercent}>
+                                        {pharmdPlacementCount}%
+                                    </span>
                                     <span className={styles.placementTag}>Pharm.D</span>
                                 </div>
                             </div>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@700&family=Rubik+Glitch&family=Black+Ops+One&family=Rye&display=swap');
+
 .headerWrapper {
     position: sticky;
     top: 0;
@@ -6,7 +8,7 @@
     font-family: var(--font-sora), 'Sora', sans-serif;
 }
 
-/* --- Top Bar --- */
+/* Top Bar */
 .topBar {
     background: #021a12;
     border-bottom: 1px solid rgba(52, 211, 153, 0.15);
@@ -69,14 +71,14 @@
     }
 }
 
-/* --- Main Navbar Header --- */
+/* Main Navbar Header */
 .mainHeader {
     width: 100%;
     background: rgba(4, 42, 30, 0.94);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(52, 211, 153, 0.2);
-    box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 32px 4px rgba(0, 0, 0, 0.35);
     transition: all 0.3s ease;
 }
 
@@ -90,14 +92,13 @@
     gap: 1rem;
 }
 
-/* Left Group (Hamburger + Logo on Mobile/Tablet) */
+/* Left Group */
 .leftGroup {
     display: flex;
     align-items: center;
     gap: 0.875rem;
 }
 
-/* Hamburger button on Mobile / Tablet (visible below 1200px) */
 .mobileMenuBtn {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(52, 211, 153, 0.25);
@@ -121,7 +122,6 @@
     }
 }
 
-/* Brand Logo */
 .logoLink {
     display: flex;
     align-items: center;
@@ -147,23 +147,36 @@
     transform: rotate(12deg) scale(1.05);
 }
 
+.brandTextGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Brand Typography Matching Vintage Stamp & Stencil Serif Style */
 .title {
-    font-size: 1.25rem;
-    font-weight: 800;
+    font-family: 'Stardos Stencil', 'Rye', 'Black Ops One', 'Impact', 'Georgia', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
     color: #ffffff;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    line-height: 1.05;
+    letter-spacing: 0.03em;
+    margin: 0;
+    text-transform: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .subtitle {
+    font-family: 'Stardos Stencil', 'Black Ops One', var(--font-sora), 'Sora', sans-serif;
     font-size: 0.625rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     color: #fbbf24;
-    margin-top: 0.15rem;
+    margin: 0.2rem 0 0 0;
+    line-height: 1;
+    text-transform: uppercase;
 }
 
-/* Desktop Navigation (Displays cleanly from 1200px+) */
+/* Desktop Navigation */
 .desktopNav {
     display: none;
     align-items: center;
@@ -232,7 +245,7 @@
     border: 1px solid rgba(52, 211, 153, 0.25);
     border-radius: 1rem;
     padding: 0.5rem;
-    box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 24px 48px 10px rgba(0, 0, 0, 0.55);
     animation: dropdownIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     z-index: 1100;
 }
@@ -273,13 +286,15 @@
 }
 
 .dropdownItem:hover {
-    background: linear-gradient(90deg, rgba(52, 211, 153, 0.2) 0%, rgba(52, 211, 153, 0.05) 100%);
+    background: linear-gradient(90deg,
+            rgba(52, 211, 153, 0.2) 0%,
+            rgba(52, 211, 153, 0.05) 100%);
     color: #ffffff;
     transform: translateX(4px);
     font-weight: 700;
 }
 
-/* --- Right Side Controls / Apply Button --- */
+/* Right Side Controls */
 .rightControls {
     display: flex;
     align-items: center;
@@ -307,14 +322,13 @@
     box-shadow: 0 6px 18px rgba(245, 158, 11, 0.55);
 }
 
-/* 🌟 Hide Header "Apply Now" ONLY on Mobile (<640px) */
 @media (max-width: 640px) {
     .applyButton {
         display: none;
     }
 }
 
-/* --- Offcanvas Slideout Drawer (Mobile & Tablet) --- */
+/* Offcanvas Slideout Drawer */
 .offcanvasOverlay {
     position: fixed;
     inset: 0;

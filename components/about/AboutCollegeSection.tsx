@@ -58,8 +58,8 @@ export default function AboutCollegeSection() {
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
 
-    const yearsCount = useAnimatedCounter(15, isVisible, 1400);
-    const alumniCount = useAnimatedCounter(3500, isVisible, 1600);
+    const yearsCount = useAnimatedCounter(20, isVisible, 1400);
+    const alumniCount = useAnimatedCounter(2000, isVisible, 1600);
 
     // Auto-cycling slider with 5000ms duration
     useEffect(() => {
