@@ -11,16 +11,12 @@ import styles from './HerbalGarden.module.css';
 
 const gardenSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Herbal_1.png',
         caption: 'Curated Botanical Pathways & Indigenous Medicinal Flora',
     },
     {
-        src: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Herbal_2.png',
         caption: 'Rare Therapeutic Species & Aromatic Herb Cultivation Bays',
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80',
-        caption: 'Live Field Study Zone for Student Phytochemical Extraction',
     },
 ];
 

@@ -11,15 +11,15 @@ import styles from './PharmaceuticalChemistryLabs.module.css';
 
 const chemSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmaceutical_Chemistry_1.png',
         caption: 'Advanced Chemical Synthesis & Reaction Workbenches',
     },
     {
-        src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmaceutical_Chemistry_2.png',
         caption: 'High-Suction Ducted Fume Hoods & Safety Exhaust Systems',
     },
     {
-        src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmaceutical_Chemistry_3.png',
         caption: 'Precision Rotary Evaporators & Distillation Setups',
     },
 ];

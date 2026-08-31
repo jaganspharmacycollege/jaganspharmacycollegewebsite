@@ -28,7 +28,7 @@ const adminBodies = [
     },
     {
         icon: ShieldCheck,
-        cell: 'Internal Quality Assurance (IQAC)',
+        cell: 'Internal Quality Assessment (IQAC)',
         lead: 'Head: IQAC Coordinator',
         desc: 'Drives continuous enhancement across teaching methodologies, laboratory safety, and faculty development programs.',
         themeClass: styles.themeBlue,

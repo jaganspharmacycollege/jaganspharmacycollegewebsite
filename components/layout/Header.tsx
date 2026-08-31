@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import {
     ChevronDown,
     ChevronRight,
-    Leaf,
     Menu,
     X,
     ArrowUpRight,
@@ -139,8 +138,8 @@ export default function Header() {
                         </span>
                     </div>
                     <div className={styles.topBarRight}>
-                        <a href="tel:+919100012345" className={styles.topContactLink}>
-                            <Phone size={12} /> +91 91000 12345
+                        <a href="tel:+917680077726" className={styles.topContactLink}>
+                            <Phone size={12} /> +91 76800 77726
                         </a>
                         <a
                             href="mailto:info@jaganpharmacy.ac.in"
@@ -149,7 +148,7 @@ export default function Header() {
                             <Mail size={12} /> info@jaganpharmacy.ac.in
                         </a>
                         <span className={`${styles.topContactLink} ${styles.topBarLocation}`}>
-                            <MapPin size={12} /> Jagan&apos;s College, Kadapa, AP
+                            <MapPin size={12} /> Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore, AP
                         </span>
                     </div>
                 </div>
@@ -158,7 +157,7 @@ export default function Header() {
             {/* Main Header */}
             <div className={styles.mainHeader}>
                 <div className={styles.container}>
-                    {/* Left Group: Hamburger + Brand Logo */}
+                    {/* Left Group: Hamburger + Circular Image Logo & Text */}
                     <div className={styles.leftGroup}>
                         <button
                             className={styles.mobileMenuBtn}
@@ -169,9 +168,10 @@ export default function Header() {
                         </button>
                         <Link href="/" className={styles.logoLink}>
                             <div className={styles.logoOuter}>
-                                <Leaf
-                                    size={18}
-                                    className="text-emerald-300 fill-emerald-400/40"
+                                <img
+                                    src="/assets/logo/Jagans_logo.png"
+                                    alt="Jagan's College of Pharmacy"
+                                    className={styles.logoImg}
                                 />
                             </div>
                             <div className={styles.brandTextGroup}>
@@ -293,9 +293,10 @@ export default function Header() {
                                 onClick={() => setOffcanvasOpen(false)}
                             >
                                 <div className={styles.logoOuter}>
-                                    <Leaf
-                                        size={18}
-                                        className="text-emerald-300 fill-emerald-400/40"
+                                    <img
+                                        src="/assets/logo/Jagans_logo.png"
+                                        alt="Jagan's College of Pharmacy"
+                                        className={styles.logoImg}
                                     />
                                 </div>
                                 <div className={styles.brandTextGroup}>

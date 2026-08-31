@@ -5,10 +5,10 @@ import { Award, Users, CheckCircle2 } from 'lucide-react';
 import styles from './AboutCollegeSection.module.css';
 
 const campusHeroImages = [
-    'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1920&q=80',
+    '/assets/HomePageImages/CGS_events.png',
+    '/assets/HomePageImages/CGS_sports.png',
+    '/assets/HomePageImages/CGS_lib.png',
+    '/assets/HomePageImages/CGS_lab.png',
 ];
 
 // Reusable smooth counter hook with cubic-bezier easing

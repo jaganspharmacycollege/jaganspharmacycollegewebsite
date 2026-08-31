@@ -11,16 +11,12 @@ import styles from './PharmaceuticsLabs.module.css';
 
 const labSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmaceutics_1.png',
         caption: 'Industrial Rotary Tablet Compression & Coating Section',
     },
     {
-        src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmaceutics_2.png',
         caption: 'Class 10,000 Aseptic Sterile Cleanroom & Laminar Airflows',
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80',
-        caption: 'USP Dissolution Apparatus & Physical Pharmacy Testing Unit',
     },
 ];
 

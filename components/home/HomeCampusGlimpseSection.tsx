@@ -8,32 +8,32 @@ import styles from './HomeCampusGlimpseSection.module.css';
 const glimpses = [
     {
         title: 'Modern Labs',
-        img: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=600&q=80',
+        img: '/assets/HomePageImages/CGS_lab.png',
         animClass: styles.animDelay1,
     },
     {
         title: 'Rich Library',
-        img: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80',
+        img: '/assets/HomePageImages/CGS_lib.png',
         animClass: styles.animDelay2,
     },
     {
         title: 'Smart Classrooms',
-        img: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80',
+        img: '/assets/HomePageImages/CGS_classroom.png',
         animClass: styles.animDelay3,
     },
     {
         title: 'Events & Fests',
-        img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80',
+        img: '/assets/HomePageImages/CGS_events.png',
         animClass: styles.animDelay4,
     },
     {
         title: 'Hostel Life',
-        img: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80',
+        img: '/assets/Infra/Hostel_1.png',
         animClass: styles.animDelay5,
     },
     {
         title: 'Sports & Arena',
-        img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80',
+        img: '/assets/HomePageImages/CGS_sports.png',
         animClass: styles.animDelay6,
     },
 ];

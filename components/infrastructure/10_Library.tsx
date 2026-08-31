@@ -11,15 +11,15 @@ import styles from './Library.module.css';
 
 const librarySlides = [
     {
-        src: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_lib.png',
         caption: 'Air-Conditioned Central Reading Hall & Reference Book Stacks',
     },
     {
-        src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Infra_lib2.png',
         caption: 'Digital E-Library Suite with DELNET & ScienceDirect Terminals',
     },
     {
-        src: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Infra_lib3.png',
         caption: 'Official Pharmacopoeias (IP, BP, USP) & International Journals Section',
     },
 ];

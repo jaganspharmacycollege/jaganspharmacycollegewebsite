@@ -6,19 +6,19 @@ import styles from './LifeAtJagans.module.css';
 
 const campusSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_lib.png',
         caption: 'Modern Digital Library & Collaborative Study Hub',
     },
     {
-        src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_lab.png',
         caption: 'High-Tech Formulation & Research Laboratories',
     },
     {
-        src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_classroom.png',
         caption: 'Spacious Green Campus Grounds & Infrastructure',
     },
     {
-        src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_sports.png',
         caption: 'Student Cultural Fests & Annual Celebrations',
     },
 ];

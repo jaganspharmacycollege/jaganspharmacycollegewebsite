@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Leaf, Phone, Mail, MapPin, ExternalLink, Award } from 'lucide-react';
+import { Phone, Mail, MapPin, ExternalLink, Award, ShieldCheck } from 'lucide-react';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -11,13 +11,13 @@ export default function Footer() {
             <div className={styles.container}>
                 {/* 1. Contact Ribbon */}
                 <div className={styles.contactBar}>
-                    <a href="tel:+919100012345" className={styles.contactCard}>
+                    <a href="tel:+917680077726" className={styles.contactCard}>
                         <div className={styles.contactIcon}>
                             <Phone size={18} />
                         </div>
                         <div>
                             <p className={styles.contactLabel}>Admissions Helpline</p>
-                            <p className={styles.contactValue}>+91 91000 12345</p>
+                            <p className={styles.contactValue}>+91 76800 77726</p>
                         </div>
                     </a>
 
@@ -37,7 +37,7 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className={styles.contactLabel}>Campus Location</p>
-                            <p className={styles.contactValue}>Jagan&apos;s College, Kadapa, A.P</p>
+                            <p className={styles.contactValue}>Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore, A.P</p>
                         </div>
                     </Link>
                 </div>
@@ -48,10 +48,14 @@ export default function Footer() {
                     <div className={styles.brandColumn}>
                         <Link href="/" className={styles.logoLink}>
                             <div className={styles.logoOuter}>
-                                <Leaf size={22} className="text-emerald-300 fill-emerald-400/40" />
+                                <img
+                                    src="/assets/logo/Jagans_logo.png"
+                                    alt="Jagan's College of Pharmacy"
+                                    className={styles.logoImg}
+                                />
                             </div>
-                            <div>
-                                <h3 className={styles.brandTitle}>JAGAN&apos;S</h3>
+                            <div className={styles.brandTextGroup}>
+                                <h3 className={styles.brandTitle}>Jagan&apos;s</h3>
                                 <p className={styles.brandSubtitle}>COLLEGE OF PHARMACY</p>
                             </div>
                         </Link>
@@ -63,6 +67,9 @@ export default function Footer() {
                         <div className={styles.accreditationBadges}>
                             <span className={styles.badge}>
                                 <Award size={13} /> JNTUA Affiliated
+                            </span>
+                            <span className={styles.badge}>
+                                <ShieldCheck size={13} /> Approved by PCI
                             </span>
                         </div>
                     </div>
@@ -86,7 +93,7 @@ export default function Footer() {
                             <h4 className={styles.columnTitle}>Academics</h4>
                             <ul className={styles.linkList}>
                                 <li><Link href="/academics/calendar" className={styles.linkItem}>Academic Calendar</Link></li>
-                                <li><Link href="/academics/departments" className={styles.linkItem}>Departments & Faculty</Link></li>
+                                <li><Link href="/academics/departments" className={styles.linkItem}>Departments &amp; Faculty</Link></li>
                                 <li><Link href="/courses/b-pharm" className={styles.linkItem}>B.Pharm Curriculum</Link></li>
                                 <li><Link href="/courses/pharm-d" className={styles.linkItem}>Pharm.D Program</Link></li>
                                 <li><Link href="/courses/m-pharm" className={styles.linkItem}>M.Pharm Specializations</Link></li>
@@ -97,11 +104,11 @@ export default function Footer() {
                         <div className={styles.columnBlock}>
                             <h4 className={styles.columnTitle}>Campus</h4>
                             <ul className={styles.linkList}>
-                                <li><Link href="/campus-life/student-activities" className={styles.linkItem}>Student Clubs & Activities</Link></li>
-                                <li><Link href="/campus-life/sports" className={styles.linkItem}>Sports & Gymnasium</Link></li>
+                                <li><Link href="/campus-life/student-activities" className={styles.linkItem}>Student Clubs &amp; Activities</Link></li>
+                                <li><Link href="/campus-life/sports" className={styles.linkItem}>Sports &amp; Gymnasium</Link></li>
                                 <li><Link href="/campus-life/hostel" className={styles.linkItem}>Hostel Facilities</Link></li>
-                                <li><Link href="/campus-life/seminar-workshops" className={styles.linkItem}>Seminars & Workshops</Link></li>
-                                <li><Link href="/placements" className={styles.linkItem}>Training & Placements</Link></li>
+                                <li><Link href="/campus-life/seminar-workshops" className={styles.linkItem}>Seminars &amp; Workshops</Link></li>
+                                <li><Link href="/placements" className={styles.linkItem}>Training &amp; Placements</Link></li>
                             </ul>
                         </div>
 
@@ -123,17 +130,20 @@ export default function Footer() {
                             <ul className={styles.linkList}>
                                 <li>
                                     <a href="https://www.jntua.ac.in" target="_blank" rel="noreferrer" className={styles.linkItem}>
-                                        JNTUA Anantapur <ExternalLink size={11} className={styles.extIcon} />
+                                        JNTUA Anantapur
+                                        <ExternalLink size={11} className={styles.extIcon} />
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://aicte-india.org" target="_blank" rel="noreferrer" className={styles.linkItem}>
-                                        AICTE Portal <ExternalLink size={11} className={styles.extIcon} />
+                                        AICTE Portal
+                                        <ExternalLink size={11} className={styles.extIcon} />
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://sche.ap.gov.in" target="_blank" rel="noreferrer" className={styles.linkItem}>
-                                        APSCHE Portal <ExternalLink size={11} className={styles.extIcon} />
+                                        APSCHE Portal
+                                        <ExternalLink size={11} className={styles.extIcon} />
                                     </a>
                                 </li>
                             </ul>
@@ -146,9 +156,9 @@ export default function Footer() {
                     <p>© {new Date().getFullYear()} Jagan&apos;s College of Pharmacy. All rights reserved.</p>
                     <div className={styles.legalLinks}>
                         <Link href="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
-                        <span>•</span>
+                        <span className={styles.legalDivider}></span>
                         <Link href="/terms-conditions" className={styles.legalLink}>Terms of Use</Link>
-                        <span>•</span>
+                        <span className={styles.legalDivider}></span>
                         <Link href="/sitemap" className={styles.legalLink}>Sitemap</Link>
                     </div>
                 </div>

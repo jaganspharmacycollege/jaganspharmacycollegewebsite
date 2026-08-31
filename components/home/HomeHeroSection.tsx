@@ -18,7 +18,7 @@ import styles from './HomeHeroSection.module.css';
 
 export default function HomeHeroSection() {
     const sectionRef = useRef<HTMLElement>(null);
-    const bgImageRef = useRef<HTMLImageElement>(null);
+    const bgVideoRef = useRef<HTMLVideoElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -53,8 +53,8 @@ export default function HomeHeroSection() {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
 
-                if (bgImageRef.current) {
-                    bgImageRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.04
+                if (bgVideoRef.current) {
+                    bgVideoRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.04
                         }px, 0) scale(1.08)`;
                 }
                 if (orbLeftRef.current) {
@@ -85,11 +85,14 @@ export default function HomeHeroSection() {
 
     return (
         <section ref={sectionRef} className={styles.heroSection}>
-            {/* Full-Cover Background Image */}
-            <img
-                ref={bgImageRef}
-                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=85"
-                alt="Pharmacy College Research Laboratories and Campus"
+            {/* Full-Cover Background Video */}
+            <video
+                ref={bgVideoRef}
+                src="/assets/HomePageImages/HomeHeroVideo.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className={styles.bgImage}
             />
             <div className={styles.overlay} />
@@ -118,7 +121,7 @@ export default function HomeHeroSection() {
                         className={`${styles.subtext} ${isVisible ? styles.animateIn3 : styles.hiddenState
                             }`}
                     >
-                        To be a premier institution in pharmaceutical education, research and innovation, fostering skilled professionals committed to ethical practice and advancing global healthcare through knowledge, compassion and excellence
+                        To be a premier institution in pharmaceutical education, research and innovation, fostering skilled professionals committed to ethical practice and advancing global healthcare through knowledge, compassion and excellence.
                     </p>
 
                     <div
@@ -208,7 +211,7 @@ export default function HomeHeroSection() {
                 >
                     <div className={styles.admissionContactHeader}>
                         <Phone size={14} className={styles.phoneHeaderIcon} />
-                        <span>Contact For Admissions &amp; Inquiries</span>
+                        <span>Contact For Admissions (2026-2027) &amp; Inquiries</span>
                     </div>
 
                     <div className={styles.admissionNumbersGrid}>

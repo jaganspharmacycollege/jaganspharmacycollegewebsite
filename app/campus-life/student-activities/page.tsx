@@ -11,15 +11,15 @@ import styles from './StudentActivitiesPage.module.css';
 
 const activitySlides = [
     {
-        src: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_events.png',
         caption: 'Free Rural Health Diagnostics & Medication Counseling',
     },
     {
-        src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/Student_Council_1.png',
         caption: 'Inter-College Pharma Quizzes & Case Presentations',
     },
     {
-        src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_sports.png',
         caption: 'Public Health Awareness Rallies & Student Drives',
     },
 ];
@@ -157,8 +157,8 @@ export default function StudentActivitiesPage() {
                                 src={slide.src}
                                 alt={slide.caption}
                                 className={`${styles.carouselImg} ${idx === currentImgIdx
-                                        ? styles.activeImg
-                                        : styles.inactiveImg
+                                    ? styles.activeImg
+                                    : styles.inactiveImg
                                     }`}
                             />
                         ))}

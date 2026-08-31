@@ -11,15 +11,15 @@ import styles from './SeminarHallAuditorium.module.css';
 
 const auditoriumSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_events.png',
         caption: 'Tiered 350+ Seat Acoustic Auditorium & Grand Stage Setup',
     },
     {
-        src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Infra_hall1.png',
         caption: 'High-Fidelity Surround Sound, Line Arrays & Stage Lighting',
     },
     {
-        src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Infra_hall2.png',
         caption: 'Motorized Dual HD Laser Projection & Hybrid Video Conferencing',
     },
 ];

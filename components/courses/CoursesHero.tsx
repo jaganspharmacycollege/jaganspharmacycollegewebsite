@@ -10,21 +10,21 @@ const courseSlides = [
         duration: '4 Years Undergraduate',
         focus: 'Pharmaceutical Chemistry, Analysis & Formulation Science',
         image:
-            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2000&q=85',
+            '/assets/Infra/Pharmacognosy_1.png',
     },
     {
         program: 'Pharm. D',
         duration: '6 Years Doctoral Program',
         focus: 'Clinical Pharmacy, Hospital Ward Rounds & Patient Care',
         image:
-            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2000&q=85',
+            '/assets/Infra/Pharmaceutics_1.png',
     },
     {
         program: 'M. Pharmacy',
         duration: '2 Years Postgraduate',
         focus: 'Advanced Drug Delivery Systems, Pharmacology & Research',
         image:
-            'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=2000&q=85',
+            '/assets/Infra/Pharmaceutical_Chemistry_1.png',
     },
 ];
 

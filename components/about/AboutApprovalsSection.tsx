@@ -1,33 +1,41 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ShieldCheck, Building2, Award } from 'lucide-react';
+import { ShieldCheck, Building2, Award, FileCheck } from 'lucide-react';
 import styles from './AboutApprovalsSection.module.css';
 
 const approvals = [
+    {
+        icon: FileCheck,
+        title: 'PCI Approved',
+        authority: 'Pharmacy Statutory Council',
+        desc: 'Approved by the Pharmacy Council of India (PCI), New Delhi, authorizing degree and diploma curriculum delivery and clinical training standards for professional registration.',
+        themeClass: styles.themeEmerald,
+        animClass: styles.animDelay1,
+    },
     {
         icon: ShieldCheck,
         title: 'AICTE Approved',
         authority: 'Apex Technical Body',
         desc: 'Approved by the All India Council for Technical Education, New Delhi, ensuring all pharmaceutical curricula, research labs, and faculty adhere strictly to national statutory standards.',
-        themeClass: styles.themeEmerald,
-        animClass: styles.animDelay1,
+        themeClass: styles.themeAmber,
+        animClass: styles.animDelay2,
     },
     {
         icon: Building2,
         title: 'JNTU Anantapur (JNTUA)',
         authority: 'Affiliating University',
         desc: 'Permanently affiliated to Jawaharlal Nehru Technological University Anantapur for all undergraduate (B. Pharm), postgraduate (M. Pharm), and doctoral (Pharm.D) degree programs.',
-        themeClass: styles.themeAmber,
-        animClass: styles.animDelay2,
+        themeClass: styles.themeBlue,
+        animClass: styles.animDelay3,
     },
     {
         icon: Award,
         title: 'Govt. of Andhra Pradesh',
         authority: 'State Recognition',
         desc: 'Recognized by the Department of Technical Education and Government of Andhra Pradesh for upholding high educational benchmarks and clinical healthcare training.',
-        themeClass: styles.themeBlue,
-        animClass: styles.animDelay3,
+        themeClass: styles.themeEmerald,
+        animClass: styles.animDelay4,
     },
 ];
 
@@ -112,7 +120,7 @@ export default function AboutApprovalsSection() {
                     </p>
                 </div>
 
-                {/* 3-Card Grid */}
+                {/* Approvals Grid */}
                 <div className={styles.grid}>
                     {approvals.map((item, idx) => {
                         const Icon = item.icon;

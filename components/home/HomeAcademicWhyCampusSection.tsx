@@ -9,7 +9,7 @@ const cells = [
     '1. Training and Placement Cell',
     '2. Extra-curricular Activities Cell',
     '3. R&D Cell',
-    '4. Internal Quality Assesment Cell',
+    '4. Internal Quality Assessment Cell',
 ];
 
 const whyReasons = [
@@ -20,11 +20,27 @@ const whyReasons = [
     'Beyond Academics & Student Welfare',
 ];
 
+const campusLifeImages = [
+    '/assets/HomePageImages/CGS_lab.png',
+    '/assets/HomePageImages/CGS_classroom.png',
+    '/assets/HomePageImages/CGS_lib.png',
+    '/assets/HomePageImages/CGS_sports.png',
+];
+
 export default function HomeAcademicWhyCampusSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
     const [isVisible, setIsVisible] = useState(false);
+    const [currentCampusImgIdx, setCurrentCampusImgIdx] = useState(0);
+
+    // 5000ms auto-cycle with 1.5s cross-fade for Campus Life images
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentCampusImgIdx((prev) => (prev + 1) % campusLifeImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
 
     // Repeating scroll-triggered entrance detection
     useEffect(() => {
@@ -128,10 +144,9 @@ export default function HomeAcademicWhyCampusSection() {
                             ))}
                         </div>
                     </div>
-
                     <div className={styles.whyImage}>
                         <img
-                            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80"
+                            src="/assets/HomePageImages/WCU.png"
                             alt="Pharmacy student in laboratory"
                             className={styles.whyImgTag}
                         />
@@ -143,11 +158,17 @@ export default function HomeAcademicWhyCampusSection() {
                     className={`${styles.campusCard} ${isVisible ? styles.animateReveal3 : styles.hiddenState
                         }`}
                 >
-                    <img
-                        src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800&q=80"
-                        alt="Campus Life at Jagan's"
-                        className={styles.campusImg}
-                    />
+                    {campusLifeImages.map((imgSrc, imgIdx) => (
+                        <img
+                            key={imgIdx}
+                            src={imgSrc}
+                            alt={`Campus Life at Jagan's ${imgIdx + 1}`}
+                            className={`${styles.campusImg} ${imgIdx === currentCampusImgIdx
+                                ? styles.activeCampusImg
+                                : styles.inactiveCampusImg
+                                }`}
+                        />
+                    ))}
                     <div className={styles.campusOverlay} />
                     <div className={styles.campusContent}>
                         <h3 className={styles.campusTitle}>Campus Life</h3>

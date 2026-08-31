@@ -14,20 +14,16 @@ import styles from './StudentClubs.module.css';
 
 const clubSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/Student_Council.png',
         caption: 'Student Council & Leadership Meets',
     },
     {
-        src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_sports.png',
         caption: 'Annual Cultural & Fine Arts Club Fests',
     },
     {
-        src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/Student_Council_1.png',
         caption: 'Pharma & Research Club Seminars',
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80',
-        caption: 'Inter-College Sports Club Championships',
     },
 ];
 

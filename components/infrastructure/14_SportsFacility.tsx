@@ -11,15 +11,15 @@ import styles from './SportsFacility.module.css';
 
 const sportsSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_sports.png',
         caption: 'Full-Size Athletic Grounds, Cricket Turf & Running Tracks',
     },
     {
-        src: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Infra_sports1.png',
         caption: 'Floodlit Outdoor Volleyball, Basketball & Tennis Courts',
     },
     {
-        src: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Infra_sports2.png',
         caption: 'Modern Equipped Gymnasium, Badminton Courts & Indoor Table Tennis Hub',
     },
 ];

@@ -11,15 +11,15 @@ import styles from './PharmacologyLabs.module.css';
 
 const pharmacologySlides = [
     {
-        src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_lab.png',
         caption: 'Automated Student Organ Bath Systems & Bioassay Rigs',
     },
     {
-        src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmacology_1.png',
         caption: 'Preclinical Pharmacological Screening & Behavioral Studies',
     },
     {
-        src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmacology_2.png',
         caption: 'Computer-Assisted Learning (CAL) In Silico Simulation Suites',
     },
 ];

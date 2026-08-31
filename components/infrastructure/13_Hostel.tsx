@@ -11,15 +11,15 @@ import styles from './Hostel.module.css';
 
 const hostelSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Hostel_1.png',
         caption: 'Modern Furnished Student Rooms with Study Desks & Power Backup',
     },
     {
-        src: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Hostel_G.png',
         caption: 'Secure Residential Blocks with Wi-Fi & Solar Hot Water Systems',
     },
     {
-        src: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Hostel_2.png',
         caption: 'Hygienic Dining Mess Serving Balanced Vegetarian & Non-Veg Meals',
     },
 ];

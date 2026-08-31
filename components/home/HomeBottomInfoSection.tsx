@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Award, GraduationCap, Building2, Quote } from 'lucide-react';
+import { Award, GraduationCap, Building2, Quote, ShieldCheck } from 'lucide-react';
 import styles from './HomeBottomInfoSection.module.css';
 
 const recruiters = [
@@ -87,6 +87,7 @@ export default function HomeBottomInfoSection() {
                         }`}
                 >
                     <h3 className={styles.cardTitle}>Approvals &amp; Affiliations</h3>
+
                     <div className={styles.approvalList}>
                         <div className={styles.approvalItem}>
                             <div className={styles.approvalBadge}>
@@ -96,6 +97,18 @@ export default function HomeBottomInfoSection() {
                                 <p className={styles.approvalName}>Affiliated to JNTUA</p>
                                 <p className={styles.approvalSub}>
                                     Jawaharlal Nehru Technological University
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className={styles.approvalItem}>
+                            <div className={styles.approvalBadge}>
+                                <ShieldCheck size={20} />
+                            </div>
+                            <div>
+                                <p className={styles.approvalName}>Approved by PCI</p>
+                                <p className={styles.approvalSub}>
+                                    Pharmacy Council of India, New Delhi
                                 </p>
                             </div>
                         </div>
@@ -142,6 +155,7 @@ export default function HomeBottomInfoSection() {
 
                     <p className={styles.recruitersDesc}>
                         Our graduates are hired directly by leading multi-national pharmaceutical leaders and clinical CROs.
+                        Through continuous hospital rounds, industry-standard formulation laboratories, and rigorous placement training, our graduates consistently achieve top placement benchmarks across clinical analysis, pharmacovigilance, and global manufacturing operations.
                     </p>
 
                     <div className={styles.recruiterGrid}>
@@ -165,7 +179,7 @@ export default function HomeBottomInfoSection() {
                     </div>
 
                     <p className={styles.quoteText}>
-                        &ldquo;Jagan&apos;s College of Pharmacy provided me with hands-on formulation labs, hospital rounds, and placement training that helped me secure my role in a leading healthcare MNC.&rdquo;
+                        &ldquo;Jagan&apos;s College of Pharmacy provided me with extensive hands-on experience in advanced formulation laboratories and intensive bedside clinical hospital rounds. The rigorous career readiness programs and specialized placement training delivered by the faculty gave me the practical knowledge and professional confidence needed to successfully launch my career as a clinical analyst at a leading healthcare MNC&rdquo;
                     </p>
 
                     <div className={styles.studentMeta}>

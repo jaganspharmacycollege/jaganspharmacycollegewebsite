@@ -11,15 +11,15 @@ import styles from './ClubsPage.module.css';
 
 const clubSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_sports.png',
         caption: 'Drug Formulation Ideation & Research Workshops',
     },
     {
-        src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/Student_Council_1.png',
         caption: 'Debating Competitions & Scientific Presentations',
     },
     {
-        src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/HomePageImages/CGS_events.png',
         caption: 'Herbal Botanical Garden & Sustainability Initiatives',
     },
 ];
@@ -157,8 +157,8 @@ export default function ClubsPage() {
                                 src={slide.src}
                                 alt={slide.caption}
                                 className={`${styles.carouselImg} ${idx === currentImgIdx
-                                        ? styles.activeImg
-                                        : styles.inactiveImg
+                                    ? styles.activeImg
+                                    : styles.inactiveImg
                                     }`}
                             />
                         ))}

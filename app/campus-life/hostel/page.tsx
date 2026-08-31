@@ -13,9 +13,8 @@ const hostelFacilities = [
         caption: 'Comfortable, Well-Ventilated Residential Accommodation',
         desc: 'Spacious, well-ventilated rooms with dedicated study desks, modular wardrobes, solar hot water systems, and high-speed Wi-Fi connectivity to create a focused living environment.',
         images: [
-            'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80',
+            '/assets/Infra/Hostel_1.png',
+            '/assets/Infra/Hostel_G.png',
         ],
         features: [
             {
@@ -214,8 +213,8 @@ export default function HostelPage() {
                                                 src={imgSrc}
                                                 alt={`${item.title} Image ${imgIdx + 1}`}
                                                 className={`${styles.carouselImg} ${imgIdx === currentImgIdx
-                                                        ? styles.activeImg
-                                                        : styles.inactiveImg
+                                                    ? styles.activeImg
+                                                    : styles.inactiveImg
                                                     }`}
                                             />
                                         ))}

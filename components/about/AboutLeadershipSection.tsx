@@ -6,20 +6,20 @@ import styles from './AboutLeadershipSection.module.css';
 
 const leaders = [
     {
-        name: 'Sri. Jagan Mohan Reddy',
+        name: 'S.V.Madhusudhan Reddy',
         role: 'Chairman & Founder',
         image:
-            'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+            '/assets/logo/Chairman.png',
         quote:
             'Our commitment is to cultivate competent pharmaceutical professionals equipped with high ethical standards to serve global healthcare.',
         bio:
             'With visionary leadership and a dedication to educational advancement, Sri. Jagan Mohan Reddy laid the foundation for the college to provide quality, accessible pharmacy education.',
     },
     {
-        name: 'Dr. K. Srinivasulu',
+        name: 'Dr.D.Hepcy Kalarani',
         role: 'Principal & Professor',
         image:
-            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+            '/assets/logo/Principal.png',
         quote:
             'We blend rigorous scientific exploration with hands-on clinical internships to prepare students for real-world pharmaceutical challenges.',
         bio:
@@ -114,10 +114,10 @@ export default function AboutLeadershipSection() {
                         <div
                             key={idx}
                             className={`${styles.leaderCard} ${isVisible
-                                    ? idx % 2 === 0
-                                        ? styles.animateCardLeft
-                                        : styles.animateCardRight
-                                    : styles.hiddenState
+                                ? idx % 2 === 0
+                                    ? styles.animateCardLeft
+                                    : styles.animateCardRight
+                                : styles.hiddenState
                                 }`}
                         >
                             <div className={styles.imageContainer}>

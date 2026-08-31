@@ -16,8 +16,7 @@ const highlights = [
     {
         title: 'Advanced Laboratories',
         desc: 'Well-equipped labs for practical learning and pharmaceutical research.',
-        image:
-            'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80',
+        image: '/assets/HomePageImages/CGS_lab.png',
         icon: FlaskConical,
         theme: styles.themeEmerald,
         animClass: styles.animDelay1,
@@ -25,8 +24,7 @@ const highlights = [
     {
         title: 'Rich Library',
         desc: 'A vast collection of books, international journals and digital e-resources.',
-        image:
-            'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80',
+        image: '/assets/HomePageImages/CGS_lib.png',
         icon: BookOpen,
         theme: styles.themeAmber,
         animClass: styles.animDelay2,
@@ -34,8 +32,7 @@ const highlights = [
     {
         title: 'Sports & Fitness',
         desc: 'Indoor and outdoor sports facilities and athletics to keep you energized.',
-        image:
-            'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=600&q=80',
+        image: '/assets/HomePageImages/CGS_sports.png',
         icon: Trophy,
         theme: styles.themePurple,
         animClass: styles.animDelay3,
@@ -43,8 +40,7 @@ const highlights = [
     {
         title: 'Cultural Activities',
         desc: 'Annual festivals, creative arts events and student clubs to nurture your talents.',
-        image:
-            'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80',
+        image: '/assets/HomePageImages/CGS_events.png',
         icon: Sparkles,
         theme: styles.themeTeal,
         animClass: styles.animDelay4,
@@ -53,7 +49,7 @@ const highlights = [
         title: 'Comfortable Hostel',
         desc: 'Well-furnished, hygienic and secure residential accommodation for boys & girls.',
         image:
-            'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=600&q=80',
+            '/assets/Infra/Hostel_1.png',
         icon: Home,
         theme: styles.themePeach,
         animClass: styles.animDelay5,

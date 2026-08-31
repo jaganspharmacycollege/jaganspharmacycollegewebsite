@@ -11,15 +11,15 @@ import styles from './PharmacognosyLabs.module.css';
 
 const pharmacognosySlides = [
     {
-        src: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmacognosy_1.png',
         caption: 'Continuous Soxhlet & Rotary Solvent Extraction Bays',
     },
     {
-        src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmacognosy_2.png',
         caption: 'Authentic Botanical Herbarium & Medicinal Plant Specimen Museum',
     },
     {
-        src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmacognosy_3.png',
         caption: 'Phytochemical Isolation, Chromatography & Microscopy Workstations',
     },
 ];

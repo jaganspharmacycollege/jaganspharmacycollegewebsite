@@ -8,22 +8,22 @@ const campusLifeSlides = [
     {
         title: 'Vibrant Campus Grounds',
         image:
-            'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80',
+            '/assets/HomePageImages/CGS_sports.png',
     },
     {
         title: 'Annual Sports Tournaments & Athletics',
         image:
-            'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1920&q=80',
+            '/assets/Infra/Infra_lib2.png',
     },
     {
         title: 'Cultural Fests & Student Celebrations',
         image:
-            'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1920&q=80',
+            '/assets/Infra/Infra_sports1.png',
     },
     {
         title: 'Collaborative Learning & Student Clubs',
         image:
-            'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80',
+            '/assets/HomePageImages/CGS_events.png',
     },
 ];
 
