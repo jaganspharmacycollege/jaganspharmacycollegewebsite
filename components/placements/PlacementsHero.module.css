@@ -3,7 +3,7 @@
     overflow: hidden;
     background: radial-gradient(circle at 50% 20%, #053b2a 0%, #03251a 55%, #01140e 100%);
     color: #ffffff;
-    padding: 4.5rem 1rem 7rem 1rem;
+    padding: 2.75rem 1rem 3rem 1rem;
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     flex-direction: column;

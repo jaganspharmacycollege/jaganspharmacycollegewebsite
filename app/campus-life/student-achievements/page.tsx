@@ -59,7 +59,7 @@ const achievementsList = [
         caption: 'High Percentage of Final Year Students Securing All-India Ranks',
         desc: 'High percentage of final year B. Pharm students securing top percentiles in national entrance exams with full AICTE fellowship stipends for postgraduate programs.',
         images: [
-            'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1434030216411-06793f4b4173?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
         ],
@@ -198,12 +198,16 @@ export default function StudentAchievementsPage() {
                     {achievementsList.map((item, aIdx) => {
                         const currentImgIdx = slideIndices[aIdx];
                         const isReversed = aIdx % 2 !== 0;
+                        const isAlternateTheme = aIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={aIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[aIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[aIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -240,7 +244,9 @@ export default function StudentAchievementsPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(aIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

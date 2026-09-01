@@ -7,9 +7,10 @@ import styles from './HomeAcademicWhyCampusSection.module.css';
 
 const cells = [
     '1. Training and Placement Cell',
-    '2. Extra-curricular Activities Cell',
+    '2. Entrepreneurship Development Cell',
     '3. R&D Cell',
     '4. Internal Quality Assessment Cell',
+    '5. Innovation Cell'
 ];
 
 const whyReasons = [

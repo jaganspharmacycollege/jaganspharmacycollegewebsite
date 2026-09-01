@@ -197,12 +197,16 @@ export default function HostelPage() {
                     {hostelFacilities.map((item, hIdx) => {
                         const currentImgIdx = slideIndices[hIdx];
                         const isReversed = hIdx % 2 !== 0;
+                        const isAlternateTheme = hIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={hIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[hIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[hIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -213,8 +217,8 @@ export default function HostelPage() {
                                                 src={imgSrc}
                                                 alt={`${item.title} Image ${imgIdx + 1}`}
                                                 className={`${styles.carouselImg} ${imgIdx === currentImgIdx
-                                                    ? styles.activeImg
-                                                    : styles.inactiveImg
+                                                        ? styles.activeImg
+                                                        : styles.inactiveImg
                                                     }`}
                                             />
                                         ))}
@@ -239,7 +243,9 @@ export default function HostelPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(hIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

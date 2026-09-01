@@ -334,7 +334,9 @@
 
 @media (max-width: 640px) {
     .applyButton {
-        display: none;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.75rem;
+        border-radius: 0.5rem;
     }
 }
 

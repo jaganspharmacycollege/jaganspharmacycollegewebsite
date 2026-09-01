@@ -59,7 +59,7 @@ const supportList = [
         caption: 'Focused Tutorial Sessions & Subject Mastery Programs',
         desc: 'Specialized doubt clearing and academic tutorial sessions designed to reinforce foundational concepts and provide tailored assistance for challenging subjects.',
         images: [
-            'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1434030216411-06793f4b4173?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
             'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
         ],
@@ -198,12 +198,16 @@ export default function StudentSupportPage() {
                     {supportList.map((item, sIdx) => {
                         const currentImgIdx = slideIndices[sIdx];
                         const isReversed = sIdx % 2 !== 0;
+                        const isAlternateTheme = sIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={sIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[sIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[sIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -240,7 +244,9 @@ export default function StudentSupportPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(sIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

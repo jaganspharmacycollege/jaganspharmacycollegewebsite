@@ -29,10 +29,7 @@ export default function PreFooter() {
                         <Link href="/admissions/application-form" className={styles.outlineBtn}>
                             Online Application
                         </Link>
-                        <Link href="/contact" className={styles.primaryBtn}>
-                            <span>Campus Visit (Tour Enquiry)</span>
-                            <ArrowRight size={15} />
-                        </Link>
+
                     </div>
                 </div>
             </div>

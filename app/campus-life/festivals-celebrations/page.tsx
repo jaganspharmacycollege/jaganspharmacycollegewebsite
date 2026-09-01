@@ -198,12 +198,16 @@ export default function FestivalsCelebrationsPage() {
                     {celebrationsList.map((item, cIdx) => {
                         const currentImgIdx = slideIndices[cIdx];
                         const isReversed = cIdx % 2 !== 0;
+                        const isAlternateTheme = cIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={cIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[cIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[cIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -240,7 +244,9 @@ export default function FestivalsCelebrationsPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(cIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

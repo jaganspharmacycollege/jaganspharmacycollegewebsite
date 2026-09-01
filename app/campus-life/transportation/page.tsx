@@ -8,7 +8,7 @@ const transportFacilities = [
     {
         category: 'TRANSIT NETWORK',
         title: 'Extensive Bus Network',
-        codeTag: 'FLEET - ROUTES 1-12',
+        codeTag: 'FLEET ROUTES 1-12',
         specTag: 'Nellore Gudur Kovur',
         caption: 'Modern Fleet Covering Major Urban & Rural Transit Routes',
         desc: 'Fleet of modern college buses covering all major locations in Nellore, Gudur, Kovur, and surrounding regions for safe daily commuting.',
@@ -54,7 +54,7 @@ const transportFacilities = [
     {
         category: 'TIMETABLE SYNCHRONIZATION',
         title: 'Punctual & Convenient',
-        codeTag: 'SCHEDULE - TIMINGS',
+        codeTag: 'SCHEDULE TIMINGS',
         specTag: 'Zero Delay Clinical Rotations',
         caption: 'Synchronized Departures for Classes & Hospital Postings',
         desc: 'Scheduled arrivals strictly aligned with college class timings, semester examination schedules, and clinical rotations at affiliated hospitals.',
@@ -198,12 +198,16 @@ export default function TransportationPage() {
                     {transportFacilities.map((item, tIdx) => {
                         const currentImgIdx = slideIndices[tIdx];
                         const isReversed = tIdx % 2 !== 0;
+                        const isAlternateTheme = tIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={tIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[tIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[tIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -240,7 +244,9 @@ export default function TransportationPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(tIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

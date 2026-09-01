@@ -2,7 +2,7 @@
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
     position: relative;
     min-height: 600px;
-    padding: 5rem 1rem 5.5rem 1rem;
+    padding: 2.75rem 1rem 3rem 1rem;
     overflow: hidden;
     display: flex;
     align-items: center;

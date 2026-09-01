@@ -67,10 +67,12 @@ export default function AcademicCalendarSection() {
                 const relativeOffset = window.innerHeight - rect.top;
 
                 if (orbLeftRef.current) {
-                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
+                        }px, 0)`;
                 }
                 if (orbRightRef.current) {
-                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05
+                        }px, 0)`;
                 }
             }
 
@@ -124,7 +126,9 @@ export default function AcademicCalendarSection() {
                         </div>
                         <div className={styles.cardHeaderText}>
                             <span className={styles.sessionBadge}>Session 2026-2027</span>
-                            <h3 className={styles.cardTitle}>University Academic Schedules &amp; Circulars</h3>
+                            <h3 className={styles.cardTitle}>
+                                University Academic Schedules &amp; Circulars
+                            </h3>
                             <p className={styles.cardSub}>
                                 Explore comprehensive timetables, examination windows, and semester dates for B. Pharm, Pharm.D, and M. Pharm programs.
                             </p>
@@ -164,7 +168,7 @@ export default function AcademicCalendarSection() {
                         className={`${styles.actionRow} ${isVisible ? styles.animDelay4 : styles.hiddenState
                             }`}
                     >
-                        <Link href="/academics/academic-calendar" className={styles.ctaButton}>
+                        <Link href="/academics/calendar" className={styles.ctaButton}>
                             <span>View Full Academic Calendar</span>
                             <ArrowRight size={16} className={styles.ctaArrow} />
                         </Link>

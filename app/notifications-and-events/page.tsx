@@ -41,31 +41,31 @@ const notificationsData = [
         isNew: true,
     },
     {
-        id: 'n2',
-        date: 'AUG 20, 2026',
+        id: 'n-bpharm',
+        date: 'AUG 22, 2026',
         category: 'Examinations',
-        title: 'End Semester Practical Examination Timetable Updated',
-        desc: 'Timetable schedule for B. Pharm IV Year & M. Pharm II Year practical labs uploaded in compliance with JNTUA university guidelines.',
-        linkText: 'View Circular',
+        title: 'B. Pharmacy End Semester Theory & Practical Examination Timetable',
+        desc: 'Comprehensive examination schedule and lab batch allocations for B. Pharm (I, II, III & IV Years) released in accordance with JNTUA university notifications.',
+        linkText: 'Download Timetable PDF',
         isNew: true,
     },
     {
-        id: 'n3',
-        date: 'AUG 15, 2026',
-        category: 'Scholarships',
-        title: 'Government Post-Matric & Institutional Merit Scholarship Applications Open',
-        desc: 'Eligible students can submit fee reimbursement and institutional merit scholarship applications to the administration office before Sep 10.',
-        linkText: 'Apply Instructions',
-        isNew: false,
+        id: 'n-pharmd',
+        date: 'AUG 20, 2026',
+        category: 'Examinations',
+        title: 'Pharm. D Annual & Clerkship Examination Schedule Announced',
+        desc: 'Timetable notification for Pharm. D (Years I to V) theory examinations, clinical hospital ward rounds, and final year internship project evaluations.',
+        linkText: 'View Exam Schedule',
+        isNew: true,
     },
     {
-        id: 'n4',
-        date: 'AUG 08, 2026',
-        category: 'Academics',
-        title: 'CPCSEA Approved Preclinical Lab Access Guidelines for PG Researchers',
-        desc: 'Standard operating protocols and safety briefing for M.Pharm and Ph.D. scholars accessing the Central Instrumentation and Animal house facilities.',
-        linkText: 'Download Guidelines',
-        isNew: false,
+        id: 'n-mpharm',
+        date: 'AUG 18, 2026',
+        category: 'Examinations',
+        title: 'M. Pharmacy Semester End & Dissertation Defense Timetable',
+        desc: 'Schedule for M. Pharm end semester examinations and final major research dissertation viva-voce presentations across all specializations.',
+        linkText: 'Download Exam Circular',
+        isNew: true,
     },
 ];
 
@@ -74,7 +74,7 @@ const upcomingEventsData = [
         id: 'e1',
         dateBadge: 'SEP 12',
         year: '2026',
-        time: '10:00 AM – 04:30 PM',
+        time: '10:00 AM - 04:30 PM',
         location: 'Main Auditorium & Zoom',
         title: 'National Seminar on Modern Drug Regulatory Filings & AI Applications',
         desc: 'Keynote panels on US FDA 505(b)(2) pathways, AI in dissolution profiles, and dossier preparations led by international pharmaceutical directors.',
@@ -84,7 +84,7 @@ const upcomingEventsData = [
         id: 'e2',
         dateBadge: 'OCT 05',
         year: '2026',
-        time: '09:30 AM – 05:00 PM',
+        time: '09:30 AM - 05:00 PM',
         location: 'Central Lawn & Seminar Hall 1',
         title: 'World Pharmacists Day Expo & Free Health Camp 2026',
         desc: 'Community medication reviews, clinical screening camps, public health rallies, and inter-collegiate poster presentations.',
@@ -94,7 +94,7 @@ const upcomingEventsData = [
         id: 'e3',
         dateBadge: 'DEC 19',
         year: '2026',
-        time: '10:00 AM – 08:30 PM',
+        time: '10:00 AM - 08:30 PM',
         location: 'College Campus & Auditorium',
         title: 'Annual Global Alumni Homecoming & Mentorship Meet 2026',
         desc: 'Grand reunion, batch felicitations, corporate mentorship roundtables, and cultural evening banquet dinner.',
@@ -104,7 +104,7 @@ const upcomingEventsData = [
         id: 'e4',
         dateBadge: 'FEB 20',
         year: '2027',
-        time: '02:00 PM – 05:30 PM',
+        time: '02:00 PM - 05:30 PM',
         location: 'Seminar Hall 2',
         title: 'Career Mentorship, Resume Review & Mock Technical Interviews',
         desc: 'Senior industry alumni and HR managers conducting interview simulations for graduating B. Pharm and Pharm.D scholars.',
@@ -213,7 +213,9 @@ export default function NotificationsAndEventsPage() {
                         <Sparkles size={14} className={styles.eyebrowIcon} />
                         <span>Campus News &amp; Live Updates</span>
                     </div>
-                    <h1 className={styles.title}>Latest Notifications &amp; Upcoming Events</h1>
+                    <h1 className={styles.title}>
+                        Latest Notifications &amp; Upcoming Events
+                    </h1>
                     <div className={styles.accentLine} />
                     <p className={styles.descText}>
                         Official circulars, examination announcements, admissions counseling schedules, guest seminars, and academic symposiums at Jagan&apos;s College of Pharmacy.
@@ -323,14 +325,18 @@ export default function NotificationsAndEventsPage() {
                                 {notificationsData.map((item, idx) => (
                                     <div
                                         key={item.id}
-                                        className={`${styles.noticeCard} ${isVisible ? cardDelays[idx % cardDelays.length] : styles.hiddenState
+                                        className={`${styles.noticeCard} ${isVisible
+                                                ? cardDelays[idx % cardDelays.length]
+                                                : styles.hiddenState
                                             }`}
                                     >
                                         <div>
                                             <div className={styles.cardTopRow}>
                                                 <span className={styles.dateChip}>{item.date}</span>
                                                 <div className={styles.badgeGroup}>
-                                                    {item.isNew && <span className={styles.newBadge}>NEW</span>}
+                                                    {item.isNew && (
+                                                        <span className={styles.newBadge}>NEW</span>
+                                                    )}
                                                     <span className={styles.catBadge}>{item.category}</span>
                                                 </div>
                                             </div>
@@ -341,7 +347,9 @@ export default function NotificationsAndEventsPage() {
                                         <div className={styles.cardFooter}>
                                             <button
                                                 className={styles.pdfLinkBtn}
-                                                onClick={() => alert(`Opening circular: ${item.title}`)}
+                                                onClick={() =>
+                                                    alert(`Opening circular: ${item.title}`)
+                                                }
                                             >
                                                 <FileText size={14} />
                                                 <span>{item.linkText}</span>
@@ -382,7 +390,9 @@ export default function NotificationsAndEventsPage() {
                                 {upcomingEventsData.map((ev, idx) => (
                                     <div
                                         key={ev.id}
-                                        className={`${styles.eventCard} ${isVisible ? cardDelays[idx % cardDelays.length] : styles.hiddenState
+                                        className={`${styles.eventCard} ${isVisible
+                                                ? cardDelays[idx % cardDelays.length]
+                                                : styles.hiddenState
                                             }`}
                                     >
                                         <div>
@@ -412,7 +422,10 @@ export default function NotificationsAndEventsPage() {
                                         </div>
 
                                         <div className={styles.cardFooter}>
-                                            <Link href="/contact" className={styles.registerEventBtn}>
+                                            <Link
+                                                href="/contact"
+                                                className={styles.registerEventBtn}
+                                            >
                                                 <span>Register / Enquire</span>
                                                 <ArrowRight size={13} />
                                             </Link>

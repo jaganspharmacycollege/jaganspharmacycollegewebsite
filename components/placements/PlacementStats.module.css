@@ -2,7 +2,7 @@
     font-family: var(--font-sora), 'Sora', sans-serif;
     background-color: #faf8f5;
     background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
-    padding: 4.5rem 0;
+    padding: 2.75rem 1rem 3rem 1rem;
     border-bottom: 1px solid #f0ece1;
     position: relative;
     overflow: hidden;

@@ -13,7 +13,7 @@ const leaders = [
         quote:
             'Our commitment is to cultivate competent pharmaceutical professionals equipped with high ethical standards to serve global healthcare.',
         bio:
-            'With visionary leadership and a dedication to educational advancement, Sri. Jagan Mohan Reddy laid the foundation for the college to provide quality, accessible pharmacy education.',
+            'With visionary leadership and a dedication to educational advancement, S.V.Madhusudhan Reddy laid the foundation for the college to provide quality, accessible pharmacy education.',
     },
     {
         name: 'Dr.D.Hepcy Kalarani',
@@ -23,7 +23,7 @@ const leaders = [
         quote:
             'We blend rigorous scientific exploration with hands-on clinical internships to prepare students for real-world pharmaceutical challenges.',
         bio:
-            'Holding decades of teaching, research, and administrative experience in pharmaceutical sciences, Dr. Srinivasulu leads the academic faculty with an emphasis on research excellence.',
+            'Holding decades of teaching, research, and administrative experience in pharmaceutical sciences, Dr.D.Hepcy Kalarani leads the academic faculty with an emphasis on research excellence.',
     },
 ];
 

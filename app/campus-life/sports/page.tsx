@@ -198,12 +198,16 @@ export default function SportsPage() {
                     {sportsFacilities.map((facility, fIdx) => {
                         const currentImgIdx = slideIndices[fIdx];
                         const isReversed = fIdx % 2 !== 0;
+                        const isAlternateTheme = fIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={fIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[fIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[fIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -227,12 +231,16 @@ export default function SportsPage() {
                                                 <Layers size={13} className={styles.codeIcon} />
                                                 <span>{facility.codeTag}</span>
                                             </span>
-                                            <span className={styles.specBadge}>{facility.specTag}</span>
+                                            <span className={styles.specBadge}>
+                                                {facility.specTag}
+                                            </span>
                                         </div>
 
                                         {/* Bottom Caption & Synchronized Dots */}
                                         <div className={styles.captionOverlay}>
-                                            <h4 className={styles.captionText}>{facility.caption}</h4>
+                                            <h4 className={styles.captionText}>
+                                                {facility.caption}
+                                            </h4>
                                             <div className={styles.dotsWrapper}>
                                                 {facility.images.map((_, dotIdx) => (
                                                     <button
@@ -240,7 +248,9 @@ export default function SportsPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(fIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

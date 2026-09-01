@@ -142,10 +142,10 @@ export default function Header() {
                             <Phone size={12} /> +91 76800 77726
                         </a>
                         <a
-                            href="mailto:info@jaganpharmacy.ac.in"
+                            href="mailto:principal.jcp@gmail.com"
                             className={styles.topContactLink}
                         >
-                            <Mail size={12} /> info@jaganpharmacy.ac.in
+                            <Mail size={12} /> principal.jcp@gmail.com
                         </a>
                         <span className={`${styles.topContactLink} ${styles.topBarLocation}`}>
                             <MapPin size={12} /> Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore, AP
@@ -174,10 +174,7 @@ export default function Header() {
                                     className={styles.logoImg}
                                 />
                             </div>
-                            <div className={styles.brandTextGroup}>
-                                <h3 className={styles.title}>Jagan&apos;s</h3>
-                                <p className={styles.subtitle}>COLLEGE OF PHARMACY</p>
-                            </div>
+
                         </Link>
                     </div>
 

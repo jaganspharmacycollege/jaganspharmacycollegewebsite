@@ -121,7 +121,7 @@ export default function HomeHeroSection() {
                         className={`${styles.subtext} ${isVisible ? styles.animateIn3 : styles.hiddenState
                             }`}
                     >
-                        To be a premier institution in pharmaceutical education, research and innovation, fostering skilled professionals committed to ethical practice and advancing global healthcare through knowledge, compassion and excellence.
+                        Empowering future pharmacists with knowledge, integrity and innovation to advance healthcare and serve communities with compassion.
                     </p>
 
                     <div
@@ -165,9 +165,6 @@ export default function HomeHeroSection() {
                             className={styles.btnSecondary}
                         >
                             Online Application
-                        </Link>
-                        <Link href="/contact" className={styles.btnGold}>
-                            Campus Visit (Tour Enquiry)
                         </Link>
                     </div>
                 </div>

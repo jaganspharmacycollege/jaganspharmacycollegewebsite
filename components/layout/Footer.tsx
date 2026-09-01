@@ -21,13 +21,13 @@ export default function Footer() {
                         </div>
                     </a>
 
-                    <a href="mailto:info@jaganpharmacy.ac.in" className={styles.contactCard}>
+                    <a href="mailto:principal.jcp@gmail.com" className={styles.contactCard}>
                         <div className={styles.contactIcon}>
                             <Mail size={18} />
                         </div>
                         <div>
                             <p className={styles.contactLabel}>Official Inquiries</p>
-                            <p className={styles.contactValue}>info@jaganpharmacy.ac.in</p>
+                            <p className={styles.contactValue}>principal.jcp@gmail.com</p>
                         </div>
                     </a>
 

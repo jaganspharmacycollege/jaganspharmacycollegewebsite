@@ -147,7 +147,7 @@
     gap: 3.5rem;
 }
 
-/* Base Zigzag Section Card */
+/* Base Zigzag Section Card (Light Theme: Cards 1 & 3) */
 .facilitySectionCard {
     background-color: #ffffff;
     border-radius: 2rem;
@@ -158,7 +158,7 @@
     grid-template-columns: 1fr;
     gap: 2.5rem;
     align-items: center;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
     will-change: transform;
 }
 
@@ -185,6 +185,52 @@
 .facilitySectionCard:hover {
     transform: translate3d(0, -6px, 0);
     box-shadow: 0 20px 45px -6px rgba(5, 59, 42, 0.12);
+}
+
+/* Alternate Emerald Theme (Card 2: Pharmacovigilance & Drug Safety) */
+.cardHeroEmeraldTheme {
+    background-color: #032319;
+    background: radial-gradient(circle at 50% 10%, #053b2a 0%, #032319 100%);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cardHeroEmeraldTheme:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55);
+}
+
+.cardHeroEmeraldTheme .facilityCategory {
+    color: #fbbf24;
+}
+
+.cardHeroEmeraldTheme .facilityTitle {
+    color: #ffffff;
+}
+
+.cardHeroEmeraldTheme .subAccentLine {
+    background-color: #fbbf24;
+}
+
+.cardHeroEmeraldTheme .facilityDesc {
+    color: #d1fae5;
+}
+
+.cardHeroEmeraldTheme .subCard {
+    background: rgba(3, 35, 25, 0.85);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.cardHeroEmeraldTheme .subCard:hover {
+    border-color: #fbbf24;
+}
+
+.cardHeroEmeraldTheme .subCardTitle {
+    color: #ffffff;
+}
+
+.cardHeroEmeraldTheme .subCardDesc {
+    color: #a7f3d0;
 }
 
 /* Carousel Frame */
@@ -222,7 +268,8 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
 }
 
@@ -329,7 +376,8 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.5s ease;
 }
 
 .activeDot {
@@ -412,7 +460,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease;
     will-change: transform;
 }
 

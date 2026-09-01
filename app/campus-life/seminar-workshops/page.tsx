@@ -198,12 +198,16 @@ export default function SeminarWorkshopsPage() {
                     {workshopsList.map((item, wIdx) => {
                         const currentImgIdx = slideIndices[wIdx];
                         const isReversed = wIdx % 2 !== 0;
+                        const isAlternateTheme = wIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={wIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[wIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[wIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -240,7 +244,9 @@ export default function SeminarWorkshopsPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(wIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

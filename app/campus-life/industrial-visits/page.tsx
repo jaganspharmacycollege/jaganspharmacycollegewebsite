@@ -198,12 +198,16 @@ export default function IndustrialVisitsPage() {
                     {industrialVisitsList.map((visit, vIdx) => {
                         const currentImgIdx = slideIndices[vIdx];
                         const isReversed = vIdx % 2 !== 0;
+                        const isAlternateTheme = vIdx % 2 !== 0;
 
                         return (
                             <div
                                 key={vIdx}
                                 className={`${styles.facilitySectionCard} ${isReversed ? styles.rowReversed : ''
-                                    } ${isVisible ? sectionDelays[vIdx % sectionDelays.length] : styles.hiddenState}`}
+                                    } ${isAlternateTheme ? styles.cardHeroEmeraldTheme : ''} ${isVisible
+                                        ? sectionDelays[vIdx % sectionDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* 1. Carousel Box */}
                                 <div className={styles.carouselContainer}>
@@ -240,7 +244,9 @@ export default function IndustrialVisitsPage() {
                                                         onClick={() =>
                                                             handleManualDotClick(vIdx, dotIdx)
                                                         }
-                                                        className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                                        className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                                ? styles.activeDot
+                                                                : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

@@ -179,19 +179,19 @@ export default function HomeBottomInfoSection() {
                     </div>
 
                     <p className={styles.quoteText}>
-                        &ldquo;Jagan&apos;s College of Pharmacy provided me with extensive hands-on experience in advanced formulation laboratories and intensive bedside clinical hospital rounds. The rigorous career readiness programs and specialized placement training delivered by the faculty gave me the practical knowledge and professional confidence needed to successfully launch my career as a clinical analyst at a leading healthcare MNC&rdquo;
+                        &ldquo;Studying at Jagan&apos;s College of Pharmacy has given me extensive hands-on experience in advanced formulation laboratories and intensive bedside clinical hospital rounds. The rigorous career readiness programs, case study seminars, and placement training provided by our faculty have built my practical knowledge and confidence to excel in upcoming campus recruitment drives&rdquo;
                     </p>
 
                     <div className={styles.studentMeta}>
                         <img
-                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
-                            alt="Priya Sharma"
+                            src="/assets/HomePageImages/HomeStudent.png"
+                            alt="Javangula Krishna Priya"
                             className={styles.avatar}
                         />
                         <div>
-                            <p className={styles.studentName}>Priya Sharma</p>
+                            <p className={styles.studentName}>Javangula Krishna Priya</p>
                             <p className={styles.studentRole}>
-                                Pharm.D &bull; Alumni (Clinical Analyst)
+                                Pharm.D &bull; 4th Year Student
                             </p>
                         </div>
                     </div>
