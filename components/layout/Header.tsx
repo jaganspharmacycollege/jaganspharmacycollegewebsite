@@ -83,7 +83,7 @@ export default function Header() {
         { name: 'Hostel', href: '/campus-life/hostel' },
         { name: 'Transportation', href: '/campus-life/transportation' },
         { name: 'Canteen', href: '/campus-life/canteen' },
-        { name: 'Academic Calendar', href: '/academics/calendar' },
+
     ];
 
     const academicsOptions = [

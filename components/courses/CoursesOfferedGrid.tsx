@@ -21,7 +21,7 @@ const courses = [
         description:
             'A foundational undergraduate degree covering medicinal chemistry, pharmacology, pharmaceutical engineering, and formulation design.',
         image:
-            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80',
+            '/assets/courses/pharmd2.png',
         href: '/courses/b-pharm',
         iconTheme: styles.iconThemeEmerald,
         animClass: styles.animDelay1,
@@ -35,7 +35,7 @@ const courses = [
         description:
             'A patient-centric professional doctorate combining intensive clinical pharmacology, bedside ward rounds, and hospital rotations.',
         image:
-            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+            '/assets/courses/pharmd1.png',
         href: '/courses/pharm-d',
         iconTheme: styles.iconThemePurple,
         animClass: styles.animDelay2,
@@ -49,7 +49,7 @@ const courses = [
         description:
             'Advanced specialized research in Pharmaceutics, Pharmacology, and Novel Drug Delivery Systems with dissertations.',
         image:
-            'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+            '/assets/courses/pharmd3.png',
         href: '/courses/m-pharm',
         iconTheme: styles.iconThemeAmber,
         animClass: styles.animDelay3,

@@ -13,9 +13,9 @@ const sportsFacilities = [
         caption: 'Inter-College Track & Field Athletic Championships',
         desc: 'Our expansive outdoor sports arena features standard multi-sport turf grounds and courts for Cricket, Volleyball, Basketball, Football, and Track & Field athletics with dedicated coaching facilities.',
         images: [
-            'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80',
+            '/assets/HomePageImages/CGS_sports.png',
+            '/assets/Infra/sports2.png',
+
         ],
         features: [
             {
@@ -28,29 +28,7 @@ const sportsFacilities = [
             },
         ],
     },
-    {
-        category: 'INDOOR GAMES & GYM',
-        title: 'Indoor Sports Complex',
-        codeTag: 'COMPLEX BLK C',
-        specTag: 'Wooden Courts Fitness Gym',
-        caption: 'Indoor Badminton, Table Tennis & Gymnasium Complex',
-        desc: 'Dedicated indoor arena equipped with tournament-grade synthetic badminton courts, international table tennis setups, chess rooms, and a modern cardiovascular fitness gym.',
-        images: [
-            'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80',
-        ],
-        features: [
-            {
-                title: 'Badminton Courts',
-                desc: 'High-grade non-slip wooden and synthetic indoor courts.',
-            },
-            {
-                title: 'Fitness Suite',
-                desc: 'Strength equipment and trainer-supervised workout areas.',
-            },
-        ],
-    },
+
     {
         category: 'CHAMPIONSHIPS & MEETS',
         title: 'Annual Sports Meet',
@@ -59,9 +37,9 @@ const sportsFacilities = [
         caption: 'Inter-College & House Championship Tournaments',
         desc: 'The flagship annual sporting meet featuring competitive inter-house leagues and inter-collegiate pharmacy championships promoting teamwork, grit, and athletic excellence.',
         images: [
-            'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=1200&q=80',
+            '/assets/Infra/sports1.png',
+            '/assets/Infra/sports2.png',
+
         ],
         features: [
             {
@@ -218,8 +196,8 @@ export default function SportsPage() {
                                                 src={imgSrc}
                                                 alt={`${facility.title} Image ${imgIdx + 1}`}
                                                 className={`${styles.carouselImg} ${imgIdx === currentImgIdx
-                                                        ? styles.activeImg
-                                                        : styles.inactiveImg
+                                                    ? styles.activeImg
+                                                    : styles.inactiveImg
                                                     }`}
                                             />
                                         ))}
@@ -249,8 +227,8 @@ export default function SportsPage() {
                                                             handleManualDotClick(fIdx, dotIdx)
                                                         }
                                                         className={`${styles.dot} ${dotIdx === currentImgIdx
-                                                                ? styles.activeDot
-                                                                : ''
+                                                            ? styles.activeDot
+                                                            : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

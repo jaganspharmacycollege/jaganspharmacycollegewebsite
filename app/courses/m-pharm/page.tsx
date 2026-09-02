@@ -9,20 +9,21 @@ import {
     GraduationCap,
     Award,
     Building2,
+    TestTube2,
 } from 'lucide-react';
 import styles from './MPharm.module.css';
 
 const overviewImages = [
     {
-        src: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmacology_1.png',
         caption: 'Advanced Spectrophotometry & HPLC Analytics',
     },
     {
-        src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/courses/pharmd2.png',
         caption: 'Novel Drug Delivery Systems (NDDS) Formulation',
     },
     {
-        src: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/courses/pharmd1.png',
         caption: 'Molecular Pharmacology & Preclinical Screening',
     },
 ];
@@ -78,6 +79,14 @@ const departments = [
             'CPCSEA-standard animal housing, computerized organ baths & behavioral testing setups.',
         focus: 'In-Vivo Therapeutics & Toxicity Profiling',
         animClass: styles.animDelay3,
+    },
+    {
+        icon: TestTube2,
+        title: 'Dept. of Pharmaceutical Chemistry',
+        equipment:
+            'Ducted fume hoods, rotary vacuum evaporators, microwave synthesisers & molecular modeling workstations.',
+        focus: 'Drug Design, Organic Synthesis & Medicinal Chemistry',
+        animClass: styles.animDelay1,
     },
 ];
 
@@ -189,6 +198,7 @@ export default function MPharmPage() {
                         <p className={styles.descText}>
                             Our Master of Pharmacy (M. Pharm) offers specialized 2-year postgraduate degrees affiliated with JNTUA and approved by AICTE. Backed by state-of-the-art analytical equipment and funded research projects, students complete rigorous dissertations and publish in high-impact international journals.
                         </p>
+
                         <div className={styles.highlightsList}>
                             <div className={styles.highlightItem}>
                                 <CheckCircle2 size={16} className={styles.checkIcon} />
@@ -216,7 +226,9 @@ export default function MPharmPage() {
                                 key={idx}
                                 src={item.src}
                                 alt={item.caption}
-                                className={`${styles.overviewImage} ${idx === currentImgIdx ? styles.activeImg : styles.inactiveImg
+                                className={`${styles.overviewImage} ${idx === currentImgIdx
+                                    ? styles.activeImg
+                                    : styles.inactiveImg
                                     }`}
                             />
                         ))}
@@ -253,6 +265,7 @@ export default function MPharmPage() {
                             Postgraduate Disciplines
                         </h2>
                     </div>
+
                     <div className={styles.specializationsGrid}>
                         {specializations.map((spec, idx) => {
                             const Icon = spec.icon;
@@ -287,6 +300,7 @@ export default function MPharmPage() {
                             Dedicated Research Departments
                         </h2>
                     </div>
+
                     <div className={styles.deptGrid}>
                         {departments.map((dept, idx) => {
                             const DeptIcon = dept.icon;
@@ -322,7 +336,9 @@ export default function MPharmPage() {
                         }`}
                 >
                     <div className={styles.eligibilityHeader}>
-                        <div className={`${styles.iconSquircle} ${styles.themeEmerald}`}>
+                        <div
+                            className={`${styles.iconSquircle} ${styles.themeEmerald}`}
+                        >
                             <GraduationCap size={28} strokeWidth={2} />
                         </div>
                         <div>
@@ -332,23 +348,24 @@ export default function MPharmPage() {
                             </h2>
                         </div>
                     </div>
+
                     <div className={styles.eligibilityList}>
                         <div className={styles.eligibilityItem}>
                             <span className={styles.listBulletDot} />
                             <span className={styles.eligibilityText}>
-                                Passed B. Pharm degree examination with a minimum of 55% aggregate marks (50% for reserved category candidates) from any recognized institution.
+                                Passed B. Pharm degree examination with a minimum of 55% aggregate marks (50% for reserved category candidates) from any recognized institution[cite: 10].
                             </span>
                         </div>
                         <div className={styles.eligibilityItem}>
                             <span className={styles.listBulletDot} />
                             <span className={styles.eligibilityText}>
-                                Valid score in the national Graduate Pharmacy Aptitude Test (GPAT) or state-level AP PGECET entrance examination.
+                                Valid score in the national Graduate Pharmacy Aptitude Test (GPAT) or state-level AP PGECET entrance examination[cite: 10].
                             </span>
                         </div>
                         <div className={styles.eligibilityItem}>
                             <span className={styles.listBulletDot} />
                             <span className={styles.eligibilityText}>
-                                Registered Pharmacist certification with the state regulatory authority or statutory state councils.
+                                Registered Pharmacist certification with the state regulatory authority or statutory state councils[cite: 10].
                             </span>
                         </div>
                     </div>

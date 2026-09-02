@@ -13,9 +13,9 @@ const workshopsList = [
         caption: 'Hands-on Practical Chromatography & Spectral Validation',
         desc: 'Intensive two-day workshops conducted by senior instrumentation scientists covering method development, calibration, system suitability, and real-time chromatographic analysis.',
         images: [
-            'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80',
+            '/assets/HomePageImages/CGS_events.png',
+            '/assets/courses/pharmd2.png',
+
         ],
         features: [
             {
@@ -36,9 +36,9 @@ const workshopsList = [
         caption: 'Industry Simulation Training on Adverse Drug Reaction Reporting',
         desc: 'Specialized training sessions on ADR reporting protocols, causality assessment, and global safety database software used in clinical pharmacovigilance units.',
         images: [
-            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+            '/assets/HomePageImages/Student_Council_1.png',
+            '/assets/HomePageImages/Student_Council.png',
+
         ],
         features: [
             {
@@ -59,9 +59,9 @@ const workshopsList = [
         caption: 'Annual National Symposium on Emerging Drug Delivery Systems',
         desc: 'Annual conferences featuring guest keynote lectures from renowned international professors, industry executives, and clinical scientists exploring emerging therapeutics.',
         images: [
-            'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+            '/assets/courses/pharmd2.png',
+            'assets/courses/pharmd3.png',
+
         ],
         features: [
             {
@@ -218,8 +218,8 @@ export default function SeminarWorkshopsPage() {
                                                 src={imgSrc}
                                                 alt={`${item.title} Image ${imgIdx + 1}`}
                                                 className={`${styles.carouselImg} ${imgIdx === currentImgIdx
-                                                        ? styles.activeImg
-                                                        : styles.inactiveImg
+                                                    ? styles.activeImg
+                                                    : styles.inactiveImg
                                                     }`}
                                             />
                                         ))}
@@ -245,8 +245,8 @@ export default function SeminarWorkshopsPage() {
                                                             handleManualDotClick(wIdx, dotIdx)
                                                         }
                                                         className={`${styles.dot} ${dotIdx === currentImgIdx
-                                                                ? styles.activeDot
-                                                                : ''
+                                                            ? styles.activeDot
+                                                            : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

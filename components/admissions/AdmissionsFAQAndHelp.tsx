@@ -195,7 +195,7 @@ export default function AdmissionsFAQAndHelp() {
                                         </div>
                                         <div>
                                             <span className={styles.contactLabel}>Phone Inquiry</span>
-                                            <p className={styles.contactValue}>+91 91000 12345 / 08562 222333</p>
+                                            <p className={styles.contactValue}>+91 7680077726 / 9989000447</p>
                                         </div>
                                     </li>
 
@@ -205,7 +205,7 @@ export default function AdmissionsFAQAndHelp() {
                                         </div>
                                         <div>
                                             <span className={styles.contactLabel}>Email Admissions</span>
-                                            <p className={styles.contactValue}>admissions@jaganspharmacy.ac.in</p>
+                                            <p className={styles.contactValue}>admissions.jcp@gmail.com</p>
                                         </div>
                                     </li>
 
@@ -234,7 +234,7 @@ export default function AdmissionsFAQAndHelp() {
                         {/* Support Representative Image Preview */}
                         <div className={styles.helpImageWrapper}>
                             <img
-                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+                                src="/assets/Infra/office.png"
                                 alt="Jagan's College Admissions Representative"
                                 className={styles.helpImage}
                             />

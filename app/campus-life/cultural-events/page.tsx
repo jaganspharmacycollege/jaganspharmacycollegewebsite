@@ -11,17 +11,14 @@ import styles from './CulturalEventsPage.module.css';
 
 const culturalSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/events1.png',
         caption: 'TARANG Annual Cultural Mega Fest & Live Stage Performances',
     },
     {
-        src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/events2.png',
         caption: 'Talent Hunt & Freshers Welcome Celebrations',
     },
-    {
-        src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80',
-        caption: 'Traditional Ethnic Day & Regional Heritage Celebrations',
-    },
+
 ];
 
 const events = [
@@ -157,8 +154,8 @@ export default function CulturalEventsPage() {
                                 src={slide.src}
                                 alt={slide.caption}
                                 className={`${styles.carouselImg} ${idx === currentImgIdx
-                                        ? styles.activeImg
-                                        : styles.inactiveImg
+                                    ? styles.activeImg
+                                    : styles.inactiveImg
                                     }`}
                             />
                         ))}

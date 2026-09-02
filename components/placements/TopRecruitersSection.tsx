@@ -4,18 +4,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './TopRecruitersSection.module.css';
 
 const recruiters = [
-    { name: "Dr. Reddy's Labs", sector: 'Formulation & R&D' },
-    { name: 'Sun Pharma', sector: 'Manufacturing & QC' },
-    { name: 'Aurobindo Pharma', sector: 'Analytical & Production' },
-    { name: 'Cipla Ltd', sector: 'Clinical & QA' },
-    { name: 'Hetero Drugs', sector: 'API & Formulation' },
-    { name: "Divi's Laboratories", sector: 'Synthesis & Testing' },
-    { name: 'Apollo Hospitals', sector: 'Clinical Pharmacy' },
-    { name: 'Novartis', sector: 'Pharmacovigilance' },
-    { name: 'IQVIA', sector: 'Clinical Data Management' },
-    { name: 'Lupin Pharma', sector: 'Regulatory Affairs' },
-    { name: 'Biocon', sector: 'Biologics & Research' },
-    { name: 'MedPlus Health', sector: 'Community Pharmacy' },
+    { name: 'Sun Pharma', logo: '/assets/logo/SP.png' },
+    { name: 'Dr. Reddy\'s', logo: '/assets/logo/DR.png' },
+    { name: 'Aurobindo', logo: '/assets/logo/Aurobindo.png' },
+    { name: 'Cipla', logo: '/assets/logo/CI.png' },
+    { name: 'Hetero Drugs', logo: '/assets/logo/HT.png' },
+    { name: 'Divi\'s Labs', logo: '/assets/logo/Di.png' },
+    { name: 'Apollo Hospitals', logo: '/assets/logo/ap.png' },
+    { name: 'Omega Health', logo: '/assets/logo/OH.png' },
+    { name: 'IQVIA', logo: '/assets/logo/iq.png' },
+    { name: 'Lupin Pharma', logo: '/assets/logo/lu.png' },
+    { name: 'Biocon', logo: '/assets/logo/bi.png' },
+    { name: 'MedPlus Health', logo: '/assets/logo/med.png' },
 ];
 
 const cardDelays = [
@@ -109,11 +109,17 @@ export default function TopRecruitersSection() {
                     {recruiters.map((r, idx) => (
                         <div
                             key={idx}
-                            className={`${styles.recruiterCard} ${isVisible ? cardDelays[idx % cardDelays.length] : styles.hiddenState
+                            className={`${styles.recruiterCard} ${isVisible
+                                    ? cardDelays[idx % cardDelays.length]
+                                    : styles.hiddenState
                                 }`}
+                            title={r.name}
                         >
-                            <h3 className={styles.companyName}>{r.name}</h3>
-                            <p className={styles.companySector}>{r.sector}</p>
+                            <img
+                                src={r.logo}
+                                alt={r.name}
+                                className={styles.logoImg}
+                            />
                         </div>
                     ))}
                 </div>

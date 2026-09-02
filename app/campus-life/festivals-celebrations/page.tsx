@@ -13,9 +13,9 @@ const celebrationsList = [
         caption: 'Annual Pharmacist Oath Ceremony & Public Awareness Rallies',
         desc: 'Campus rallies, scientific poster presentations, formal pharmacist oath ceremonies, and free diagnostic health screening camps conducted in honor of global healthcare service.',
         images: [
-            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+            '/assets/courses/pharmd4.png',
+            '/assets/courses/pharmd1.png',
+
         ],
         features: [
             {
@@ -29,29 +29,6 @@ const celebrationsList = [
         ],
     },
     {
-        category: 'NATIONAL ADVOCACY',
-        title: 'National Pharmacy Week',
-        codeTag: 'NPW CELEBRATION',
-        specTag: 'Week-Long Scientific Symposia',
-        caption: 'Advancing Public Awareness on Safe & Rational Medicine Use',
-        desc: 'Week-long celebrations dedicated to advancing public awareness about the pharmacy profession, safe drug administration, and innovations in modern therapeutic systems.',
-        images: [
-            'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
-        ],
-        features: [
-            {
-                title: 'Public Symposia',
-                desc: 'Interactive lectures addressing patient safety and antibiotic stewardship.',
-            },
-            {
-                title: 'Student Rallies',
-                desc: 'Civic marches promoting rational medicine use and wellness awareness.',
-            },
-        ],
-    },
-    {
         category: 'CULTURAL UNITY',
         title: 'Traditional Festive Celebrations',
         codeTag: 'HERITAGE HARMONY',
@@ -59,9 +36,9 @@ const celebrationsList = [
         caption: 'Vibrant Traditional Fests & Festive Regional Harmony',
         desc: 'Grand campus celebrations for Sankranti, Diwali, Dussehra, Eid, and Christmas fostering cultural unity, community harmony, and regional heritage across our student body.',
         images: [
-            'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
+            '/assets/Infra/events1.png',
+            '/assets/HomePageImages/CGS_sports.png',
+
         ],
         features: [
             {
@@ -218,8 +195,8 @@ export default function FestivalsCelebrationsPage() {
                                                 src={imgSrc}
                                                 alt={`${item.title} Image ${imgIdx + 1}`}
                                                 className={`${styles.carouselImg} ${imgIdx === currentImgIdx
-                                                        ? styles.activeImg
-                                                        : styles.inactiveImg
+                                                    ? styles.activeImg
+                                                    : styles.inactiveImg
                                                     }`}
                                             />
                                         ))}
@@ -245,8 +222,8 @@ export default function FestivalsCelebrationsPage() {
                                                             handleManualDotClick(cIdx, dotIdx)
                                                         }
                                                         className={`${styles.dot} ${dotIdx === currentImgIdx
-                                                                ? styles.activeDot
-                                                                : ''
+                                                            ? styles.activeDot
+                                                            : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

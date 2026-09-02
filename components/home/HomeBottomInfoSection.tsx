@@ -5,12 +5,12 @@ import { Award, GraduationCap, Building2, Quote, ShieldCheck } from 'lucide-reac
 import styles from './HomeBottomInfoSection.module.css';
 
 const recruiters = [
-    { name: 'Sun Pharma', short: 'SUN' },
-    { name: "Dr. Reddy's", short: 'DRL' },
-    { name: 'Aurobindo', short: 'APL' },
-    { name: 'Omega Health', short: 'OH' },
-    { name: 'Cipla', short: 'CIP' },
-    { name: 'Hetero Drugs', short: 'HET' },
+    { name: 'Sun Pharma', logo: '/assets/logo/SP.png' },
+    { name: 'Omega Health', logo: '/assets/logo/OH.png' },
+    { name: 'Hetero Drugs', logo: '/assets/logo/HT.png' },
+    { name: "Dr. Reddy's", logo: '/assets/logo/DR.png' },
+    { name: 'Cipla', logo: '/assets/logo/CI.png' },
+    { name: 'Aurobindo', logo: '/assets/logo/Aurobindo.png' },
 ];
 
 export default function HomeBottomInfoSection() {
@@ -87,7 +87,6 @@ export default function HomeBottomInfoSection() {
                         }`}
                 >
                     <h3 className={styles.cardTitle}>Approvals &amp; Affiliations</h3>
-
                     <div className={styles.approvalList}>
                         <div className={styles.approvalItem}>
                             <div className={styles.approvalBadge}>
@@ -143,7 +142,7 @@ export default function HomeBottomInfoSection() {
                     </p>
                 </div>
 
-                {/* 2. Top Recruiters */}
+                {/* 2. Top Recruiters - Clean Square Logos Grid */}
                 <div
                     className={`${styles.card} ${isVisible ? styles.animateReveal2 : styles.hiddenState
                         }`}
@@ -154,15 +153,21 @@ export default function HomeBottomInfoSection() {
                     </div>
 
                     <p className={styles.recruitersDesc}>
-                        Our graduates are hired directly by leading multi-national pharmaceutical leaders and clinical CROs.
-                        Through continuous hospital rounds, industry-standard formulation laboratories, and rigorous placement training, our graduates consistently achieve top placement benchmarks across clinical analysis, pharmacovigilance, and global manufacturing operations.
+                        Our graduates are hired directly by leading multi-national pharmaceutical leaders and clinical CROs. Through continuous hospital rounds, industry-standard formulation laboratories, and rigorous placement training, our graduates consistently achieve top placement benchmarks across clinical analysis, pharmacovigilance, and global manufacturing operations.
                     </p>
 
-                    <div className={styles.recruiterGrid}>
+                    <div className={styles.recruiterSquareGrid}>
                         {recruiters.map((company, idx) => (
-                            <div key={idx} className={styles.recruiterPill}>
-                                <div className={styles.companyLogoIcon}>{company.short}</div>
-                                <span className={styles.recruiterName}>{company.name}</span>
+                            <div
+                                key={idx}
+                                className={styles.logoSquareCard}
+                                title={company.name}
+                            >
+                                <img
+                                    src={company.logo}
+                                    alt={company.name}
+                                    className={styles.squareLogoImg}
+                                />
                             </div>
                         ))}
                     </div>
@@ -179,7 +184,7 @@ export default function HomeBottomInfoSection() {
                     </div>
 
                     <p className={styles.quoteText}>
-                        &ldquo;Studying at Jagan&apos;s College of Pharmacy has given me extensive hands-on experience in advanced formulation laboratories and intensive bedside clinical hospital rounds. The rigorous career readiness programs, case study seminars, and placement training provided by our faculty have built my practical knowledge and confidence to excel in upcoming campus recruitment drives&rdquo;
+                        &ldquo;Studying at Jagan&apos;s College of Pharmacy has given me extensive hands-on experience in advanced formulation laboratories and intensive bedside clinical hospital rounds. The rigorous career readiness programs, case study seminars, and placement training provided by our faculty have built my practical knowledge and confidence to excel in upcoming campus recruitment drives.&rdquo;
                     </p>
 
                     <div className={styles.studentMeta}>
@@ -190,9 +195,7 @@ export default function HomeBottomInfoSection() {
                         />
                         <div>
                             <p className={styles.studentName}>Javangula Krishna Priya</p>
-                            <p className={styles.studentRole}>
-                                Pharm.D &bull; 4th Year Student
-                            </p>
+                            <p className={styles.studentRole}>Pharm.D &bull; 4th Year Student</p>
                         </div>
                     </div>
                 </div>

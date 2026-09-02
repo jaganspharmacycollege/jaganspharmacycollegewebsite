@@ -12,15 +12,15 @@ import styles from './BPharm.module.css';
 
 const overviewImages = [
     {
-        src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/Pharmaceutics_1.png',
         caption: 'Modern Analytical & Formulation Labs',
     },
     {
-        src: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/courses/pharmd3.png',
         caption: 'Pharmaceutical Chemistry & Research',
     },
     {
-        src: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/courses/pharmd4.png',
         caption: 'Industrial Compounding & Pill Formulation',
     },
 ];

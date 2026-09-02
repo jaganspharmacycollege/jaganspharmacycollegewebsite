@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -46,11 +45,9 @@ export default function EligibilityAndDocs() {
             },
             { threshold: 0.1 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
         return () => observer.disconnect();
     }, []);
 
@@ -59,15 +56,12 @@ export default function EligibilityAndDocs() {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
-
         const updateParallax = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
                 }
@@ -75,7 +69,6 @@ export default function EligibilityAndDocs() {
                     orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
                 }
             }
-
             animationFrameId = requestAnimationFrame(updateParallax);
         };
 
@@ -96,7 +89,6 @@ export default function EligibilityAndDocs() {
         <section ref={sectionRef} className={styles.section}>
             <div ref={orbLeftRef} className={styles.bgOrbLeft} />
             <div ref={orbRightRef} className={styles.bgOrbRight} />
-
             <div className={styles.container}>
                 {/* Card 1: Eligibility Criteria */}
                 <div
@@ -113,9 +105,7 @@ export default function EligibilityAndDocs() {
                                 <h3 className={styles.cardTitle}>Eligibility Criteria</h3>
                             </div>
                         </div>
-
                         <div className={styles.accentLine} />
-
                         <ul className={styles.criteriaList}>
                             <li className={styles.criteriaItem}>
                                 <CheckCircle2 size={16} className={styles.checkIcon} />
@@ -137,9 +127,8 @@ export default function EligibilityAndDocs() {
                             </li>
                         </ul>
                     </div>
-
                     <div className={styles.cardFooter}>
-                        <Link href="/admissions/eligibility" className={styles.viewBtn}>
+                        <Link href="/admissions/eligibility-criteria" className={styles.viewBtn}>
                             <span>Detailed Admission Norms</span>
                             <ArrowRight size={14} />
                         </Link>
@@ -161,9 +150,7 @@ export default function EligibilityAndDocs() {
                                 <h3 className={styles.cardTitle}>Required Documents</h3>
                             </div>
                         </div>
-
                         <div className={styles.accentLine} />
-
                         <ul className={styles.docList}>
                             {documents.map((doc, idx) => (
                                 <li key={idx} className={styles.docItem}>
@@ -192,9 +179,7 @@ export default function EligibilityAndDocs() {
                                 <h3 className={styles.timelineCardTitle}>Important Dates</h3>
                             </div>
                         </div>
-
                         <div className={styles.accentLineGold} />
-
                         <div className={styles.timelineList}>
                             <div className={styles.timelineConnector} />
                             {dates.map((item, idx) => (
@@ -210,9 +195,8 @@ export default function EligibilityAndDocs() {
                             ))}
                         </div>
                     </div>
-
                     <div className={styles.cardFooter}>
-                        <Link href="/admissions/apply" className={styles.applyBtn}>
+                        <Link href="/admissions/application-form" className={styles.applyBtn}>
                             <span>Start Application Form</span>
                             <Send size={14} className={styles.sendIcon} />
                         </Link>

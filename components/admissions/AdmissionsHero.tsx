@@ -5,10 +5,10 @@ import { GraduationCap, Award, Users, CheckCircle2 } from 'lucide-react';
 import styles from './AdmissionsHero.module.css';
 
 const admissionsHeroImages = [
-    'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1920&q=80',
+    '/assets/courses/pharmd1.png',
+    '/assets/courses/pharmd3.png',
+    '/assets/HomePageImages/CGS_events.png',
+    '/assets/Infra/Hostel_1.png',
 ];
 
 export default function AdmissionsHero() {

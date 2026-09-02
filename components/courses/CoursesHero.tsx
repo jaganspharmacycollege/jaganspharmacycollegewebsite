@@ -10,7 +10,7 @@ const courseSlides = [
         duration: '4 Years Undergraduate',
         focus: 'Pharmaceutical Chemistry, Analysis & Formulation Science',
         image:
-            '/assets/Infra/Pharmacognosy_1.png',
+            '/assets/courses/pharmd1.png',
     },
     {
         program: 'Pharm. D',

@@ -2,7 +2,7 @@ import React from 'react';
 import AdmissionsHero from '@/components/admissions/AdmissionsHero';
 import AdmissionProcess from '@/components/admissions/AdmissionProcess';
 import EligibilityAndDocs from '@/components/admissions/EligibilityAndDocs';
-import AdmissionsCTABanner from '@/components/admissions/AdmissionsCTABanner';
+//import AdmissionsCTABanner from '@/components/admissions/AdmissionsCTABanner';
 import AdmissionsFAQAndHelp from '@/components/admissions/AdmissionsFAQAndHelp';
 export default function AdmissionsPage() {
     return (
@@ -10,7 +10,7 @@ export default function AdmissionsPage() {
             <AdmissionsHero />
             <AdmissionProcess />
             <EligibilityAndDocs />
-            <AdmissionsCTABanner />
+            {/* <AdmissionsCTABanner /> */}
             <AdmissionsFAQAndHelp />
         </main>
     );

@@ -11,7 +11,7 @@ import styles from './SportsFacility.module.css';
 
 const sportsSlides = [
     {
-        src: '/assets/HomePageImages/CGS_sports.png',
+        src: '/assets/Infra/sports1.png',
         caption: 'Full-Size Athletic Grounds, Cricket Turf & Running Tracks',
     },
     {
@@ -19,7 +19,7 @@ const sportsSlides = [
         caption: 'Floodlit Outdoor Volleyball, Basketball & Tennis Courts',
     },
     {
-        src: '/assets/Infra/Infra_sports2.png',
+        src: '/assets/Infra/sports2.png',
         caption: 'Modern Equipped Gymnasium, Badminton Courts & Indoor Table Tennis Hub',
     },
 ];

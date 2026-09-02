@@ -12,15 +12,15 @@ import styles from './PharmD.module.css';
 
 const overviewImages = [
     {
-        src: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/courses/pharmd1.png',
         caption: 'Clinical Ward Postings & Patient Counseling',
     },
     {
-        src: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/courses/pharmd2.png',
         caption: 'Pharmacotherapy & Drug Monitoring',
     },
     {
-        src: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/courses/pharmd3.png',
         caption: 'Clinical Case Studies & Hospital Rotations',
     },
 ];

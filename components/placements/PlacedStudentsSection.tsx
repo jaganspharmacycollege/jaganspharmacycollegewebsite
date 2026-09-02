@@ -8,8 +8,6 @@ import {
     Calendar,
     CheckCircle2,
     Briefcase,
-    ChevronDown,
-    ChevronUp,
 } from 'lucide-react';
 import styles from './PlacedStudentsSection.module.css';
 
@@ -54,7 +52,7 @@ const allPlacedStudents: PlacedStudent[] = [
     },
     {
         name: 'M. Harish Kumar',
-        course: 'M.Pharm (Pharmaceutics)',
+        course: 'M. Pharm (Pharmaceutics)',
         batchYear: 'Passed Out: 2024',
         role: 'Formulation R&D Executive',
         company: 'Sun Pharma Advanced Research',
@@ -65,66 +63,15 @@ const allPlacedStudents: PlacedStudent[] = [
         imageUrl:
             'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=900&auto=format&fit=crop',
     },
-    {
-        name: 'T. Bhavana Reddy',
-        course: 'Pharm.D',
-        batchYear: 'Passed Out: 2024',
-        role: 'Medical Information Specialist',
-        company: 'Pfizer India Healthcare',
-        packageLPA: '₹8.2 LPA',
-        location: 'Chennai, India',
-        quote:
-            'The continuous clinical exposure and active mentorship from the pharmacy practice faculty prepared me seamlessly for top multinational healthcare roles.',
-        imageUrl:
-            'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=900&auto=format&fit=crop',
-    },
-    {
-        name: 'V. Rakesh Varma',
-        course: 'B.Pharm',
-        batchYear: 'Passed Out: 2024',
-        role: 'Quality Control Analytical Chemist',
-        company: 'Aurobindo Pharma',
-        packageLPA: '₹5.8 LPA',
-        location: 'Hyderabad, India',
-        quote:
-            'Campus placement training focused heavily on cGMP regulations, wet-lab protocols, and pharmacopoeia compliance which made technical rounds smooth.',
-        imageUrl:
-            'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=900&auto=format&fit=crop',
-    },
-    {
-        name: 'G. Sushma',
-        course: 'M.Pharm (Pharmacology)',
-        batchYear: 'Passed Out: 2023',
-        role: 'Regulatory Affairs Associate',
-        company: 'Hetero Drugs Limited',
-        packageLPA: '₹6.5 LPA',
-        location: 'Hyderabad, India',
-        quote:
-            "The dedicated faculty guidance during my master's thesis submission and dossier documentation opened direct pathways into corporate drug regulatory affairs.",
-        imageUrl:
-            'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=900&auto=format&fit=crop',
-    },
 ];
 
-const rowDelays = [
-    styles.rowDelay1,
-    styles.rowDelay2,
-    styles.rowDelay3,
-    styles.rowDelay4,
-    styles.rowDelay5,
-    styles.rowDelay6,
-];
+const rowDelays = [styles.rowDelay1, styles.rowDelay2, styles.rowDelay3];
 
 export default function PlacedStudentsSection() {
-    const [showAll, setShowAll] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
-
-    const displayedStudents = showAll
-        ? allPlacedStudents
-        : allPlacedStudents.slice(0, 3);
 
     // Repeating scroll-triggered entrance detection
     useEffect(() => {
@@ -198,19 +145,24 @@ export default function PlacedStudentsSection() {
                     <h2 className={styles.title}>Recently Placed Students</h2>
                     <div className={styles.accentLine} />
                     <p className={styles.descText}>
-                        Our graduates lead from the front, securing key positions across global clinical pharmacology units, R&amp;D centers, and pharmaceutical multinationals[cite: 18].
+                        Our graduates lead from the front, securing key positions across global clinical pharmacology units, R&amp;D centers, and pharmaceutical multinationals.
                     </p>
                 </div>
 
                 {/* Alternating Zigzag Rows */}
                 <div className={styles.rowsContainer}>
-                    {displayedStudents.map((student, index) => {
+                    {allPlacedStudents.map((student, index) => {
                         const isReversed = index % 2 === 1;
+                        const isHeroTheme = index % 2 === 0;
+
                         return (
                             <div
                                 key={student.name}
-                                className={`${styles.studentRow} ${isReversed ? styles.studentRowReverse : ''
-                                    } ${isVisible ? rowDelays[index % rowDelays.length] : styles.hiddenState}`}
+                                className={`${styles.studentRow} ${isHeroTheme ? styles.cardHeroTheme : styles.cardLight
+                                    } ${isReversed ? styles.studentRowReverse : ''} ${isVisible
+                                        ? rowDelays[index % rowDelays.length]
+                                        : styles.hiddenState
+                                    }`}
                             >
                                 {/* Information Column */}
                                 <div className={styles.infoWrapper}>
@@ -222,7 +174,9 @@ export default function PlacedStudentsSection() {
                                             <Calendar size={13} /> {student.batchYear}
                                         </span>
                                     </div>
+
                                     <h3 className={styles.studentName}>{student.name}</h3>
+
                                     <div className={styles.roleText}>
                                         <Briefcase size={16} />
                                         <span>{student.role}</span>
@@ -238,6 +192,7 @@ export default function PlacedStudentsSection() {
                                                 {student.company}
                                             </span>
                                         </div>
+
                                         <div className={styles.detailItem}>
                                             <span className={styles.detailLabel}>
                                                 <BadgePercent size={12} /> Offered Package
@@ -248,12 +203,14 @@ export default function PlacedStudentsSection() {
                                                 {student.packageLPA}
                                             </span>
                                         </div>
+
                                         <div className={styles.detailItem}>
                                             <span className={styles.detailLabel}>Work Location</span>
                                             <span className={styles.detailValue}>
                                                 {student.location}
                                             </span>
                                         </div>
+
                                         <div className={styles.detailItem}>
                                             <span className={styles.detailLabel}>Placement Type</span>
                                             <span className={styles.detailValue}>
@@ -264,9 +221,7 @@ export default function PlacedStudentsSection() {
 
                                     {/* Testimonial Quote */}
                                     <div className={styles.quoteBlock}>
-                                        <blockquote>
-                                            &ldquo;{student.quote}&rdquo;
-                                        </blockquote>
+                                        <blockquote>&ldquo;{student.quote}&rdquo;</blockquote>
                                     </div>
                                 </div>
 
@@ -278,28 +233,13 @@ export default function PlacedStudentsSection() {
                                         loading="lazy"
                                     />
                                     <div className={styles.verifiedPill}>
-                                        <CheckCircle2 size={13} /> Verified Offer
+                                        <CheckCircle2 size={13} />
+                                        Verified Offer
                                     </div>
                                 </div>
                             </div>
                         );
                     })}
-                </div>
-
-                {/* View All Toggle Button */}
-                <div
-                    className={`${styles.viewAllContainer} ${isVisible ? styles.animateToggleBtn : styles.hiddenState
-                        }`}
-                >
-                    <button
-                        onClick={() => setShowAll((prev) => !prev)}
-                        className={styles.viewAllBtn}
-                    >
-                        <span>
-                            {showAll ? 'Show Fewer Students' : 'View All Placed Students'}
-                        </span>
-                        {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                    </button>
                 </div>
             </div>
         </section>
