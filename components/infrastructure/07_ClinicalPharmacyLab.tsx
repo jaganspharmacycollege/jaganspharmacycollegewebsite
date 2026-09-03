@@ -11,15 +11,15 @@ import styles from './ClinicalPharmacyLab.module.css';
 
 const clinicalSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/cplab1.png',
         caption: 'Simulated Patient Counseling Cabins & Clinical Interaction Bays',
     },
     {
-        src: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/cplab2.png',
         caption: 'Drug Information Center (DIC) & Electronic Health Records Workstations',
     },
     {
-        src: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/cplab3.png',
         caption: 'Therapeutic Drug Monitoring (TDM) & Prescription Audit Units',
     },
 ];

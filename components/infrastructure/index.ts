@@ -6,7 +6,7 @@ export { default as PharmacologyLabs } from './05_PharmacologyLabs';
 export { default as PharmacognosyLabs } from './06_PharmacognosyLabs';
 export { default as ClinicalPharmacyLab } from './07_ClinicalPharmacyLab';
 export { default as ComputerLab } from './08_ComputerLab';
-export { default as CentralInstrumentationFacility } from './09_CentralInstrumentationFacility';
+export { default as AnimalHouse } from './09_AnimalHouse';
 export { default as Library } from './10_Library';
 export { default as SeminarHallAuditorium } from './11_SeminarHallAuditorium';
 export { default as HerbalGarden } from './12_HerbalGarden';

@@ -7,22 +7,22 @@ import styles from './AcademicsHero.module.css';
 const academicHeroSlides = [
     {
         image:
-            'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1920&q=80',
+            '/assets/Infra/Hostel_1.png',
         caption: 'Advanced Pharmaceutical Research & Formulation Labs',
     },
     {
         image:
-            'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1920&q=80',
+            '/assets/courses/pharmd1.png',
         caption: 'Hands-on Spectrophotometry & Instrumental Analysis',
     },
     {
         image:
-            'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80',
+            '/assets/Infra/office.png',
         caption: 'Interactive Smart Lecture Theatres & Collaborative Learning',
     },
     {
         image:
-            'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80',
+            '/assets/Infra/cplab1.png',
         caption: 'Doctoral Seminars, Case Studies & Clinical Discussions',
     },
 ];

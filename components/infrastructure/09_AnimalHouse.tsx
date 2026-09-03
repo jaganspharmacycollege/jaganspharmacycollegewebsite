@@ -4,44 +4,44 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
     Sparkles,
     Layers,
-    Gauge,
-    ScanSearch,
+    ShieldCheck,
+    Activity,
 } from 'lucide-react';
-import styles from './CentralInstrumentationFacility.module.css';
+import styles from './AnimalHouse.module.css';
 
-const cifSlides = [
+const animalHouseSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
-        caption: 'Quaternary Gradient HPLC Systems with Auto-Samplers & PDA Detectors',
+        src: '/assets/Infra/ah1.png',
+        caption: 'CPCSEA-Registered Clean Animal Housing & Quarantine Suites',
     },
     {
-        src: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
-        caption: 'Fourier Transform Infrared (FT-IR) & Double-Beam UV-Vis Spectrophotometers',
+        src: '/assets/Infra/ah3.png',
+        caption: 'Climate-Controlled Preclinical Screening & Physiological Recording Stations',
     },
     {
-        src: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1200&q=80',
-        caption: 'Climate-Controlled Clean Analytical Research Suite & Dissolution Stations',
+        src: '/assets/Infra/ah2.png',
+        caption: 'Isolated Breeding Bays & Ethical Experimental Surgery Theatres',
     },
 ];
 
 const features = [
     {
-        icon: Gauge,
-        title: 'HPLC Systems',
-        desc: 'Gradient HPLC units with UV-Vis and PDA detection.',
+        icon: ShieldCheck,
+        title: 'CPCSEA Approved',
+        desc: 'Strict adherence to national animal welfare protocols and IAEC ethics.',
         theme: styles.themeEmerald,
         animClass: styles.animDelay3,
     },
     {
-        icon: ScanSearch,
-        title: 'FTIR & UV-Vis',
-        desc: 'Infrared and spectrophotometric assay validation.',
+        icon: Activity,
+        title: 'Preclinical Research',
+        desc: 'Equipped for in-vivo screening, bioassays, and toxicological profiling.',
         theme: styles.themeAmber,
         animClass: styles.animDelay4,
     },
 ];
 
-export default function CentralInstrumentationFacility() {
+export default function AnimalHouse() {
     const [currentImgIdx, setCurrentImgIdx] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
@@ -51,7 +51,7 @@ export default function CentralInstrumentationFacility() {
     // Cinematic 5.0-second auto-cycling interval
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentImgIdx((prev) => (prev + 1) % cifSlides.length);
+            setCurrentImgIdx((prev) => (prev + 1) % animalHouseSlides.length);
         }, 5000);
         return () => clearInterval(timer);
     }, []);
@@ -64,11 +64,9 @@ export default function CentralInstrumentationFacility() {
             },
             { threshold: 0.1 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
         return () => observer.disconnect();
     }, []);
 
@@ -81,11 +79,9 @@ export default function CentralInstrumentationFacility() {
         const updateParallax = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
                 }
@@ -93,7 +89,6 @@ export default function CentralInstrumentationFacility() {
                     orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
                 }
             }
-
             animationFrameId = requestAnimationFrame(updateParallax);
         };
 
@@ -125,14 +120,14 @@ export default function CentralInstrumentationFacility() {
                                 }`}
                         >
                             <Sparkles size={14} className={styles.eyebrowIcon} />
-                            <span>Advanced Analytical Research</span>
+                            <span>Preclinical Research Center</span>
                         </div>
 
                         <h2
                             className={`${styles.title} ${isVisible ? styles.animateReveal2 : styles.hiddenState
                                 }`}
                         >
-                            Central Instrumentation Facility
+                            Animal House
                         </h2>
 
                         <div
@@ -144,7 +139,7 @@ export default function CentralInstrumentationFacility() {
                             className={`${styles.descText} ${isVisible ? styles.animateReveal4 : styles.hiddenState
                                 }`}
                         >
-                            A centralized, climate-controlled research core housing state-of-the-art analytical equipment supporting postgraduate theses, doctoral research, and industrial consultancy projects.
+                            A CPCSEA-registered, climate-regulated experimental facility designed with dedicated quarantine, breeding, and surgical procedure bays to support pharmacological evaluation and advanced toxicity studies.
                         </p>
 
                         {/* 2 Separated Feature Cards */}
@@ -176,12 +171,14 @@ export default function CentralInstrumentationFacility() {
                             }`}
                     >
                         <div className={styles.imageFrame}>
-                            {cifSlides.map((slide, idx) => (
+                            {animalHouseSlides.map((slide, idx) => (
                                 <img
                                     key={idx}
                                     src={slide.src}
                                     alt={slide.caption}
-                                    className={`${styles.carouselImg} ${idx === currentImgIdx ? styles.activeImg : styles.inactiveImg
+                                    className={`${styles.carouselImg} ${idx === currentImgIdx
+                                        ? styles.activeImg
+                                        : styles.inactiveImg
                                         }`}
                                 />
                             ))}
@@ -192,25 +189,26 @@ export default function CentralInstrumentationFacility() {
                             <div className={styles.badgesHeader}>
                                 <span className={styles.codeBadge}>
                                     <Layers size={13} className={styles.codeIcon} />
-                                    <span>CIF CORE LAB</span>
+                                    <span>ANIMAL HOUSE FACILITY</span>
                                 </span>
                                 <span className={styles.specBadge}>
-                                    Climate Controlled High Precision
+                                    CPCSEA &amp; IAEC Certified
                                 </span>
                             </div>
 
                             {/* Bottom Title / Caption Overlay & Sync Dots */}
                             <div className={styles.captionOverlay}>
                                 <h4 className={styles.captionText}>
-                                    {cifSlides[currentImgIdx].caption}
+                                    {animalHouseSlides[currentImgIdx].caption}
                                 </h4>
-
                                 <div className={styles.dotsWrapper}>
-                                    {cifSlides.map((_, dotIdx) => (
+                                    {animalHouseSlides.map((_, dotIdx) => (
                                         <button
                                             key={dotIdx}
                                             onClick={() => setCurrentImgIdx(dotIdx)}
-                                            className={`${styles.dot} ${dotIdx === currentImgIdx ? styles.activeDot : ''
+                                            className={`${styles.dot} ${dotIdx === currentImgIdx
+                                                ? styles.activeDot
+                                                : ''
                                                 }`}
                                             aria-label={`Go to slide ${dotIdx + 1}`}
                                         />

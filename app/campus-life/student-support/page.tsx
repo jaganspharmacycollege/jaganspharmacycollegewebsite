@@ -13,9 +13,8 @@ const supportList = [
         caption: 'One-on-One Academic, Research & Career Mentoring Framework',
         desc: 'One-on-one academic, research, and career mentoring assigned to every student from their first semester through graduation, fostering individual growth and guidance.',
         images: [
-            'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80',
+            '/assets/Infra/ment.png',
+            '/assets/HomePageImages/CGS_events.png',
         ],
         features: [
             {
@@ -36,9 +35,8 @@ const supportList = [
         caption: 'Confidential Mental Wellness & Professional Career Counseling',
         desc: 'Confidential professional counseling services to assist students with stress management, emotional balance, academic adjustment, and structured career planning.',
         images: [
-            'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+            '/assets/courses/pharmd1.png',
+            '/assets/HomePageImages/CGS_events.png',
         ],
         features: [
             {
@@ -59,9 +57,8 @@ const supportList = [
         caption: 'Focused Tutorial Sessions & Subject Mastery Programs',
         desc: 'Specialized doubt clearing and academic tutorial sessions designed to reinforce foundational concepts and provide tailored assistance for challenging subjects.',
         images: [
-            'https://images.unsplash.com/photo-1434030216411-06793f4b4173?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
+            '/assets/Infra/class1.png',
+            '/assets/Infra/class_sem.png',
         ],
         features: [
             {
@@ -218,8 +215,8 @@ export default function StudentSupportPage() {
                                                 src={imgSrc}
                                                 alt={`${item.title} Image ${imgIdx + 1}`}
                                                 className={`${styles.carouselImg} ${imgIdx === currentImgIdx
-                                                        ? styles.activeImg
-                                                        : styles.inactiveImg
+                                                    ? styles.activeImg
+                                                    : styles.inactiveImg
                                                     }`}
                                             />
                                         ))}
@@ -245,8 +242,8 @@ export default function StudentSupportPage() {
                                                             handleManualDotClick(sIdx, dotIdx)
                                                         }
                                                         className={`${styles.dot} ${dotIdx === currentImgIdx
-                                                                ? styles.activeDot
-                                                                : ''
+                                                            ? styles.activeDot
+                                                            : ''
                                                             }`}
                                                         aria-label={`Show image ${dotIdx + 1}`}
                                                     />

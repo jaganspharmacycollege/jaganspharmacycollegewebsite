@@ -11,15 +11,15 @@ import styles from './ComputerLab.module.css';
 
 const computerLabSlides = [
     {
-        src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/clab1.png',
         caption: 'High-Density Desktop Workstations & Gigabit Fiber Network',
     },
     {
-        src: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/clab2.png',
         caption: 'Molecular Docking & In Silico Drug Design Modeling Suite',
     },
     {
-        src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+        src: '/assets/Infra/clab3.png',
         caption: 'Biostatistics, SPSS Analytics & Digital Pharmacokinetics Lab',
     },
 ];

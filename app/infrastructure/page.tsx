@@ -8,7 +8,7 @@ import {
     PharmacognosyLabs,
     ClinicalPharmacyLab,
     ComputerLab,
-    CentralInstrumentationFacility,
+    AnimalHouse,
     Library,
     SeminarHallAuditorium,
     HerbalGarden,
@@ -44,7 +44,7 @@ export default function InfrastructurePage() {
             <ComputerLab />
 
             {/* 9. Central instrumentation facility */}
-            <CentralInstrumentationFacility />
+            <AnimalHouse />
 
             {/* 10. Library */}
             <Library />
