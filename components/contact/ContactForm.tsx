@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react';
 import { Send, ChevronDown } from 'lucide-react';
 import styles from './ContactForm.module.css';
@@ -12,10 +11,34 @@ export default function ContactForm() {
         course: '',
         message: '',
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form Submitted:', formData);
+        setIsSubmitting(true);
+        try {
+            const res = await fetch('/api/send-contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (res.ok) {
+                setSubmitted(true);
+                setFormData({
+                    name: '',
+                    mobile: '',
+                    email: '',
+                    course: '',
+                    message: '',
+                });
+            }
+        } catch (error) {
+            console.error('Error submitting contact form:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -26,69 +49,105 @@ export default function ContactForm() {
                 <div className={styles.accentLine} />
             </div>
 
-            <form onSubmit={handleSubmit} className={styles.form}>
-                {/* Row 1: Name & Mobile */}
-                <div className={styles.gridRow}>
-                    <input
-                        type="text"
-                        placeholder="Your Name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className={styles.input}
-                        required
-                    />
-                    <input
-                        type="tel"
-                        placeholder="Mobile Number"
-                        value={formData.mobile}
-                        onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                        className={styles.input}
-                        required
-                    />
-                </div>
-
-                {/* Row 2: Email */}
-                <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className={styles.input}
-                    required
-                />
-
-                {/* Row 3: Course Dropdown */}
-                <div className={styles.selectWrapper}>
-                    <select
-                        value={formData.course}
-                        onChange={(e) => setFormData({ ...formData, course: e.target.value })}
-                        className={`${styles.input} ${styles.select}`}
-                        required
+            {submitted ? (
+                <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
+                    <p style={{ color: '#059669', fontWeight: 700, fontSize: '0.95rem', margin: 0 }}>
+                        Message Sent Successfully!
+                    </p>
+                    <p style={{ color: '#6b7280', fontSize: '0.8rem', marginTop: '0.5rem' }}>
+                        Thank you for reaching out. We will get back to you shortly.
+                    </p>
+                    <button
+                        type="button"
+                        onClick={() => setSubmitted(false)}
+                        className={styles.submitBtn}
+                        style={{ marginTop: '1rem' }}
                     >
-                        <option value="" disabled>Select Course</option>
-                        <option value="b-pharm">B. Pharmacy</option>
-                        <option value="m-pharm">M. Pharmacy</option>
-                        <option value="pharm-d">Pharm. D</option>
-                        <option value="other">Other Inquiry</option>
-                    </select>
-                    <ChevronDown size={16} className={styles.selectIcon} />
+                        Send Another Message
+                    </button>
                 </div>
+            ) : (
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    {/* Row 1: Name & Mobile */}
+                    <div className={styles.gridRow}>
+                        <input
+                            type="text"
+                            placeholder="Your Name"
+                            value={formData.name}
+                            onChange={(e) =>
+                                setFormData({ ...formData, name: e.target.value })
+                            }
+                            className={styles.input}
+                            required
+                        />
+                        <input
+                            type="tel"
+                            placeholder="Mobile Number"
+                            value={formData.mobile}
+                            onChange={(e) =>
+                                setFormData({ ...formData, mobile: e.target.value })
+                            }
+                            className={styles.input}
+                            required
+                        />
+                    </div>
 
-                {/* Row 4: Message Textarea */}
-                <textarea
-                    rows={4}
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className={`${styles.textarea} resize-none`}
-                    required
-                />
+                    {/* Row 2: Email */}
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        value={formData.email}
+                        onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                        }
+                        className={styles.input}
+                        required
+                    />
 
-                {/* Submit Button */}
-                <button type="submit" className={styles.submitBtn}>
-                    Send Message <Send size={15} />
-                </button>
-            </form>
+                    {/* Row 3: Course Dropdown */}
+                    <div className={styles.selectWrapper}>
+                        <select
+                            value={formData.course}
+                            onChange={(e) =>
+                                setFormData({ ...formData, course: e.target.value })
+                            }
+                            className={`${styles.input} ${styles.select}`}
+                            required
+                        >
+                            <option value="" disabled>
+                                Select Course
+                            </option>
+                            <option value="b-pharm">B. Pharmacy</option>
+                            <option value="m-pharm">M. Pharmacy</option>
+                            <option value="pharm-d">Pharm. D</option>
+                            <option value="other">Other Inquiry</option>
+                        </select>
+                        <ChevronDown size={16} className={styles.selectIcon} />
+                    </div>
+
+                    {/* Row 4: Message Textarea */}
+                    <textarea
+                        rows={4}
+                        placeholder="Your Message"
+                        value={formData.message}
+                        onChange={(e) =>
+                            setFormData({ ...formData, message: e.target.value })
+                        }
+                        className={`${styles.textarea} resize-none`}
+                        required
+                    />
+
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={styles.submitBtn}
+                    >
+                        {isSubmitting ? 'Sending...' : 'Send Message'}{' '}
+                        <Send size={15} />
+                    </button>
+                </form>
+            )}
         </div>
     );
 }

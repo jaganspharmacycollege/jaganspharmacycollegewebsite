@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, CheckCircle2, Sparkles, Layers } from 'lucide-react';
 import styles from './AlumniRegistration.module.css';
@@ -21,11 +20,20 @@ const registrationSlides = [
 
 export default function AlumniRegistration() {
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [currentImgIdx, setCurrentImgIdx] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
+
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        course: '',
+        graduationYear: '',
+        designationCompany: '',
+    });
 
     // Cinematic 5.0-second auto-cycling interval
     useEffect(() => {
@@ -43,11 +51,9 @@ export default function AlumniRegistration() {
             },
             { threshold: 0.1 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
         return () => observer.disconnect();
     }, []);
 
@@ -56,42 +62,52 @@ export default function AlumniRegistration() {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
-
         const updateParallax = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
-                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
+                        }px, 0)`;
                 }
                 if (orbRightRef.current) {
-                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05
+                        }px, 0)`;
                 }
             }
-
             animationFrameId = requestAnimationFrame(updateParallax);
         };
-
         const handleScroll = () => {
             targetScroll = window.scrollY;
         };
-
         window.addEventListener('scroll', handleScroll, { passive: true });
         animationFrameId = requestAnimationFrame(updateParallax);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
+        setIsSubmitting(true);
+        try {
+            const res = await fetch('/api/send-alumni', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (res.ok) {
+                setSubmitted(true);
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -113,11 +129,12 @@ export default function AlumniRegistration() {
                                     key={idx}
                                     src={slide.src}
                                     alt={slide.caption}
-                                    className={`${styles.carouselImg} ${idx === currentImgIdx ? styles.activeImg : styles.inactiveImg
+                                    className={`${styles.carouselImg} ${idx === currentImgIdx
+                                        ? styles.activeImg
+                                        : styles.inactiveImg
                                         }`}
                                 />
                             ))}
-
                             <div className={styles.imageOverlay} />
 
                             {/* Top Amber Code Badges */}
@@ -136,7 +153,6 @@ export default function AlumniRegistration() {
                                 <h4 className={styles.captionText}>
                                     {registrationSlides[currentImgIdx].caption}
                                 </h4>
-
                                 <div className={styles.dotsWrapper}>
                                     {registrationSlides.map((_, dotIdx) => (
                                         <button
@@ -161,7 +177,6 @@ export default function AlumniRegistration() {
                             <Sparkles size={14} className={styles.eyebrowIcon} />
                             <span>Stay Connected</span>
                         </div>
-
                         <h2 className={styles.title}>Alumni Registration</h2>
                         <div className={styles.accentLine} />
 
@@ -183,6 +198,10 @@ export default function AlumniRegistration() {
                                         type="text"
                                         required
                                         placeholder="Your full name"
+                                        value={formData.fullName}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, fullName: e.target.value })
+                                        }
                                         className={styles.input}
                                     />
                                 </div>
@@ -193,17 +212,28 @@ export default function AlumniRegistration() {
                                         type="email"
                                         required
                                         placeholder="alumni@example.com"
+                                        value={formData.email}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, email: e.target.value })
+                                        }
                                         className={styles.input}
                                     />
                                 </div>
 
                                 <div className={styles.inputGroup}>
                                     <label className={styles.label}>Course Studied *</label>
-                                    <select required className={styles.select}>
+                                    <select
+                                        required
+                                        value={formData.course}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, course: e.target.value })
+                                        }
+                                        className={styles.select}
+                                    >
                                         <option value="">Select Course</option>
-                                        <option value="b-pharm">B. Pharm</option>
+                                        <option value="b-pharm">B.Pharm</option>
                                         <option value="pharm-d">Pharm.D</option>
-                                        <option value="m-pharm">M. Pharm</option>
+                                        <option value="m-pharm">M.Pharm</option>
                                     </select>
                                 </div>
 
@@ -213,22 +243,44 @@ export default function AlumniRegistration() {
                                         type="text"
                                         required
                                         placeholder="e.g. 2021"
+                                        value={formData.graduationYear}
+                                        onChange={(e) =>
+                                            setFormData({
+                                                ...formData,
+                                                graduationYear: e.target.value,
+                                            })
+                                        }
                                         className={styles.input}
                                     />
                                 </div>
 
                                 <div className={`${styles.inputGroup} ${styles.fullSpan}`}>
-                                    <label className={styles.label}>Current Designation &amp; Company</label>
+                                    <label className={styles.label}>
+                                        Current Designation &amp; Company
+                                    </label>
                                     <input
                                         type="text"
                                         placeholder="e.g. Senior Research Scientist at Cipla"
+                                        value={formData.designationCompany}
+                                        onChange={(e) =>
+                                            setFormData({
+                                                ...formData,
+                                                designationCompany: e.target.value,
+                                            })
+                                        }
                                         className={styles.input}
                                     />
                                 </div>
 
                                 <div className={styles.fullSpan}>
-                                    <button type="submit" className={styles.submitBtn}>
-                                        <span>Register Profile</span>
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className={styles.submitBtn}
+                                    >
+                                        <span>
+                                            {isSubmitting ? 'Registering...' : 'Register Profile'}
+                                        </span>
                                         <Send size={15} className={styles.btnIcon} />
                                     </button>
                                 </div>

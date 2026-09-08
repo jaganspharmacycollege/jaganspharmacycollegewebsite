@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
@@ -21,10 +20,29 @@ export default function HomeCoursesEnquirySection() {
     const [activeTab, setActiveTab] = useState<'enquiry' | 'recruitment'>('enquiry');
     const [enquirySubmitted, setEnquirySubmitted] = useState(false);
     const [recruitmentSubmitted, setRecruitmentSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
+
+    // Form states
+    const [enquiryForm, setEnquiryForm] = useState({
+        name: '',
+        mobile: '',
+        email: '',
+        course: '',
+        message: '',
+    });
+
+    const [recruitmentForm, setRecruitmentForm] = useState({
+        name: '',
+        mobile: '',
+        email: '',
+        position: '',
+        qualification: '',
+        experience: '',
+    });
 
     // Repeating scroll-triggered entrance detection
     useEffect(() => {
@@ -34,11 +52,9 @@ export default function HomeCoursesEnquirySection() {
             },
             { threshold: 0.1 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
         return () => observer.disconnect();
     }, []);
 
@@ -47,15 +63,12 @@ export default function HomeCoursesEnquirySection() {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
-
         const updateParallax = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
                         }px, 0)`;
@@ -65,38 +78,62 @@ export default function HomeCoursesEnquirySection() {
                         }px, 0)`;
                 }
             }
-
             animationFrameId = requestAnimationFrame(updateParallax);
+            targetScroll = window.scrollY;
         };
-
         const handleScroll = () => {
             targetScroll = window.scrollY;
         };
-
         window.addEventListener('scroll', handleScroll, { passive: true });
         animationFrameId = requestAnimationFrame(updateParallax);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
-    const handleEnquirySubmit = (e: React.FormEvent) => {
+    const handleEnquirySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setEnquirySubmitted(true);
+        setIsSubmitting(true);
+        try {
+            const res = await fetch('/api/send-enquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ formType: 'enquiry', ...enquiryForm }),
+            });
+            if (res.ok) {
+                setEnquirySubmitted(true);
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
-    const handleRecruitmentSubmit = (e: React.FormEvent) => {
+    const handleRecruitmentSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setRecruitmentSubmitted(true);
+        setIsSubmitting(true);
+        try {
+            const res = await fetch('/api/send-enquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ formType: 'recruitment', ...recruitmentForm }),
+            });
+            if (res.ok) {
+                setRecruitmentSubmitted(true);
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <section ref={sectionRef} className={styles.section}>
             <div ref={orbLeftRef} className={styles.bgOrbLeft} />
             <div ref={orbRightRef} className={styles.bgOrbRight} />
-
             <div className={styles.container}>
                 <div
                     className={`${styles.topHeading} ${isVisible ? styles.animateReveal1 : styles.hiddenState
@@ -104,7 +141,6 @@ export default function HomeCoursesEnquirySection() {
                 >
                     <span className={styles.eyebrow}>Our Academic Programs</span>
                 </div>
-
                 <div className={styles.mainLayout}>
                     {/* Left Column: 3 Course Cards + Bottom Trust/Action Banner */}
                     <div className={styles.leftColumn}>
@@ -196,9 +232,7 @@ export default function HomeCoursesEnquirySection() {
                                     <p className={styles.trustSubtitle}>Affiliated to JNTUA Anantapur</p>
                                 </div>
                             </div>
-
                             <div className={styles.trustDivider} />
-
                             <div className={styles.trustItem}>
                                 <div className={styles.trustIconWrap}>
                                     <Award size={18} />
@@ -208,11 +242,12 @@ export default function HomeCoursesEnquirySection() {
                                     <p className={styles.trustSubtitle}>100% Placement &amp; Lab Training</p>
                                 </div>
                             </div>
-
                             <div className={styles.trustDivider} />
-
                             <div className={styles.trustAction}>
-                                <Link href="/admissions/eligibility-criteria" className={styles.trustCtaBtn}>
+                                <Link
+                                    href="/admissions/eligibility-criteria"
+                                    className={styles.trustCtaBtn}
+                                >
                                     <FileText size={15} />
                                     <span>Eligibility Criteria</span>
                                     <ArrowRight size={13} />
@@ -258,7 +293,6 @@ export default function HomeCoursesEnquirySection() {
                                 <p className={styles.enquirySubtitle}>
                                     Get immediate admission guidance and fee breakdown.
                                 </p>
-
                                 {enquirySubmitted ? (
                                     <div className={styles.successBox}>
                                         <CheckCircle2 size={38} className={styles.successIcon} />
@@ -272,21 +306,40 @@ export default function HomeCoursesEnquirySection() {
                                             type="text"
                                             required
                                             placeholder="Your Name"
+                                            value={enquiryForm.name}
+                                            onChange={(e) =>
+                                                setEnquiryForm({ ...enquiryForm, name: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
                                         <input
                                             type="tel"
                                             required
                                             placeholder="Mobile Number"
+                                            value={enquiryForm.mobile}
+                                            onChange={(e) =>
+                                                setEnquiryForm({ ...enquiryForm, mobile: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
                                         <input
                                             type="email"
                                             required
                                             placeholder="Email Address"
+                                            value={enquiryForm.email}
+                                            onChange={(e) =>
+                                                setEnquiryForm({ ...enquiryForm, email: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
-                                        <select required className={styles.select} defaultValue="">
+                                        <select
+                                            required
+                                            className={styles.select}
+                                            value={enquiryForm.course}
+                                            onChange={(e) =>
+                                                setEnquiryForm({ ...enquiryForm, course: e.target.value })
+                                            }
+                                        >
                                             <option value="" disabled>
                                                 Select Course
                                             </option>
@@ -297,10 +350,18 @@ export default function HomeCoursesEnquirySection() {
                                         <textarea
                                             rows={3}
                                             placeholder="Your Message"
+                                            value={enquiryForm.message}
+                                            onChange={(e) =>
+                                                setEnquiryForm({ ...enquiryForm, message: e.target.value })
+                                            }
                                             className={styles.textarea}
                                         />
-                                        <button type="submit" className={styles.btnSubmit}>
-                                            <span>Submit Enquiry</span>
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className={styles.btnSubmit}
+                                        >
+                                            <span>{isSubmitting ? 'Submitting...' : 'Submit Enquiry'}</span>
                                             <Send size={13} className={styles.btnSendIcon} />
                                         </button>
                                     </form>
@@ -318,7 +379,6 @@ export default function HomeCoursesEnquirySection() {
                                 <p className={styles.enquirySubtitle}>
                                     Join our academic faculty or administrative team.
                                 </p>
-
                                 {recruitmentSubmitted ? (
                                     <div className={styles.successBox}>
                                         <CheckCircle2 size={38} className={styles.successIcon} />
@@ -332,21 +392,40 @@ export default function HomeCoursesEnquirySection() {
                                             type="text"
                                             required
                                             placeholder="Full Name"
+                                            value={recruitmentForm.name}
+                                            onChange={(e) =>
+                                                setRecruitmentForm({ ...recruitmentForm, name: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
                                         <input
                                             type="tel"
                                             required
                                             placeholder="Mobile Number"
+                                            value={recruitmentForm.mobile}
+                                            onChange={(e) =>
+                                                setRecruitmentForm({ ...recruitmentForm, mobile: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
                                         <input
                                             type="email"
                                             required
                                             placeholder="Email Address"
+                                            value={recruitmentForm.email}
+                                            onChange={(e) =>
+                                                setRecruitmentForm({ ...recruitmentForm, email: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
-                                        <select required className={styles.select} defaultValue="">
+                                        <select
+                                            required
+                                            className={styles.select}
+                                            value={recruitmentForm.position}
+                                            onChange={(e) =>
+                                                setRecruitmentForm({ ...recruitmentForm, position: e.target.value })
+                                            }
+                                        >
                                             <option value="" disabled>
                                                 Position Applied For
                                             </option>
@@ -359,15 +438,33 @@ export default function HomeCoursesEnquirySection() {
                                         <input
                                             type="text"
                                             placeholder="Highest Qualification (e.g., M.Pharm, Ph.D)"
+                                            value={recruitmentForm.qualification}
+                                            onChange={(e) =>
+                                                setRecruitmentForm({
+                                                    ...recruitmentForm,
+                                                    qualification: e.target.value,
+                                                })
+                                            }
                                             className={styles.input}
                                         />
                                         <textarea
                                             rows={2}
                                             placeholder="Brief Experience & Cover Note"
+                                            value={recruitmentForm.experience}
+                                            onChange={(e) =>
+                                                setRecruitmentForm({
+                                                    ...recruitmentForm,
+                                                    experience: e.target.value,
+                                                })
+                                            }
                                             className={styles.textarea}
                                         />
-                                        <button type="submit" className={styles.btnSubmit}>
-                                            <span>Submit Application</span>
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className={styles.btnSubmit}
+                                        >
+                                            <span>{isSubmitting ? 'Submitting...' : 'Submit Application'}</span>
                                             <Send size={13} className={styles.btnSendIcon} />
                                         </button>
                                     </form>

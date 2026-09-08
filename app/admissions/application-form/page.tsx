@@ -1,19 +1,44 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
 import styles from './ApplicationFormPage.module.css';
 
 export default function ApplicationFormPage() {
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [formData, setFormData] = useState({
+        fullName: '',
+        guardianName: '',
+        phone: '',
+        email: '',
+        program: '',
+        entranceRank: '',
+        address: '',
+    });
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
+        setIsSubmitting(true);
+        try {
+            const res = await fetch('/api/send-application', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (res.ok) {
+                setSubmitted(true);
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Repeating scroll-triggered entrance detection
@@ -24,11 +49,9 @@ export default function ApplicationFormPage() {
             },
             { threshold: 0.1 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
         return () => observer.disconnect();
     }, []);
 
@@ -37,15 +60,12 @@ export default function ApplicationFormPage() {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
-
         const updateParallax = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
                         }px, 0)`;
@@ -55,17 +75,13 @@ export default function ApplicationFormPage() {
                         }px, 0)`;
                 }
             }
-
             animationFrameId = requestAnimationFrame(updateParallax);
         };
-
         const handleScroll = () => {
             targetScroll = window.scrollY;
         };
-
         window.addEventListener('scroll', handleScroll, { passive: true });
         animationFrameId = requestAnimationFrame(updateParallax);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
@@ -119,6 +135,10 @@ export default function ApplicationFormPage() {
                                     type="text"
                                     required
                                     placeholder="Enter student's full name"
+                                    value={formData.fullName}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, fullName: e.target.value })
+                                    }
                                     className={styles.input}
                                 />
                             </div>
@@ -133,6 +153,10 @@ export default function ApplicationFormPage() {
                                     type="text"
                                     required
                                     placeholder="Enter guardian name"
+                                    value={formData.guardianName}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, guardianName: e.target.value })
+                                    }
                                     className={styles.input}
                                 />
                             </div>
@@ -147,6 +171,10 @@ export default function ApplicationFormPage() {
                                     type="tel"
                                     required
                                     placeholder="+91 98765 43210"
+                                    value={formData.phone}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, phone: e.target.value })
+                                    }
                                     className={styles.input}
                                 />
                             </div>
@@ -161,6 +189,10 @@ export default function ApplicationFormPage() {
                                     type="email"
                                     required
                                     placeholder="student@example.com"
+                                    value={formData.email}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, email: e.target.value })
+                                    }
                                     className={styles.input}
                                 />
                             </div>
@@ -171,19 +203,20 @@ export default function ApplicationFormPage() {
                                     }`}
                             >
                                 <label className={styles.label}>Program Applying For *</label>
-                                <select required defaultValue="" className={styles.select}>
+                                <select
+                                    required
+                                    value={formData.program}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, program: e.target.value })
+                                    }
+                                    className={styles.select}
+                                >
                                     <option value="" disabled>
                                         Select Course
                                     </option>
-                                    <option value="b-pharm">
-                                        Bachelor of Pharmacy (B.Pharm)
-                                    </option>
-                                    <option value="pharm-d">
-                                        Doctor of Pharmacy (Pharm.D)
-                                    </option>
-                                    <option value="m-pharm">
-                                        Master of Pharmacy (M.Pharm)
-                                    </option>
+                                    <option value="b-pharm">Bachelor of Pharmacy (B.Pharm)</option>
+                                    <option value="pharm-d">Doctor of Pharmacy (Pharm.D)</option>
+                                    <option value="m-pharm">Master of Pharmacy (M.Pharm)</option>
                                 </select>
                             </div>
 
@@ -199,6 +232,10 @@ export default function ApplicationFormPage() {
                                     type="text"
                                     required
                                     placeholder="e.g. AP EAPCET Rank: 14250 or 85%"
+                                    value={formData.entranceRank}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, entranceRank: e.target.value })
+                                    }
                                     className={styles.input}
                                 />
                             </div>
@@ -212,6 +249,10 @@ export default function ApplicationFormPage() {
                                 <textarea
                                     rows={4}
                                     placeholder="Enter your full residential address"
+                                    value={formData.address}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, address: e.target.value })
+                                    }
                                     className={styles.textarea}
                                 />
                             </div>
@@ -221,8 +262,14 @@ export default function ApplicationFormPage() {
                                 className={`${styles.fullSpan} ${isVisible ? styles.animDelay6 : styles.hiddenState
                                     }`}
                             >
-                                <button type="submit" className={styles.submitBtn}>
-                                    <span>Submit Application</span>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className={styles.submitBtn}
+                                >
+                                    <span>
+                                        {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                                    </span>
                                     <Send size={15} className={styles.sendIcon} />
                                 </button>
                             </div>

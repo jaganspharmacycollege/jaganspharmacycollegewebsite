@@ -1,19 +1,49 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
-import { MapPin, Mail, Phone, Send, CheckCircle2 } from 'lucide-react';
+import { MapPin, Mail, Send, CheckCircle2 } from 'lucide-react';
 import styles from './ContactSection.module.css';
 
 export default function ContactSection() {
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        course: '',
+        message: '',
+    });
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setSubmitted(true);
+        setIsSubmitting(true);
+        try {
+            const res = await fetch('/api/send-contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (res.ok) {
+                setSubmitted(true);
+                setFormData({
+                    name: '',
+                    phone: '',
+                    email: '',
+                    course: '',
+                    message: '',
+                });
+            }
+        } catch (error) {
+            console.error('Error submitting contact form:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Repeating scroll-triggered entrance detection
@@ -24,11 +54,9 @@ export default function ContactSection() {
             },
             { threshold: 0.1 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
         return () => observer.disconnect();
     }, []);
 
@@ -37,15 +65,12 @@ export default function ContactSection() {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
-
         const updateParallax = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
                         }px, 0)`;
@@ -55,17 +80,13 @@ export default function ContactSection() {
                         }px, 0)`;
                 }
             }
-
             animationFrameId = requestAnimationFrame(updateParallax);
         };
-
         const handleScroll = () => {
             targetScroll = window.scrollY;
         };
-
         window.addEventListener('scroll', handleScroll, { passive: true });
         animationFrameId = requestAnimationFrame(updateParallax);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
@@ -77,7 +98,6 @@ export default function ContactSection() {
             {/* Ambient Parallax Lighting Glows */}
             <div ref={orbLeftRef} className={styles.bgOrbLeft} />
             <div ref={orbRightRef} className={styles.bgOrbRight} />
-
             <div className={styles.container}>
                 {/* 1. Contact Us Heading */}
                 <div
@@ -88,10 +108,12 @@ export default function ContactSection() {
                     <h1 className={styles.title}>Contact Us</h1>
                     <div className={styles.accentLine} />
                     <p className={styles.descText}>
-                        Have questions about admissions, courses, or campus visits? Reach out to our administrative and academic office directly.
+                        Have questions about admissions, courses, or campus visits? Reach
+                        out to our administrative and academic office directly.
                     </p>
                 </div>
 
+                {/* Main Grid Layout */}
                 <div className={styles.mainGrid}>
                     {/* Left Column: College Address, Email, and Google Map */}
                     <div
@@ -126,25 +148,25 @@ export default function ContactSection() {
                                     <p className={styles.infoLabel}>Communication</p>
                                     <h3 className={styles.infoTitle}>Email &amp; Phone</h3>
                                     <p className={styles.infoText}>
-                                        <strong>Official Email:</strong>{' '}
+                                        <strong>Official Email: </strong>
                                         <a
-                                            href="mailto:info@jaganspharmacy.edu.in"
+                                            href="mailto:principal.jcp@gmail.com"
                                             className={styles.link}
                                         >
-                                            info@jaganspharmacy.edu.in
+                                            principal.jcp@gmail.com
                                         </a>
                                     </p>
                                     <p className={styles.infoText}>
-                                        <strong>Admissions Desk:</strong>{' '}
+                                        <strong>Admissions Desk: </strong>
                                         <a
-                                            href="mailto:admissions@jaganspharmacy.edu.in"
+                                            href="mailto:admissions.jcp@gmail.com"
                                             className={styles.link}
                                         >
-                                            admissions@jaganspharmacy.edu.in
+                                            admissions.jcp@gmail.com
                                         </a>
                                     </p>
                                     <p className={`${styles.infoText} ${styles.mt1}`}>
-                                        <strong>Phone:</strong> +91 861 2345678 / +91 98765 43210
+                                        <strong>Phone:</strong> +91 7680077726 / +91 7680077726
                                     </p>
                                 </div>
                             </div>
@@ -170,13 +192,13 @@ export default function ContactSection() {
                     >
                         {submitted ? (
                             <div className={styles.successMessage}>
-                                <CheckCircle2
-                                    size={48}
-                                    className={styles.successIcon}
-                                />
-                                <h3 className={styles.formTitle}>Thank You for Reaching Out!</h3>
+                                <CheckCircle2 size={48} className={styles.successIcon} />
+                                <h3 className={styles.formTitle}>
+                                    Thank You for Reaching Out!
+                                </h3>
                                 <p className={styles.infoText}>
-                                    Your enquiry has been received successfully. Our admission team will contact you shortly.
+                                    Your enquiry has been received successfully. Our admission team
+                                    will contact you shortly.
                                 </p>
                                 <button
                                     type="button"
@@ -194,7 +216,8 @@ export default function ContactSection() {
                             <div>
                                 <h2 className={styles.formTitle}>Enquiry Form</h2>
                                 <p className={styles.formSub}>
-                                    Please fill out the form below for admission or general inquiries.
+                                    Please fill out the form below for admission or general
+                                    inquiries.
                                 </p>
                                 <form onSubmit={handleSubmit} className={styles.formGrid}>
                                     <div className={styles.inputGroup}>
@@ -203,53 +226,88 @@ export default function ContactSection() {
                                             type="text"
                                             required
                                             placeholder="Enter your name"
+                                            value={formData.name}
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, name: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
                                     </div>
+
                                     <div className={styles.inputGroup}>
                                         <label className={styles.label}>Phone Number *</label>
                                         <input
                                             type="tel"
                                             required
                                             placeholder="+91 98765 43210"
+                                            value={formData.phone}
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, phone: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
                                     </div>
+
                                     <div className={`${styles.inputGroup} ${styles.fullSpan}`}>
                                         <label className={styles.label}>Email Address *</label>
                                         <input
                                             type="email"
                                             required
                                             placeholder="your.email@example.com"
+                                            value={formData.email}
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, email: e.target.value })
+                                            }
                                             className={styles.input}
                                         />
                                     </div>
+
                                     <div className={`${styles.inputGroup} ${styles.fullSpan}`}>
                                         <label className={styles.label}>Course of Interest *</label>
-                                        <select required className={styles.select}>
+                                        <select
+                                            required
+                                            value={formData.course}
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, course: e.target.value })
+                                            }
+                                            className={styles.select}
+                                        >
                                             <option value="">Select Course</option>
                                             <option value="b-pharm">
                                                 Bachelor of Pharmacy (B.Pharm)
                                             </option>
-                                            <option value="pharm-d">Doctor of Pharmacy (Pharm.D)</option>
+                                            <option value="pharm-d">
+                                                Doctor of Pharmacy (Pharm.D)
+                                            </option>
                                             <option value="m-pharm">
                                                 Master of Pharmacy (M.Pharm)
                                             </option>
                                             <option value="general">General Inquiry</option>
                                         </select>
                                     </div>
+
                                     <div className={`${styles.inputGroup} ${styles.fullSpan}`}>
                                         <label className={styles.label}>Message / Questions *</label>
                                         <textarea
                                             required
                                             rows={4}
                                             placeholder="How can we assist you?"
+                                            value={formData.message}
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, message: e.target.value })
+                                            }
                                             className={styles.textarea}
                                         />
                                     </div>
+
                                     <div className={styles.fullSpan}>
-                                        <button type="submit" className={styles.submitBtn}>
-                                            Submit Enquiry <Send size={15} />
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className={styles.submitBtn}
+                                        >
+                                            {isSubmitting ? 'Sending...' : 'Submit Enquiry'}{' '}
+                                            <Send size={15} />
                                         </button>
                                     </div>
                                 </form>
