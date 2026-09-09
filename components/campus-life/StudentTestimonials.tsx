@@ -31,7 +31,7 @@ const testimonials = [
         name: 'Sreeja P.',
         role: 'M. Pharmacy I Year',
         image:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
+            '/assets/HomePageImages/student3.png',
         theme: styles.themePurple,
         animClass: styles.animDelay3,
     },
