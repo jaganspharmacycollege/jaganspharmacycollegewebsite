@@ -26,7 +26,7 @@ export default function Footer() {
                             <Mail size={18} />
                         </div>
                         <div>
-                            <p className={styles.contactLabel}>Official Inquiries</p>
+                            <p className={styles.contactLabel}>Official Enquiries</p>
                             <p className={styles.contactValue}>principal.jcp@gmail.com</p>
                         </div>
                     </a>
