@@ -128,10 +128,7 @@ export default function AboutLeadershipSection() {
                                         className={styles.leaderImg}
                                     />
                                 </div>
-                                <div className={styles.leaderBadge}>
-                                    <Award size={14} />
-                                    <span>Leadership</span>
-                                </div>
+
                             </div>
 
                             <div className={styles.contentWrapper}>

@@ -208,7 +208,7 @@ export default function HomeHeroSection() {
                 >
                     <div className={styles.admissionContactHeader}>
                         <Phone size={14} className={styles.phoneHeaderIcon} />
-                        <span>Contact For Admissions (2026-2027) &amp; Inquiries</span>
+                        <span>Contact For Admissions (2026-2027) &amp; Enquiries</span>
                     </div>
 
                     <div className={styles.admissionNumbersGrid}>

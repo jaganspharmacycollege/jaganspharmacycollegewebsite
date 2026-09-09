@@ -21,7 +21,7 @@ const courses = [
         description:
             'A foundational undergraduate degree covering medicinal chemistry, pharmacology, pharmaceutical engineering, and formulation design.',
         image:
-            '/assets/courses/pharmd2.png',
+            '/assets/Infra/Pharmaceutics_1.png',
         href: '/courses/b-pharm',
         iconTheme: styles.iconThemeEmerald,
         animClass: styles.animDelay1,
@@ -49,7 +49,7 @@ const courses = [
         description:
             'Advanced specialized research in Pharmaceutics, Pharmacology, and Novel Drug Delivery Systems with dissertations.',
         image:
-            '/assets/courses/pharmd3.png',
+            '/assets/courses/mpharm1.png',
         href: '/courses/m-pharm',
         iconTheme: styles.iconThemeAmber,
         animClass: styles.animDelay3,

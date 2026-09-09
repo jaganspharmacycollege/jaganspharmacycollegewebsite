@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import {
     FlaskConical,
@@ -19,11 +18,11 @@ const overviewImages = [
         caption: 'Advanced Spectrophotometry & HPLC Analytics',
     },
     {
-        src: '/assets/courses/pharmd2.png',
+        src: '/assets/courses/mpharm1.png',
         caption: 'Novel Drug Delivery Systems (NDDS) Formulation',
     },
     {
-        src: '/assets/courses/pharmd1.png',
+        src: '/assets/courses/mpharm2.png',
         caption: 'Molecular Pharmacology & Preclinical Screening',
     },
 ];
@@ -32,7 +31,6 @@ const specializations = [
     {
         icon: FlaskConical,
         title: 'Pharmaceutics',
-        tag: 'Novel Drug Delivery',
         desc: 'Focuses on novel drug delivery systems (NDDS), nanomedicine, industrial formulation optimization, and bioavailability enhancement.',
         theme: styles.themeEmerald,
         animClass: styles.animDelay1,
@@ -40,7 +38,6 @@ const specializations = [
     {
         icon: Microscope,
         title: 'Pharmaceutical Analysis',
-        tag: 'Instrumentation & QC',
         desc: 'Advanced training in spectroscopic methods, HPLC, mass spectrometry, analytical method development, and regulatory validation.',
         theme: styles.themeAmber,
         animClass: styles.animDelay2,
@@ -48,10 +45,16 @@ const specializations = [
     {
         icon: Sparkles,
         title: 'Pharmacology',
-        tag: 'Preclinical Screening',
         desc: 'In-depth molecular pharmacology, preclinical screening models, toxicological evaluations, and neuropharmacology.',
         theme: styles.themePurple,
         animClass: styles.animDelay3,
+    },
+    {
+        icon: TestTube2,
+        title: 'Pharmaceutical Chemistry',
+        desc: 'Specialized focus on computer-aided drug design (CADD), organic medicinal synthesis, molecular modeling, and active compound characterization.',
+        theme: styles.themeEmerald,
+        animClass: styles.animDelay1,
     },
 ];
 
@@ -113,11 +116,9 @@ export default function MPharmPage() {
             },
             { threshold: 0.1 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
         return () => observer.disconnect();
     }, []);
 
@@ -126,15 +127,12 @@ export default function MPharmPage() {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
-
         const updateParallax = () => {
             if (!sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
                         }px, 0)`;
@@ -144,17 +142,13 @@ export default function MPharmPage() {
                         }px, 0)`;
                 }
             }
-
             animationFrameId = requestAnimationFrame(updateParallax);
         };
-
         const handleScroll = () => {
             targetScroll = window.scrollY;
         };
-
         window.addEventListener('scroll', handleScroll, { passive: true });
         animationFrameId = requestAnimationFrame(updateParallax);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
@@ -173,12 +167,12 @@ export default function MPharmPage() {
                         }`}
                 >
                     <span className={styles.eyebrow}>Postgraduate Master Degree</span>
-                    <h1 className={styles.title}>
-                        Master of Pharmacy (M. Pharm)
-                    </h1>
+                    <h1 className={styles.title}>Master of Pharmacy (M. Pharm)</h1>
                     <div className={styles.accentLine} />
                     <p className={styles.headerSub}>
-                        A research-intensive 2-year postgraduate program tailored for advanced pharmaceutical R&amp;D, analytical instrumentation, molecular pharmacology, and academic leadership.
+                        A research-intensive 2-year postgraduate program tailored for
+                        advanced pharmaceutical R&amp;D, analytical instrumentation,
+                        molecular pharmacology, and academic leadership.
                     </p>
                 </div>
 
@@ -196,9 +190,12 @@ export default function MPharmPage() {
                             Cutting-Edge Research &amp; Industry Specializations
                         </h2>
                         <p className={styles.descText}>
-                            Our Master of Pharmacy (M. Pharm) offers specialized 2-year postgraduate degrees affiliated with JNTUA and approved by AICTE. Backed by state-of-the-art analytical equipment and funded research projects, students complete rigorous dissertations and publish in high-impact international journals.
+                            Our Master of Pharmacy (M. Pharm) offers specialized 2-year
+                            postgraduate degrees affiliated with JNTUA and approved by AICTE.
+                            Backed by state-of-the-art analytical equipment and funded research
+                            projects, students complete rigorous dissertations and publish in
+                            high-impact international journals.
                         </p>
-
                         <div className={styles.highlightsList}>
                             <div className={styles.highlightItem}>
                                 <CheckCircle2 size={16} className={styles.checkIcon} />
@@ -227,8 +224,8 @@ export default function MPharmPage() {
                                 src={item.src}
                                 alt={item.caption}
                                 className={`${styles.overviewImage} ${idx === currentImgIdx
-                                    ? styles.activeImg
-                                    : styles.inactiveImg
+                                        ? styles.activeImg
+                                        : styles.inactiveImg
                                     }`}
                             />
                         ))}
@@ -261,11 +258,8 @@ export default function MPharmPage() {
                             }`}
                     >
                         <span className={styles.innerEyebrow}>Areas of Specialization</span>
-                        <h2 className={styles.innerTitle}>
-                            Postgraduate Disciplines
-                        </h2>
+                        <h2 className={styles.innerTitle}>Postgraduate Disciplines</h2>
                     </div>
-
                     <div className={styles.specializationsGrid}>
                         {specializations.map((spec, idx) => {
                             const Icon = spec.icon;
@@ -279,7 +273,6 @@ export default function MPharmPage() {
                                         <div className={`${styles.iconSquircle} ${spec.theme}`}>
                                             <Icon size={26} strokeWidth={2} />
                                         </div>
-                                        <span className={styles.specTag}>{spec.tag}</span>
                                     </div>
                                     <h3 className={styles.specTitle}>{spec.title}</h3>
                                     <p className={styles.specDesc}>{spec.desc}</p>
@@ -300,7 +293,6 @@ export default function MPharmPage() {
                             Dedicated Research Departments
                         </h2>
                     </div>
-
                     <div className={styles.deptGrid}>
                         {departments.map((dept, idx) => {
                             const DeptIcon = dept.icon;
@@ -318,7 +310,7 @@ export default function MPharmPage() {
                                     </div>
                                     <div className={styles.deptBody}>
                                         <p className={styles.deptFocus}>
-                                            <strong>Core Focus:</strong> {dept.focus}
+                                            <strong>Core Focus: </strong> {dept.focus}
                                         </p>
                                         <p className={styles.deptEquipment}>
                                             <strong>Lab Facilities:</strong> {dept.equipment}
@@ -336,9 +328,7 @@ export default function MPharmPage() {
                         }`}
                 >
                     <div className={styles.eligibilityHeader}>
-                        <div
-                            className={`${styles.iconSquircle} ${styles.themeEmerald}`}
-                        >
+                        <div className={`${styles.iconSquircle} ${styles.themeEmerald}`}>
                             <GraduationCap size={28} strokeWidth={2} />
                         </div>
                         <div>
@@ -348,24 +338,27 @@ export default function MPharmPage() {
                             </h2>
                         </div>
                     </div>
-
                     <div className={styles.eligibilityList}>
                         <div className={styles.eligibilityItem}>
                             <span className={styles.listBulletDot} />
                             <span className={styles.eligibilityText}>
-                                Passed B. Pharm degree examination with a minimum of 55% aggregate marks (50% for reserved category candidates) from any recognized institution[cite: 10].
+                                Passed B. Pharm degree examination with a minimum of 55%
+                                aggregate marks (50% for reserved category candidates) from any
+                                recognized institution.
                             </span>
                         </div>
                         <div className={styles.eligibilityItem}>
                             <span className={styles.listBulletDot} />
                             <span className={styles.eligibilityText}>
-                                Valid score in the national Graduate Pharmacy Aptitude Test (GPAT) or state-level AP PGECET entrance examination[cite: 10].
+                                Valid score in the national Graduate Pharmacy Aptitude Test
+                                (GPAT) or state-level AP PGECET entrance examination.
                             </span>
                         </div>
                         <div className={styles.eligibilityItem}>
                             <span className={styles.listBulletDot} />
                             <span className={styles.eligibilityText}>
-                                Registered Pharmacist certification with the state regulatory authority or statutory state councils[cite: 10].
+                                Registered Pharmacist certification with the state regulatory
+                                authority or statutory state councils.
                             </span>
                         </div>
                     </div>

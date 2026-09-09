@@ -16,11 +16,11 @@ const overviewImages = [
         caption: 'Modern Analytical & Formulation Labs',
     },
     {
-        src: '/assets/courses/pharmd3.png',
+        src: '/assets/Infra/cplab1.png',
         caption: 'Pharmaceutical Chemistry & Research',
     },
     {
-        src: '/assets/courses/pharmd4.png',
+        src: '/assets/Infra/cplab2.png',
         caption: 'Industrial Compounding & Pill Formulation',
     },
 ];
