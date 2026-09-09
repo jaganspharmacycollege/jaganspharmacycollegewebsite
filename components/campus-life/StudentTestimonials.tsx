@@ -9,7 +9,7 @@ const testimonials = [
         quote:
             'The campus environment is amazing! We get great support from faculty and plenty of opportunities to grow.',
         name: 'Vemuru Balaji',
-        role: 'B. Pharmacy III Year',
+        role: '',
         image:
             '/assets/HomePageImages/student2.png',
         theme: styles.themeEmerald,
@@ -19,7 +19,7 @@ const testimonials = [
         quote:
             "Jagan's College of Pharmacy feels like a second home. The facilities and exposure here are excellent.",
         name: 'Javangula Krishna Priya',
-        role: 'Pharm.D IV Year',
+        role: '',
         image:
             '/assets/HomePageImages/HomeStudent.png',
         theme: styles.themeAmber,
@@ -28,8 +28,8 @@ const testimonials = [
     {
         quote:
             "I've learned so much beyond academics through events, clubs and interactions. Truly a holistic experience!",
-        name: 'Sreeja P.',
-        role: 'M. Pharmacy I Year',
+        name: 'B.Kavya',
+        role: '',
         image:
             '/assets/HomePageImages/student3.png',
         theme: styles.themePurple,
