@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -18,12 +17,24 @@ import styles from './Header.module.css';
 
 export default function Header() {
     const pathname = usePathname();
+    const [aboutOpen, setAboutOpen] = useState(false);
     const [coursesOpen, setCoursesOpen] = useState(false);
     const [admissionsOpen, setAdmissionsOpen] = useState(false);
     const [campusLifeOpen, setCampusLifeOpen] = useState(false);
     const [academicsOpen, setAcademicsOpen] = useState(false);
     const [offcanvasOpen, setOffcanvasOpen] = useState(false);
     const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
+
+    // Automatically reset all navigation state on route change to prevent DOM unmount conflicts
+    useEffect(() => {
+        setAboutOpen(false);
+        setCoursesOpen(false);
+        setAdmissionsOpen(false);
+        setCampusLifeOpen(false);
+        setAcademicsOpen(false);
+        setOffcanvasOpen(false);
+        setMobileSubmenu(null);
+    }, [pathname]);
 
     useEffect(() => {
         if (offcanvasOpen) {
@@ -51,6 +62,11 @@ export default function Header() {
     const toggleMobileAccordion = (name: string) => {
         setMobileSubmenu(mobileSubmenu === name ? null : name);
     };
+
+    const aboutOptions = [
+        { name: 'History of JCP', href: '/about/history' },
+        { name: 'Management & Leadership', href: '/about/management' },
+    ];
 
     const courseOptions = [
         { name: 'B. Pharm', href: '/courses/b-pharm' },
@@ -83,7 +99,6 @@ export default function Header() {
         { name: 'Hostel', href: '/campus-life/hostel' },
         { name: 'Transportation', href: '/campus-life/transportation' },
         { name: 'Canteen', href: '/campus-life/canteen' },
-
     ];
 
     const academicsOptions = [
@@ -93,7 +108,13 @@ export default function Header() {
 
     const navItems = [
         { name: 'Home', href: '/' },
-        { name: 'About Us', href: '/about' },
+        {
+            name: 'About Us',
+            href: '/about',
+            options: aboutOptions,
+            state: aboutOpen,
+            setter: setAboutOpen,
+        },
         {
             name: 'Courses',
             href: '/courses',
@@ -141,10 +162,7 @@ export default function Header() {
                         <a href="tel:+917680077726" className={styles.topContactLink}>
                             <Phone size={12} /> +91 76800 77726
                         </a>
-                        <a
-                            href="mailto:principal.jcp@gmail.com"
-                            className={styles.topContactLink}
-                        >
+                        <a href="mailto:principal.jcp@gmail.com" className={styles.topContactLink}>
                             <Mail size={12} /> principal.jcp@gmail.com
                         </a>
                         <span className={`${styles.topContactLink} ${styles.topBarLocation}`}>
@@ -157,7 +175,7 @@ export default function Header() {
             {/* Main Header */}
             <div className={styles.mainHeader}>
                 <div className={styles.container}>
-                    {/* Left Group: Hamburger + Circular Image Logo & Text */}
+                    {/* Left Group: Circular Logo Emblem Only */}
                     <div className={styles.leftGroup}>
                         <button
                             className={styles.mobileMenuBtn}
@@ -166,7 +184,7 @@ export default function Header() {
                         >
                             <Menu size={22} />
                         </button>
-                        <Link href="/" className={styles.logoLink}>
+                        <Link href="/" className={styles.logoLink} aria-label="Jagan's College of Pharmacy Home">
                             <div className={styles.logoOuter}>
                                 <img
                                     src="/assets/logo/Jagans_logo.png"
@@ -174,15 +192,13 @@ export default function Header() {
                                     className={styles.logoImg}
                                 />
                             </div>
-
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation */}
+                    {/* Desktop Navigation Evenly Distributed */}
                     <nav className={styles.desktopNav}>
                         {navItems.map((item) => {
-                            const isActive =
-                                pathname.startsWith(item.href) && item.href !== '/';
+                            const isActive = pathname.startsWith(item.href) && item.href !== '/';
                             const isHomeActive = pathname === '/' && item.href === '/';
                             const highlight = isActive || isHomeActive;
 
@@ -191,17 +207,12 @@ export default function Header() {
                                     <div
                                         key={item.name}
                                         className={styles.dropdownContainer}
-                                        onMouseEnter={() =>
-                                            handleMouseEnter(item.name, item.setter!)
-                                        }
-                                        onMouseLeave={() =>
-                                            handleMouseLeave(item.name, item.setter!)
-                                        }
+                                        onMouseEnter={() => handleMouseEnter(item.name, item.setter!)}
+                                        onMouseLeave={() => handleMouseLeave(item.name, item.setter!)}
                                     >
                                         <Link
                                             href={item.href}
-                                            className={`${styles.navLink} ${highlight ? styles.activeNavLink : ''
-                                                }`}
+                                            className={`${styles.navLink} ${highlight ? styles.activeNavLink : ''}`}
                                         >
                                             <span>{item.name}</span>
                                             <ChevronDown
@@ -219,25 +230,17 @@ export default function Header() {
                                             <div
                                                 className={styles.dropdownMenu}
                                                 style={{ maxHeight: '72vh', overflowY: 'auto' }}
-                                                onMouseEnter={() =>
-                                                    handleMouseEnter(item.name, item.setter!)
-                                                }
-                                                onMouseLeave={() =>
-                                                    handleMouseLeave(item.name, item.setter!)
-                                                }
+                                                onMouseEnter={() => handleMouseEnter(item.name, item.setter!)}
+                                                onMouseLeave={() => handleMouseLeave(item.name, item.setter!)}
                                             >
                                                 {item.options.map((opt) => (
                                                     <Link
                                                         key={opt.name}
                                                         href={opt.href}
                                                         className={styles.dropdownItem}
-                                                        onClick={() => item.setter!(false)}
                                                     >
                                                         <span>{opt.name}</span>
-                                                        <ChevronRight
-                                                            size={13}
-                                                            className="text-emerald-400"
-                                                        />
+                                                        <ChevronRight size={13} style={{ color: '#34d399' }} />
                                                     </Link>
                                                 ))}
                                             </div>
@@ -250,8 +253,7 @@ export default function Header() {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`${styles.navLink} ${highlight ? styles.activeNavLink : ''
-                                        }`}
+                                    className={`${styles.navLink} ${highlight ? styles.activeNavLink : ''}`}
                                 >
                                     <span>{item.name}</span>
                                     {highlight && <span className={styles.activeDot} />}
@@ -262,10 +264,7 @@ export default function Header() {
 
                     {/* Right Controls */}
                     <div className={styles.rightControls}>
-                        <Link
-                            href="/admissions/application-form"
-                            className={styles.applyButton}
-                        >
+                        <Link href="/admissions/application-form" className={styles.applyButton}>
                             <span>Apply Now</span>
                             <ArrowUpRight size={14} />
                         </Link>
@@ -275,20 +274,10 @@ export default function Header() {
 
             {/* Offcanvas Drawer */}
             {offcanvasOpen && (
-                <div
-                    className={styles.offcanvasOverlay}
-                    onClick={() => setOffcanvasOpen(false)}
-                >
-                    <div
-                        className={styles.offcanvasDrawer}
-                        onClick={(e) => e.stopPropagation()}
-                    >
+                <div className={styles.offcanvasOverlay} onClick={() => setOffcanvasOpen(false)}>
+                    <div className={styles.offcanvasDrawer} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.drawerHeader}>
-                            <Link
-                                href="/"
-                                className={styles.logoLink}
-                                onClick={() => setOffcanvasOpen(false)}
-                            >
+                            <Link href="/" className={styles.logoLink} onClick={() => setOffcanvasOpen(false)}>
                                 <div className={styles.logoOuter}>
                                     <img
                                         src="/assets/logo/Jagans_logo.png"
@@ -314,26 +303,19 @@ export default function Header() {
                             {navItems.map((item) => (
                                 <div key={item.name} className={styles.drawerItem}>
                                     <div className={styles.drawerLinkRow}>
-                                        <Link
-                                            href={item.href}
-                                            className={styles.drawerLink}
-                                            onClick={() => setOffcanvasOpen(false)}
-                                        >
+                                        <Link href={item.href} className={styles.drawerLink}>
                                             {item.name}
                                         </Link>
                                         {item.options && (
                                             <button
-                                                className={styles.drawerToggleBtn}
                                                 onClick={() => toggleMobileAccordion(item.name)}
+                                                className={styles.drawerToggleBtn}
                                                 aria-label={`Toggle ${item.name}`}
                                             >
                                                 <ChevronDown
                                                     size={18}
                                                     style={{
-                                                        transform:
-                                                            mobileSubmenu === item.name
-                                                                ? 'rotate(180deg)'
-                                                                : 'none',
+                                                        transform: mobileSubmenu === item.name ? 'rotate(180deg)' : 'none',
                                                         transition: 'transform 0.2s ease',
                                                     }}
                                                 />
@@ -348,7 +330,6 @@ export default function Header() {
                                                     key={opt.name}
                                                     href={opt.href}
                                                     className={styles.drawerSubLink}
-                                                    onClick={() => setOffcanvasOpen(false)}
                                                 >
                                                     {opt.name}
                                                 </Link>
@@ -363,7 +344,6 @@ export default function Header() {
                             <Link
                                 href="/admissions/application-form"
                                 className={styles.drawerApplyBtn}
-                                onClick={() => setOffcanvasOpen(false)}
                             >
                                 <span>Apply for Admission</span>
                                 <ArrowUpRight size={16} />

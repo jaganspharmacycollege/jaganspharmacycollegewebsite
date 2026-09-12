@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@700&family=Rubik+Glitch&family=Black+Ops+One&family=Rye&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@700&display=swap');
 
 .headerWrapper {
     position: sticky;
     top: 0;
     z-index: 1000;
     width: 100%;
-    font-family: var(--font-sora), 'Sora', sans-serif;
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Top Bar */
+/* Top Strip */
 .topBar {
     background: #021a12;
     border-bottom: 1px solid rgba(52, 211, 153, 0.15);
+    padding: 0.4rem 1.25rem;
     color: #d1fae5;
     font-size: 0.75rem;
-    padding: 0.4rem 1.25rem;
 }
 
 .topBarContainer {
-    max-width: 86rem;
+    max-width: 88rem;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -83,13 +83,14 @@
 }
 
 .container {
-    max-width: 86rem;
+    max-width: 88rem;
     margin: 0 auto;
-    padding: 0.75rem 1.25rem;
+    padding: 0.65rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 1.5rem;
+    width: 100%;
 }
 
 /* Left Group */
@@ -97,6 +98,7 @@
     display: flex;
     align-items: center;
     gap: 0.875rem;
+    flex-shrink: 0;
 }
 
 .mobileMenuBtn {
@@ -122,11 +124,9 @@
     }
 }
 
-/* Logo & Circular Image Container */
 .logoLink {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
     text-decoration: none;
     flex-shrink: 0;
 }
@@ -162,21 +162,18 @@
     flex-direction: column;
 }
 
-/* Brand Typography Matching Vintage Stamp & Stencil Serif Style */
 .title {
-    font-family: 'Stardos Stencil', 'Rye', 'Black Ops One', 'Impact', 'Georgia', serif;
-    font-size: 1.55rem;
+    font-family: 'Stardos Stencil', 'Georgia', serif;
+    font-size: 1.45rem;
     font-weight: 700;
     color: #ffffff;
     line-height: 1.05;
     letter-spacing: 0.03em;
     margin: 0;
-    text-transform: none;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .subtitle {
-    font-family: 'Stardos Stencil', 'Black Ops One', var(--font-sora), 'Sora', sans-serif;
+    font-family: 'Stardos Stencil', var(--font-sora), 'Sora', sans-serif;
     font-size: 0.625rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -186,21 +183,27 @@
     text-transform: uppercase;
 }
 
-/* Desktop Navigation */
+/* Desktop Navigation Evenly Distributed */
 .desktopNav {
     display: none;
-    align-items: center;
-    gap: 0.25rem;
 }
 
 @media (min-width: 1200px) {
     .desktopNav {
         display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex: 1;
+        margin: 0 1.5rem;
+        max-width: 68rem;
     }
 }
 
 .dropdownContainer {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-bottom: 0.5rem;
     margin-bottom: -0.5rem;
 }
@@ -243,11 +246,12 @@
     box-shadow: 0 0 8px rgba(251, 191, 36, 0.9);
 }
 
-/* Desktop Dropdowns */
+/* Dropdowns */
 .dropdownMenu {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     min-width: 16.5rem;
     background: rgba(3, 31, 22, 0.96);
     backdrop-filter: blur(24px);
@@ -273,12 +277,12 @@
 @keyframes dropdownIn {
     from {
         opacity: 0;
-        transform: translateY(6px) scale(0.97);
+        transform: translate(-50%, 6px) scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translate(-50%, 0) scale(1);
     }
 }
 
@@ -296,19 +300,18 @@
 }
 
 .dropdownItem:hover {
-    background: linear-gradient(90deg,
-            rgba(52, 211, 153, 0.2) 0%,
-            rgba(52, 211, 153, 0.05) 100%);
+    background: linear-gradient(90deg, rgba(52, 211, 153, 0.2) 0%, rgba(52, 211, 153, 0.05) 100%);
     color: #ffffff;
     transform: translateX(4px);
     font-weight: 700;
 }
 
-/* Right Side Controls */
+/* Right Controls */
 .rightControls {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 .applyButton {
@@ -340,7 +343,7 @@
     }
 }
 
-/* Offcanvas Slideout Drawer */
+/* Offcanvas Slideout */
 .offcanvasOverlay {
     position: fixed;
     inset: 0;

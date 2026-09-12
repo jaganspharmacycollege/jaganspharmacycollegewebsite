@@ -56,9 +56,7 @@
     left: -6%;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle,
-            rgba(52, 211, 153, 0.14) 0%,
-            transparent 70%);
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.14) 0%, transparent 70%);
     filter: blur(80px);
     z-index: 2;
     pointer-events: none;
@@ -72,9 +70,7 @@
     right: -6%;
     width: 520px;
     height: 520px;
-    background: radial-gradient(circle,
-            rgba(251, 191, 36, 0.14) 0%,
-            transparent 70%);
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.14) 0%, transparent 70%);
     filter: blur(85px);
     z-index: 2;
     pointer-events: none;
@@ -82,6 +78,100 @@
     transform: translate3d(0, 0, 0);
 }
 
+/* Right-Side Floating Social Handles */
+.socialSidebar {
+    position: absolute;
+    right: 1.5rem;
+    top: 3.5rem;
+    /* Positioned safely above the live updates ticker */
+    transform: none;
+    z-index: 10;
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .socialSidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.socialTrack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(3, 31, 22, 0.8);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    padding: 0.75rem 0.5rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.socialLink {
+    position: relative;
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d1fae5;
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+}
+
+.socialLink:hover {
+    background: #fbbf24;
+    color: #032319;
+    border-color: #fbbf24;
+    transform: scale(1.1) translate3d(-2px, 0, 0);
+    box-shadow: 0 4px 14px rgba(251, 191, 36, 0.45);
+}
+
+.socialIcon {
+    transition: transform 0.3s ease;
+}
+
+.socialLink:hover .socialIcon {
+    transform: rotate(6deg);
+}
+
+.socialTooltip {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: #053b2a;
+    color: #ffffff;
+    font-size: 0.725rem;
+    font-weight: 700;
+    padding: 0.3rem 0.65rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.socialLink:hover .socialTooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Removed long bottom line to prevent collision with ticker */
+.socialLine {
+    display: none;
+}
+
+/* Container */
 .container {
     max-width: 86rem;
     margin: 0 auto;
@@ -101,7 +191,7 @@
     transition: none;
 }
 
-/* Ultra-Slow Cinematic Stagger Keyframes */
+/* Cinematic Keyframes */
 @keyframes smoothHeroReveal {
     0% {
         opacity: 0;
@@ -131,7 +221,7 @@
 }
 
 .animateIn5 {
-    animation: smoothHeroReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.60s both;
+    animation: smoothHeroReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
 }
 
 .animateIn6 {
@@ -299,24 +389,6 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
-.btnGold {
-    background: linear-gradient(135deg, #b86e00 0%, #d97706 100%);
-    color: #ffffff;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    padding: 0.85rem 1.6rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(184, 110, 0, 0.35);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    will-change: transform;
-}
-
-.btnGold:hover {
-    transform: translate3d(0, -3px, 0);
-    box-shadow: 0 8px 22px rgba(184, 110, 0, 0.5);
-}
-
 /* Scrolling Ticker Card */
 .tickerCardLink {
     background: rgba(3, 31, 22, 0.88);
@@ -364,23 +436,14 @@
     color: #032319;
 }
 
-/* Infinite Marquee Track */
 .marqueeTrackWrapper {
     flex: 1;
     overflow: hidden;
     white-space: nowrap;
     display: flex;
     position: relative;
-    mask-image: linear-gradient(90deg,
-            transparent 0%,
-            black 3%,
-            black 97%,
-            transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg,
-            transparent 0%,
-            black 3%,
-            black 97%,
-            transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
 }
 
 .marqueeContent {
@@ -418,7 +481,6 @@
     margin-right: 0.35rem;
 }
 
-/* Action Pill */
 .actionPill {
     display: inline-flex;
     align-items: center;

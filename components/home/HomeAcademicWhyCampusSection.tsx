@@ -119,7 +119,7 @@ export default function HomeAcademicWhyCampusSection() {
                             </div>
                         ))}
                     </div>
-                    <Link href="/academics" className={styles.btnViewAll}>
+                    <Link href="/all-cells" className={styles.btnViewAll}>
                         <span>View All Cells</span>
                         <ArrowRight size={13} />
                     </Link>

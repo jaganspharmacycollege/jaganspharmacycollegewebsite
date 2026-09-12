@@ -1,0 +1,726 @@
+.pageWrapper {
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 4.5rem 1rem 6rem 1rem;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #f0ece1;
+}
+
+/* Parallax ambient radial lighting layers */
+.bgOrbLeft {
+    position: absolute;
+    top: 6%;
+    left: -8%;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.06) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.bgOrbRight {
+    position: absolute;
+    top: 40%;
+    right: -8%;
+    width: 540px;
+    height: 540px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.07) 0%, transparent 70%);
+    filter: blur(85px);
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+.container {
+    max-width: 86rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+/* Initial Hidden Stagger Keyframe States */
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition: none;
+}
+
+@keyframes smoothFadeUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 24px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothFadeUp 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animDelay1 {
+    animation: smoothFadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.animDelay2 {
+    animation: smoothFadeUp 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+.animDelay3 {
+    animation: smoothFadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+/* Return back navigation */
+.backNav {
+    margin-bottom: 1.5rem;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #053b2a;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.backLink:hover {
+    color: #b86e00;
+    transform: translate3d(-3px, 0, 0);
+}
+
+/* Page Header */
+.header {
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.eyebrowTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.775rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.eyebrowIcon {
+    color: #b86e00;
+}
+
+.title {
+    font-size: 2.15rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.accentLine {
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.85rem 0 1.25rem 0;
+}
+
+.descText {
+    font-size: 0.925rem;
+    color: #4b5563;
+    line-height: 1.7;
+    max-width: 50rem;
+    margin: 0;
+    letter-spacing: -0.011em;
+}
+
+/* Accordion Vertical Stack */
+.accordionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cellItemWrapper {
+    background-color: #ffffff;
+    border: 1px solid rgba(5, 59, 42, 0.09);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 18px rgba(5, 59, 42, 0.04);
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cellItemWrapper:hover {
+    border-color: rgba(5, 59, 42, 0.22);
+}
+
+.cellItemActive {
+    border-color: #053b2a;
+    box-shadow: 0 12px 36px rgba(5, 59, 42, 0.1);
+}
+
+/* Cell Header Pill Bar */
+.cellHeaderBar {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.15rem 1.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.25s ease;
+}
+
+.cellHeaderBar:hover {
+    background-color: #faf8f5;
+}
+
+.cellItemActive .cellHeaderBar {
+    background-color: #f7f4ed;
+    border-bottom: 1px solid rgba(5, 59, 42, 0.08);
+}
+
+.cellBarLeft {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.iconPill {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.themeAmber {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fde68a;
+}
+
+.themeEmerald {
+    background-color: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+}
+
+.themePurple {
+    background-color: #faf5ff;
+    color: #9333ea;
+    border: 1px solid #e9d5ff;
+}
+
+.themeTeal {
+    background-color: #f0fdfa;
+    color: #0d9488;
+    border: 1px solid #99f6e4;
+}
+
+.cellTitleGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.categoryBadge {
+    font-size: 0.685rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b86e00;
+}
+
+.cellName {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.cellNum {
+    color: #9ca3af;
+    margin-right: 0.2rem;
+}
+
+.cellBarRight {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.membersCountBadge {
+    font-size: 0.725rem;
+    font-weight: 700;
+    color: #059669;
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.chevronWrapper {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #faf8f5;
+    border: 1px solid #e5e7eb;
+    color: #053b2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+
+.chevronRotated {
+    transform: rotate(180deg);
+    background-color: #053b2a;
+    color: #ffffff;
+    border-color: #053b2a;
+}
+
+/* Expanded Panel */
+.expandedPanel {
+    padding: 1.75rem 1.5rem 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    background-color: #ffffff;
+    animation: smoothFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Mandate & Objectives Card */
+.mandateCard {
+    background-color: #faf8f5;
+    border: 1px solid #f0ece1;
+    border-radius: 1rem;
+    padding: 1.35rem 1.5rem;
+}
+
+.mandateHeader {
+    margin-bottom: 0.85rem;
+}
+
+.mandateTitle {
+    font-size: 0.875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #053b2a;
+    margin: 0 0 0.35rem 0;
+}
+
+.mandateDesc {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.objectivesGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid #eee7d9;
+}
+
+.objItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
+.objBullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: #b86e00;
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+}
+
+.objText {
+    font-size: 0.8125rem;
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* Committee Section Header */
+.committeeHeaderRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.committeeTitleWrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sectionIcon {
+    color: #059669;
+}
+
+.committeeHeading {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0;
+}
+
+.hoverHint {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Interactive Two-Column Grid */
+.membersInteractiveGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Left: 5 Rounded Horizontal Pill Rows (matching Image 1) */
+.membersPillsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.memberPillRow {
+    background-color: #faf8f5;
+    border: 1.5px solid #ebe5d8;
+    border-radius: 9999px;
+    /* Rounded pill style matching user reference sketch */
+    padding: 0.75rem 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.memberPillRow:hover {
+    background-color: #ecfdf5;
+    border-color: #a7f3d0;
+    transform: translate3d(4px, 0, 0);
+}
+
+.memberPillActive {
+    background: linear-gradient(90deg, #053b2a 0%, #032319 100%);
+    border-color: #053b2a;
+    box-shadow: 0 6px 18px rgba(5, 59, 42, 0.2);
+    transform: translate3d(6px, 0, 0);
+}
+
+.pillIndexDot {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
+    background-color: rgba(5, 59, 42, 0.08);
+    color: #053b2a;
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.memberPillActive .pillIndexDot {
+    background-color: #fbbf24;
+    color: #053b2a;
+}
+
+.pillInfoLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex-grow: 1;
+}
+
+.pillName {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: #053b2a;
+    transition: color 0.3s ease;
+}
+
+.memberPillActive .pillName {
+    color: #ffffff;
+}
+
+.pillCollegeRole {
+    font-size: 0.725rem;
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+
+.memberPillActive .pillCollegeRole {
+    color: #a7f3d0;
+}
+
+.pillInfoRight {
+    flex-shrink: 0;
+}
+
+.pillCellRole {
+    font-size: 0.725rem;
+    font-weight: 700;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.studentBadge {
+    color: #0d9488;
+    background: #f0fdfa;
+    border-color: #99f6e4;
+}
+
+.memberPillActive .pillCellRole {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border-color: #fbbf24;
+}
+
+/* Right: Enlarged Hover Preview Card (matching Image 2) */
+.memberHoverCard {
+    background: #ffffff;
+    border: 1.5px solid rgba(5, 59, 42, 0.15);
+    border-radius: 1.5rem;
+    padding: 1.65rem;
+    box-shadow: 0 14px 34px rgba(5, 59, 42, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: smoothFadeUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hoverCardGlow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.cardHeaderArea {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+}
+
+.avatarWrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.memberAvatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 1.15rem;
+    object-fit: cover;
+    border: 2px solid #053b2a;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.studentPill {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0d9488;
+    color: #ffffff;
+    font-size: 0.625rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.facultyPill {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #053b2a;
+    color: #fbbf24;
+    font-size: 0.625rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.memberProfileMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.cardRoleEyebrow {
+    font-size: 0.725rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b86e00;
+}
+
+.cardMemberName {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.cardCollegeRole {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.785rem;
+    color: #4b5563;
+    margin: 0;
+}
+
+.metaIcon {
+    color: #059669;
+    flex-shrink: 0;
+}
+
+.cardDivider {
+    height: 1px;
+    background-color: #f0ece1;
+    margin: 1.25rem 0;
+}
+
+/* Contact action buttons */
+.contactChannels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.contactBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background-color: #faf8f5;
+    border: 1px solid #f0ece1;
+    border-radius: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.contactBtn:hover {
+    background-color: #ecfdf5;
+    border-color: #a7f3d0;
+    transform: translate3d(2px, 0, 0);
+}
+
+.contactIconCircle {
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #053b2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.contactBtn:hover .contactIconCircle {
+    background-color: #053b2a;
+    color: #ffffff;
+    border-color: #053b2a;
+}
+
+.contactData {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactLabel {
+    font-size: 0.685rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 0.05em;
+}
+
+.contactValue {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* Tablet screens (640px+) */
+@media (min-width: 640px) {
+    .title {
+        font-size: 2.35rem;
+    }
+
+    .objectivesGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Laptop / Desktop screens (1024px+) */
+@media (min-width: 1024px) {
+    .pageWrapper {
+        padding: 5rem 1rem 7rem 1rem;
+    }
+
+    .title {
+        font-size: 2.75rem;
+    }
+
+    .membersInteractiveGrid {
+        grid-template-columns: 1.15fr 1fr;
+        gap: 2rem;
+    }
+}
