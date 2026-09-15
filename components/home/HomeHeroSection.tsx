@@ -11,6 +11,8 @@ import {
     Headphones,
     Mail,
     ShieldCheck,
+    GraduationCap,
+    BookOpen,
 } from 'lucide-react';
 import styles from './HomeHeroSection.module.css';
 
@@ -131,25 +133,32 @@ export default function HomeHeroSection() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        let isMounted = true;
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setIsVisible(entry.isIntersecting);
+                if (isMounted && entry) {
+                    setIsVisible(entry.isIntersecting);
+                }
             },
             { threshold: 0.1 }
         );
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-        return () => observer.disconnect();
+        return () => {
+            isMounted = false;
+            observer.disconnect();
+        };
     }, []);
 
     useEffect(() => {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
+        let isMounted = true;
 
         const updateParallax = () => {
-            if (!sectionRef.current) return;
+            if (!isMounted || !sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
@@ -167,10 +176,13 @@ export default function HomeHeroSection() {
                         }px, 0)`;
                 }
             }
-            animationFrameId = requestAnimationFrame(updateParallax);
+            if (isMounted) {
+                animationFrameId = requestAnimationFrame(updateParallax);
+            }
         };
 
         const handleScroll = () => {
+            if (!isMounted) return;
             targetScroll = window.scrollY;
         };
 
@@ -178,6 +190,7 @@ export default function HomeHeroSection() {
         animationFrameId = requestAnimationFrame(updateParallax);
 
         return () => {
+            isMounted = false;
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
@@ -234,6 +247,7 @@ export default function HomeHeroSection() {
                         <Sparkles size={13} />
                         <span>Script your future</span>
                     </div>
+
                     <h1
                         className={`${styles.heading} ${isVisible ? styles.animateIn2 : styles.hiddenState
                             }`}
@@ -241,6 +255,7 @@ export default function HomeHeroSection() {
                         Jagan&apos;s College <br />
                         <span className={styles.headingGold}>of Pharmacy</span>
                     </h1>
+
                     <p
                         className={`${styles.subtext} ${isVisible ? styles.animateIn3 : styles.hiddenState
                             }`}
@@ -250,6 +265,7 @@ export default function HomeHeroSection() {
                         compassion.
                     </p>
 
+                    {/* Accreditations Row */}
                     <div
                         className={`${styles.badgesRow} ${isVisible ? styles.animateIn4 : styles.hiddenState
                             }`}
@@ -279,6 +295,7 @@ export default function HomeHeroSection() {
                         </div>
                     </div>
 
+                    {/* Action Buttons & Codes in the Same Row */}
                     <div
                         className={`${styles.ctaRow} ${isVisible ? styles.animateIn5 : styles.hiddenState
                             }`}
@@ -292,6 +309,28 @@ export default function HomeHeroSection() {
                         >
                             Online Application
                         </Link>
+
+                        {/* EAPCET / EAMCET Code Badge */}
+                        <div className={styles.codeBadgeCard}>
+                            <div className={styles.codeIconBoxEmerald}>
+                                <GraduationCap size={16} />
+                            </div>
+                            <div className={styles.codeInfoGroup}>
+                                <span className={styles.codeSubtitle}>EAPCET / EAMCET</span>
+                                <span className={styles.codeHighlightEmerald}>JAGP</span>
+                            </div>
+                        </div>
+
+                        {/* AP PGCET Code Badge */}
+                        <div className={styles.codeBadgeCard}>
+                            <div className={styles.codeIconBoxGold}>
+                                <BookOpen size={16} />
+                            </div>
+                            <div className={styles.codeInfoGroup}>
+                                <span className={styles.codeSubtitle}>AP PGCET</span>
+                                <span className={styles.codeHighlightGold}>JAGP1</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -340,9 +379,10 @@ export default function HomeHeroSection() {
                 >
                     <div className={styles.admissionContactHeader}>
                         <Phone size={14} className={styles.phoneHeaderIcon} />
-                        <span>Contact For Admissions (2026-2027) &amp; Enquiries</span>
+                        <span>
+                            Contact For Admissions (2026-2027) &amp; Enquiries
+                        </span>
                     </div>
-
                     <div className={styles.admissionNumbersGrid}>
                         <a
                             href="tel:+917680077726"
@@ -392,7 +432,9 @@ export default function HomeHeroSection() {
                             </div>
                             <div className={styles.numberInfo}>
                                 <span className={styles.numberLabel}>Admissions Email</span>
-                                <span className={styles.numberValue}>admissions.jcp@gmail.com</span>
+                                <span className={styles.numberValue}>
+                                    admissions.jcp@gmail.com
+                                </span>
                             </div>
                         </a>
                     </div>

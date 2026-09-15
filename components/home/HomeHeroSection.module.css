@@ -83,7 +83,6 @@
     position: absolute;
     right: 1.5rem;
     top: 3.5rem;
-    /* Positioned safely above the live updates ticker */
     transform: none;
     z-index: 10;
     display: none;
@@ -166,7 +165,6 @@
     transform: translateY(-50%) translateX(0);
 }
 
-/* Removed long bottom line to prevent collision with ticker */
 .socialLine {
     display: none;
 }
@@ -234,7 +232,7 @@
 
 /* Content Area */
 .heroContent {
-    max-width: 44rem;
+    max-width: 48rem;
     display: flex;
     flex-direction: column;
 }
@@ -288,7 +286,7 @@
     font-size: 1.05rem;
     color: #d1fae5;
     line-height: 1.7;
-    margin: 0 0 2rem 0;
+    margin: 0 0 1.75rem 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -298,7 +296,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 1.5rem;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -341,11 +339,12 @@
     margin: 0.125rem 0 0 0;
 }
 
-/* Button Group */
+/* Button & Code Badges Row */
 .ctaRow {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.875rem;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .btnPrimary {
@@ -354,7 +353,7 @@
     color: #ffffff;
     font-size: 0.8125rem;
     font-weight: 700;
-    padding: 0.85rem 1.6rem;
+    padding: 0.85rem 1.5rem;
     border-radius: 0.5rem;
     text-decoration: none;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
@@ -374,7 +373,7 @@
     color: #ffffff;
     font-size: 0.8125rem;
     font-weight: 700;
-    padding: 0.85rem 1.6rem;
+    padding: 0.85rem 1.5rem;
     border-radius: 0.5rem;
     text-decoration: none;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
@@ -387,6 +386,84 @@
     background: #083c2a;
     transform: translate3d(0, -3px, 0);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Attractive Inline Counseling Code Badges */
+.codeBadgeCard {
+    background: rgba(3, 31, 22, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(52, 211, 153, 0.28);
+    border-radius: 0.5rem;
+    padding: 0.45rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    height: 2.85rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.codeBadgeCard:hover {
+    transform: translateY(-2px);
+    border-color: #fbbf24;
+    box-shadow: 0 6px 18px rgba(251, 191, 36, 0.25);
+}
+
+.codeIconBoxEmerald {
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 0.35rem;
+    background: rgba(52, 211, 153, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    color: #34d399;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.codeIconBoxGold {
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 0.35rem;
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.codeInfoGroup {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.codeSubtitle {
+    font-size: 0.58rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9ca3af;
+}
+
+.codeHighlightEmerald {
+    font-size: 0.925rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #34d399;
+    text-shadow: 0 0 8px rgba(52, 211, 153, 0.35);
+}
+
+.codeHighlightGold {
+    font-size: 0.925rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #fbbf24;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.35);
 }
 
 /* Scrolling Ticker Card */
@@ -442,8 +519,16 @@
     white-space: nowrap;
     display: flex;
     position: relative;
-    mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            black 3%,
+            black 97%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            black 3%,
+            black 97%,
+            transparent 100%);
 }
 
 .marqueeContent {

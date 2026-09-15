@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { Phone, Mail, MapPin, ExternalLink, Award, ShieldCheck } from 'lucide-react';
@@ -37,7 +36,9 @@ export default function Footer() {
                         </div>
                         <div>
                             <p className={styles.contactLabel}>Campus Location</p>
-                            <p className={styles.contactValue}>Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore, A.P</p>
+                            <p className={styles.contactValue}>
+                                Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore, A.P
+                            </p>
                         </div>
                     </Link>
                 </div>
@@ -61,7 +62,8 @@ export default function Footer() {
                         </Link>
 
                         <p className={styles.brandDescription}>
-                            Empowering pharmaceutical scholars with advanced clinical competencies, evidence-based research, and industrial linkages to build healthier tomorrows.
+                            Empowering pharmaceutical scholars with advanced clinical competencies, evidence-based research, and
+                            industrial linkages to build healthier tomorrows.
                         </p>
 
                         <div className={styles.accreditationBadges}>
@@ -80,11 +82,31 @@ export default function Footer() {
                         <div className={styles.columnBlock}>
                             <h4 className={styles.columnTitle}>Explore</h4>
                             <ul className={styles.linkList}>
-                                <li><Link href="/about" className={styles.linkItem}>About Us</Link></li>
-                                <li><Link href="/courses" className={styles.linkItem}>Programs Offered</Link></li>
-                                <li><Link href="/admissions" className={styles.linkItem}>Admissions</Link></li>
-                                <li><Link href="/infrastructure" className={styles.linkItem}>Campus Infrastructure</Link></li>
-                                <li><Link href="/alumni" className={styles.linkItem}>Alumni Network</Link></li>
+                                <li>
+                                    <Link href="/about" className={styles.linkItem}>
+                                        About Us
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/courses" className={styles.linkItem}>
+                                        Programs Offered
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/admissions" className={styles.linkItem}>
+                                        Admissions
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/infrastructure" className={styles.linkItem}>
+                                        Campus Infrastructure
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/alumni" className={styles.linkItem}>
+                                        Alumni Network
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
 
@@ -92,11 +114,31 @@ export default function Footer() {
                         <div className={styles.columnBlock}>
                             <h4 className={styles.columnTitle}>Academics</h4>
                             <ul className={styles.linkList}>
-                                <li><Link href="/academics/calendar" className={styles.linkItem}>Academic Calendar</Link></li>
-                                <li><Link href="/academics/departments" className={styles.linkItem}>Departments &amp; Faculty</Link></li>
-                                <li><Link href="/courses/b-pharm" className={styles.linkItem}>B.Pharm Curriculum</Link></li>
-                                <li><Link href="/courses/pharm-d" className={styles.linkItem}>Pharm.D Program</Link></li>
-                                <li><Link href="/courses/m-pharm" className={styles.linkItem}>M.Pharm Specializations</Link></li>
+                                <li>
+                                    <Link href="/academics/calendar" className={styles.linkItem}>
+                                        Academic Calendar
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/academics/departments" className={styles.linkItem}>
+                                        Departments &amp; Faculty
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/courses/b-pharm" className={styles.linkItem}>
+                                        B.Pharm Curriculum
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/courses/pharm-d" className={styles.linkItem}>
+                                        Pharm.D Program
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/courses/m-pharm" className={styles.linkItem}>
+                                        M.Pharm Specializations
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
 
@@ -104,11 +146,31 @@ export default function Footer() {
                         <div className={styles.columnBlock}>
                             <h4 className={styles.columnTitle}>Campus</h4>
                             <ul className={styles.linkList}>
-                                <li><Link href="/campus-life/student-activities" className={styles.linkItem}>Student Clubs &amp; Activities</Link></li>
-                                <li><Link href="/campus-life/sports" className={styles.linkItem}>Sports &amp; Gymnasium</Link></li>
-                                <li><Link href="/campus-life/hostel" className={styles.linkItem}>Hostel Facilities</Link></li>
-                                <li><Link href="/campus-life/seminar-workshops" className={styles.linkItem}>Seminars &amp; Workshops</Link></li>
-                                <li><Link href="/placements" className={styles.linkItem}>Training &amp; Placements</Link></li>
+                                <li>
+                                    <Link href="/campus-life/student-activities" className={styles.linkItem}>
+                                        Student Clubs &amp; Activities
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/campus-life/sports" className={styles.linkItem}>
+                                        Sports &amp; Gymnasium
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/campus-life/hostel" className={styles.linkItem}>
+                                        Hostel Facilities
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/campus-life/seminar-workshops" className={styles.linkItem}>
+                                        Seminars &amp; Workshops
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/placements" className={styles.linkItem}>
+                                        Training &amp; Placements
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
 
@@ -116,11 +178,32 @@ export default function Footer() {
                         <div className={styles.columnBlock}>
                             <h4 className={styles.columnTitle}>Statutory</h4>
                             <ul className={styles.linkList}>
-                                <li><Link href="/campus-life/anti-ragging" className={styles.linkItem}>Anti-Ragging Cell</Link></li>
-                                <li><Link href="/disclosures" className={styles.linkItem}>Mandatory Disclosures</Link></li>
-                                <li><Link href="/disclosures/aicte" className={styles.linkItem}>AICTE EOA Disclosure</Link></li>
-                                <li><Link href="/faculty-publications" className={styles.linkItem}>Faculty Publications</Link></li>
-                                <li><Link href="/admissions/fee-structure" className={styles.linkItem}>Fee Regulations</Link></li>
+                                <li>
+                                    <Link href="/campus-life/anti-ragging" className={styles.linkItem}>
+                                        Anti-Ragging Cell
+                                    </Link>
+                                </li>
+                                {/* Suggestions link placed here */}
+                                <li>
+                                    <Link href="/suggestions" className={styles.linkItem}>
+                                        Suggestions
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/disclosures/aicte" className={styles.linkItem}>
+                                        AICTE EOA Disclosure
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/faculty-publications" className={styles.linkItem}>
+                                        Faculty Publications
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/admissions/fee-structure" className={styles.linkItem}>
+                                        Fee Regulations
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
 
@@ -129,19 +212,34 @@ export default function Footer() {
                             <h4 className={styles.columnTitle}>Portals</h4>
                             <ul className={styles.linkList}>
                                 <li>
-                                    <a href="https://www.jntua.ac.in" target="_blank" rel="noreferrer" className={styles.linkItem}>
+                                    <a
+                                        href="https://www.jntua.ac.in"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className={styles.linkItem}
+                                    >
                                         JNTUA Anantapur
                                         <ExternalLink size={11} className={styles.extIcon} />
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://aicte-india.org" target="_blank" rel="noreferrer" className={styles.linkItem}>
+                                    <a
+                                        href="https://aicte-india.org"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className={styles.linkItem}
+                                    >
                                         AICTE Portal
                                         <ExternalLink size={11} className={styles.extIcon} />
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://sche.ap.gov.in" target="_blank" rel="noreferrer" className={styles.linkItem}>
+                                    <a
+                                        href="https://sche.ap.gov.in"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className={styles.linkItem}
+                                    >
                                         APSCHE Portal
                                         <ExternalLink size={11} className={styles.extIcon} />
                                     </a>
@@ -155,11 +253,17 @@ export default function Footer() {
                 <div className={styles.bottomBar}>
                     <p>© {new Date().getFullYear()} Jagan&apos;s College of Pharmacy. All rights reserved.</p>
                     <div className={styles.legalLinks}>
-                        <Link href="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
-                        <span className={styles.legalDivider}></span>
-                        <Link href="/terms-conditions" className={styles.legalLink}>Terms of Use</Link>
-                        <span className={styles.legalDivider}></span>
-                        <Link href="/sitemap" className={styles.legalLink}>Sitemap</Link>
+                        <Link href="/privacy-policy" className={styles.legalLink}>
+                            Privacy Policy
+                        </Link>
+                        <span className={styles.legalDivider} />
+                        <Link href="/terms-conditions" className={styles.legalLink}>
+                            Terms of Use
+                        </Link>
+                        <span className={styles.legalDivider} />
+                        <Link href="/sitemap" className={styles.legalLink}>
+                            Sitemap
+                        </Link>
                     </div>
                 </div>
             </div>
