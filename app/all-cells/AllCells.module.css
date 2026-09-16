@@ -409,7 +409,7 @@
     align-items: start;
 }
 
-/* Left: 5 Rounded Horizontal Pill Rows (matching Image 1) */
+/* Left: 5 Rounded Horizontal Pill Rows */
 .membersPillsList {
     display: flex;
     flex-direction: column;
@@ -420,7 +420,6 @@
     background-color: #faf8f5;
     border: 1.5px solid #ebe5d8;
     border-radius: 9999px;
-    /* Rounded pill style matching user reference sketch */
     padding: 0.75rem 1.15rem;
     display: flex;
     align-items: center;
@@ -519,7 +518,7 @@
     border-color: #fbbf24;
 }
 
-/* Right: Enlarged Hover Preview Card (matching Image 2) */
+/* Right: Enlarged Hover Preview Card */
 .memberHoverCard {
     background: #ffffff;
     border: 1.5px solid rgba(5, 59, 42, 0.15);
@@ -696,6 +695,161 @@
     font-size: 0.8125rem;
     font-weight: 700;
     color: #1f2937;
+}
+
+/* ==========================================================================
+   MOBILE VIEW POLISHING (max-width: 640px)
+   Addresses all 3 screenshots without altering desktop layout
+   ========================================================================== */
+@media (max-width: 640px) {
+    .pageWrapper {
+        padding: 3.5rem 0.75rem 5rem 0.75rem;
+    }
+
+    .title {
+        font-size: 1.65rem;
+        line-height: 1.25;
+    }
+
+    /* Screenshot 1 Fix: Clean, balanced header button layout */
+    .cellHeaderBar {
+        padding: 0.85rem 0.95rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        position: relative;
+    }
+
+    .cellBarLeft {
+        width: 100%;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .iconPill {
+        width: 2.35rem;
+        height: 2.35rem;
+        border-radius: 0.65rem;
+        margin-top: 0.15rem;
+    }
+
+    .cellTitleGroup {
+        flex: 1;
+        padding-right: 2.5rem;
+        /* Room for top-right chevron */
+    }
+
+    .cellName {
+        font-size: 0.95rem;
+        line-height: 1.35;
+    }
+
+    .cellBarRight {
+        width: 100%;
+        justify-content: flex-start;
+        padding-left: 3.1rem;
+        /* Align under text */
+        gap: 0.5rem;
+    }
+
+    /* Anchor chevron cleanly to top-right on mobile */
+    .cellBarRight .chevronWrapper {
+        position: absolute;
+        top: 1rem;
+        right: 0.95rem;
+        width: 1.85rem;
+        height: 1.85rem;
+    }
+
+    .expandedPanel {
+        padding: 1.15rem 0.85rem;
+        gap: 1.25rem;
+    }
+
+    .mandateCard {
+        padding: 1rem;
+    }
+
+    /* Screenshot 2 Fix: Stop pill clipping and horizontal overflow */
+    .memberPillRow {
+        border-radius: 1rem;
+        /* Switch from 9999px pill to card on mobile */
+        padding: 0.85rem 0.95rem;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        align-items: flex-start;
+    }
+
+    .memberPillRow:hover,
+    .memberPillActive {
+        transform: none;
+        /* Avoid horizontal sliding off viewport */
+    }
+
+    .pillInfoLeft {
+        width: calc(100% - 2.5rem);
+    }
+
+    .pillInfoRight {
+        width: 100%;
+        padding-left: 2.15rem;
+        /* Indent under name */
+    }
+
+    .pillCellRole {
+        display: inline-block;
+        white-space: normal;
+        font-size: 0.685rem;
+        line-height: 1.3;
+        padding: 0.2rem 0.55rem;
+    }
+
+    /* Screenshot 3 Fix: Mobile-adapted member preview card */
+    .memberHoverCard {
+        padding: 1.15rem;
+        border-radius: 1.15rem;
+    }
+
+    .cardHeaderArea {
+        gap: 0.85rem;
+        align-items: flex-start;
+    }
+
+    .memberAvatar {
+        width: 4.25rem;
+        height: 4.25rem;
+        border-radius: 0.85rem;
+    }
+
+    .cardMemberName {
+        font-size: 1.05rem;
+        line-height: 1.25;
+    }
+
+    .cardCollegeRole {
+        font-size: 0.725rem;
+        line-height: 1.35;
+    }
+
+    .cardDivider {
+        margin: 1rem 0;
+    }
+
+    .contactBtn {
+        padding: 0.55rem 0.75rem;
+        gap: 0.65rem;
+    }
+
+    .contactIconCircle {
+        width: 1.85rem;
+        height: 1.85rem;
+    }
+
+    .contactValue {
+        font-size: 0.75rem;
+        word-break: break-all;
+        /* Prevents long emails from breaking container */
+    }
 }
 
 /* Tablet screens (640px+) */

@@ -316,8 +316,8 @@ export default function HomeHeroSection() {
                                 <GraduationCap size={16} />
                             </div>
                             <div className={styles.codeInfoGroup}>
-                                <span className={styles.codeSubtitle}>EAPCET / EAMCET</span>
-                                <span className={styles.codeHighlightEmerald}>JAGP</span>
+                                <span className={styles.codeSubtitle}>APEAPCET CODE</span>
+                                <span className={styles.codeHighlightEmerald}>JAGN</span>
                             </div>
                         </div>
 
@@ -328,7 +328,7 @@ export default function HomeHeroSection() {
                             </div>
                             <div className={styles.codeInfoGroup}>
                                 <span className={styles.codeSubtitle}>AP PGCET</span>
-                                <span className={styles.codeHighlightGold}>JAGP1</span>
+                                <span className={styles.codeHighlightGold}>JAGN1</span>
                             </div>
                         </div>
                     </div>
