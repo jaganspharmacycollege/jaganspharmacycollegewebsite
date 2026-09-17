@@ -7,11 +7,14 @@ import {
     ChevronRight,
     Menu,
     X,
-    ArrowUpRight,
     Phone,
     Mail,
     MapPin,
     Award,
+    ShieldCheck,
+    GraduationCap,
+    BookOpen,
+    Newspaper,
 } from 'lucide-react';
 import styles from './Header.module.css';
 
@@ -22,17 +25,36 @@ export default function Header() {
     const [admissionsOpen, setAdmissionsOpen] = useState(false);
     const [campusLifeOpen, setCampusLifeOpen] = useState(false);
     const [academicsOpen, setAcademicsOpen] = useState(false);
+    const [placementsOpen, setPlacementsOpen] = useState(false);
     const [offcanvasOpen, setOffcanvasOpen] = useState(false);
     const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
 
-    // Automatically reset all navigation state on route change to prevent DOM unmount conflicts
+    const [radialMenuOpen, setRadialMenuOpen] = useState(false);
+    const radialMenuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleOutsideClick = (e: MouseEvent) => {
+            if (radialMenuRef.current && !radialMenuRef.current.contains(e.target as Node)) {
+                setRadialMenuOpen(false);
+            }
+        };
+        if (radialMenuOpen) {
+            document.addEventListener('mousedown', handleOutsideClick);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [radialMenuOpen]);
+
     useEffect(() => {
         setAboutOpen(false);
         setCoursesOpen(false);
         setAdmissionsOpen(false);
         setCampusLifeOpen(false);
         setAcademicsOpen(false);
+        setPlacementsOpen(false);
         setOffcanvasOpen(false);
+        setRadialMenuOpen(false);
         setMobileSubmenu(null);
     }, [pathname]);
 
@@ -64,8 +86,9 @@ export default function Header() {
     };
 
     const aboutOptions = [
-        { name: 'History of JCP', href: '/about/history' },
+        { name: 'About JCP', href: '/about/history' },
         { name: 'Management & Leadership', href: '/about/management' },
+        { name: 'Principal Desk', href: '/about/principal-desk' },
     ];
 
     const courseOptions = [
@@ -102,8 +125,18 @@ export default function Header() {
     ];
 
     const academicsOptions = [
-        { name: 'Departments & Faculty', href: '/academics/departments' },
+        { name: 'Departments', href: '/academics/departments' },
         { name: 'Academic Calendar', href: '/academics/calendar' },
+        { name: 'Student Achievements', href: '/academics/student-achievements' },
+        { name: 'Faculty Achievements', href: '/academics/faculty-achievements' },
+        { name: 'Journals and Publications', href: '/academics/journals-publications' },
+        { name: 'Faculty', href: '/academics/faculty' },
+    ];
+
+    const placementOptions = [
+        { name: 'Training', href: '/placements/training' },
+        { name: 'Placement Record', href: '/placements/record' },
+        { name: "MOU's with Industries & Institutions", href: '/placements/mous' },
     ];
 
     const navItems = [
@@ -144,18 +177,24 @@ export default function Header() {
             setter: setAcademicsOpen,
         },
         { name: 'Infrastructure', href: '/infrastructure' },
-        { name: 'Placements', href: '/placements' },
+        {
+            name: 'Placements',
+            href: '/placements',
+            options: placementOptions,
+            state: placementsOpen,
+            setter: setPlacementsOpen,
+        },
         { name: 'Alumni', href: '/alumni' },
     ];
 
     return (
         <header className={styles.headerWrapper}>
-            {/* Top Strip */}
+            {/* 1. Top Strip: Contact details & Location */}
             <div className={styles.topBar}>
                 <div className={styles.topBarContainer}>
                     <div className={styles.topBarLeft}>
-                        <span className={styles.affilBadge}>
-                            <Award size={14} /> Affiliated to JNTUA
+                        <span className={`${styles.topContactLink} ${styles.topBarLocation}`}>
+                            <MapPin size={12} /> Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore, AP
                         </span>
                     </div>
                     <div className={styles.topBarRight}>
@@ -165,17 +204,84 @@ export default function Header() {
                         <a href="mailto:principal.jcp@gmail.com" className={styles.topContactLink}>
                             <Mail size={12} /> principal.jcp@gmail.com
                         </a>
-                        <span className={`${styles.topContactLink} ${styles.topBarLocation}`}>
-                            <MapPin size={12} /> Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore, AP
-                        </span>
                     </div>
                 </div>
             </div>
 
-            {/* Main Header */}
+            {/* 2. Institution Brand Header Banner */}
+            <div className={styles.brandBannerStrip}>
+                <div className={styles.brandBannerContainer}>
+                    <Link href="/" className={styles.brandMainGroup} aria-label="Jagan's College of Pharmacy Home">
+                        <div className={styles.bannerLogoOuter}>
+                            <img
+                                src="/assets/logo/Jagans_logo.png"
+                                alt="Jagan's College of Pharmacy Logo"
+                                className={styles.bannerLogoImg}
+                            />
+                        </div>
+                        <div className={styles.bannerTextGroup}>
+                            <div className={styles.bannerHeadingRow}>
+                                <h1 className={styles.bannerTitle}>Jagan&apos;s</h1>
+                                <span className={styles.bannerTitleAccent}>College of Pharmacy</span>
+                            </div>
+                            <p className={styles.bannerMotto}>
+                                Empowering future pharmacists with knowledge, integrity and innovation to advance healthcare and serve communities with compassion.
+                            </p>
+                        </div>
+                    </Link>
+
+                    {/* Right Accreditations & Counseling Codes Group */}
+                    <div className={styles.bannerAccreditationColumn}>
+                        <div className={styles.accreditationCol}>
+                            <div className={styles.accreditationItem}>
+                                <div className={styles.accreditationIconWrap}>
+                                    <Award size={18} />
+                                </div>
+                                <div className={styles.accreditationText}>
+                                    <p className={styles.accreditationTitle}>Affiliated to JNTUA</p>
+                                    <p className={styles.accreditationSub}>Jawaharlal Nehru Tech University</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.codeBadgeCard}>
+                                <div className={styles.codeIconBoxEmerald}>
+                                    <GraduationCap size={15} />
+                                </div>
+                                <div className={styles.codeInfoGroup}>
+                                    <span className={styles.codeSubtitle}>APEAPCET CODE</span>
+                                    <span className={styles.codeHighlightEmerald}>JAGN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles.accreditationCol}>
+                            <div className={styles.accreditationItem}>
+                                <div className={styles.accreditationIconWrap}>
+                                    <ShieldCheck size={18} />
+                                </div>
+                                <div className={styles.accreditationText}>
+                                    <p className={styles.accreditationTitle}>Approved by PCI</p>
+                                    <p className={styles.accreditationSub}>Pharmacy Council of India, New Delhi</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.codeBadgeCard}>
+                                <div className={styles.codeIconBoxGold}>
+                                    <BookOpen size={15} />
+                                </div>
+                                <div className={styles.codeInfoGroup}>
+                                    <span className={styles.codeSubtitle}>AP PGCET CODE</span>
+                                    <span className={styles.codeHighlightGold}>JAGN1</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* 3. Main Navigation Bar */}
             <div className={styles.mainHeader}>
                 <div className={styles.container}>
-                    {/* Left Group: Circular Logo Emblem Only */}
                     <div className={styles.leftGroup}>
                         <button
                             className={styles.mobileMenuBtn}
@@ -184,18 +290,9 @@ export default function Header() {
                         >
                             <Menu size={22} />
                         </button>
-                        <Link href="/" className={styles.logoLink} aria-label="Jagan's College of Pharmacy Home">
-                            <div className={styles.logoOuter}>
-                                <img
-                                    src="/assets/logo/Jagans_logo.png"
-                                    alt="Jagan's College of Pharmacy"
-                                    className={styles.logoImg}
-                                />
-                            </div>
-                        </Link>
+                        <span className={styles.mobileNavTitle}>Menu</span>
                     </div>
 
-                    {/* Desktop Navigation Evenly Distributed */}
                     <nav className={styles.desktopNav}>
                         {navItems.map((item) => {
                             const isActive = pathname.startsWith(item.href) && item.href !== '/';
@@ -262,17 +359,65 @@ export default function Header() {
                         })}
                     </nav>
 
-                    {/* Right Controls */}
+                    {/* Right Controls: Latest News & Applications Buttons */}
                     <div className={styles.rightControls}>
-                        <Link href="/admissions/application-form" className={styles.applyButton}>
-                            <span>Apply Now</span>
-                            <ArrowUpRight size={14} />
+                        {/* Latest News Button (Placed immediately to the left of Applications) */}
+                        <Link
+                            href="/latest-news"
+                            className={styles.latestNewsBtn}
+                            aria-label="View Latest News and Press Releases"
+                        >
+                            <Newspaper size={14} />
+                            <span>Latest News</span>
                         </Link>
+
+                        {/* Applications Radial Fan-out */}
+                        <div className={styles.radialMenuWrapper} ref={radialMenuRef}>
+                            <button
+                                type="button"
+                                onClick={() => setRadialMenuOpen((prev) => !prev)}
+                                className={`${styles.applicationsTriggerBtn} ${radialMenuOpen ? styles.triggerActive : ''
+                                    }`}
+                                aria-expanded={radialMenuOpen}
+                                aria-label="Toggle Applications Menu"
+                            >
+                                <span>Applications</span>
+                            </button>
+
+                            <div
+                                className={`${styles.radialArcContainer} ${radialMenuOpen ? styles.arcVisible : styles.arcHidden
+                                    }`}
+                            >
+                                <Link
+                                    href="/admissions/application-form"
+                                    className={`${styles.radialTextPill} ${styles.item1}`}
+                                    onClick={() => setRadialMenuOpen(false)}
+                                >
+                                    Admission Form
+                                </Link>
+
+                                <Link
+                                    href="/contact"
+                                    className={`${styles.radialTextPill} ${styles.item2}`}
+                                    onClick={() => setRadialMenuOpen(false)}
+                                >
+                                    Enquiry Form
+                                </Link>
+
+                                <Link
+                                    href="/recruitment"
+                                    className={`${styles.radialTextPill} ${styles.item3}`}
+                                    onClick={() => setRadialMenuOpen(false)}
+                                >
+                                    Recruitment Form
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Offcanvas Drawer */}
+            {/* Offcanvas Drawer for Mobile */}
             {offcanvasOpen && (
                 <div className={styles.offcanvasOverlay} onClick={() => setOffcanvasOpen(false)}>
                     <div className={styles.offcanvasDrawer} onClick={(e) => e.stopPropagation()}>
@@ -300,10 +445,25 @@ export default function Header() {
                         </div>
 
                         <div className={styles.drawerContent}>
+                            <div className={styles.drawerItem}>
+                                <Link
+                                    href="/latest-news"
+                                    className={styles.drawerNewsLink}
+                                    onClick={() => setOffcanvasOpen(false)}
+                                >
+                                    <Newspaper size={17} />
+                                    <span>Latest News &amp; Press</span>
+                                </Link>
+                            </div>
+
                             {navItems.map((item) => (
                                 <div key={item.name} className={styles.drawerItem}>
                                     <div className={styles.drawerLinkRow}>
-                                        <Link href={item.href} className={styles.drawerLink}>
+                                        <Link
+                                            href={item.href}
+                                            className={styles.drawerLink}
+                                            onClick={() => setOffcanvasOpen(false)}
+                                        >
                                             {item.name}
                                         </Link>
                                         {item.options && (
@@ -330,6 +490,7 @@ export default function Header() {
                                                     key={opt.name}
                                                     href={opt.href}
                                                     className={styles.drawerSubLink}
+                                                    onClick={() => setOffcanvasOpen(false)}
                                                 >
                                                     {opt.name}
                                                 </Link>
@@ -341,13 +502,30 @@ export default function Header() {
                         </div>
 
                         <div className={styles.drawerFooter}>
-                            <Link
-                                href="/admissions/application-form"
-                                className={styles.drawerApplyBtn}
-                            >
-                                <span>Apply for Admission</span>
-                                <ArrowUpRight size={16} />
-                            </Link>
+                            <span className={styles.drawerFooterHeading}>Applications</span>
+                            <div className={styles.drawerAppsList}>
+                                <Link
+                                    href="/admissions/application-form"
+                                    className={styles.drawerAppItem}
+                                    onClick={() => setOffcanvasOpen(false)}
+                                >
+                                    Admission Form
+                                </Link>
+                                <Link
+                                    href="/contact"
+                                    className={styles.drawerAppItem}
+                                    onClick={() => setOffcanvasOpen(false)}
+                                >
+                                    Enquiry Form
+                                </Link>
+                                <Link
+                                    href="/recruitment"
+                                    className={styles.drawerAppItem}
+                                    onClick={() => setOffcanvasOpen(false)}
+                                >
+                                    Recruitment Form
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

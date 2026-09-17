@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -38,18 +37,22 @@ function useAnimatedCounter(
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             const easedProgress = easeOutCubic(progress);
-            setCount(Math.floor(easedProgress * target));
 
             if (progress < 1) {
+                setCount(Math.floor(easedProgress * target));
                 animationFrameId = requestAnimationFrame(step);
             } else {
-                setCount(target);
+                setCount(target); // Stops loop cleanly once target is reached
             }
         };
 
         animationFrameId = requestAnimationFrame(step);
 
-        return () => cancelAnimationFrame(animationFrameId);
+        return () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        };
     }, [target, isVisible, duration]);
 
     return count;
@@ -68,11 +71,13 @@ export default function HomeAboutStatsSection() {
     const bpharmPlacementCount = useAnimatedCounter(88, isVisible, 1500);
     const pharmdPlacementCount = useAnimatedCounter(98, isVisible, 1550);
 
-    // Repeating scroll-triggered entrance detection
     useEffect(() => {
+        let isMounted = true;
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setIsVisible(entry.isIntersecting);
+                if (isMounted && entry) {
+                    setIsVisible(entry.isIntersecting);
+                }
             },
             { threshold: 0.1 }
         );
@@ -81,23 +86,25 @@ export default function HomeAboutStatsSection() {
             observer.observe(sectionRef.current);
         }
 
-        return () => observer.disconnect();
+        return () => {
+            isMounted = false;
+            observer.disconnect();
+        };
     }, []);
 
-    // Ultra-slow fluid linear-interpolated (lerp 0.035) parallax animation
+    // Parallax animation
     useEffect(() => {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
+        let isMounted = true;
 
         const updateParallax = () => {
-            if (!sectionRef.current) return;
+            if (!isMounted || !sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
                     orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
                         }px, 0)`;
@@ -107,11 +114,13 @@ export default function HomeAboutStatsSection() {
                         }px, 0)`;
                 }
             }
-
-            animationFrameId = requestAnimationFrame(updateParallax);
+            if (isMounted) {
+                animationFrameId = requestAnimationFrame(updateParallax);
+            }
         };
 
         const handleScroll = () => {
+            if (!isMounted) return;
             targetScroll = window.scrollY;
         };
 
@@ -119,6 +128,7 @@ export default function HomeAboutStatsSection() {
         animationFrameId = requestAnimationFrame(updateParallax);
 
         return () => {
+            isMounted = false;
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
@@ -128,7 +138,6 @@ export default function HomeAboutStatsSection() {
         <section ref={sectionRef} className={styles.section}>
             <div ref={orbLeftRef} className={styles.bgOrbLeft} />
             <div ref={orbRightRef} className={styles.bgOrbRight} />
-
             <div className={styles.container}>
                 {/* Left Column: Vision, Mission & Action */}
                 <div className={styles.leftCol}>
@@ -138,7 +147,6 @@ export default function HomeAboutStatsSection() {
                     >
                         About Us
                     </span>
-
                     <h2
                         className={`${styles.title} ${isVisible ? styles.animateReveal2 : styles.hiddenState
                             }`}
@@ -157,8 +165,8 @@ export default function HomeAboutStatsSection() {
                                 <h4 className={styles.vmTitle}>Our Vision</h4>
                             </div>
                             <p className={styles.vmText}>
-                                To be a premier institution in pharmaceutical education, research and innovation, fostering skilled professionals committed to ethical practice and advancing global healthcare through knowledge, compassion and excellence
-
+                                To be a premier institution in pharmaceutical education, research and innovation, fostering
+                                skilled professionals committed to ethical practice and advancing global healthcare through knowledge, compassion and excellence.
                             </p>
                         </div>
 
@@ -171,15 +179,14 @@ export default function HomeAboutStatsSection() {
                                 <h4 className={styles.vmTitle}>Our Mission</h4>
                             </div>
                             <p className={styles.vmText}>
-                                To educate and empower future pharmacists with cutting edge knowledge, ethical values, practical skills, fostering innovation, research, and community service to advance healthcare and improve lives.
+                                To educate and empower future pharmacists with cutting edge knowledge, ethical values, practical
+                                skills, fostering innovation, research, and community service to advance healthcare and improve lives.
                             </p>
                         </div>
                     </div>
 
                     <div
-                        className={
-                            isVisible ? styles.animateReveal5 : styles.hiddenState
-                        }
+                        className={isVisible ? styles.animateReveal5 : styles.hiddenState}
                     >
                         <Link href="/about" className={styles.btnAbout}>
                             <span>Know More About Us</span>
@@ -188,25 +195,25 @@ export default function HomeAboutStatsSection() {
                     </div>
                 </div>
 
-                {/* Right Column: Key Performance & Placement Metrics */}
+                {/* Right Column: Metrics */}
                 <div className={styles.statsGrid}>
                     <div className={styles.colParallaxLeft}>
                         <div
                             className={`${styles.statCard} ${isVisible ? styles.animateReveal2 : styles.hiddenState
                                 }`}
                         >
+                            <GraduationCap size={22} className={styles.statIcon} />
                             <div className={styles.statNumber}>{yearsCount}+</div>
                             <div className={styles.statLabel}>Years of Excellence</div>
-                            <GraduationCap size={22} className={styles.statIcon} />
                         </div>
 
                         <div
                             className={`${styles.statCard} ${isVisible ? styles.animateReveal4 : styles.hiddenState
                                 }`}
                         >
+                            <Users size={22} className={styles.statIcon} />
                             <div className={styles.statNumber}>{studentsCount}+</div>
                             <div className={styles.statLabel}>Students Enrolled</div>
-                            <Users size={22} className={styles.statIcon} />
                         </div>
                     </div>
 
@@ -215,9 +222,9 @@ export default function HomeAboutStatsSection() {
                             className={`${styles.statCard} ${isVisible ? styles.animateReveal3 : styles.hiddenState
                                 }`}
                         >
+                            <UserCheck size={22} className={styles.statIcon} />
                             <div className={styles.statNumber}>{facultyCount}+</div>
                             <div className={styles.statLabel}>Expert Faculty</div>
-                            <UserCheck size={22} className={styles.statIcon} />
                         </div>
 
                         <Link

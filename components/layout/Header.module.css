@@ -8,13 +8,13 @@
     font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Top Strip */
+/* 1. Top Strip */
 .topBar {
     background: #021a12;
-    border-bottom: 1px solid rgba(52, 211, 153, 0.15);
-    padding: 0.4rem 1.25rem;
+    border-bottom: 1px solid rgba(52, 211, 153, 0.12);
+    padding: 0.35rem 1.25rem;
     color: #d1fae5;
-    font-size: 0.75rem;
+    font-size: 0.725rem;
 }
 
 .topBarContainer {
@@ -27,23 +27,9 @@
     gap: 0.75rem;
 }
 
-.topBarLeft {
-    display: flex;
-    align-items: center;
-}
-
-.affilBadge {
-    font-weight: 700;
-    color: #fbbf24;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    letter-spacing: 0.03em;
-}
-
+.topBarLeft,
 .topBarRight {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 1.25rem;
 }
@@ -71,21 +57,255 @@
     }
 }
 
-/* Main Navbar Header */
+/* 2. Institution Brand Header Banner */
+.brandBannerStrip {
+    background: linear-gradient(135deg, #053b2a 0%, #032319 100%);
+    border-bottom: 1px solid rgba(52, 211, 153, 0.18);
+    padding: 0.75rem 1.5rem;
+}
+
+.brandBannerContainer {
+    max-width: 88rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.brandMainGroup {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    text-decoration: none;
+}
+
+.bannerLogoOuter {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #053b2a 0%, #0d5f44 100%);
+    border: 2px solid #fbbf24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px rgba(251, 191, 36, 0.35);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.bannerLogoImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bannerTextGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.bannerHeadingRow {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.bannerTitle {
+    font-family: var(--font-merriweather), 'Merriweather', serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.bannerTitleAccent {
+    font-family: var(--font-merriweather), 'Merriweather', serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fbbf24;
+    line-height: 1.15;
+}
+
+.bannerMotto {
+    font-size: 0.765rem;
+    color: #d1fae5;
+    margin: 0.25rem 0 0 0;
+    line-height: 1.45;
+    max-width: 44rem;
+}
+
+/* Accreditations & Codes 2-Column Aligned Grid */
+.bannerAccreditationColumn {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .bannerAccreditationColumn {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        flex-shrink: 0;
+    }
+}
+
+.accreditationCol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-width: 13.5rem;
+}
+
+.accreditationItem {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.accreditationIconWrap {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: rgba(52, 211, 153, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    color: #34d399;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.accreditationText {
+    display: flex;
+    flex-direction: column;
+}
+
+.accreditationTitle {
+    font-size: 0.8125rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.accreditationSub {
+    font-size: 0.6875rem;
+    color: #9ca3af;
+    margin: 0.15rem 0 0 0;
+    white-space: nowrap;
+}
+
+.codeBadgeCard {
+    background: rgba(3, 31, 22, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    border-radius: 0.55rem;
+    padding: 0.35rem 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.codeBadgeCard:hover {
+    transform: translateY(-2px);
+    border-color: #fbbf24;
+}
+
+.codeIconBoxEmerald {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.35rem;
+    background: rgba(52, 211, 153, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    color: #34d399;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.codeIconBoxGold {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.35rem;
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.codeInfoGroup {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.codeSubtitle {
+    font-size: 0.56rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9ca3af;
+}
+
+.codeHighlightEmerald {
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #34d399;
+    text-shadow: 0 0 8px rgba(52, 211, 153, 0.35);
+}
+
+.codeHighlightGold {
+    font-size: 0.9rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #fbbf24;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.35);
+}
+
+@media (max-width: 768px) {
+
+    .bannerTitle,
+    .bannerTitleAccent {
+        font-size: 1.35rem;
+    }
+
+    .bannerLogoOuter {
+        width: 3.25rem;
+        height: 3.25rem;
+    }
+
+    .bannerMotto {
+        font-size: 0.725rem;
+    }
+}
+
+/* 3. Main Navigation Bar */
 .mainHeader {
     width: 100%;
-    background: rgba(4, 42, 30, 0.94);
+    background: rgba(3, 31, 22, 0.98);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(52, 211, 153, 0.2);
-    box-shadow: 0 8px 32px 4px rgba(0, 0, 0, 0.35);
-    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(52, 211, 153, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .container {
     max-width: 88rem;
     margin: 0 auto;
-    padding: 0.65rem 1.5rem;
+    padding: 0.45rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -93,12 +313,16 @@
     width: 100%;
 }
 
-/* Left Group */
 .leftGroup {
     display: flex;
     align-items: center;
-    gap: 0.875rem;
-    flex-shrink: 0;
+    gap: 0.75rem;
+}
+
+@media (min-width: 1200px) {
+    .leftGroup {
+        display: none;
+    }
 }
 
 .mobileMenuBtn {
@@ -118,72 +342,13 @@
     background: rgba(52, 211, 153, 0.2);
 }
 
-@media (min-width: 1200px) {
-    .mobileMenuBtn {
-        display: none;
-    }
-}
-
-.logoLink {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    flex-shrink: 0;
-}
-
-.logoOuter {
-    width: 2.85rem;
-    height: 2.85rem;
-    border-radius: 9999px;
-    background: linear-gradient(135deg, #053b2a 0%, #0d5f44 100%);
-    border: 1.5px solid #34d399;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 15px rgba(52, 211, 153, 0.25);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-}
-
-.logoLink:hover .logoOuter {
-    border-color: #fbbf24;
-    box-shadow: 0 0 18px rgba(251, 191, 36, 0.4);
-}
-
-.logoImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.brandTextGroup {
-    display: flex;
-    flex-direction: column;
-}
-
-.title {
-    font-family: 'Stardos Stencil', 'Georgia', serif;
-    font-size: 1.45rem;
-    font-weight: 700;
+.mobileNavTitle {
     color: #ffffff;
-    line-height: 1.05;
-    letter-spacing: 0.03em;
-    margin: 0;
-}
-
-.subtitle {
-    font-family: 'Stardos Stencil', var(--font-sora), 'Sora', sans-serif;
-    font-size: 0.625rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    letter-spacing: 0.16em;
-    color: #fbbf24;
-    margin: 0.2rem 0 0 0;
-    line-height: 1;
-    text-transform: uppercase;
 }
 
-/* Desktop Navigation Evenly Distributed */
+/* Desktop Navigation */
 .desktopNav {
     display: none;
 }
@@ -192,10 +357,9 @@
     .desktopNav {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: flex-start;
+        gap: 0.5rem;
         flex: 1;
-        margin: 0 1.5rem;
-        max-width: 68rem;
     }
 }
 
@@ -212,7 +376,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0.45rem 0.75rem;
     border-radius: 0.5rem;
     font-size: 0.8125rem;
     font-weight: 600;
@@ -236,7 +400,7 @@
 
 .activeDot {
     position: absolute;
-    bottom: 0.2rem;
+    bottom: 0.15rem;
     left: 50%;
     transform: translateX(-50%);
     width: 16px;
@@ -246,7 +410,6 @@
     box-shadow: 0 0 8px rgba(251, 191, 36, 0.9);
 }
 
-/* Dropdowns */
 .dropdownMenu {
     position: absolute;
     top: 100%;
@@ -300,7 +463,9 @@
 }
 
 .dropdownItem:hover {
-    background: linear-gradient(90deg, rgba(52, 211, 153, 0.2) 0%, rgba(52, 211, 153, 0.05) 100%);
+    background: linear-gradient(90deg,
+            rgba(52, 211, 153, 0.2) 0%,
+            rgba(52, 211, 153, 0.05) 100%);
     color: #ffffff;
     transform: translateX(4px);
     font-weight: 700;
@@ -308,42 +473,170 @@
 
 /* Right Controls */
 .rightControls {
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 0.75rem;
     flex-shrink: 0;
 }
 
-.applyButton {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: #042a1e;
-    font-size: 0.8125rem;
-    font-weight: 800;
-    padding: 0.55rem 1.2rem;
-    border-radius: 0.625rem;
+/* Latest News Button (Styled similarly to Applications button) */
+.latestNewsBtn {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: #ffffff;
+    border: 1.5px solid rgba(52, 211, 153, 0.6);
+    padding: 0.48rem 1.15rem;
+    border-radius: 9999px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
-    transition: all 0.2s ease;
+    gap: 0.45rem;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
 }
 
-.applyButton:hover {
+.latestNewsBtn:hover {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.55);
+    box-shadow: 0 6px 18px rgba(5, 150, 105, 0.5);
+    border-color: #a7f3d0;
+}
+
+.radialMenuWrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.applicationsTriggerBtn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #042a1e;
+    border: 1.5px solid rgba(251, 191, 36, 0.7);
+    padding: 0.48rem 1.25rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    z-index: 1050;
+    white-space: nowrap;
+}
+
+.applicationsTriggerBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.55);
+}
+
+.triggerActive {
+    background: #ffffff;
+    color: #032319;
+    border-color: #ffffff;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+}
+
+.radialArcContainer {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+    z-index: 1040;
+}
+
+.arcVisible {
+    pointer-events: auto;
+}
+
+.radialTextPill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 0.775rem;
+    font-weight: 800;
+    color: #ffffff;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transform: translate(0, -50%) scale(0.6);
+    transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+.radialTextPill:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+    filter: brightness(1.1);
+}
+
+.arcVisible .item1 {
+    transform: translate(-155px, -36px) scale(1);
+    opacity: 1;
+    transition-delay: 0.04s;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    border: 1.5px solid #93c5fd;
+}
+
+.arcVisible .item2 {
+    transform: translate(-140px, 14px) scale(1);
+    opacity: 1;
+    transition-delay: 0.09s;
+    background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+    border: 1.5px solid #fbcfe8;
+}
+
+.arcVisible .item3 {
+    transform: translate(-125px, 62px) scale(1);
+    opacity: 1;
+    transition-delay: 0.14s;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    border: 1.5px solid #a7f3d0;
 }
 
 @media (max-width: 640px) {
-    .applyButton {
-        padding: 0.45rem 0.85rem;
-        font-size: 0.75rem;
-        border-radius: 0.5rem;
+    .rightControls {
+        gap: 0.4rem;
+    }
+
+    .latestNewsBtn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.725rem;
+    }
+
+    .applicationsTriggerBtn {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.725rem;
+    }
+
+    .arcVisible .item1 {
+        transform: translate(-130px, -30px) scale(0.92);
+    }
+
+    .arcVisible .item2 {
+        transform: translate(-115px, 12px) scale(0.92);
+    }
+
+    .arcVisible .item3 {
+        transform: translate(-105px, 54px) scale(0.92);
     }
 }
 
-/* Offcanvas Slideout */
+/* Offcanvas Drawer for Mobile */
 .offcanvasOverlay {
     position: fixed;
     inset: 0;
@@ -397,6 +690,55 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.logoLink {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logoOuter {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #053b2a 0%, #0d5f44 100%);
+    border: 1.5px solid #34d399;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.25);
+    overflow: hidden;
+}
+
+.logoImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brandTextGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: 'Stardos Stencil', 'Georgia', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.05;
+}
+
+.subtitle {
+    font-family: var(--font-sora), 'Sora', sans-serif;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #fbbf24;
+    margin: 0.2rem 0 0 0;
+    letter-spacing: 0.16em;
+}
+
 .drawerCloseBtn {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -416,6 +758,27 @@
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
+}
+
+.drawerNewsLink {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.2) 0%, rgba(5, 150, 105, 0.08) 100%);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    color: #34d399;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.65rem;
+    text-decoration: none;
+    margin-bottom: 0.35rem;
+    transition: all 0.2s ease;
+}
+
+.drawerNewsLink:hover {
+    background: rgba(52, 211, 153, 0.25);
+    color: #ffffff;
 }
 
 .drawerItem {
@@ -477,20 +840,37 @@
     background: #021a12;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
+    gap: 0.65rem;
 }
 
-.drawerApplyBtn {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: #042a1e;
-    font-size: 0.875rem;
+.drawerFooterHeading {
+    font-size: 0.7rem;
     font-weight: 800;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    text-align: center;
-    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fbbf24;
+}
+
+.drawerAppsList {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.drawerAppItem {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.55rem;
+    transition: all 0.2s ease;
+}
+
+.drawerAppItem:hover {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+    border-color: #34d399;
 }

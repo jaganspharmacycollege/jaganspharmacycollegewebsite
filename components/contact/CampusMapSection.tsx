@@ -12,7 +12,7 @@ export default function CampusMapSection() {
                 <div className={`${styles.mapContainer} ${styles.mapCol}`}>
                     <iframe
                         title="Jagan's College of Pharmacy Location Map"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.8878932451!2d78.8234!3d14.4673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDI4JzAyLjMiTiA30MKwNDknMjQuMiJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                        src="https://www.google.com/maps/place/Jagan's+College+of+Pharmacy/@14.3569367,80.0556578,981m/data=!3m1!1e3!4m6!3m5!1s0x3a4cf5d5e9abfb1f:0xfa2fe2be492fc92c!8m2!3d14.3572029!4d80.0581533!16s%2Fg%2F11s95kfm64?authuser=0&entry=ttu&g_ep=EgoyMDI2MDkxNC4wIKXMDSoASAFQAw%3D%3D"
                         className={styles.mapIframe}
                         allowFullScreen={false}
                         loading="lazy"

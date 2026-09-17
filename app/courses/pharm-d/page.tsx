@@ -108,7 +108,7 @@ export default function PharmDPage() {
                         }`}
                 >
                     <span className={styles.eyebrow}>Doctoral Degree Program</span>
-                    <h1 className={styles.title}>Doctor of Pharmacy (Pharm. D)</h1>
+                    <h1 className={styles.title}>Pharm. D (Doctor of Pharmacy)</h1>
                     <div className={styles.accentLine} />
                     <p className={styles.headerSub}>
                         A prestigious 6-year professional doctorate program focused on clinical pharmacy, bedside ward rounds, therapeutic drug monitoring, and patient healthcare delivery.

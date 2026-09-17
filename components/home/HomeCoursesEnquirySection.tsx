@@ -3,137 +3,123 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
     ArrowRight,
-    Send,
     FlaskConical,
     Stethoscope,
     Microscope,
-    CheckCircle2,
-    Sparkles,
-    Briefcase,
     Award,
     FileText,
     ShieldCheck,
 } from 'lucide-react';
 import styles from './HomeCoursesEnquirySection.module.css';
 
+interface ActivitySlide {
+    title: string;
+    subtitle: string;
+    image: string;
+}
+
+const recentActivities: ActivitySlide[] = [
+    {
+        title: 'Campus Life',
+        subtitle: 'Beyond classrooms, a world of opportunities and growth.',
+        image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=85',
+    },
+    {
+        title: 'National Seminars',
+        subtitle: 'Interacting with leading clinical researchers and industrial stalwarts.',
+        image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=85',
+    },
+    {
+        title: 'Sports & Athletics',
+        subtitle: 'Fostering teamwork, vitality, and annual tournament championships.',
+        image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=85',
+    },
+    {
+        title: 'Industrial Immersion',
+        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=85',
+    },
+];
+
 export default function HomeCoursesEnquirySection() {
-    const [activeTab, setActiveTab] = useState<'enquiry' | 'recruitment'>('enquiry');
-    const [enquirySubmitted, setEnquirySubmitted] = useState(false);
-    const [recruitmentSubmitted, setRecruitmentSubmitted] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
 
-    // Form states
-    const [enquiryForm, setEnquiryForm] = useState({
-        name: '',
-        mobile: '',
-        email: '',
-        course: '',
-        message: '',
-    });
-
-    const [recruitmentForm, setRecruitmentForm] = useState({
-        name: '',
-        mobile: '',
-        email: '',
-        position: '',
-        qualification: '',
-        experience: '',
-    });
-
-    // Repeating scroll-triggered entrance detection
     useEffect(() => {
+        let isMounted = true;
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setIsVisible(entry.isIntersecting);
+                if (isMounted && entry) {
+                    setIsVisible(entry.isIntersecting);
+                }
             },
             { threshold: 0.1 }
         );
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-        return () => observer.disconnect();
+        return () => {
+            isMounted = false;
+            observer.disconnect();
+        };
     }, []);
 
-    // Ultra-slow fluid linear-interpolated (lerp 0.035) parallax animation
     useEffect(() => {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
+        let isMounted = true;
+
         const updateParallax = () => {
-            if (!sectionRef.current) return;
+            if (!isMounted || !sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
                 if (orbLeftRef.current) {
-                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
-                        }px, 0)`;
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
                 }
                 if (orbRightRef.current) {
-                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05
-                        }px, 0)`;
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
                 }
             }
-            animationFrameId = requestAnimationFrame(updateParallax);
-            targetScroll = window.scrollY;
+            if (isMounted) {
+                animationFrameId = requestAnimationFrame(updateParallax);
+            }
         };
+
         const handleScroll = () => {
+            if (!isMounted) return;
             targetScroll = window.scrollY;
         };
+
         window.addEventListener('scroll', handleScroll, { passive: true });
         animationFrameId = requestAnimationFrame(updateParallax);
+
         return () => {
+            isMounted = false;
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
-    const handleEnquirySubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        try {
-            const res = await fetch('/api/send-enquiry', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ formType: 'enquiry', ...enquiryForm }),
-            });
-            if (res.ok) {
-                setEnquirySubmitted(true);
-            }
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % recentActivities.length);
+        }, 4500);
+        return () => clearInterval(timer);
+    }, []);
 
-    const handleRecruitmentSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        try {
-            const res = await fetch('/api/send-enquiry', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ formType: 'recruitment', ...recruitmentForm }),
-            });
-            if (res.ok) {
-                setRecruitmentSubmitted(true);
-            }
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+    const active = recentActivities[currentSlide];
 
     return (
         <section ref={sectionRef} className={styles.section}>
             <div ref={orbLeftRef} className={styles.bgOrbLeft} />
             <div ref={orbRightRef} className={styles.bgOrbRight} />
+
             <div className={styles.container}>
                 <div
                     className={`${styles.topHeading} ${isVisible ? styles.animateReveal1 : styles.hiddenState
@@ -141,6 +127,7 @@ export default function HomeCoursesEnquirySection() {
                 >
                     <span className={styles.eyebrow}>Our Academic Programs</span>
                 </div>
+
                 <div className={styles.mainLayout}>
                     {/* Left Column: 3 Course Cards + Bottom Trust/Action Banner */}
                     <div className={styles.leftColumn}>
@@ -157,10 +144,12 @@ export default function HomeCoursesEnquirySection() {
                                     <h3 className={styles.courseName}>B. Pharmacy</h3>
                                     <span className={styles.durationBadge}>Duration: 4 Years</span>
                                     <p className={styles.courseText}>
-                                        Undergraduate program that builds a strong foundation in pharmaceutical sciences, medicinal chemistry, drug development, dosage formulation, and laboratory instrumentation.
+                                        Undergraduate program that builds a strong foundation in pharmaceutical sciences, medicinal
+                                        chemistry, drug development, dosage formulation, and laboratory instrumentation.
                                     </p>
                                     <p className={styles.courseSubText}>
-                                        Prepares graduates for diverse careers in pharmaceutical manufacturing, quality assurance, drug regulatory affairs, marketing, and competitive examinations like GPAT.
+                                        Prepares graduates for diverse careers in pharmaceutical manufacturing, quality
+                                        assurance, drug regulatory affairs, marketing, and competitive examinations like GPAT.
                                     </p>
                                 </div>
                                 <Link href="/courses/b-pharm" className={styles.learnMoreLink}>
@@ -181,10 +170,12 @@ export default function HomeCoursesEnquirySection() {
                                     <h3 className={styles.courseName}>Pharm.D</h3>
                                     <span className={styles.durationBadge}>Duration: 6 Years</span>
                                     <p className={styles.courseText}>
-                                        Doctor of Pharmacy professional doctorate curriculum focused on patient-centered healthcare, therapeutic drug monitoring, hospital ward rounds, and clinical pharmacokinetics.
+                                        Doctor of Pharmacy professional doctorate curriculum focused on patient-centered
+                                        healthcare, therapeutic drug monitoring, hospital ward rounds, and clinical pharmacokinetics.
                                     </p>
                                     <p className={styles.courseSubText}>
-                                        Includes an extensive 1-year residency internship in multi-specialty hospitals, equipping students for clinical pharmacy practice and global healthcare research careers.
+                                        Includes an extensive 1-year residency internship in multi-specialty hospitals, equipping
+                                        students for clinical pharmacy practice and global healthcare research careers.
                                     </p>
                                 </div>
                                 <Link href="/courses/pharm-d" className={styles.learnMoreLink}>
@@ -205,10 +196,12 @@ export default function HomeCoursesEnquirySection() {
                                     <h3 className={styles.courseName}>M. Pharmacy</h3>
                                     <span className={styles.durationBadge}>Duration: 2 Years</span>
                                     <p className={styles.courseText}>
-                                        Postgraduate program offering advanced specialization and research exposure in Pharmaceutics, Pharmacology, and Pharmaceutical Analysis with dedicated dissertation projects.
+                                        Postgraduate program offering advanced specialization and research exposure in
+                                        Pharmaceutics, Pharmacology, and Pharmaceutical Analysis with dedicated dissertation projects.
                                     </p>
                                     <p className={styles.courseSubText}>
-                                        Focuses on modern analytical techniques (HPLC, UV-Vis, FTIR), novel drug delivery systems, pharmacological screening, and high-impact biomedical publications.
+                                        Focuses on modern analytical techniques (HPLC, UV-Vis, FTIR), novel drug delivery systems,
+                                        pharmacological screening, and high-impact biomedical publications.
                                     </p>
                                 </div>
                                 <Link href="/courses/m-pharm" className={styles.learnMoreLink}>
@@ -232,7 +225,9 @@ export default function HomeCoursesEnquirySection() {
                                     <p className={styles.trustSubtitle}>Affiliated to JNTUA Anantapur</p>
                                 </div>
                             </div>
+
                             <div className={styles.trustDivider} />
+
                             <div className={styles.trustItem}>
                                 <div className={styles.trustIconWrap}>
                                     <Award size={18} />
@@ -242,7 +237,9 @@ export default function HomeCoursesEnquirySection() {
                                     <p className={styles.trustSubtitle}>100% Placement &amp; Lab Training</p>
                                 </div>
                             </div>
+
                             <div className={styles.trustDivider} />
+
                             <div className={styles.trustAction}>
                                 <Link
                                     href="/admissions/eligibility-criteria"
@@ -256,221 +253,41 @@ export default function HomeCoursesEnquirySection() {
                         </div>
                     </div>
 
-                    {/* Right Column: Enquiry & Recruitment Sidebar Box */}
+                    {/* Right Column: Clean Visual Showcase without Button or Green Tint */}
                     <div
-                        className={`${styles.enquiryBox} ${isVisible ? styles.animateReveal5 : styles.hiddenState
+                        className={`${styles.visualShowcaseCard} ${isVisible ? styles.animateReveal5 : styles.hiddenState
                             }`}
                     >
-                        {/* Top Switcher Tabs */}
-                        <div className={styles.tabSwitcher}>
-                            <button
-                                type="button"
-                                onClick={() => setActiveTab('enquiry')}
-                                className={`${styles.tabBtn} ${activeTab === 'enquiry' ? styles.activeTabBtn : ''
-                                    }`}
-                            >
-                                <Sparkles size={14} />
-                                <span>For Enquire</span>
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setActiveTab('recruitment')}
-                                className={`${styles.tabBtn} ${activeTab === 'recruitment' ? styles.activeTabBtn : ''
-                                    }`}
-                            >
-                                <Briefcase size={14} />
-                                <span>For Recruitment</span>
-                            </button>
+                        {/* Natural Original Image */}
+                        <img
+                            key={active.image}
+                            src={active.image}
+                            alt={active.title}
+                            className={styles.fullBleedImage}
+                        />
+
+                        {/* Soft Neutral Bottom Scrim for Text Contrast */}
+                        <div className={styles.naturalGradientScrim} />
+
+                        {/* Top Right Mini Indicators */}
+                        <div className={styles.indicatorsTrack}>
+                            {recentActivities.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    type="button"
+                                    onClick={() => setCurrentSlide(idx)}
+                                    aria-label={`Slide ${idx + 1}`}
+                                    className={`${styles.indicatorBar} ${currentSlide === idx ? styles.activeIndicator : ''
+                                        }`}
+                                />
+                            ))}
                         </div>
 
-                        {/* TAB 1: FOR ENQUIRE */}
-                        {activeTab === 'enquiry' && (
-                            <>
-                                <div className={styles.enquiryHeader}>
-                                    <Sparkles size={16} className={styles.enquiryIcon} />
-                                    <h3 className={styles.enquiryTitle}>Enquire Today</h3>
-                                </div>
-                                <p className={styles.enquirySubtitle}>
-                                    Get immediate admission guidance and fee breakdown.
-                                </p>
-                                {enquirySubmitted ? (
-                                    <div className={styles.successBox}>
-                                        <CheckCircle2 size={38} className={styles.successIcon} />
-                                        <p className={styles.successText}>
-                                            Thank you! We will get in touch with you shortly.
-                                        </p>
-                                    </div>
-                                ) : (
-                                    <form onSubmit={handleEnquirySubmit} className={styles.enquiryForm}>
-                                        <input
-                                            type="text"
-                                            required
-                                            placeholder="Your Name"
-                                            value={enquiryForm.name}
-                                            onChange={(e) =>
-                                                setEnquiryForm({ ...enquiryForm, name: e.target.value })
-                                            }
-                                            className={styles.input}
-                                        />
-                                        <input
-                                            type="tel"
-                                            required
-                                            placeholder="Mobile Number"
-                                            value={enquiryForm.mobile}
-                                            onChange={(e) =>
-                                                setEnquiryForm({ ...enquiryForm, mobile: e.target.value })
-                                            }
-                                            className={styles.input}
-                                        />
-                                        <input
-                                            type="email"
-                                            required
-                                            placeholder="Email Address"
-                                            value={enquiryForm.email}
-                                            onChange={(e) =>
-                                                setEnquiryForm({ ...enquiryForm, email: e.target.value })
-                                            }
-                                            className={styles.input}
-                                        />
-                                        <select
-                                            required
-                                            className={styles.select}
-                                            value={enquiryForm.course}
-                                            onChange={(e) =>
-                                                setEnquiryForm({ ...enquiryForm, course: e.target.value })
-                                            }
-                                        >
-                                            <option value="" disabled>
-                                                Select Course
-                                            </option>
-                                            <option value="bpharm">B. Pharmacy</option>
-                                            <option value="pharmd">Pharm.D</option>
-                                            <option value="mpharm">M. Pharmacy</option>
-                                        </select>
-                                        <textarea
-                                            rows={3}
-                                            placeholder="Your Message"
-                                            value={enquiryForm.message}
-                                            onChange={(e) =>
-                                                setEnquiryForm({ ...enquiryForm, message: e.target.value })
-                                            }
-                                            className={styles.textarea}
-                                        />
-                                        <button
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className={styles.btnSubmit}
-                                        >
-                                            <span>{isSubmitting ? 'Submitting...' : 'Submit Enquiry'}</span>
-                                            <Send size={13} className={styles.btnSendIcon} />
-                                        </button>
-                                    </form>
-                                )}
-                            </>
-                        )}
-
-                        {/* TAB 2: FOR RECRUITMENT */}
-                        {activeTab === 'recruitment' && (
-                            <>
-                                <div className={styles.enquiryHeader}>
-                                    <Briefcase size={16} className={styles.enquiryIcon} />
-                                    <h3 className={styles.enquiryTitle}>Careers &amp; Hiring</h3>
-                                </div>
-                                <p className={styles.enquirySubtitle}>
-                                    Join our academic faculty or administrative team.
-                                </p>
-                                {recruitmentSubmitted ? (
-                                    <div className={styles.successBox}>
-                                        <CheckCircle2 size={38} className={styles.successIcon} />
-                                        <p className={styles.successText}>
-                                            Application submitted! Our HR team will review your profile and reach out.
-                                        </p>
-                                    </div>
-                                ) : (
-                                    <form onSubmit={handleRecruitmentSubmit} className={styles.enquiryForm}>
-                                        <input
-                                            type="text"
-                                            required
-                                            placeholder="Full Name"
-                                            value={recruitmentForm.name}
-                                            onChange={(e) =>
-                                                setRecruitmentForm({ ...recruitmentForm, name: e.target.value })
-                                            }
-                                            className={styles.input}
-                                        />
-                                        <input
-                                            type="tel"
-                                            required
-                                            placeholder="Mobile Number"
-                                            value={recruitmentForm.mobile}
-                                            onChange={(e) =>
-                                                setRecruitmentForm({ ...recruitmentForm, mobile: e.target.value })
-                                            }
-                                            className={styles.input}
-                                        />
-                                        <input
-                                            type="email"
-                                            required
-                                            placeholder="Email Address"
-                                            value={recruitmentForm.email}
-                                            onChange={(e) =>
-                                                setRecruitmentForm({ ...recruitmentForm, email: e.target.value })
-                                            }
-                                            className={styles.input}
-                                        />
-                                        <select
-                                            required
-                                            className={styles.select}
-                                            value={recruitmentForm.position}
-                                            onChange={(e) =>
-                                                setRecruitmentForm({ ...recruitmentForm, position: e.target.value })
-                                            }
-                                        >
-                                            <option value="" disabled>
-                                                Position Applied For
-                                            </option>
-                                            <option value="professor">Professor / Assoc. Professor</option>
-                                            <option value="assistant-professor">Assistant Professor</option>
-                                            <option value="lab-technician">Lab Technician</option>
-                                            <option value="admin-staff">Administrative Staff</option>
-                                            <option value="other">Other Position</option>
-                                        </select>
-                                        <input
-                                            type="text"
-                                            placeholder="Highest Qualification (e.g., M.Pharm, Ph.D)"
-                                            value={recruitmentForm.qualification}
-                                            onChange={(e) =>
-                                                setRecruitmentForm({
-                                                    ...recruitmentForm,
-                                                    qualification: e.target.value,
-                                                })
-                                            }
-                                            className={styles.input}
-                                        />
-                                        <textarea
-                                            rows={2}
-                                            placeholder="Brief Experience & Cover Note"
-                                            value={recruitmentForm.experience}
-                                            onChange={(e) =>
-                                                setRecruitmentForm({
-                                                    ...recruitmentForm,
-                                                    experience: e.target.value,
-                                                })
-                                            }
-                                            className={styles.textarea}
-                                        />
-                                        <button
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className={styles.btnSubmit}
-                                        >
-                                            <span>{isSubmitting ? 'Submitting...' : 'Submit Application'}</span>
-                                            <Send size={13} className={styles.btnSendIcon} />
-                                        </button>
-                                    </form>
-                                )}
-                            </>
-                        )}
+                        {/* Bottom Text Area */}
+                        <div className={styles.bottomContentArea}>
+                            <h2 className={styles.cardTitle}>{active.title}</h2>
+                            <p className={styles.cardSubtitle}>{active.subtitle}</p>
+                        </div>
                     </div>
                 </div>
             </div>

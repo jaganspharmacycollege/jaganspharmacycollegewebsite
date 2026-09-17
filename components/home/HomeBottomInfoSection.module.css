@@ -14,16 +14,14 @@
     }
 }
 
-/* Ambient Radial Glows with Smooth Hardware Acceleration */
+/* Ambient Radial Glows */
 .bgOrbLeft {
     position: absolute;
     top: 15%;
     left: -8%;
     width: 460px;
     height: 460px;
-    background: radial-gradient(circle,
-            rgba(52, 211, 153, 0.12) 0%,
-            transparent 70%);
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, transparent 70%);
     filter: blur(80px);
     pointer-events: none;
     will-change: transform;
@@ -36,9 +34,7 @@
     right: -8%;
     width: 480px;
     height: 480px;
-    background: radial-gradient(circle,
-            rgba(251, 191, 36, 0.12) 0%,
-            transparent 70%);
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.12) 0%, transparent 70%);
     filter: blur(85px);
     pointer-events: none;
     will-change: transform;
@@ -71,7 +67,6 @@
     transition: none;
 }
 
-/* Ultra-Slow Cinematic Stagger Keyframes */
 @keyframes smoothBottomReveal {
     0% {
         opacity: 0;
@@ -96,7 +91,7 @@
     animation: smoothBottomReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
 }
 
-/* Card Container */
+/* Base Card Container */
 .card {
     background: rgba(3, 35, 25, 0.85);
     backdrop-filter: blur(14px);
@@ -108,8 +103,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease,
-        border-color 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
     position: relative;
     will-change: transform;
 }
@@ -137,18 +131,6 @@
 
 .cardHeaderWithBadge .cardTitle {
     margin-bottom: 0;
-}
-
-.pillBadge {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    color: #34d399;
-    background: rgba(52, 211, 153, 0.15);
-    border: 1px solid rgba(52, 211, 153, 0.35);
-    padding: 0.25rem 0.65rem;
-    border-radius: 9999px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
 }
 
 /* 1. Approvals & Affiliations */
@@ -205,53 +187,166 @@
     padding-top: 0.85rem;
 }
 
-/* 2. Top Recruiters - Balanced Column Spacing Without Increasing Square Size */
-.recruitersDesc {
-    font-size: 0.8125rem;
-    color: #d1fae5;
-    line-height: 1.6;
-    margin: 0 0 1.25rem 0;
+/* 2. Top Recruiters: 3D Coverflow Slider */
+.recruitersCard {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.recruiterSquareGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+.coverflowWrapper {
+    position: relative;
     width: 100%;
-    margin-top: auto;
-    justify-items: center;
-}
-
-.logoSquareCard {
-    width: 4.5rem;
-    height: 4.5rem;
-    background: #ffffff;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(52, 211, 153, 0.25);
-    padding: 0.45rem;
+    height: 275px;
+    perspective: 1000px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.4s ease, border-color 0.4s ease;
-    will-change: transform;
+    margin: auto 0;
 }
 
-.logoSquareCard:hover {
-    transform: translate3d(0, -3px, 0) scale(1.05);
-    border-color: #fbbf24;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+.coverflowStage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
 }
 
-.squareLogoImg {
+/* Polaroid Photo Card */
+.coverflowCard {
+    position: absolute;
+    width: 180px;
+    height: 210px;
+    background: #ffffff;
+    border: 4px solid #ffffff;
+    border-radius: 0.45rem;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.55rem 0.45rem 0.55rem;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.65s ease, filter 0.65s ease, z-index 0.65s ease;
+    will-change: transform, opacity;
+}
+
+.cardPhotoFrame {
+    width: 100%;
+    height: 155px;
+    background: #faf8f5;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    overflow: hidden;
+}
+
+.companyLogoImg {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: contrast(1.05);
+}
+
+.polaroidFooter {
+    width: 100%;
+    text-align: center;
+    padding: 0.25rem 0 0 0;
+}
+
+.polaroidText {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: block;
 }
 
-/* 3. Student Voices / Testimonials */
+/* Center Highlighted Slide */
+.coverflowSlideCenter {
+    transform: translate3d(0, 0, 90px) scale(1.08);
+    z-index: 10;
+    opacity: 1;
+    filter: none;
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.6), 0 0 14px rgba(251, 191, 36, 0.3);
+}
+
+/* Immediate Left & Right Sides */
+.coverflowSlideLeft {
+    transform: translate3d(-105px, 0, -20px) rotateY(32deg) scale(0.88);
+    z-index: 6;
+    opacity: 0.75;
+    filter: brightness(0.85);
+}
+
+.coverflowSlideRight {
+    transform: translate3d(105px, 0, -20px) rotateY(-32deg) scale(0.88);
+    z-index: 6;
+    opacity: 0.75;
+    filter: brightness(0.85);
+}
+
+/* Far Left & Right Wings */
+.coverflowSlideFarLeft {
+    transform: translate3d(-175px, 0, -80px) rotateY(46deg) scale(0.74);
+    z-index: 3;
+    opacity: 0.45;
+    filter: brightness(0.7);
+}
+
+.coverflowSlideFarRight {
+    transform: translate3d(175px, 0, -80px) rotateY(-46deg) scale(0.74);
+    z-index: 3;
+    opacity: 0.45;
+    filter: brightness(0.7);
+}
+
+/* Navigation Arrow Buttons */
+.navBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(2, 26, 18, 0.85);
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.navBtn:hover {
+    background: #34d399;
+    color: #032319;
+    border-color: #34d399;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.navBtnPrev {
+    left: 0.25rem;
+}
+
+.navBtnNext {
+    right: 0.25rem;
+}
+
+/* 3. Student Testimonials */
 .quoteDecor {
     opacity: 0.8;
     color: #fbbf24;
@@ -298,4 +393,37 @@
     font-size: 0.725rem;
     color: #a7f3d0;
     margin: 0;
+}
+
+/* Mobile Screens (max-width: 640px) */
+@media (max-width: 640px) {
+    .coverflowWrapper {
+        height: 240px;
+    }
+
+    .coverflowCard {
+        width: 145px;
+        height: 175px;
+        padding: 0.45rem;
+    }
+
+    .cardPhotoFrame {
+        height: 125px;
+    }
+
+    .coverflowSlideLeft {
+        transform: translate3d(-65px, 0, -20px) rotateY(30deg) scale(0.85);
+    }
+
+    .coverflowSlideRight {
+        transform: translate3d(65px, 0, -20px) rotateY(-30deg) scale(0.85);
+    }
+
+    .coverflowSlideFarLeft {
+        transform: translate3d(-110px, 0, -60px) rotateY(40deg) scale(0.72);
+    }
+
+    .coverflowSlideFarRight {
+        transform: translate3d(110px, 0, -60px) rotateY(-40deg) scale(0.72);
+    }
 }

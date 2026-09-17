@@ -1,0 +1,514 @@
+.pageWrapper {
+    font-family: var(--font-sora), 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #faf8f5;
+    background: radial-gradient(circle at 50% 10%, #ffffff 0%, #f7f4ed 100%);
+    padding: 4.5rem 1rem 6rem 1rem;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid #f0ece1;
+}
+
+.bgOrbLeft {
+    position: absolute;
+    top: 6%;
+    left: -8%;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(5, 59, 42, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.bgOrbRight {
+    position: absolute;
+    top: 42%;
+    right: -8%;
+    width: 540px;
+    height: 540px;
+    background: radial-gradient(circle, rgba(184, 110, 0, 0.06) 0%, transparent 70%);
+    filter: blur(85px);
+    pointer-events: none;
+    will-change: transform;
+}
+
+.container {
+    max-width: 86rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+.hiddenState {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition: none;
+}
+
+@keyframes smoothReveal {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 24px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animateReveal1 {
+    animation: smoothReveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animateReveal2 {
+    animation: smoothReveal 1.45s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+}
+
+.animateReveal3 {
+    animation: smoothReveal 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+
+.backNav {
+    margin-bottom: 1.5rem;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #053b2a;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.backLink:hover {
+    color: #b86e00;
+    transform: translate3d(-3px, 0, 0);
+}
+
+.header {
+    margin-bottom: 3.5rem;
+    text-align: left;
+}
+
+.eyebrowTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.775rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #b86e00;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.eyebrowIcon {
+    color: #b86e00;
+}
+
+.title {
+    font-size: 2.15rem;
+    font-weight: 800;
+    color: #053b2a;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.accentLine {
+    width: 3.5rem;
+    height: 4px;
+    background: linear-gradient(90deg, #b86e00 0%, #053b2a 100%);
+    border-radius: 9999px;
+    margin: 0.85rem 0 1.25rem 0;
+}
+
+.descText {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.7;
+    max-width: 52rem;
+    margin: 0;
+}
+
+/* 2-Column Showcase */
+.showcaseGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+    .showcaseGrid {
+        grid-template-columns: 380px 1fr;
+        gap: 2.5rem;
+    }
+}
+
+/* Profile Card */
+.profileCard {
+    background: #ffffff;
+    border: 1.5px solid rgba(5, 59, 42, 0.09);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(5, 59, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.profileCard:hover {
+    transform: translate3d(0, -6px, 0);
+    box-shadow: 0 20px 42px rgba(5, 59, 42, 0.12);
+}
+
+.squareImageContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #032319;
+    overflow: hidden;
+}
+
+.squareImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profileCard:hover .squareImage {
+    transform: scale(1.05);
+}
+
+.roleBadge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(3, 35, 25, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+    font-size: 0.725rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 65%, rgba(3, 35, 25, 0.7) 100%);
+    pointer-events: none;
+}
+
+.profileBody {
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.subRoleTag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b86e00;
+    margin-bottom: 0.35rem;
+}
+
+.principalName {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0 0 0.35rem 0;
+    line-height: 1.25;
+}
+
+.qualification {
+    font-size: 0.825rem;
+    color: #4b5563;
+    margin: 0 0 0.75rem 0;
+    font-weight: 600;
+}
+
+.expPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    width: fit-content;
+    margin-bottom: 1.25rem;
+}
+
+.awardIcon {
+    color: #059669;
+}
+
+.credentialsBlock {
+    background: #faf8f5;
+    border: 1px solid #f0ece1;
+    border-radius: 0.85rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.credRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #374151;
+    line-height: 1.45;
+}
+
+.checkIcon {
+    color: #059669;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.contactGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0ece1;
+}
+
+.contactLink {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.785rem;
+    font-weight: 600;
+    color: #053b2a;
+    text-decoration: none;
+    background: #faf8f5;
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.6rem;
+    transition: all 0.25s ease;
+}
+
+.contactLink:hover {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #a7f3d0;
+    transform: translate3d(2px, 0, 0);
+}
+
+.iconCircle {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #053b2a;
+    flex-shrink: 0;
+}
+
+.contactLink:hover .iconCircle {
+    background: #053b2a;
+    color: #ffffff;
+    border-color: #053b2a;
+}
+
+/* Detailed Message Card */
+.messageCard {
+    background: #ffffff;
+    border: 1.5px solid rgba(5, 59, 42, 0.09);
+    border-radius: 1.75rem;
+    padding: 2.25rem 1.75rem;
+    box-shadow: 0 10px 30px rgba(5, 59, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .messageCard {
+        padding: 2.75rem 2.5rem;
+    }
+}
+
+.quoteIconWrap {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #b86e00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.messageGreeting {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.3;
+}
+
+.messageText {
+    font-size: 0.9375rem;
+    color: #374151;
+    line-height: 1.85;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+}
+
+.messageText strong {
+    color: #053b2a;
+}
+
+.signOffBlock {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f0ece1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.signatureLine {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-style: italic;
+}
+
+.signName {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin-top: 0.25rem;
+}
+
+.signTitle {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #b86e00;
+}
+
+.signAffil {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Strategic Pillars */
+.pillarsSection {
+    margin-top: 1.5rem;
+}
+
+.pillarsHeader {
+    margin-bottom: 2rem;
+}
+
+.pillarEyebrow {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #b86e00;
+}
+
+.pillarHeading {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0.25rem 0 0 0;
+}
+
+.pillarsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .pillarsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.pillarCard {
+    background: #ffffff;
+    border: 1px solid rgba(5, 59, 42, 0.08);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    box-shadow: 0 8px 24px rgba(5, 59, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.pillarCard:hover {
+    transform: translate3d(0, -5px, 0);
+    box-shadow: 0 16px 32px rgba(5, 59, 42, 0.1);
+}
+
+.pillarIconBox {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.85rem;
+    background: #ecfdf5;
+    color: #059669;
+    border: 1.5px solid #a7f3d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.pillarTitle {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #053b2a;
+    margin: 0 0 0.5rem 0;
+}
+
+.pillarDesc {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.65;
+    margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .title {
+        font-size: 2.75rem;
+    }
+}

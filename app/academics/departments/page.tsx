@@ -1,136 +1,188 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import {
     Sparkles,
     Building2,
-    Users2,
     FlaskConical,
-    Award,
+    BookOpen,
+    Microscope,
+    Briefcase,
+    CheckCircle2,
 } from 'lucide-react';
 import styles from './Departments.module.css';
 
-const departmentsData = [
+interface DepartmentDetails {
+    id: string;
+    title: string;
+    tagline: string;
+    overview: string;
+    labs: string[];
+    equipment: string[];
+    researchAreas: string[];
+    careerScopes: string[];
+}
+
+const departmentsData: DepartmentDetails[] = [
     {
         id: 'pharmaceutics',
         title: 'Department of Pharmaceutics',
         tagline: 'Formulation Design, Novel Drug Delivery & Industrial Technology',
-        desc: 'Dedicated to the design, manufacturing, quality control, and biopharmaceutical evaluation of dosage forms ranging from solid tablets to targeted nanomedicines.',
-        labs: ['Formulation Tech Lab', 'Pilot Plant & Scale-up', 'Physical Pharmacy Lab'],
-        faculty: [
-            {
-                name: 'Dr. S. K. Venkatesh',
-                role: 'Professor & HOD',
-                qualification: 'Ph.D., M.Pharm (Pharmaceutics)',
-                experience: '18+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-            },
-            {
-                name: 'Dr. Meena Ramesh',
-                role: 'Associate Professor',
-                qualification: 'Ph.D., M.Pharm (NDDS)',
-                experience: '12+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
-            },
+        overview:
+            'The Department of Pharmaceutics focuses on turning active pharmaceutical ingredients (APIs) into safe, stable, and bioavailable dosage forms. Instruction spans classical solid or liquid dosage production, pre-formulation screening, pilot plant scale-up, biopharmaceutics, pharmacokinetics, and advanced targeted nano-drug delivery systems (NDDS).',
+        labs: [
+            'Formulation Technology Laboratory',
+            'Pilot Plant & Industrial Scale-Up Center',
+            'Physical Pharmacy & Dispersed Systems Lab',
+            'Biopharmaceutics & Pharmacokinetics Evaluation Lab',
+        ],
+        equipment: [
+            '16-Station Rotary Tablet Compression Press',
+            'Automated Dissolution Test Apparatus (USP I & II)',
+            'High-Speed Homogenizers & Probe Sonicator',
+            'Lyophilizer (Freeze Dryer) & Fluid Bed Processor',
+            'Stability Testing Chambers (ICH Compliant)',
+        ],
+        researchAreas: [
+            'Liposomal, niosomal, and nanoparticle targeted drug delivery',
+            'Gastro-retentive and sustained-release oral dosage forms',
+            'Transdermal drug delivery patches and microneedle arrays',
+            'Solubility and bioavailability enhancement of BCS Class II/IV compounds',
+        ],
+        careerScopes: [
+            'Formulation Research & Development (F&D Scientist)',
+            'Production, Manufacturing, and Scale-Up Engineering',
+            'Packaging Development and Technology Transfer Specialist',
+            'Regulatory Filing & Dossier Documentation Executive',
         ],
     },
     {
         id: 'pharmacology',
         title: 'Department of Pharmacology',
-        tagline: 'Preclinical Screenings, Pharmacokinetics & Toxicology',
-        desc: 'Equipped for preclinical drug screenings, animal model studies under CPCSEA compliance, molecular toxicology, and clinical pharmacotherapeutic evaluations.',
-        labs: ['Preclinical Animal Lab (CPCSEA Approved)', 'Clinical Pharmacokinetics Lab'],
-        faculty: [
-            {
-                name: 'Dr. K. Ravindra Reddy',
-                role: 'Professor & HOD',
-                qualification: 'Ph.D., M.Pharm (Pharmacology)',
-                experience: '20+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-            },
-            {
-                name: 'Dr. Ananya Roy',
-                role: 'Assistant Professor',
-                qualification: 'Pharm.D, Post-Doc',
-                experience: '8+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
-            },
+        tagline: 'Preclinical Screenings, Pharmacokinetics & Molecular Toxicology',
+        overview:
+            'Dedicated to studying the interactions of biological systems with drug candidates. Practical training covers preclinical screening models, mechanism-of-action investigations, bio-assays, and systemic toxicity testing, adhering to standard ethical animal research guidelines.',
+        labs: [
+            'Preclinical Animal Laboratory (CPCSEA Standard Facility)',
+            'Cell Culture & In-Vitro Toxicology Screening Suite',
+            'Clinical Pharmacokinetics & Bioassay Facility',
+            'Behavioral Neuropharmacology Evaluation Suite',
+        ],
+        equipment: [
+            'Digital Plethysmometer & Analgesiometer',
+            'Automated Elevated Plus Maze & Rotarod Apparatus',
+            'Student Organ Bath & Kymograph Recording Assemblies',
+            'Inverted Fluorescence Microscope & Plate Readers',
+            'Micro-Centrifuges and Ultra-Low Temperature Deep Freezers',
+        ],
+        researchAreas: [
+            'Preclinical evaluation of novel phytopharmaceuticals for diabetes and arthritis',
+            'Neuropharmacological interventions in neurodegenerative models',
+            'Mechanistic screening for hepatoprotective and cardioprotective agents',
+            'Safety pharmacology and in-vitro cytotoxicity assays',
+        ],
+        careerScopes: [
+            'Preclinical Research Associate & Animal Trial Specialist',
+            'Toxicology and Safety Assessment Officer',
+            'Medical Science Liaison & Scientific Writer',
+            'Clinical Trial Data Reviewer & Pharmacovigilance Associate',
         ],
     },
     {
         id: 'pharm-analysis',
         title: 'Department of Pharmaceutical Analysis',
-        tagline: 'Spectroscopy, Chromatography & Quality Assurance',
-        desc: 'Features advanced analytical instruments including HPLC, UV-Vis Spectrophotometers, FTIR, and GC for drug purity validation and standardizations.',
-        labs: ['Central Instrumentation Facility (CIF)', 'Spectral Analysis Lab'],
-        faculty: [
-            {
-                name: 'Dr. G. Lakshmi Prasanna',
-                role: 'Professor & HOD',
-                qualification: 'Ph.D., M.Pharm (Analysis)',
-                experience: '16+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=400&q=80',
-            },
-            {
-                name: 'Prof. B. Sudhakar',
-                role: 'Associate Professor',
-                qualification: 'M.Pharm, (Ph.D.)',
-                experience: '10+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
-            },
+        tagline: 'Spectroscopy, Chromatography & Method Validation',
+        overview:
+            'Focuses on identifying, purifying, quantifying, and validating bulk chemical entities and finished dosage formulations. Students receive training in analytical method development, spectral interpretation, chromatographic separations, and regulatory quality assurance standards.',
+        labs: [
+            'Central Instrumentation Facility (CIF)',
+            'High-Performance Liquid Chromatography (HPLC) Suite',
+            'UV-Vis Spectral & Photometric Analysis Center',
+            'Quality Control, Assay & Titrimetric Lab',
+        ],
+        equipment: [
+            'Shimadzu Quaternary HPLC Systems with PDA Detectors',
+            'Fourier-Transform Infrared Spectrophotometer (FTIR)',
+            'Double-Beam UV-Visible Spectrophotometers',
+            'Gas Chromatography (GC) with Flame Ionization Detection',
+            'Flame Photometer, Fluorometer & Digital Polarimeter',
+        ],
+        researchAreas: [
+            'RP-HPLC method development and ICH-compliant validation',
+            'Stress degradation studies and stability-indicating assay methods (SIAM)',
+            'Trace element and heavy metal screening in pharmaceutical products',
+            'Fingerprint profile analysis of herbal formulations using spectroscopy',
+        ],
+        careerScopes: [
+            'Quality Control (QC) and Quality Assurance (QA) Analyst',
+            'Analytical Method Development (AMD) Chemist',
+            'Regulatory Affairs Inspector & Compliance Specialist',
+            'Chromatography & Instrumentation Service Specialist',
         ],
     },
     {
         id: 'pharm-chemistry',
         title: 'Department of Pharmaceutical Chemistry',
-        tagline: 'Drug Synthesis, Molecular Modeling & Medicinal Chemistry',
-        desc: 'Focuses on lead molecule identification, synthetic organic chemistry, computational drug design (CADD), and structural activity relationships (SAR).',
-        labs: ['Organic Synthesis Lab', 'Medicinal Chemistry Lab', 'Computational Lab'],
-        faculty: [
-            {
-                name: 'Dr. P. Madhusudhan Rao',
-                role: 'Professor & HOD',
-                qualification: 'Ph.D., M.Sc., M.Pharm',
-                experience: '19+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
-            },
+        tagline: 'Drug Synthesis, Computational Chemistry & Structural Optimization',
+        overview:
+            'Integrates chemical synthesis with molecular biology to discover and design therapeutic candidates. Students explore medicinal chemistry principles, structural activity relationships (SAR), heterocyclic synthesis techniques, computational molecular docking, and organic chemical reactions.',
+        labs: [
+            'Organic Drug Synthesis & Reactions Laboratory',
+            'Medicinal Chemistry & Natural Product Isolation Lab',
+            'Computer-Aided Drug Design (CADD) & Molecular Modeling Center',
+            'Inorganic Chemistry & Pharmaceutical Quality Testing Lab',
+        ],
+        equipment: [
+            'Rotary Vacuum Evaporators with Chilling Circulators',
+            'Computational Workstations with Molecular Docking Software Suites',
+            'Microwave-Assisted Organic Synthesis Reactor',
+            'Digital Melting Point & Boiling Point Apparatus',
+            'Chemical Fume Hoods & Catalytic Hydrogenator Assemblies',
+        ],
+        researchAreas: [
+            'In-silico molecular docking, QSAR, and pharmacophore modeling',
+            'Green synthesis of novel heterocyclic antimicrobial scaffolds',
+            'Isolation and characterization of active phytochemical markers',
+            'Design of enzyme-targeted small molecule inhibitors',
+        ],
+        careerScopes: [
+            'Medicinal Chemist & Custom Synthesis Specialist',
+            'Cheminformatics & Computational Drug Design Modeler',
+            'Active Pharmaceutical Ingredient (API) Bulk Manufacturing Chemist',
+            'Patent Research & Chemical Intellectual Property Analyst',
         ],
     },
     {
         id: 'pharmacy-practice',
         title: 'Department of Pharmacy Practice',
-        tagline: 'Clinical Pharmacy, Ward Rounds & Hospital Pharmacotherapy',
-        desc: 'Operates in direct collaboration with tertiary teaching hospitals, offering experiential learning in patient counseling, ADR monitoring, and pharmacovigilance.',
-        labs: ['Drug Information Center (DIC)', 'Hospital Clinical Ward'],
-        faculty: [
-            {
-                name: 'Dr. Sneha Chandran',
-                role: 'Associate Professor & Clinical Lead',
-                qualification: 'Pharm.D, BCPS',
-                experience: '9+ Years Exp.',
-                img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
-            },
+        tagline: 'Clinical Pharmacy, Inpatient Ward Rounds & Hospital Pharmacotherapy',
+        overview:
+            'Provides patient-focused clinical training in clinical pharmacy, ward rounds, drug utilization reviews, patient counseling, adverse drug reaction (ADR) reporting, and therapeutic drug monitoring (TDM), working directly with multi-specialty teaching hospital departments.',
+        labs: [
+            'Drug Information Center (DIC) & Clinical Resource Unit',
+            'Hospital Clinical Ward Training Facility',
+            'Patient Counseling & Health Screening Simulation Lab',
+            'Pharmacovigilance & Medication Safety Monitoring Cell',
+        ],
+        equipment: [
+            'Clinical Decision Support & Drug Interaction Database Subscriptions',
+            'Electronic Health Record (EHR) Training Systems',
+            'Patient Vital Monitoring Simulation Manikins',
+            'Digital Body Composition Analyzers & Point-of-Care Testing Kits',
+            'Comprehensive Micromedex & Lexicomp Drug Reference Portals',
+        ],
+        researchAreas: [
+            'Prospective monitoring and causality assessment of adverse drug reactions',
+            'Antimicrobial stewardship and rational prescription audit patterns',
+            'Health-related quality of life (HRQoL) in chronic disease cohorts',
+            'Medication reconciliation and prevention of transition-of-care errors',
+        ],
+        careerScopes: [
+            'Clinical Pharmacist & Hospital Pharmacy Manager',
+            'Pharmacovigilance Scientist & Safety Operations Specialist',
+            'Clinical Research Coordinator (CRC) & Trial Monitor',
+            'Medical Coding, Health Insurance, and Informatics Analyst',
         ],
     },
-];
-
-const deptNavDelays = [
-    styles.deptNavDelay1,
-    styles.deptNavDelay2,
-    styles.deptNavDelay3,
-    styles.deptNavDelay4,
-    styles.deptNavDelay5,
-];
-
-const labDelays = [
-    styles.labDelay1,
-    styles.labDelay2,
-    styles.labDelay3,
-];
-
-const facultyDelays = [
-    styles.facultyDelay1,
-    styles.facultyDelay2,
 ];
 
 export default function DepartmentsPage() {
@@ -140,50 +192,51 @@ export default function DepartmentsPage() {
     const orbLeftRef = useRef<HTMLDivElement>(null);
     const orbRightRef = useRef<HTMLDivElement>(null);
 
-    // Repeating scroll-triggered entrance detection
     useEffect(() => {
+        let isMounted = true;
         const observer = new IntersectionObserver(
             ([entry]) => {
-                setIsVisible(entry.isIntersecting);
+                if (isMounted && entry) {
+                    setIsVisible(entry.isIntersecting);
+                }
             },
-            { threshold: 0.1 }
+            { threshold: 0.08 }
         );
-
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
-
-        return () => observer.disconnect();
+        return () => {
+            isMounted = false;
+            observer.disconnect();
+        };
     }, []);
 
-    // Ultra-slow fluid linear-interpolated (lerp 0.035) parallax animation
     useEffect(() => {
         let currentScroll = 0;
         let targetScroll = 0;
         let animationFrameId: number;
+        let isMounted = true;
 
         const updateParallax = () => {
-            if (!sectionRef.current) return;
+            if (!isMounted || !sectionRef.current) return;
             const rect = sectionRef.current.getBoundingClientRect();
-
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
-
                 if (orbLeftRef.current) {
-                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06
-                        }px, 0)`;
+                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
                 }
                 if (orbRightRef.current) {
-                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05
-                        }px, 0)`;
+                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
                 }
             }
-
-            animationFrameId = requestAnimationFrame(updateParallax);
+            if (isMounted) {
+                animationFrameId = requestAnimationFrame(updateParallax);
+            }
         };
 
         const handleScroll = () => {
+            if (!isMounted) return;
             targetScroll = window.scrollY;
         };
 
@@ -191,14 +244,16 @@ export default function DepartmentsPage() {
         animationFrameId = requestAnimationFrame(updateParallax);
 
         return () => {
+            isMounted = false;
             window.removeEventListener('scroll', handleScroll);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
+    const current = departmentsData[activeDept];
+
     return (
         <div ref={sectionRef} className={styles.pageWrapper}>
-            {/* Background Lighting Glows */}
             <div ref={orbLeftRef} className={styles.bgOrbLeft} />
             <div ref={orbRightRef} className={styles.bgOrbRight} />
 
@@ -210,25 +265,27 @@ export default function DepartmentsPage() {
                 >
                     <div className={styles.eyebrowTag}>
                         <Sparkles size={14} className={styles.eyebrowIcon} />
-                        <span>Academic Divisions &amp; Mentors</span>
+                        <span>Academic Specializations &amp; Laboratories</span>
                     </div>
-                    <h1 className={styles.title}>Departments &amp; Faculty</h1>
+                    <h1 className={styles.title}>Academic Departments</h1>
                     <div className={styles.accentLine} />
                     <p className={styles.descText}>
-                        Our accomplished faculty of doctorates, research guides, and clinical specialists lead five specialized pharmaceutical academic divisions.
+                        Explore our specialized pharmaceutical divisions, equipped with modern laboratory
+                        infrastructure, precision analytical instrumentation, research clusters, and aligned
+                        industry career pathways.
                     </p>
                 </div>
 
                 {/* 2-Column Split: Dept Nav on Left, Detailed View on Right */}
                 <div className={styles.mainGrid}>
-                    {/* Department Navigation List with Individual Staggered Transitions */}
+                    {/* Department Navigation List */}
                     <div className={styles.deptNavList}>
                         {departmentsData.map((dept, idx) => (
                             <button
                                 key={dept.id}
                                 onClick={() => setActiveDept(idx)}
                                 className={`${styles.deptNavBtn} ${activeDept === idx ? styles.activeDeptNavBtn : ''
-                                    } ${isVisible ? deptNavDelays[idx % deptNavDelays.length] : styles.hiddenState}`}
+                                    } ${isVisible ? styles.animateReveal1 : styles.hiddenState}`}
                             >
                                 <div className={styles.deptNavIcon}>
                                     <Building2 size={18} />
@@ -241,68 +298,76 @@ export default function DepartmentsPage() {
                         ))}
                     </div>
 
-                    {/* Department Detail Card with key-based re-animation upon department switch */}
+                    {/* Department Detail Card */}
                     <div
                         key={`dept-detail-${activeDept}`}
                         className={`${styles.detailCard} ${isVisible ? styles.animateDetailCard : styles.hiddenState
                             }`}
                     >
                         <div className={styles.detailHeader}>
-                            <span className={styles.deptBadge}>Academic Specialization</span>
-                            <h2 className={styles.detailTitle}>
-                                {departmentsData[activeDept].title}
-                            </h2>
-                            <p className={styles.detailDesc}>
-                                {departmentsData[activeDept].desc}
-                            </p>
+                            <span className={styles.deptBadge}>Pharmaceutical Specialization</span>
+                            <h2 className={styles.detailTitle}>{current.title}</h2>
+                            <p className={styles.detailDesc}>{current.overview}</p>
                         </div>
 
-                        {/* Labs & Infrastructure */}
-                        <div className={styles.labsSection}>
+                        {/* Research Domains & Core Competencies */}
+                        <div className={styles.infoSection}>
+                            <h4 className={styles.sectionHeading}>
+                                <BookOpen size={18} className={styles.sectionIcon} />
+                                <span>Research Domains &amp; Focus Areas</span>
+                            </h4>
+                            <div className={styles.pointsGrid}>
+                                {current.researchAreas.map((area, idx) => (
+                                    <div key={idx} className={styles.pointCard}>
+                                        <CheckCircle2 size={15} className={styles.pointCheckIcon} />
+                                        <span>{area}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Associated Laboratories */}
+                        <div className={styles.infoSection}>
                             <h4 className={styles.sectionHeading}>
                                 <FlaskConical size={18} className={styles.sectionIcon} />
                                 <span>Associated Laboratories &amp; Research Centers</span>
                             </h4>
                             <div className={styles.labsList}>
-                                {departmentsData[activeDept].labs.map((lab, labIdx) => (
-                                    <span
-                                        key={`lab-${activeDept}-${labIdx}`}
-                                        className={`${styles.labPill} ${isVisible ? labDelays[labIdx % labDelays.length] : styles.hiddenState
-                                            }`}
-                                    >
+                                {current.labs.map((lab, idx) => (
+                                    <span key={idx} className={styles.labPill}>
                                         {lab}
                                     </span>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Department Faculty Members */}
-                        <div className={styles.facultySection}>
+                        {/* Specialized Instrumentation & Pilot Plant */}
+                        <div className={styles.infoSection}>
                             <h4 className={styles.sectionHeading}>
-                                <Users2 size={18} className={styles.sectionIcon} />
-                                <span>Faculty Members &amp; Research Leads</span>
+                                <Microscope size={18} className={styles.sectionIcon} />
+                                <span>Advanced Analytical Equipment &amp; Plant Facilities</span>
                             </h4>
-                            <div className={styles.facultyGrid}>
-                                {departmentsData[activeDept].faculty.map((member, fIdx) => (
-                                    <div
-                                        key={`faculty-${activeDept}-${fIdx}`}
-                                        className={`${styles.facultyCard} ${isVisible ? facultyDelays[fIdx % facultyDelays.length] : styles.hiddenState
-                                            }`}
-                                    >
-                                        <img
-                                            src={member.img}
-                                            alt={member.name}
-                                            className={styles.facultyAvatar}
-                                        />
-                                        <div className={styles.facultyInfo}>
-                                            <h4 className={styles.facultyName}>{member.name}</h4>
-                                            <p className={styles.facultyRole}>{member.role}</p>
-                                            <p className={styles.facultyQual}>{member.qualification}</p>
-                                            <span className={styles.experienceBadge}>
-                                                <Award size={12} />
-                                                <span>{member.experience}</span>
-                                            </span>
-                                        </div>
+                            <div className={styles.pointsGrid}>
+                                {current.equipment.map((item, idx) => (
+                                    <div key={idx} className={styles.pointCard}>
+                                        <CheckCircle2 size={15} className={styles.pointCheckIconGold} />
+                                        <span>{item}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Career Opportunities & Industrial Outlets */}
+                        <div className={styles.infoSection}>
+                            <h4 className={styles.sectionHeading}>
+                                <Briefcase size={18} className={styles.sectionIcon} />
+                                <span>Career Pathways &amp; Professional Scopes</span>
+                            </h4>
+                            <div className={styles.careerGrid}>
+                                {current.careerScopes.map((scope, idx) => (
+                                    <div key={idx} className={styles.careerPill}>
+                                        <span className={styles.careerBullet} />
+                                        <span>{scope}</span>
                                     </div>
                                 ))}
                             </div>

@@ -167,7 +167,7 @@ export default function MPharmPage() {
                         }`}
                 >
                     <span className={styles.eyebrow}>Postgraduate Master Degree</span>
-                    <h1 className={styles.title}>Master of Pharmacy (M. Pharm)</h1>
+                    <h1 className={styles.title}>M. Pharmacy (Master of Pharmacy)</h1>
                     <div className={styles.accentLine} />
                     <p className={styles.headerSub}>
                         A research-intensive 2-year postgraduate program tailored for
@@ -224,8 +224,8 @@ export default function MPharmPage() {
                                 src={item.src}
                                 alt={item.caption}
                                 className={`${styles.overviewImage} ${idx === currentImgIdx
-                                        ? styles.activeImg
-                                        : styles.inactiveImg
+                                    ? styles.activeImg
+                                    : styles.inactiveImg
                                     }`}
                             />
                         ))}

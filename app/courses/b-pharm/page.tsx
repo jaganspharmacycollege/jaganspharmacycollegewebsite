@@ -109,7 +109,7 @@ export default function BPharmPage() {
                 >
                     <span className={styles.eyebrow}>Undergraduate Degree</span>
                     <h1 className={styles.title}>
-                        Bachelor of Pharmacy (B. Pharm)
+                        B.Pharmacy (Bachelor of Pharmacy)
                     </h1>
                     <div className={styles.accentLine} />
                     <p className={styles.headerSub}>
