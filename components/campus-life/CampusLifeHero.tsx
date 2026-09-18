@@ -6,6 +6,16 @@ import styles from './CampusLifeHero.module.css';
 
 const campusLifeSlides = [
     {
+        title: 'College Building',
+        image:
+            '/assets/Infra/clg1.png',
+    },
+    {
+        title: 'College Building',
+        image:
+            '/assets/Infra/clg2.png',
+    },
+    {
         title: 'Vibrant Campus Grounds',
         image:
             '/assets/HomePageImages/CGS_sports.png',
@@ -192,18 +202,7 @@ export default function CampusLifeHero() {
                     </div>
                 </div>
 
-                {/* Carousel Dots */}
-                <div className={styles.dotsWrapper}>
-                    {campusLifeSlides.map((_, dotIdx) => (
-                        <button
-                            key={dotIdx}
-                            onClick={() => setCurrentIdx(dotIdx)}
-                            className={`${styles.dot} ${dotIdx === currentIdx ? styles.activeDot : ''
-                                }`}
-                            aria-label={`Go to slide ${dotIdx + 1}`}
-                        />
-                    ))}
-                </div>
+
             </div>
         </section>
     );

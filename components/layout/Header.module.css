@@ -107,27 +107,29 @@
 
 .bannerHeadingRow {
     display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
 }
 
 .bannerTitle {
     font-family: var(--font-merriweather), 'Merriweather', serif;
-    font-size: 1.75rem;
+    font-size: 1.9rem;
     font-weight: 800;
     color: #ffffff;
     margin: 0;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
 }
 
 .bannerTitleAccent {
     font-family: var(--font-merriweather), 'Merriweather', serif;
-    font-size: 1.75rem;
+    font-size: 1.55rem;
     font-weight: 800;
     color: #fbbf24;
+    margin: 0;
     line-height: 1.15;
+    letter-spacing: -0.01em;
 }
 
 .bannerMotto {
@@ -277,9 +279,12 @@
 
 @media (max-width: 768px) {
 
-    .bannerTitle,
+    .bannerTitle {
+        font-size: 1.5rem;
+    }
+
     .bannerTitleAccent {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
     }
 
     .bannerLogoOuter {

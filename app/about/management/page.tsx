@@ -18,14 +18,14 @@ import styles from './Management.module.css';
 // 7 Members of the Executive Council
 const executiveCouncil = [
     {
-        name: 'Sri J. V. Subba Rao',
+        name: 'Sri S.V.Madhusudhan Reddy',
         role: 'President & Chairman',
         qualification: 'M.A.',
         affiliation: "Jagan's Educational Society",
         image: '/assets/logo/Chairman.png',
     },
     {
-        name: 'Smt. J. Pushpalatha',
+        name: 'Smt. ',
         role: 'Secretary & Correspondent',
         qualification: 'B.Ed, M.A.',
         affiliation: "Jagan's Educational Society",
@@ -71,7 +71,7 @@ const executiveCouncil = [
 // Governing Body of the College
 const governingBody = [
     {
-        name: 'Sri J. V. Subba Rao',
+        name: 'Sri S.V.Madhusudhan Reddy',
         category: 'Management - Chairman',
         designation: 'Chairman, Governing Body',
         profile: 'Philanthropist & Edu-Visionary, Leading educational institutions in AP',
@@ -232,7 +232,7 @@ export default function ManagementPage() {
                             <div className={styles.squareImageWrap}>
                                 <img
                                     src="/assets/logo/Chairman.png"
-                                    alt="Sri J. V. Subba Rao, Chairman"
+                                    alt="Sri S.V.Madhusudhan Reddy"
                                     className={styles.squareImage}
                                 />
                                 <span className={styles.badgeRole}>Chairman</span>
@@ -241,7 +241,7 @@ export default function ManagementPage() {
 
                             <div className={styles.profileMeta}>
                                 <span className={styles.subRoleTag}>Jagan&apos;s Educational Society</span>
-                                <h3 className={styles.leaderName}>Sri J. V. Subba Rao</h3>
+                                <h3 className={styles.leaderName}>Sri S.V.Madhusudhan Reddy</h3>
                                 <p className={styles.qualification}>M.A., Philanthropist &amp; Edu-Visionary</p>
                                 <div className={styles.expPill}>
                                     <Award size={13} className={styles.expIcon} />

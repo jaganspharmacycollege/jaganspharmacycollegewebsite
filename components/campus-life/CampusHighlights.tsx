@@ -171,16 +171,7 @@ export default function CampusHighlights() {
                     })}
                 </div>
 
-                {/* Centered CTA Button */}
-                <div
-                    className={`${styles.btnWrapper} ${isVisible ? styles.animDelay6 : styles.hiddenState
-                        }`}
-                >
-                    <Link href="/campus-life/facilities" className={styles.viewAllBtn}>
-                        <span>View All Facilities</span>
-                        <ArrowRight size={16} />
-                    </Link>
-                </div>
+
             </div>
         </section>
     );

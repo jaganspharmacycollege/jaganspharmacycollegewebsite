@@ -93,10 +93,10 @@ const TwitterIcon = ({ size = 18 }: { size?: number }) => (
 );
 
 const socialHandles = [
-    { name: 'Instagram', icon: InstagramIcon, href: 'https://instagram.com' },
-    { name: 'Facebook', icon: FacebookIcon, href: 'https://facebook.com' },
+    { name: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/jaganscollegeofpharmacy?stkn=eW8ycWFkd2l2aHpj' },
+    { name: 'Facebook', icon: FacebookIcon, href: 'https://www.facebook.com/share/1GoDvh2quM/' },
     { name: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com' },
-    { name: 'YouTube', icon: YoutubeIcon, href: 'https://youtube.com' },
+    { name: 'YouTube', icon: YoutubeIcon, href: 'https://youtube.com/@jaganscollegeofpharmacy?si=GnxtebIvEMtzcbD_' },
     { name: 'Twitter (X)', icon: TwitterIcon, href: 'https://twitter.com' },
 ];
 

@@ -127,8 +127,8 @@ export default function PrincipalDeskPage() {
                     <div className={`${styles.profileCard} ${isVisible ? styles.animateReveal2 : styles.hiddenState}`}>
                         <div className={styles.squareImageContainer}>
                             <img
-                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
-                                alt="Dr. S. Radha Krishna, Principal"
+                                src="/assets/logo/Principal.png"
+                                alt="Dr.D.Hepcy Kalarani, Principal"
                                 className={styles.squareImage}
                             />
                             <div className={styles.roleBadge}>Principal &amp; Professor</div>
@@ -137,7 +137,7 @@ export default function PrincipalDeskPage() {
 
                         <div className={styles.profileBody}>
                             <span className={styles.subRoleTag}>Academic &amp; Regulatory Head</span>
-                            <h2 className={styles.principalName}>Dr. S. Radha Krishna</h2>
+                            <h2 className={styles.principalName}>Dr.D.Hepcy Kalarani</h2>
                             <p className={styles.qualification}>M.Pharm, Ph.D, FIC, FAGE</p>
 
                             <div className={styles.expPill}>
@@ -215,7 +215,7 @@ export default function PrincipalDeskPage() {
 
                         <div className={styles.signOffBlock}>
                             <div className={styles.signatureLine}>Warm regards &amp; best wishes,</div>
-                            <div className={styles.signName}>Dr. S. Radha Krishna</div>
+                            <div className={styles.signName}>Dr.D.Hepcy Kalarani</div>
                             <div className={styles.signTitle}>Principal, Jagan&apos;s College of Pharmacy</div>
                             <div className={styles.signAffil}>Approved by PCI, New Delhi &bull; Affiliated to JNTUA, Anantapur</div>
                         </div>
