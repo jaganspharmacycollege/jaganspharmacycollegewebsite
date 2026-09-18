@@ -118,7 +118,7 @@ export default function Header() {
         { name: 'Seminar & Workshops', href: '/campus-life/seminar-workshops' },
         { name: 'Festivals & Celebrations', href: '/campus-life/festivals-celebrations' },
         { name: 'Student Support', href: '/campus-life/student-support' },
-        { name: 'Anti-Ragging', href: '/campus-life/anti-ragging' },
+
         { name: 'Hostel', href: '/campus-life/hostel' },
         { name: 'Transportation', href: '/campus-life/transportation' },
         { name: 'Canteen', href: '/campus-life/canteen' },

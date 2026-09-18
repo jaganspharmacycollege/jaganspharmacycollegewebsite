@@ -7,12 +7,14 @@ import {
     AlumniEvents,
     AlumniAchievements,
     AlumniHero,
+    AlumniCommittee,
 } from '@/components/alumni';
 
 export default function AlumniPage() {
     return (
         <main className="flex flex-col">
             <AlumniHero />
+            <AlumniCommittee />
             {/* 1. Alumni Association */}
             <AlumniAssociation />
 

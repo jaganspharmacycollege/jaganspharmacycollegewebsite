@@ -22,22 +22,37 @@ const recentActivities: ActivitySlide[] = [
     {
         title: 'Campus Life',
         subtitle: 'Beyond classrooms, a world of opportunities and growth.',
-        image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=85',
+        image: '/assets/HomePageImages/show1.png',
     },
     {
         title: 'National Seminars',
         subtitle: 'Interacting with leading clinical researchers and industrial stalwarts.',
-        image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=85',
+        image: '/assets/HomePageImages/show2.png',
     },
     {
         title: 'Sports & Athletics',
         subtitle: 'Fostering teamwork, vitality, and annual tournament championships.',
-        image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=85',
+        image: '/assets/HomePageImages/show7.png',
     },
     {
         title: 'Industrial Immersion',
         subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
-        image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=900&q=85',
+        image: '/assets/HomePageImages/show4.png',
+    },
+    {
+        title: 'Industrial Immersion',
+        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        image: '/assets/HomePageImages/show5.png',
+    },
+    {
+        title: 'Industrial Immersion',
+        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        image: '/assets/HomePageImages/show6.png',
+    },
+    {
+        title: 'Industrial Immersion',
+        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        image: '/assets/HomePageImages/show3.png',
     },
 ];
 
@@ -268,20 +283,6 @@ export default function HomeCoursesEnquirySection() {
 
                         {/* Soft Neutral Bottom Scrim for Text Contrast */}
                         <div className={styles.naturalGradientScrim} />
-
-                        {/* Top Right Mini Indicators */}
-                        <div className={styles.indicatorsTrack}>
-                            {recentActivities.map((_, idx) => (
-                                <button
-                                    key={idx}
-                                    type="button"
-                                    onClick={() => setCurrentSlide(idx)}
-                                    aria-label={`Slide ${idx + 1}`}
-                                    className={`${styles.indicatorBar} ${currentSlide === idx ? styles.activeIndicator : ''
-                                        }`}
-                                />
-                            ))}
-                        </div>
 
                         {/* Bottom Text Area */}
                         <div className={styles.bottomContentArea}>

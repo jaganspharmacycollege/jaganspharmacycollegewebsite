@@ -176,7 +176,7 @@ export default function ContactSection() {
                         <div className={styles.mapContainer}>
                             <iframe
                                 title="Jagan's College of Pharmacy Location"
-                                src="https://maps.google.com/maps?q=Nellore,+Andhra+Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4039.596580697175!2d80.05553690451647!3d14.357158758953533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4cf5d5e9abfb1f%3A0xfa2fe2be492fc92c!2sJagan's%20College%20of%20Pharmacy!5e1!3m2!1sen!2sin!4v1789715030603!5m2!1sen!2sin"
                                 className={styles.mapFrame}
                                 allowFullScreen
                                 loading="lazy"

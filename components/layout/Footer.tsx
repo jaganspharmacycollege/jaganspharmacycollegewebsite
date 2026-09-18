@@ -184,11 +184,7 @@ export default function Footer() {
                                     </Link>
                                 </li>
                                 {/* Suggestions link placed here */}
-                                <li>
-                                    <Link href="/suggestions" className={styles.linkItem}>
-                                        Suggestions
-                                    </Link>
-                                </li>
+
                                 <li>
                                     <Link href="/disclosures/aicte" className={styles.linkItem}>
                                         AICTE EOA Disclosure
