@@ -20,38 +20,38 @@ interface ActivitySlide {
 
 const recentActivities: ActivitySlide[] = [
     {
-        title: 'Campus Life',
-        subtitle: 'Beyond classrooms, a world of opportunities and growth.',
+        title: '',
+        subtitle: '',
         image: '/assets/HomePageImages/show1.png',
     },
     {
-        title: 'National Seminars',
-        subtitle: 'Interacting with leading clinical researchers and industrial stalwarts.',
+        title: ' ',
+        subtitle: '',
         image: '/assets/HomePageImages/show2.png',
     },
     {
-        title: 'Sports & Athletics',
-        subtitle: 'Fostering teamwork, vitality, and annual tournament championships.',
+        title: ' ',
+        subtitle: ' ',
         image: '/assets/HomePageImages/show7.png',
     },
     {
-        title: 'Industrial Immersion',
-        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        title: ' ',
+        subtitle: ' ',
         image: '/assets/HomePageImages/show4.png',
     },
     {
-        title: 'Industrial Immersion',
-        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        title: ' ',
+        subtitle: ' ',
         image: '/assets/HomePageImages/show5.png',
     },
     {
-        title: 'Industrial Immersion',
-        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        title: ' ',
+        subtitle: ' ',
         image: '/assets/HomePageImages/show6.png',
     },
     {
-        title: 'Industrial Immersion',
-        subtitle: 'Hands-on formulation exposure at cGMP pharmaceutical plants.',
+        title: ' ',
+        subtitle: ' ',
         image: '/assets/HomePageImages/show3.png',
     },
 ];
