@@ -25,15 +25,15 @@ const executiveCouncil = [
         image: '/assets/logo/Chairman.png',
     },
     {
-        name: 'Smt. ',
-        role: 'Secretary & Correspondent',
+        name: 'Smt. S.Mamatha',
+        role: 'Treasurer & Director',
         qualification: 'B.Ed, M.A.',
         affiliation: "Jagan's Educational Society",
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80',
+        image: '/assets/logo/treasurer.png',
     },
     {
         name: 'Sri J. Tarun Kumar',
-        role: 'Treasurer & Director',
+        role: 'Secretary & Correspondent ',
         qualification: 'M.Tech, MBA (UK)',
         affiliation: "Jagan's Educational Society",
         image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80',
@@ -269,25 +269,18 @@ export default function ManagementPage() {
                             <h4 className={styles.messageSubject}>Empowering Youth Through Quality Pharmaceutical Education</h4>
                             <div className={styles.messageText}>
                                 <p>
-                                    Education is the cornerstone of societal progress, and specialized pharmaceutical education holds the
-                                    power to heal communities and safeguard national well-being. When we established Jagan&apos;s College of
-                                    Pharmacy, our singular ambition was to build a premier destination for pharmaceutical studies in rural
-                                    and coastal Andhra Pradesh that competes on equal footing with national-level universities.
+                                    It gives me immense pride to reflect on the journey of Jagan’s College of Pharmacy over the past two decades. Since its inception, my commitment has been to build an institution that not only imparts quality education but also instills values, discipline, and a strong moral foundation among our students and faculty.
                                 </p>
                                 <p>
-                                    Over the past two decades, we have continually upgraded our institutional infrastructure with pilot-scale
-                                    manufacturing plants, high-precision central instrumentation laboratories, and advanced digital learning
-                                    facilities. We firmly believe that academic rigor, paired with ethical humanitarian values, shapes our students
-                                    into responsible global healthcare providers.
+                                    For 20 years, we have worked tirelessly to uphold academic standards and nurture a culture of integrity and responsibility. This vision has guided us in shaping professionals who are not only competent in their field but also compassionate in their service to society. The success of our college lies in the collective dedication of our faculty, staff, and students, who continue to embody the principles of excellence and ethics.
                                 </p>
                                 <p>
-                                    I warmly welcome aspiring pharmacists to make use of our research ecosystems, hospital clinical training,
-                                    and faculty mentorship to craft distinguished careers in pharmaceutical sciences.
+                                    As Chairman, I remain steadfast in my mission to strengthen this institution, to embrace innovation while preserving our core values, and to ensure that Jagan’s College of Pharmacy stands as a beacon of trust, knowledge, and inspiration for generations to come.
                                 </p>
                             </div>
 
                             <div className={styles.signOff}>
-                                <p className={styles.signName}>Sri J. V. Subba Rao</p>
+                                <p className={styles.signName}>Sri S.V.Madhusudhan Reddy</p>
                                 <p className={styles.signTitle}>Chairman, Jagan&apos;s Educational Society</p>
                             </div>
                         </div>
@@ -308,8 +301,8 @@ export default function ManagementPage() {
                         <div className={styles.leaderProfileCol}>
                             <div className={styles.squareImageWrap}>
                                 <img
-                                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
-                                    alt="Sri J. Tarun Kumar, Treasurer & Director"
+                                    src="/assets/logo/treasurer.png"
+                                    alt="Smt S.Mamatha, Treasurer & Director"
                                     className={styles.squareImage}
                                 />
                                 <span className={styles.badgeRole}>Treasurer &amp; Director</span>
@@ -318,7 +311,7 @@ export default function ManagementPage() {
 
                             <div className={styles.profileMeta}>
                                 <span className={styles.subRoleTag}>Executive Operations &amp; Strategy</span>
-                                <h3 className={styles.leaderName}>Sri J. Tarun Kumar</h3>
+                                <h3 className={styles.leaderName}>Smt S.Mamatha</h3>
                                 <p className={styles.qualification}>M.Tech, MBA (UK)</p>
                                 <div className={styles.expPill}>
                                     <Award size={13} className={styles.expIcon} />
@@ -346,24 +339,18 @@ export default function ManagementPage() {
                             <h4 className={styles.messageSubject}>Bridging Innovation, Technology Transfer, and Industry Integration</h4>
                             <div className={styles.messageText}>
                                 <p>
-                                    Today&apos;s pharmaceutical sector operates on rapid digital transformation, computational drug design,
-                                    international regulatory dossiers, and clinical precision. At Jagan&apos;s College of Pharmacy, our
-                                    operational priority is ensuring that our students learn using the identical equipment, standards, and
-                                    methodologies practiced inside multinational cGMP formulation suites.
+                                    As Treasurer of Jagan’s College of Pharmacy, it has been my privilege to support the institution’s growth and stability over the years under the guidance of our Chairman. From the very beginning, our vision has been to create a college that not only delivers quality education but also stands firm on values, ethics, and responsibility.
                                 </p>
                                 <p>
-                                    We have cultivated active industrial relationships with formulation leaders across Hyderabad, Vizag, and
-                                    Chennai to provide continuous student internships, live plant visits, and campus placement drives. Concurrently,
-                                    we invest robustly in student innovation grants, competitive GPAT coaching modules, and institutional research seed funds.
+                                    Ensuring financial discipline and transparency has been central to my role. By carefully managing resources, we have been able to provide modern infrastructure, advanced learning facilities, and opportunities that enrich both students and faculty. Every investment has been guided by the principle of strengthening our academic standards while preserving the moral fabric of our community.
                                 </p>
                                 <p>
-                                    Our campus is intentionally cultivated as an open, empowering ecosystem where intellectual curiosity transforms into
-                                    patented discoveries and clinical breakthroughs.
+                                    I take pride in the fact that our college has flourished into a trusted center of excellence, where students are nurtured to become professionals with integrity and compassion. Together with our management, faculty, and students, I remain committed to upholding the ideals that define Jagan’s College of Pharmacy and to ensuring its continued success for generations to come.
                                 </p>
                             </div>
 
                             <div className={styles.signOff}>
-                                <p className={styles.signName}>Sri J. Tarun Kumar</p>
+                                <p className={styles.signName}>Smt S.Mamatha</p>
                                 <p className={styles.signTitle}>Treasurer &amp; Director, Jagan&apos;s Educational Society</p>
                             </div>
                         </div>

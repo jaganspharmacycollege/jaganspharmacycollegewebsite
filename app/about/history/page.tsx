@@ -1,252 +1,266 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     Sparkles,
-    Calendar,
-    Award,
-    Building,
-    GraduationCap,
-    TrendingUp,
     ArrowLeft,
     CheckCircle2,
+    BookOpen,
+    FlaskConical,
     Clock,
+    ShieldCheck,
 } from 'lucide-react';
 import styles from './History.module.css';
 
-const milestones = [
+interface Milestone {
+    year: string;
+    title: string;
+    desc: string;
+}
+
+const MILESTONES_DATA: Milestone[] = [
     {
-        year: '2007',
-        title: "Foundation of Jagan's Educational Society",
-        desc: 'Founded by visionary educator Sri J. V. Subba Rao and co-founder Smt. J. Pushpalatha with an ambition to make top-tier pharmaceutical training accessible in Nellore.',
+        year: '2006',
+        title: 'Establishment & Foundation',
+        desc: 'Founded under the management of M.S. Reddy Educational Society under the visionary leadership of Sri S.V. Madhusudhan Reddy[cite: 6]. Approved by AICTE and Pharmacy Council of India (PCI), New Delhi, and affiliated to Jawaharlal Nehru Technological University, Anantapur (JNTUA), launching B.Pharmacy with an approved intake of 100 students on a 2.5-acre campus in Jangalakandriga Village, Muthukuru Mandal.',
     },
     {
-        year: '2008',
-        title: 'Official Establishment of JCP & B.Pharm Launch',
-        desc: "Jagan's College of Pharmacy was formally inaugurated on August 15, 2008, with PCI and AICTE approvals, affiliated to JNTUA, launching the foundational 4-year B. Pharm degree.",
+        year: '2010',
+        title: 'Postgraduate M.Pharmacy Specializations',
+        desc: 'Expanded into postgraduate studies by introducing M.Pharmacy courses across four core research disciplines: Pharmaceutics, Pharmaceutical Analysis, Pharmacology, and Pharmaceutical Chemistry, each approved with an intake of 15 seats per specialization.',
     },
     {
-        year: '2011',
-        title: 'Expansion into Postgraduate Studies (M.Pharm)',
-        desc: 'Introduced M. Pharm in Pharmaceutics and Pharmaceutical Analysis to foster drug formulation and chromatographic instrumentation research.',
+        year: '2012',
+        title: 'Doctor of Pharmacy (Pharm.D) Approval',
+        desc: 'Obtained official Pharmacy Council of India (PCI) approval to commence the premier 6-year clinical Doctor of Pharmacy (Pharm.D) program to foster hospital bedside healthcare training.',
     },
     {
-        year: '2014',
-        title: 'Pharmacology & Chemistry Additions',
-        desc: 'Commissioned specialized CPCSEA-standard preclinical animal testing facilities and synthesis laboratories for Pharmacology and Pharmaceutical Chemistry specializations.',
+        year: '2016',
+        title: 'Medicover Hospital Clinical Training MoU',
+        desc: 'Forged a formal clinical partnership with Medicover Hospital for Pharm.D students, enabling regular hospital ward rounds, prescription reviews, pharmacotherapy monitoring, and direct healthcare practice exposure.',
     },
     {
-        year: '2017',
-        title: 'Doctor of Pharmacy (Pharm.D) Introduction',
-        desc: 'Pioneered the 6-year clinical Pharm.D program in collaboration with regional multi-specialty teaching hospitals for inpatient ward rounds.',
+        year: '2020',
+        title: 'Built-Up Infrastructure Expansion to ~70,000 Sq. Ft.',
+        desc: 'Expanded built-up area from 20,000 sq. ft. in 2006 to approximately 70,000 sq. ft., housing 20+ classrooms, 2 smart classrooms, 24 well-equipped laboratories meeting PCI standards, research animal house, and a 100+ medicinal plant herbal garden.',
     },
     {
         year: '2026',
-        title: 'A Legacy of Excellence in Healthcare',
-        desc: 'Over 2,800+ graduated pharmacists and 2,250+ placed across multinational pharmaceutical corporations, regulatory bodies, and clinical healthcare systems globally.',
+        title: 'Two Decades of Academic Excellence',
+        desc: 'Celebrating 20 years of continuous service in pharmaceutical education, supported by active MoUs with pharmaceutical industries for placements, extensive library holdings of 8,000+ volumes, and full campus hostel and transport facilities.',
     },
 ];
 
-const stats = [
-    { label: 'Graduated Pharmacists', value: '2,800+', icon: GraduationCap },
-    { label: 'Campus Placements', value: '2,250+', icon: TrendingUp },
-    { label: 'Specialized Departments', value: '5 Core', icon: Building },
-    { label: 'Years of Academic Legacy', value: '18+ Yrs', icon: Award },
-];
-
 export default function HistoryPage() {
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const orbLeftRef = useRef<HTMLDivElement>(null);
-    const orbRightRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting);
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(styles.inView);
+                    } else {
+                        entry.target.classList.remove(styles.inView);
+                    }
+                });
             },
-            { threshold: 0.08 }
+            { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
         );
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
+
+        const animatedElements = containerRef.current?.querySelectorAll(`.${styles.animateOnScroll}`);
+        animatedElements?.forEach((el) => observer.observe(el));
+
         return () => observer.disconnect();
     }, []);
 
-    // Safe parallax lerp hook guarded against unmount race conditions
-    useEffect(() => {
-        let currentScroll = 0;
-        let targetScroll = 0;
-        let animationFrameId: number;
-        let isMounted = true;
-
-        const updateParallax = () => {
-            if (!isMounted || !sectionRef.current) return;
-            const rect = sectionRef.current.getBoundingClientRect();
-            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                currentScroll += (targetScroll - currentScroll) * 0.035;
-                const relativeOffset = window.innerHeight - rect.top;
-
-                if (orbLeftRef.current) {
-                    orbLeftRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.06}px, 0)`;
-                }
-                if (orbRightRef.current) {
-                    orbRightRef.current.style.transform = `translate3d(0, ${relativeOffset * -0.05}px, 0)`;
-                }
-            }
-            if (isMounted) {
-                animationFrameId = requestAnimationFrame(updateParallax);
-            }
-        };
-
-        const handleScroll = () => {
-            if (!isMounted) return;
-            targetScroll = window.scrollY;
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        animationFrameId = requestAnimationFrame(updateParallax);
-
-        return () => {
-            isMounted = false;
-            window.removeEventListener('scroll', handleScroll);
-            cancelAnimationFrame(animationFrameId);
-        };
-    }, []);
-
     return (
-        <div ref={sectionRef} className={styles.pageWrapper}>
-            <div ref={orbLeftRef} className={styles.bgOrbLeft} />
-            <div ref={orbRightRef} className={styles.bgOrbRight} />
+        <main ref={containerRef} className={styles.pageWrapper}>
+            <div className={styles.bgGlowTop} />
 
             <div className={styles.container}>
                 {/* Navigation Breadcrumb */}
-                <div className={`${styles.backNav} ${isVisible ? styles.animateReveal1 : styles.hiddenState}`}>
+                <div className={`${styles.breadcrumbNav} ${styles.animateOnScroll}`}>
                     <Link href="/" className={styles.backLink}>
                         <ArrowLeft size={16} />
                         <span>Return to Home</span>
                     </Link>
                 </div>
 
-                {/* Page Header */}
-                <div className={`${styles.header} ${isVisible ? styles.animateReveal1 : styles.hiddenState}`}>
-                    <div className={styles.eyebrowTag}>
-                        <Sparkles size={14} className={styles.eyebrowIcon} />
-                        <span>Our Founding Journey</span>
+                {/* 1. Asymmetrical Editorial Header */}
+                <section className={styles.editorialHero}>
+                    <div className={`${styles.heroLeft} ${styles.animateOnScroll}`}>
+                        <span className={styles.tagPill}>
+                            <Sparkles size={13} />
+                            <span>Established 2006 &bull; Nellore</span>
+                        </span>
+                        <h1 className={styles.heroTitle}>Jagan’s College of Pharmacy</h1>
+                        <p className={styles.heroSubtitle}>
+                            Founded under the management of M.S. Reddy Educational Society and guided by the vision and leadership of Sri S.V. Madhusudhan Reddy. Approved by AICTE and Pharmacy Council of India (PCI), New Delhi, and affiliated to Jawaharlal Nehru Technological University, Anantapur (JNTUA).
+                        </p>
                     </div>
-                    <h1 className={styles.title}>History of Jagan&apos;s College of Pharmacy</h1>
-                    <div className={styles.accentLine} />
-                    <p className={styles.descText}>
-                        From a humble foundation in Jangalakandriga, Nellore to becoming a premier center for
-                        pharmaceutical innovation and healthcare education affiliated with JNTUA and approved by PCI.
-                    </p>
-                </div>
 
-                {/* Highlight Stats Row */}
-                <div className={`${styles.statsGrid} ${isVisible ? styles.animateReveal2 : styles.hiddenState}`}>
-                    {stats.map((stat, idx) => {
-                        const Icon = stat.icon;
-                        return (
-                            <div key={idx} className={styles.statCard}>
-                                <div className={styles.statIconBox}>
-                                    <Icon size={24} />
-                                </div>
-                                <div className={styles.statData}>
-                                    <h3 className={styles.statValue}>{stat.value}</h3>
-                                    <p className={styles.statLabel}>{stat.label}</p>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                {/* Founders Card: Balanced 2-Column with Archival Imagery & Seal */}
-                <div className={`${styles.foundersCard} ${isVisible ? styles.animateReveal3 : styles.hiddenState}`}>
-                    <div className={styles.foundersGrid}>
-                        <div className={styles.foundersContent}>
-                            <span className={styles.foundersTag}>Foundational Visionaries</span>
-                            <h2 className={styles.foundersHeading}>The Spark Behind the Institution</h2>
-                            <p className={styles.foundersText}>
-                                In 2007, <strong>Sri J. V. Subba Rao</strong> (Founder Chairman) together with <strong>Smt. J. Pushpalatha</strong> (Co-Founder)
-                                recognized the acute demand for skilled clinical and formulation pharmacists in coastal Andhra Pradesh.
-                                Driven by the motto of empowering youth through scientific education, they laid the foundation stone on
-                                <strong> August 15, 2008</strong>.
-                            </p>
-                            <div className={styles.founderPills}>
-                                <div className={styles.pillItem}>
-                                    <CheckCircle2 size={15} className={styles.checkIcon} />
-                                    <span>Founder: Sri J. V. Subba Rao</span>
-                                </div>
-                                <div className={styles.pillItem}>
-                                    <CheckCircle2 size={15} className={styles.checkIcon} />
-                                    <span>Co-Founder: Smt. J. Pushpalatha</span>
-                                </div>
-                                <div className={styles.pillItem}>
-                                    <CheckCircle2 size={15} className={styles.checkIcon} />
-                                    <span>Inaugurated: August 15, 2008</span>
-                                </div>
-                            </div>
+                    <div className={`${styles.heroRightCallout} ${styles.animateOnScroll}`}>
+                        <div className={styles.calloutStat}>
+                            <span className={styles.statNumber}>70,000</span>
+                            <span className={styles.statLabel}>Sq. Ft. Built-Up Area </span>
                         </div>
+                        <p className={styles.calloutText}>
+                            Set across 2.5 acres in a serene environment in Jangalakandriga (Village), Muthukuru (Mandal), SPSR Nellore District, expanded from 20,000 sq. ft. in 2006 into a modern pharmaceutical center.
+                        </p>
+                    </div>
+                </section>
 
-                        {/* Right Side Visual Media Column */}
-                        <div className={styles.foundersVisualWrapper}>
-                            <div className={styles.imageFrame}>
-                                <img
-                                    src="/assets/HomePageImages/WCU.png"
-                                    alt="Laboratory and research facility foundation"
-                                    className={styles.foundersImg}
+                {/* 2. Bento Grid */}
+                <section className={styles.bentoSection}>
+                    <div className={styles.bentoGrid}>
+                        <div className={`${styles.bentoLargeCard} ${styles.animateOnScroll}`}>
+                            <div className={styles.bentoLargeBg}>
+                                <Image
+                                    src="/assets/logo/group.png"
+                                    alt="Jagan's College of Pharmacy Campus"
+                                    fill
+                                    sizes="(max-width: 860px) 100vw, 60vw"
+                                    className={styles.bentoLargeImg}
+                                    priority
                                 />
-                                <div className={styles.imageScrim} />
-                                <div className={styles.imageBadge}>
-                                    <Clock size={13} />
-                                    <span>Established 2008 &bull; Nellore, AP</span>
-                                </div>
                             </div>
-
-                            <div className={styles.foundingSealCard}>
-                                <div className={styles.sealHeader}>
-                                    <div className={styles.sealIconWrap}>
-                                        <Award size={20} />
-                                    </div>
-                                    <div>
-                                        <h4 className={styles.sealTitle}>18+ Years of Service</h4>
-                                        <span className={styles.sealSub}>PCI Approved &bull; JNTUA Affiliated</span>
-                                    </div>
-                                </div>
-                                <p className={styles.sealQuote}>
-                                    &ldquo;To nurture compassionate pharmacy practitioners and pioneering researchers who serve humanity with ethics and excellence.&rdquo;
+                            <div className={styles.bentoOverlay} />
+                            <div className={styles.bentoLargeContent}>
+                                <span className={styles.bentoTag}>Leadership & Vision</span>
+                                <h2 className={styles.bentoTitle}>M.S. Reddy Educational Society</h2>
+                                <p className={styles.bentoDesc}>
+                                    Under Sri S.V. Madhusudhan Reddy, the institution delivers quality education aligned with global standards, modern scientific facilities, and industry collaborations for training and placements.
                                 </p>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                {/* Evolution Timeline */}
-                <div className={styles.timelineSection}>
-                    <div className={`${styles.timelineHeader} ${isVisible ? styles.animateReveal1 : styles.hiddenState}`}>
-                        <span className={styles.innerEyebrow}>Institutional Milestones</span>
-                        <h2 className={styles.innerTitle}>Evolution of Academic Departments</h2>
-                    </div>
-
-                    <div className={styles.timelineList}>
-                        {milestones.map((item, idx) => (
-                            <div
-                                key={idx}
-                                className={`${styles.timelineItem} ${isVisible ? styles.animateReveal2 : styles.hiddenState}`}
-                            >
-                                <div className={styles.timelineYearBadge}>
-                                    <Calendar size={14} />
-                                    <span>{item.year}</span>
+                        <div className={styles.bentoSideStack}>
+                            <div className={`${styles.bentoSmallCard} ${styles.animateOnScroll}`}>
+                                <div>
+                                    <div className={styles.cardIconWrap}>
+                                        <FlaskConical size={22} />
+                                    </div>
+                                    <h3 className={styles.cardTitle}>24 Well-Equipped Laboratories</h3>
+                                    <p className={styles.cardDesc}>
+                                        Laboratories meeting PCI standards, supporting 20+ classrooms including 2 smart classrooms, seminar hall, and animal house for research activities.
+                                    </p>
                                 </div>
-                                <div className={styles.timelineCard}>
-                                    <h3 className={styles.milestoneTitle}>{item.title}</h3>
-                                    <p className={styles.milestoneDesc}>{item.desc}</p>
+                            </div>
+
+                            <div className={`${styles.bentoSmallCard} ${styles.animateOnScroll}`}>
+                                <div>
+                                    <div className={styles.cardIconWrap}>
+                                        <BookOpen size={22} />
+                                    </div>
+                                    <h3 className={styles.cardTitle}>8,000+ Physical Volumes</h3>
+                                    <p className={styles.cardDesc}>
+                                        A vast library with extensive digital resources, academic journals, and study reference literature for undergraduate, postgraduate, and doctoral scholars.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 3. Narrative Spreads */}
+                <section className={styles.narrativeSection}>
+                    <div className={`${styles.sectionHeadingBlock} ${styles.animateOnScroll}`}>
+                        <span className={styles.sectionEyebrow}>Collaborations & Infrastructure</span>
+                        <h2 className={styles.sectionTitle}>Academic Programs & Clinical Tie-Ups</h2>
+                    </div>
+
+                    <div className={`${styles.spreadRow} ${styles.animateOnScroll}`}>
+                        <div className={styles.spreadMedia}>
+                            <Image
+                                src="/assets/courses/pharmd4.png"
+                                alt="Medicover Hospital Clinical Training"
+                                fill
+                                sizes="(max-width: 860px) 100vw, 50vw"
+                                className={styles.spreadImg}
+                            />
+                            <span className={styles.mediaBadge}>
+                                <Clock size={13} />
+                                <span>Medicover Hospital Partnership</span>
+                            </span>
+                        </div>
+                        <div className={styles.spreadContent}>
+                            <span className={styles.chapterIndex}>Clinical Healthcare Exposure</span>
+                            <h3 className={styles.chapterTitle}>Doctor of Pharmacy (Pharm.D)</h3>
+                            <p className={styles.chapterDesc}>
+                                Approved by PCI, New Delhi, since 2012, our Pharm.D doctoral program features a clinical training partnership with Medicover Hospital, ensuring student exposure to real-world healthcare practices and inpatient ward rounds.
+                            </p>
+                            <div className={styles.keyPointsList}>
+                                <div className={styles.pointItem}>
+                                    <CheckCircle2 size={16} className={styles.pointBullet} />
+                                    <span>Clinical training partnership with Medicover Hospital for hospital rounds.</span>
+                                </div>
+                                <div className={styles.pointItem}>
+                                    <CheckCircle2 size={16} className={styles.pointBullet} />
+                                    <span>MoUs with pharmaceutical industries and technical laboratories for hands-on training.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={`${styles.spreadRow} ${styles.spreadRowReverse} ${styles.animateOnScroll}`}>
+                        <div className={styles.spreadMedia}>
+                            <Image
+                                src="/assets/Infra/Herbal_1.png"
+                                alt="Medicinal Herbal Garden"
+                                fill
+                                priority
+                                sizes="(max-width: 860px) 100vw, 50vw"
+                                className={styles.spreadImg}
+                            />
+                            <span className={styles.mediaBadge}>
+                                <ShieldCheck size={13} />
+                                <span>100+ Medicinal Plants</span>
+                            </span>
+                        </div>
+                        <div className={styles.spreadContent}>
+                            <span className={styles.chapterIndex}>Holistic Campus Amenities</span>
+                            <h3 className={styles.chapterTitle}>Herbal Garden, Research Facilities & Living</h3>
+                            <p className={styles.chapterDesc}>
+                                The 2.5-acre campus includes an herbal garden with 100+ medicinal plants, an animal house for research activities, sports and games facilities for holistic development, and separate hostel facilities for boys and girls within the campus.
+                            </p>
+                            <div className={styles.keyPointsList}>
+                                <div className={styles.pointItem}>
+                                    <CheckCircle2 size={16} className={styles.pointBullet} />
+                                    <span>Transportation facility directly connecting Nellore to the college campus.</span>
+                                </div>
+                                <div className={styles.pointItem}>
+                                    <CheckCircle2 size={16} className={styles.pointBullet} />
+                                    <span>Dedicated canteen for day-scholars, seminar hall for academic events, and hostel amenities.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 4. Chronology Spine */}
+                <section className={`${styles.chronologySection} ${styles.animateOnScroll}`}>
+                    <div className={styles.chronologyHeader}>
+                        <span className={styles.sectionEyebrow}>Legacy of Excellence</span>
+                        <h2 className={styles.sectionTitle}>Key Institutional Milestones</h2>
+                    </div>
+
+                    <div className={styles.milestoneTrack}>
+                        {MILESTONES_DATA.map((item) => (
+                            <div key={item.year} className={styles.milestoneRow}>
+                                <div className={styles.yearNode} />
+                                <span className={styles.yearLabel}>{item.year}</span>
+                                <div className={styles.milestoneBody}>
+                                    <h3 className={styles.milestoneRowTitle}>{item.title}</h3>
+                                    <p className={styles.milestoneRowDesc}>{item.desc}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
-                </div>
+                </section>
             </div>
-        </div>
+        </main>
     );
 }
