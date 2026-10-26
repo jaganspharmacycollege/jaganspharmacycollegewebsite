@@ -7,6 +7,11 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
     title: "Jagan's College of Pharmacy",
     description: "Approved by PCI & Affiliated to JNTUA",
+    icons: {
+        icon: "assets/logo/Jagans_logo.png",
+        shortcut: "assets/logo/Jagans_logo.png",
+        apple: "assets/logo/Jagans_logo.png",
+    },
 };
 
 export default function RootLayout({

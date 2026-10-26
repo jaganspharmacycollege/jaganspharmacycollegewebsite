@@ -16,119 +16,50 @@ import {
 import styles from './Management.module.css';
 
 // 7 Members of the Executive Council
-const executiveCouncil = [
-    {
-        name: 'Sri S.V.Madhusudhan Reddy',
-        role: 'President & Chairman',
-        qualification: 'M.A.',
-        affiliation: "Jagan's Educational Society",
-        image: '/assets/logo/Chairman.png',
-    },
-    {
-        name: 'Smt. S.Mamatha',
-        role: 'Treasurer & Director',
-        qualification: 'B.Ed, M.A.',
-        affiliation: "Jagan's Educational Society",
-        image: '/assets/logo/treasurer.png',
-    },
-    {
-        name: 'Sri J. Tarun Kumar',
-        role: 'Secretary & Correspondent ',
-        qualification: 'M.Tech, MBA (UK)',
-        affiliation: "Jagan's Educational Society",
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80',
-    },
-    {
-        name: 'Sri K. Venugopal Reddy',
-        role: 'Vice President',
-        qualification: 'B.Tech, Industrialist',
-        affiliation: "Jagan's Educational Society",
-        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80',
-    },
-    {
-        name: 'Sri M. Raghava Rao',
-        role: 'Joint Secretary',
-        qualification: 'M.Com, FCA',
-        affiliation: "Jagan's Educational Society",
-        image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80',
-    },
-    {
-        name: 'Dr. C. Venkateswarlu',
-        role: 'Executive Member',
-        qualification: 'M.S., Ortho Surgeon',
-        affiliation: 'Healthcare Nominee',
-        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80',
-    },
-    {
-        name: 'Smt. P. Anitha Kumari',
-        role: 'Executive Member',
-        qualification: 'M.Sc., Educationist',
-        affiliation: 'Philanthropic Council',
-        image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&q=80',
-    },
-];
 
 // Governing Body of the College
 const governingBody = [
     {
         name: 'Sri S.V.Madhusudhan Reddy',
         category: 'Management - Chairman',
-        designation: 'Chairman, Governing Body',
+        designation: 'Secretary MSR Educational Society',
         profile: 'Philanthropist & Edu-Visionary, Leading educational institutions in AP',
     },
     {
-        name: 'Sri J. Tarun Kumar',
-        category: 'Management - Member',
-        designation: 'Director & Treasurer',
-        profile: 'M.Tech, MBA (UK), Enterprise Systems & Strategic Academic Operations',
+        name: 'Smt. S.Mamatha',
+        category: 'Management',
+        designation: 'Treasurer',
+        profile: 'Treasurer MSR Educational Society',
     },
     {
-        name: 'Smt. J. Pushpalatha',
-        category: 'Management - Member',
-        designation: 'Secretary & Correspondent',
-        profile: 'B.Ed, M.A., Educational administration and student community outreach',
+        name: 'Sri V.Naveen Kumar Reddy ',
+        category: 'Management',
+        designation: 'Management - Member',
+        profile: 'Hon. Member, MSR Educational Society',
     },
     {
-        name: 'Nominee of JNTUA (University Nominee)',
+        name: 'Prof. E.Keshava Reddy',
         category: 'University Representative',
-        designation: 'Professor of Pharmaceutical Sciences',
+        designation: 'Professor in Mathematics Department',
         profile: 'Appointed by Jawaharlal Nehru Technological University Anantapur',
     },
     {
-        name: 'Nominee of AICTE / PCI',
-        category: 'Statutory Regulatory Authority',
-        designation: 'Council Nominee',
-        profile: 'Regional Officer / Nominated Academic Auditor, AICTE / PCI New Delhi',
+        name: 'Dr D.HepcyKalarani',
+        category: 'Member',
+        designation: 'Principal',
+        profile: 'Principal, Jagan&apos;s College of Pharmacy, Jangalakandriga, Nellore',
     },
     {
-        name: 'Nominee of State Government (DTE, AP)',
-        category: 'State Govt. Representative',
-        designation: 'Ex-Officio Member',
-        profile: 'Representative from Department of Technical Education, Government of AP',
+        name: 'Dr. C.Bhuvaneswara Rao',
+        category: 'Member',
+        designation: 'Professor',
+        profile: "Member, Professor Jagan's College of Pharmacy, Jangalakandriga, Nellore",
     },
     {
-        name: 'Industrial Stalwart / Technologist',
-        category: 'Industry Representative',
-        designation: 'VP - Quality & Formulations',
-        profile: 'Senior Executive representing Multinational Pharmaceutical Formulation Industry',
-    },
-    {
-        name: 'Dr. C. Venkatesh',
-        category: 'Senior Faculty Member',
-        designation: 'Vice Principal & Professor',
-        profile: 'M.Pharm, Ph.D, Academic Coordinator & Research Disciplinary Council',
-    },
-    {
-        name: 'Dr. G. Lakshmi Narayana',
-        category: 'Senior Faculty Member',
-        designation: 'Dean of Academics & R&D',
-        profile: 'M.Pharm, Ph.D, Head of Extramural Research Projects & CPCSEA Facility',
-    },
-    {
-        name: 'Dr. S. Radha Krishna',
-        category: 'Member Secretary',
-        designation: 'Principal, JCP',
-        profile: 'M.Pharm, Ph.D, Academic and Regulatory Executive Head of the Institution',
+        name: 'Dr.Dr.S.SaranKumar',
+        category: 'Member',
+        designation: 'Associate Professor',
+        profile: "Member, Associate Professor Jagan's College of Pharmacy, Jangalakandriga, Nellore",
     },
 ];
 
@@ -360,35 +291,7 @@ export default function ManagementPage() {
                 {/* =========================================================================
             SECTION 3: EXECUTIVE COUNCIL OF THE SOCIETY (7 MEMBERS)
            ========================================================================= */}
-                <section className={styles.councilSection}>
-                    <div className={styles.sectionHeaderWrap}>
-                        <span className={styles.sectionPill}>Apex Administrative Body</span>
-                        <h2 className={styles.sectionHeading}>Executive Council of the Society</h2>
-                        <p className={styles.sectionSubDesc}>
-                            The Executive Council of Jagan&apos;s Educational Society formulates institutional policies, oversees capital
-                            investments, and directs overall societal welfare.
-                        </p>
-                    </div>
 
-                    <div className={styles.councilGrid}>
-                        {executiveCouncil.map((member, idx) => (
-                            <div key={idx} className={styles.councilCard}>
-                                <div className={styles.councilImgBox}>
-                                    <img src={member.image} alt={member.name} className={styles.councilImg} />
-                                    <span className={styles.councilRoleTag}>{member.role}</span>
-                                </div>
-                                <div className={styles.councilCardBody}>
-                                    <h4 className={styles.councilMemberName}>{member.name}</h4>
-                                    <p className={styles.councilQual}>{member.qualification}</p>
-                                    <div className={styles.councilAffilRow}>
-                                        <Building2 size={13} className={styles.councilAffilIcon} />
-                                        <span>{member.affiliation}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
 
                 {/* =========================================================================
             SECTION 4: GOVERNING BODY OF THE COLLEGE
