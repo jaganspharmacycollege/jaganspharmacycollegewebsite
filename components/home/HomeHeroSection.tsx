@@ -8,6 +8,7 @@ import {
     Headphones,
     Mail,
     ArrowRight,
+    GraduationCap,
 } from 'lucide-react';
 import styles from './HomeHeroSection.module.css';
 
@@ -87,17 +88,37 @@ const TwitterIcon = ({ size = 18 }: { size?: number }) => (
         strokeLinecap="round"
         strokeLinejoin="round"
     >
-        <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-        <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+        <path d="M4 4l11.733 16h4.267l-11.733-16z" />
+        <path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772" />
     </svg>
 );
 
 const socialHandles = [
-    { name: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/jaganscollegeofpharmacy?stkn=eW8ycWFkd2l2aHpj' },
-    { name: 'Facebook', icon: FacebookIcon, href: 'https://www.facebook.com/share/1GoDvh2quM/' },
-    { name: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com' },
-    { name: 'YouTube', icon: YoutubeIcon, href: 'https://youtube.com/@jaganscollegeofpharmacy?si=GnxtebIvEMtzcbD_' },
-    { name: 'Twitter (X)', icon: TwitterIcon, href: 'https://twitter.com' },
+    {
+        name: 'Instagram',
+        icon: InstagramIcon,
+        href: 'https://www.instagram.com/jaganscollegeofpharmacy?stkn=eW8ycWFkd2l2aHpj',
+    },
+    {
+        name: 'Facebook',
+        icon: FacebookIcon,
+        href: 'https://www.facebook.com/share/1GoDvh2quM/',
+    },
+    {
+        name: 'LinkedIn',
+        icon: LinkedinIcon,
+        href: 'https://linkedin.com',
+    },
+    {
+        name: 'YouTube',
+        icon: YoutubeIcon,
+        href: 'https://youtube.com/@jaganscollegeofpharmacy?si=GnxtebIvEMtzcbD_',
+    },
+    {
+        name: 'Twitter (X)',
+        icon: TwitterIcon,
+        href: 'https://twitter.com',
+    },
 ];
 
 export default function HomeHeroSection() {
@@ -117,9 +138,11 @@ export default function HomeHeroSection() {
             },
             { threshold: 0.1 }
         );
+
         if (sectionRef.current) {
             observer.observe(sectionRef.current);
         }
+
         return () => {
             isMounted = false;
             observer.disconnect();
@@ -138,6 +161,7 @@ export default function HomeHeroSection() {
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 currentScroll += (targetScroll - currentScroll) * 0.035;
                 const relativeOffset = window.innerHeight - rect.top;
+
                 if (bgVideoRef.current) {
                     bgVideoRef.current.style.transform = `translate3d(0, ${relativeOffset * 0.04
                         }px, 0) scale(1.05)`;
@@ -151,6 +175,7 @@ export default function HomeHeroSection() {
                         }px, 0)`;
                 }
             }
+
             if (isMounted) {
                 animationFrameId = requestAnimationFrame(updateParallax);
             }
@@ -187,6 +212,31 @@ export default function HomeHeroSection() {
                 <div className={styles.overlay} />
                 <div ref={orbLeftRef} className={styles.bgOrbLeft} />
                 <div ref={orbRightRef} className={styles.bgOrbRight} />
+
+                {/* Full-width Category-B Management Quota Banner */}
+                <div className={styles.topRightAdmissionWrapper}>
+                    <Link
+                        href="/admissions/category-b"
+                        className={styles.managementQuotaBtn}
+                        aria-label="Admissions into B.Pharmacy, Pharmacy.D, M.Pharmacy courses under category-B (Management quota)"
+                    >
+                        <div className={styles.mgmtLeftGroup}>
+                            <div className={styles.mgmtBadgeIcon}>
+                                <GraduationCap size={20} />
+                            </div>
+                            <div className={styles.mgmtBtnTextGroup}>
+                                <span className={styles.mgmtBtnHighlight}>ADMISSIONS CATEGORY-B 2026–27 OPEN</span>
+                                <span className={styles.mgmtDividerBullet}>•</span>
+                                <span className={styles.mgmtBtnTitle}>
+                                    Admissions into B.Pharmacy, Pharmacy.D, M.Pharmacy courses under category-B(Management quota) - CLICK HERE
+                                </span>
+                            </div>
+                        </div>
+                        <div className={styles.mgmtBtnArrow}>
+                            <ArrowRight size={18} />
+                        </div>
+                    </Link>
+                </div>
 
                 {/* Right-Side Floating Social Handles */}
                 <aside
@@ -233,7 +283,7 @@ export default function HomeHeroSection() {
                                 <span className={styles.tickerItem}>
                                     <strong className={styles.goldHighlight}>
                                         Notifications:
-                                    </strong>
+                                    </strong>{' '}
                                     B. Pharm &amp; Pharm.D 2026-27 Admissions Counseling Schedule
                                     Released &bull; National Seminar on Modern Drug Regulatory
                                     Filings &amp; AI &bull; Annual Global Alumni Homecoming Meet 2026
@@ -242,7 +292,7 @@ export default function HomeHeroSection() {
                                 <span className={styles.tickerItem}>
                                     <strong className={styles.goldHighlight}>
                                         Notifications:
-                                    </strong>
+                                    </strong>{' '}
                                     B. Pharm &amp; Pharm.D 2026-27 Admissions Counseling Schedule
                                     Released &bull; National Seminar on Modern Drug Regulatory
                                     Filings &amp; AI &bull; Annual Global Alumni Homecoming Meet 2026
@@ -266,7 +316,10 @@ export default function HomeHeroSection() {
                             <span>Contact For Admissions (2026-2027) &amp; Enquiries</span>
                         </div>
                         <div className={styles.admissionNumbersGrid}>
-                            <a href="tel:+917680077726" className={styles.admissionNumberCard}>
+                            <a
+                                href="tel:+917680077726"
+                                className={styles.admissionNumberCard}
+                            >
                                 <div className={styles.numberIconBox}>
                                     <UserCheck size={16} />
                                 </div>
@@ -275,8 +328,10 @@ export default function HomeHeroSection() {
                                     <span className={styles.numberValue}>+91 7680077726</span>
                                 </div>
                             </a>
-
-                            <a href="tel:+917680077733" className={styles.admissionNumberCard}>
+                            <a
+                                href="tel:+917680077733"
+                                className={styles.admissionNumberCard}
+                            >
                                 <div className={styles.numberIconBox}>
                                     <Headphones size={16} />
                                 </div>
@@ -285,8 +340,10 @@ export default function HomeHeroSection() {
                                     <span className={styles.numberValue}>+91 7680077733</span>
                                 </div>
                             </a>
-
-                            <a href="tel:+919989000447" className={styles.admissionNumberCard}>
+                            <a
+                                href="tel:+919989000447"
+                                className={styles.admissionNumberCard}
+                            >
                                 <div className={styles.numberIconBox}>
                                     <Phone size={16} />
                                 </div>
@@ -295,14 +352,18 @@ export default function HomeHeroSection() {
                                     <span className={styles.numberValue}>+91 9989000447</span>
                                 </div>
                             </a>
-
-                            <a href="mailto:admissions.jcp@gmail.com" className={styles.admissionNumberCard}>
+                            <a
+                                href="mailto:admissions.jcp@gmail.com"
+                                className={styles.admissionNumberCard}
+                            >
                                 <div className={styles.numberIconBox}>
                                     <Mail size={16} />
                                 </div>
                                 <div className={styles.numberInfo}>
                                     <span className={styles.numberLabel}>Admissions Email</span>
-                                    <span className={styles.numberValue}>admissions.jcp@gmail.com</span>
+                                    <span className={styles.numberValue}>
+                                        admissions.jcp@gmail.com
+                                    </span>
                                 </div>
                             </a>
                         </div>

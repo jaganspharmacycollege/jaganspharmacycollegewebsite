@@ -99,6 +99,7 @@ export default function Header() {
 
     const admissionOptions = [
         { name: 'Admission Process', href: '/admissions/admission-process' },
+        { name: 'Management Admissions', href: '/admissions/category-b' },
         { name: 'Eligibility Criteria', href: '/admissions/eligibility-criteria' },
         { name: 'Fee Structure', href: '/admissions/fee-structure' },
         { name: 'Application Form', href: '/admissions/application-form' },
